@@ -1,11 +1,6 @@
 [gd_scene format=3 uid="uid://bbhp077dinif7"]
 
 [ext_resource type="Script" uid="uid://b7nsmhi1rfvqf" path="res://game_root.gd" id="1_pjpa4"]
-[ext_resource type="Script" uid="uid://bldxyhobdey8l" path="res://system/game_controller.gd" id="1_xj5yv"]
 
 [node name="GameRoot" type="Node" unique_id=828412104]
 script = ExtResource("1_pjpa4")
-
-[node name="GameController" type="Node" parent="." unique_id=1091499664]
-script = ExtResource("1_xj5yv")
-metadata/_custom_type_script = "uid://c5a5egk7btkvw"
