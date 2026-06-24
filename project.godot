@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Game="*uid://dte4owww3umgn"
+Scenes="*uid://cb22k2gmfjem8"
 
 [display]
 

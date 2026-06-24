@@ -4,3 +4,7 @@
 
 [node name="GameRoot" type="Node" unique_id=828412104]
 script = ExtResource("1_pjpa4")
+
+[node name="WorldCanvas" type="CanvasLayer" parent="." unique_id=376096639 groups=["world_canvas"]]
+
+[node name="MainMenuCanvas" type="CanvasLayer" parent="." unique_id=1269583312 groups=["main_menu_canvas"]]
