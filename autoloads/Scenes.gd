@@ -70,8 +70,8 @@ func _load_scene(scene_script: Script) -> GameScene:
 
 		if active_scene:
 
-			active_scene.hide()
+			active_scene._deactivate()
 
-		scene.show()
+		scene._activate()
 
 	return scene

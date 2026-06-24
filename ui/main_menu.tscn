@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cuulvxdb4v0i0"]
 
-[ext_resource type="Script" uid="uid://bua0rrwvned2k" path="res://system/game_scene/game_scene.gd" id="1_t7e0r"]
+[ext_resource type="Script" uid="uid://dkbobrufmi74y" path="res://ui/main_menu.gd" id="1_t7e0r"]
 
-[node name="MainMenu" type="Control" unique_id=809595668]
+[node name="MainMenu" type="Control" unique_id=809595668 node_paths=PackedStringArray("start_new_game_button", "new_character_name_entry")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +10,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t7e0r")
+start_new_game_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/StartNewGameButton")
+new_character_name_entry = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/NewCharacterNameEntry")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=38695579]
 layout_mode = 1
@@ -35,7 +37,14 @@ theme_override_constants/margin_bottom = 8
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=407392098]
 layout_mode = 2
 
-[node name="StartGameButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=845025111]
+[node name="NewCharacterNameEntry" type="LineEdit" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=648720904]
 custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
-text = "Start"
+placeholder_text = "New Character Name"
+alignment = 1
+caret_blink = true
+
+[node name="StartNewGameButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=845025111]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+text = "Start New Game"
