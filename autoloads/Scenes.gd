@@ -38,6 +38,8 @@ func load_scene(scene_script: Script) -> GameScene:
 
 	var scene = _load_scene(scene_script)
 
+	UI.deactivate_overlays()
+
 	return scene
 
 

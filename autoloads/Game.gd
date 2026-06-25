@@ -112,7 +112,9 @@ func is_active() -> bool:
 	return active_save_data != null
 
 
+func is_paused() -> bool:
 
+	return get_tree().paused
 
 
 
