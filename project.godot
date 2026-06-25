@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 Game="*uid://dte4owww3umgn"
 Scenes="*uid://cb22k2gmfjem8"
 Saves="*uid://bywoakyaq1gbo"
-Ui="*uid://xqjwrsyo1413"
+UI="*uid://xqjwrsyo1413"
 
 [display]
 

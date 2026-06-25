@@ -10,6 +10,10 @@ var active_save_data: SaveData
 
 
 
+func _ready() -> void:
+
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 
 
 
@@ -81,7 +85,16 @@ func exit() -> void:
 
 
 
+func pause() -> void:
 
+	get_tree().paused = true
+
+
+
+
+func resume() -> void:
+
+	get_tree().paused = false
 
 
 
