@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c2tltv6aiyaeq"]
+
+[ext_resource type="Script" uid="uid://c02n4vygyoab8" path="res://ui/save_list_row.gd" id="1_4ihwl"]
+
+[node name="SaveListRow" type="HBoxContainer" unique_id=1640043701 node_paths=PackedStringArray("save_name_button", "delete_button")]
+script = ExtResource("1_4ihwl")
+save_name_button = NodePath("SaveNameButton")
+delete_button = NodePath("DeleteButton")
+
+[node name="SaveNameButton" type="Button" parent="." unique_id=506464731]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+
+[node name="DeleteButton" type="Button" parent="." unique_id=346750517]
+custom_minimum_size = Vector2(65, 45)
+layout_mode = 2
+text = "Delete"

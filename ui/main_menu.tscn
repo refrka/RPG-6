@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkbobrufmi74y" path="res://ui/main_menu.gd" id="1_t7e0r"]
 
-[node name="MainMenu" type="Control" unique_id=809595668 node_paths=PackedStringArray("start_new_game_button", "new_character_name_entry")]
+[node name="MainMenu" type="Control" unique_id=809595668 node_paths=PackedStringArray("start_new_game_button", "new_character_name_entry", "save_list")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,8 +10,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t7e0r")
-start_new_game_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/StartNewGameButton")
-new_character_name_entry = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/NewCharacterNameEntry")
+start_new_game_button = NodePath("MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/StartNewGameButton")
+new_character_name_entry = NodePath("MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/NewCharacterNameEntry")
+save_list = NodePath("MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/ScrollContainer/SaveList")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=38695579]
 layout_mode = 1
@@ -22,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1804179597]
-custom_minimum_size = Vector2(250, 0)
+custom_minimum_size = Vector2(600, 275)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -34,17 +35,43 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=407392098]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=1051191249]
 layout_mode = 2
 
-[node name="NewCharacterNameEntry" type="LineEdit" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=648720904]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=407392098]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NewCharacterNameEntry" type="LineEdit" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=648720904]
 custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 placeholder_text = "New Character Name"
 alignment = 1
 caret_blink = true
 
-[node name="StartNewGameButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=845025111]
+[node name="StartNewGameButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=845025111]
 custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 text = "Start New Game"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=1749953144]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=2048271540]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Current Saves"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=2141317759]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=2136544518]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SaveList" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2/ScrollContainer" unique_id=471561175]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

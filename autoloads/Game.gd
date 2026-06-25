@@ -5,7 +5,7 @@ extends Node
 
 
 
-
+var active_save_data: SaveData
 
 
 
@@ -31,7 +31,11 @@ func restart() -> void:
 
 func start(save_id: StringName) -> void:
 
-	pass
+	if active_save_data:
+
+		end()
+
+	active_save_data = Saves.load_save_data(save_id)
 
 
 
@@ -43,7 +47,7 @@ func end() -> void:
 
 func save() -> void:
 
-	pass
+	Saves.save_game(active_save_data)
 
 
 
