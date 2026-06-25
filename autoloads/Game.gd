@@ -46,6 +46,7 @@ func start(save_id: StringName) -> void:
 
 
 
+
 func end() -> void:
 
 	save()
@@ -76,6 +77,26 @@ func exit() -> void:
 
 	Scenes.load_scene(MainMenu)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func is_active() -> bool:
+
+	return active_save_data != null
 
 
 
