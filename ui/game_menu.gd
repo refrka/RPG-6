@@ -35,7 +35,7 @@ func _ready() -> void:
 
 func _on_save_pressed() -> void:
 
-	pass
+	Game.save()
 
 
 

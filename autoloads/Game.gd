@@ -27,12 +27,6 @@ func launch() -> void:
 
 
 
-func restart() -> void:
-
-	pass
-
-
-
 
 
 func start(save_id: StringName) -> void:
