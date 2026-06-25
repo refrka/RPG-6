@@ -26,6 +26,10 @@ Saves="*uid://bywoakyaq1gbo"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 
+[global_group]
+
+game_scene=""
+
 [gui]
 
 theme/custom="uid://mcv076appql6"

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dkbobrufmi74y" path="res://ui/main_menu.gd" id="1_t7e0r"]
 
-[node name="MainMenu" type="Control" unique_id=809595668 node_paths=PackedStringArray("start_new_game_button", "new_character_name_entry", "save_list")]
+[node name="MainMenu" type="Control" unique_id=809595668 node_paths=PackedStringArray("start_new_game_button", "new_character_name_entry", "save_list") groups=["game_scene"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

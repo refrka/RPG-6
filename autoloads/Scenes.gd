@@ -34,7 +34,9 @@ func register_scene(scene: GameScene) -> void:
 
 
 
+func load_scene(scene: Script) -> void:
 
+	_load_scene(scene)
 
 
 
@@ -59,6 +61,10 @@ func register_scene(scene: GameScene) -> void:
 ## Private
 
 func _load_scene(scene_script: Script) -> GameScene:
+
+	for scene in get_tree().get_nodes_in_group("game_scene"):
+
+		scene._deactivate()
 
 	var scene: GameScene = null
 
