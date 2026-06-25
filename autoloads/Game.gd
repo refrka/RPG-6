@@ -14,7 +14,7 @@ extends Node
 
 
 
-## Top-level Game Methods
+## Top-level Methods
 
 
 func launch() -> void:
@@ -36,6 +36,12 @@ func start(save_id: StringName) -> void:
 
 
 func end() -> void:
+
+	pass
+
+
+
+func save() -> void:
 
 	pass
 

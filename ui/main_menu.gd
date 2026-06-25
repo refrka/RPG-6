@@ -36,3 +36,5 @@ func _on_start_new_game_pressed() -> void:
 	if character_name == "":
 
 		return
+
+	Saves.create_save(character_name)
