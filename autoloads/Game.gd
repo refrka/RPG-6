@@ -19,7 +19,7 @@ var active_save_data: SaveData
 
 func launch() -> void:
 
-	pass
+	Scenes.load_scene(MainMenu)
 
 
 
@@ -39,8 +39,9 @@ func start(save_id: StringName) -> void:
 
 	active_save_data = Saves.load_save_data(save_id)
 
-	Scenes.load_scene(Location)
+	var world_scene = Scenes.load_scene(WorldScene)
 
+	world_scene.load_location(active_save_data.last_dict["location_id"])
 
 
 

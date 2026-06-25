@@ -6,4 +6,6 @@ var data = {
 
 	"last_save_unix": 0.0,
 
+	"location_id": "forest_start",
+
 }

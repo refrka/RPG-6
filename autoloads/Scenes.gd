@@ -34,17 +34,23 @@ func register_scene(scene: GameScene) -> void:
 
 
 
-func load_scene(scene: Script) -> void:
+func load_scene(scene_script: Script) -> GameScene:
 
-	_load_scene(scene)
+	var scene = _load_scene(scene_script)
 
-
-
-
+	return scene
 
 
 
 
+
+func get_scene(scene_script: Script) -> GameScene:
+
+	if scene_registry.has(scene_script):
+
+		return scene_registry[scene_script]
+
+	return null
 
 
 

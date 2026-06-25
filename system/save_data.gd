@@ -6,7 +6,9 @@ var save_id: String
 
 var save_name: String
 
+var location_id: StringName
 
+var last_dict: Dictionary
 
 
 
@@ -18,6 +20,8 @@ func get_dictionary() -> Dictionary:
 
 	save_dict["save_name"] = save_name
 
+	last_dict = save_dict
+
 	return save_dict
 
 
@@ -28,6 +32,8 @@ func get_dictionary() -> Dictionary:
 static func load_dictionary(save_dict: Dictionary) -> SaveData:
 
 	var save_data = SaveData.new()
+
+	save_data.last_dict = save_dict
 
 	save_data.save_id = save_dict["save_id"]
 
