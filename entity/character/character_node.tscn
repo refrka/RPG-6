@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bnbnldoep6nkm" path="res://entity/character/character_node.gd" id="1_ioq1x"]
 [ext_resource type="Script" uid="uid://xkte7ewblekd" path="res://component/component_root.gd" id="2_l8yc8"]
+[ext_resource type="Script" uid="uid://bkt1alajs7uje" path="res://component/movement_component.gd" id="3_fekyf"]
 
 [node name="CharacterNode" type="CharacterBody2D" unique_id=1735178076 node_paths=PackedStringArray("component_root")]
+motion_mode = 1
 script = ExtResource("1_ioq1x")
 component_root = NodePath("ComponentRoot")
 
@@ -15,3 +17,6 @@ component_root = NodePath("ComponentRoot")
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=1494875897]
 script = ExtResource("2_l8yc8")
+
+[node name="MovementComponent" type="Node" parent="ComponentRoot" unique_id=2064357418]
+script = ExtResource("3_fekyf")

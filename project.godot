@@ -78,6 +78,13 @@ back={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="TileMapImpassable"
+2d_physics/layer_5="CharacterNode"
+2d_physics/layer_6="ObjectNode"
+2d_physics/layer_7="PlayerNode"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

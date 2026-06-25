@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://u2gj13bgr5dt" path="res://entity/character/character_node.tscn" id="1_ynuq4"]
 [ext_resource type="Script" uid="uid://c4i3oc2bag4c7" path="res://player/player_node.gd" id="2_a3uy3"]
+[ext_resource type="Script" uid="uid://bjs6xwrqdfj8f" path="res://component/input_component.gd" id="3_d0owe"]
 
 [sub_resource type="Gradient" id="Gradient_a3uy3"]
 
@@ -16,3 +17,7 @@ script = ExtResource("2_a3uy3")
 [node name="Sprite2D" parent="VisualRoot" parent_id_path=PackedInt32Array(799522844) index="0" unique_id=533581725]
 position = Vector2(0, -16)
 texture = SubResource("GradientTexture2D_hvr88")
+
+[node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1494875897) index="1" unique_id=294223112]
+script = ExtResource("3_d0owe")
+metadata/_custom_type_script = "uid://bjs6xwrqdfj8f"
