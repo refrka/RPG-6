@@ -106,6 +106,10 @@ func change_location(location_id: StringName, spawn_id:="start") -> void:
 
 	location_scene.spawn_player(spawn_id)
 
+	active_save_data.location_id = location_id
+
+	active_save_data.spawn_id = spawn_id
+
 	
 
 

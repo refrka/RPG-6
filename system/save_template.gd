@@ -10,4 +10,6 @@ var data = {
 
 	"spawn_id": "start",
 
+	"location_data": [ ],
+
 }
