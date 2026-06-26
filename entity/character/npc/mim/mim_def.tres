@@ -6,3 +6,4 @@
 script = ExtResource("1_jailc")
 unique_id = &"mim"
 entity_id = &"mim"
+scene_path = "res://entity/character/npc/mim/mim.tscn"

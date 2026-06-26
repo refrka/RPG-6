@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://b88acxtmkpq6u"]
+
+[ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="1_3yiis"]
+
+[resource]
+script = ExtResource("1_3yiis")
+entity_id = &"wolf"
+scene_path = "res://entity/character/mob/wolf/wolf.tscn"

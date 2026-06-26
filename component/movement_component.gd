@@ -83,3 +83,7 @@ func _process(_delta: float) -> void:
 	if current_velocity != entity.velocity:
 
 		current_velocity = entity.velocity
+
+
+
+

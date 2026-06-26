@@ -1,11 +1,21 @@
 [gd_scene format=3 uid="uid://7eatdsnr4bxf"]
 
 [ext_resource type="PackedScene" uid="uid://u2gj13bgr5dt" path="res://entity/character/character_node.tscn" id="1_vlfus"]
-[ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="2_4m67x"]
+[ext_resource type="Resource" uid="uid://b88acxtmkpq6u" path="res://entity/character/mob/wolf/wolf_def.tres" id="2_4m67x"]
 
-[sub_resource type="Resource" id="Resource_cujn1"]
-script = ExtResource("2_4m67x")
-entity_id = &"wolf"
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_782li"]
+size = Vector2(20, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4m67x"]
+size = Vector2(20, 8)
 
 [node name="Wolf" unique_id=1735178076 instance=ExtResource("1_vlfus")]
-def = SubResource("Resource_cujn1")
+def = ExtResource("2_4m67x")
+
+[node name="Sprite2D" parent="VisualRoot" parent_id_path=PackedInt32Array(799522844) index="0" unique_id=533581725]
+position = Vector2(0, -10)
+texture = SubResource("PlaceholderTexture2D_782li")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=443757228]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_4m67x")
