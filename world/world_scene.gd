@@ -58,7 +58,7 @@ func _get_location_data(location_scene: LocationScene) -> LocationData:
 
 	for location_data in save_data.location_data_list:
 
-		if location_data.location_scene == location_scene:
+		if location_data.location_id == location_scene.location_id:
 
 			data = location_data
 
@@ -78,6 +78,8 @@ func _create_location_data(location_scene: LocationScene) -> LocationData:
 	var data = LocationData.new()
 
 	data.location_scene = location_scene
+
+	data.location_id = location_scene.location_id
 
 	var save_data = Game.get_save_data()
 

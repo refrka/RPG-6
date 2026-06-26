@@ -12,4 +12,6 @@ var data = {
 
 	"location_data": [ ],
 
+	"entity_data": [ ],
+
 }

@@ -76,6 +76,8 @@ func exit() -> void:
 
 	end()
 
+	Scenes.close_scene(LocationScene)
+
 	Scenes.load_scene(MainMenu)
 
 

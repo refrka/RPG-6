@@ -69,3 +69,5 @@ func _process(_delta: float) -> void:
 		entity.velocity = move_velocity
 
 		entity.move_and_slide()
+
+

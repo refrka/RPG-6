@@ -46,6 +46,20 @@ func load_scene(scene_script: Script) -> GameScene:
 
 
 
+func close_scene(scene_script: Script) -> void:
+
+	var scene = get_scene(scene_script)
+
+	if scene:
+
+		scene.queue_free()
+
+		scene_registry.erase(scene_script)
+
+
+
+
+
 func get_scene(scene_script: Script) -> GameScene:
 
 	if scene_registry.has(scene_script):
