@@ -61,10 +61,14 @@ func get_scene(scene_script: Script) -> GameScene:
 
 func get_location_scene(location_id: StringName) -> LocationScene:
 
-	var location_scene: LocationScene = null
+	var location_scene = get_scene(LocationScene)
+
+	if location_scene != null and location_scene.location_id == location_id:
+
+		return location_scene
 
 	var path = "res://world/locations/%s.scn" % location_id
-	
+
 	if FileAccess.file_exists(path):
 
 		location_scene = load(path).instantiate()

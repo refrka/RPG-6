@@ -16,6 +16,7 @@ var last_dict: Dictionary
 
 var location_data_list: Array[LocationData]
 
+var entity_data_list: Array[EntityData]
 
 
 
