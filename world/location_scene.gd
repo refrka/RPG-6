@@ -83,7 +83,7 @@ func _load_entity_data() -> void:
 
 				entity_data = Entities.create_data(character_node)
 
-				entity_data.update_location(location_id)
+				character_node.update_location()
 
 			character_node.load_data(entity_data)
 

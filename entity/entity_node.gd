@@ -70,11 +70,21 @@ func load_data(entity_data: EntityData) -> void:
 
 	data.node = self
 
-	print("loading data")
-
 	global_position = data.last_known_position
 
-	print("position set to: ", global_position)
+
+
+
+
+func update_location() -> void:
+
+	if data:
+
+		var location_scene = Scenes.get_scene(LocationScene)
+
+		data.last_known_location_id = location_scene.location_id
+
+		data.last_known_position = global_position
 
 
 
@@ -96,21 +106,3 @@ func _load_dictionary() -> void:
 
 
 
-
-
-
-func _create_entity_data() -> EntityData:
-
-	var entity_data = EntityData.new()
-
-	entity_data.def = def
-
-	if def.unique_id != &"":
-
-		var save_data = Game.get_save_data()
-
-		save_data.entity_data_list.append(save_data)
-
-	entity_data.node = self
-
-	return entity_data

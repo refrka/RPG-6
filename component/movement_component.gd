@@ -2,16 +2,18 @@ class_name MovementComponent extends Component
 
 
 
+signal move_started
+
+signal move_stopped
+
 
 
 var move_dir: Vector2
 
+var current_velocity: Vector2
 
 
 var can_move:= true
-
-
-
 
 
 
@@ -70,4 +72,14 @@ func _process(_delta: float) -> void:
 
 		entity.move_and_slide()
 
+	if current_velocity != Vector2.ZERO and move_velocity == Vector2.ZERO:
 
+		move_stopped.emit()
+
+	elif current_velocity == Vector2.ZERO and move_velocity != Vector2.ZERO:
+
+		move_started.emit()
+
+	if current_velocity != entity.velocity:
+
+		current_velocity = entity.velocity

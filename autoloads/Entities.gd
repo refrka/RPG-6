@@ -44,6 +44,12 @@ func create_data(entity_node: EntityNode) -> EntityData:
 
 	entity_data.node = entity_node
 
+	var location_scene = Scenes.get_scene(LocationScene)
+
+	entity_data.last_known_location_id = location_scene.location_id
+
+	entity_data.last_known_position = entity_node.global_position
+
 	var save_data = Game.get_save_data()
 
 	save_data.entity_data_list.append(entity_data)

@@ -50,16 +50,3 @@ static func load_dictionary(save_dict: Dictionary) -> EntityData:
 
 
 
-
-
-func update_location(location_id: StringName = &"") -> void:
-
-	if location_id == "":
-
-		var location_scene = Scenes.get_scene(LocationScene)
-
-		location_id = location_scene.location_id
-
-	last_known_location_id = location_id
-
-	last_known_position = node.global_position
