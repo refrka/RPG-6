@@ -2,7 +2,7 @@ class_name EntityNode extends PhysicsBody2D
 
 
 
-
+@export var def: EntityDef
 
 @export var component_root: ComponentRoot
 
@@ -39,3 +39,42 @@ func get_component(component_name: StringName) -> Component:
 			return component
 
 	return null
+
+
+
+
+func get_entity_id() -> StringName:
+
+	var entity_id = def.entity_id
+
+	if def.template:
+
+		entity_id = def.template.entity_id
+
+	return entity_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _get_dictionary() -> Dictionary:
+
+	var save_dict = {}
+
+	return save_dict
+
+
+
+
+
+func _load_dictionary() -> void:
+
+	pass

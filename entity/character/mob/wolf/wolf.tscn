@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://7eatdsnr4bxf"]
+
+[ext_resource type="PackedScene" uid="uid://u2gj13bgr5dt" path="res://entity/character/character_node.tscn" id="1_vlfus"]
+[ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="2_4m67x"]
+
+[sub_resource type="Resource" id="Resource_cujn1"]
+script = ExtResource("2_4m67x")
+entity_id = &"wolf"
+
+[node name="Wolf" unique_id=1735178076 instance=ExtResource("1_vlfus")]
+def = SubResource("Resource_cujn1")
