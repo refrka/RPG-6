@@ -23,7 +23,7 @@ func load_location(location_id: StringName) -> LocationScene:
 
 	active_location = location_scene
 
-	var location_data = _get_location_data(location_id)
+	var location_data = _get_location_data(location_scene)
 
 	active_location.load_location_data(location_data)
 
@@ -48,7 +48,7 @@ func unload_location() -> void:
 
 
 
-func _get_location_data(location_id: StringName) -> LocationData:
+func _get_location_data(location_scene: LocationScene) -> LocationData:
 
 	var data: LocationData = null
 
@@ -56,13 +56,13 @@ func _get_location_data(location_id: StringName) -> LocationData:
 
 	for location_data in save_data.location_data_list:
 
-		if location_data.location_id == location_id:
+		if location_data.location_scene == location_scene:
 
 			data = location_data
 
 	if data == null:
 
-		data = _create_location_data(location_id)
+		data = _create_location_data(location_scene)
 
 	return data
 
@@ -71,11 +71,11 @@ func _get_location_data(location_id: StringName) -> LocationData:
 
 
 
-func _create_location_data(location_id: StringName) -> LocationData:
+func _create_location_data(location_scene: LocationScene) -> LocationData:
 
 	var data = LocationData.new()
 
-	data.location_id = location_id
+	data.location_scene = location_scene
 
 	var save_data = Game.get_save_data()
 

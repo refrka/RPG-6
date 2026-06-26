@@ -22,6 +22,8 @@ func _ready() -> void:
 
 		transition_zone._setup(self)
 
+	_load_entity_data()
+
 
 
 
@@ -33,9 +35,19 @@ func _load_entity_data() -> void:
 
 	var save_data = Game.get_save_data()
 
-	for character in character_root.get_children():
+	for character_node in character_root.get_children():
 
-		if character.def.unique_id != &"":
+		var unique_id = character_node.def.unique_id
+
+		if unique_id != &"":
+
+			var data_list = save_data.entity_data_list.filter(func(data): return data.unique_id == unique_id)
+
+			if !data_list.is_empty():
+
+				var character_data = save_data.entity_data_list.filter(func(data): return data.unique_id == unique_id).front()
+
+				character_node.load_entity_data(character_data)
 
 
 

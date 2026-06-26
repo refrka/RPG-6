@@ -4,6 +4,8 @@ class_name EntityNode extends PhysicsBody2D
 
 @export var def: EntityDef
 
+var data: EntityData
+
 @export var component_root: ComponentRoot
 
 
@@ -58,6 +60,12 @@ func get_entity_id() -> StringName:
 
 
 
+
+
+
+func load_entity_data(entity_data: EntityData) -> void:
+
+	data = entity_data
 
 
 
