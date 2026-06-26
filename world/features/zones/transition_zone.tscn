@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dixi63wiavivk"]
+
+[ext_resource type="Script" uid="uid://bbwbthvkfnn0t" path="res://world/features/zones/transition_zone.gd" id="1_awwvp"]
+[ext_resource type="Script" uid="uid://b40mybgkyv4vo" path="res://system/sensor.gd" id="2_x6npx"]
+
+[node name="TransitionZone" type="Node2D" unique_id=380691472 node_paths=PackedStringArray("sensor")]
+script = ExtResource("1_awwvp")
+sensor = NodePath("Sensor")
+
+[node name="Sensor" type="Area2D" parent="." unique_id=582107563]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("2_x6npx")
+metadata/_custom_type_script = "uid://b40mybgkyv4vo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sensor" unique_id=1004447533]

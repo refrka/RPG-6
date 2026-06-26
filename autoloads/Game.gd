@@ -7,6 +7,7 @@ extends Node
 
 var active_save_data: SaveData
 
+var player: PlayerNode
 
 
 
@@ -39,7 +40,9 @@ func start(save_id: StringName) -> void:
 
 	var world_scene = Scenes.load_scene(WorldScene)
 
-	world_scene.load_location(active_save_data.last_dict["location_id"])
+	var location_scene = world_scene.load_location(active_save_data.last_dict["location_id"])
+
+	location_scene.spawn_player(active_save_data.last_dict["spawn_id"])
 
 
 
@@ -95,7 +98,28 @@ func resume() -> void:
 
 
 
+func change_location(location_id: StringName, spawn_id:="start") -> void:
 
+	var world_scene = Scenes.get_scene(WorldScene)
+
+	var location_scene = world_scene.load_location(location_id)
+
+	location_scene.spawn_player(spawn_id)
+
+	
+
+
+
+
+func get_player() -> PlayerNode:
+
+	if !player:
+
+		player = load("res://player/player_node.tscn").instantiate()
+
+		add_child(player)
+	
+	return player
 
 
 

@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://bkt1alajs7uje" path="res://component/movement_component.gd" id="3_fekyf"]
 
 [node name="CharacterNode" type="CharacterBody2D" unique_id=1735178076 node_paths=PackedStringArray("component_root")]
+collision_layer = 16
+collision_mask = 16
 motion_mode = 1
 script = ExtResource("1_ioq1x")
 component_root = NodePath("ComponentRoot")

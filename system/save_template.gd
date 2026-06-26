@@ -8,4 +8,6 @@ var data = {
 
 	"location_id": "forest_start",
 
+	"spawn_id": "start",
+
 }

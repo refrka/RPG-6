@@ -11,12 +11,22 @@ gradient = SubResource("Gradient_a3uy3")
 width = 32
 height = 32
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d0owe"]
+radius = 8.0
+height = 32.0
+
 [node name="PlayerNode" unique_id=1735178076 instance=ExtResource("1_ynuq4")]
+collision_layer = 80
 script = ExtResource("2_a3uy3")
 
 [node name="Sprite2D" parent="VisualRoot" parent_id_path=PackedInt32Array(799522844) index="0" unique_id=533581725]
 position = Vector2(0, -16)
 texture = SubResource("GradientTexture2D_hvr88")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=443757228]
+position = Vector2(0, -8)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_d0owe")
 
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1494875897) index="1" unique_id=294223112]
 script = ExtResource("3_d0owe")
