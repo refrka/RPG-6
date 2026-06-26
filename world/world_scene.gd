@@ -13,13 +13,15 @@ var location_data_list: Array[LocationData]
 
 func load_location(location_id: StringName) -> LocationScene:
 
-	if active_location:
+	var location_scene = Scenes.get_location_scene(location_id)
+
+	if active_location and active_location != location_scene:
 
 		unload_location()
 
-	var location_scene = Scenes.get_location_scene(location_id)
+	if !location_scene.is_inside_tree():
 
-	add_child(location_scene)
+		add_child(location_scene)
 
 	active_location = location_scene
 
