@@ -12,6 +12,11 @@ var last_dict: Dictionary
 
 
 
+var location_data_list: Array[LocationData]
+
+
+
+
 func get_dictionary() -> Dictionary:
 
 	var save_dict = load("res://system/save_template.gd").new().data

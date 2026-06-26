@@ -123,6 +123,10 @@ func get_player() -> PlayerNode:
 
 
 
+func get_save_data() -> SaveData:
+
+	return active_save_data
+
 
 
 func is_active() -> bool:

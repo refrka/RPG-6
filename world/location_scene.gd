@@ -8,6 +8,7 @@ class_name LocationScene extends GameScene
 @export var spawn_point_root: Node2D
 
 
+var location_data: LocationData
 
 
 
@@ -36,3 +37,11 @@ func spawn_player(spawn_id: StringName) -> void:
 			player.reparent(character_root)
 
 			player.global_position = spawn_point.global_position
+
+
+
+
+
+func load_location_data(_location_data: LocationData) -> void:
+
+	location_data = _location_data
