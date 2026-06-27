@@ -135,6 +135,20 @@ func get_save_data() -> SaveData:
 
 
 
+func get_location_data(location_id: StringName) -> LocationData:
+
+	return active_save_data.get_location_data(location_id)
+
+
+
+func get_entity_data(unique_id: StringName) -> EntityData:
+
+	return active_save_data.get_entity_data(unique_id)
+
+
+
+
+
 func is_active() -> bool:
 
 	return active_save_data != null

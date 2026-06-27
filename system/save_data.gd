@@ -21,6 +21,21 @@ var entity_data_list: Array[EntityData]
 
 
 
+
+func get_location_data(_location_id: StringName) -> LocationData:
+
+	for location_data in location_data_list:
+
+		if location_data.location_id == _location_id:
+
+			return location_data
+
+	return null
+
+
+
+
+
 func get_entity_data(unique_id: StringName) -> EntityData:
 
 	for entity_data in entity_data_list:

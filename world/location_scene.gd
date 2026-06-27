@@ -24,7 +24,20 @@ func _ready() -> void:
 
 	_load_entity_data()
 
-	
+
+
+
+
+
+func get_spawn_point(spawn_id: StringName) -> SpawnPoint:
+
+	for spawn_point in spawn_point_root.get_children():
+
+		if spawn_point.spawn_id == spawn_id:
+
+			return spawn_point
+
+	return null
 
 
 
@@ -34,15 +47,13 @@ func _ready() -> void:
 
 func spawn_player(spawn_id: StringName) -> void:
 
-	for spawn_point in spawn_point_root.get_children():
+	var player = Game.get_player()
 
-		if spawn_point.spawn_id == spawn_id:
+	player.reparent(character_root)
 
-			var player = Game.get_player()
+	var spawn_point = get_spawn_point(spawn_id)
 
-			player.reparent(character_root)
-
-			player.global_position = spawn_point.global_position
+	player.global_position = spawn_point.global_position
 
 
 
@@ -60,10 +71,15 @@ func load_location_data(_location_data: LocationData) -> void:
 
 
 
-## Check authored entity nodes for unique_id/save_data
+## Create data for unique entities without EntityData, assign saved EntityData to local entities, remove/spawn entities according to location
 func _load_entity_data() -> void:
 
-	var save_data = Game.get_save_data()
+	var location_entity_data = _get_location_entity_data()
+
+	# Update authored entities with saved EntityData
+	# Create new data for authored entities with unique_ids (once during first load)
+	# Remove entities that have a different location_id
+	# Spawn non-authored entities with this location_id
 
 	for character_node in character_root.get_children():
 
@@ -71,7 +87,7 @@ func _load_entity_data() -> void:
 
 		if unique_id != &"":
 
-			var entity_data = save_data.get_entity_data(unique_id)
+			var entity_data = Game.get_entity_data(unique_id)
 
 			if entity_data == null:
 
@@ -79,7 +95,37 @@ func _load_entity_data() -> void:
 
 				character_node.update_location()
 
+			else:
+
+				if entity_data.last_known_location_id != location_id:
+
+					character_node.queue_free()
+
+				else:
+
+					location_entity_data.erase(entity_data)
+
 			character_node.load_data(entity_data)
 
+	for entity_data in location_entity_data:
+
+		var node = Entities.create_node(entity_data.def)
+
+		if node is CharacterNode:
+
+			character_root.add_child(node)
+
+		node.load_data(entity_data)
 
 
+
+
+func _get_location_entity_data() -> Array[EntityData]:
+
+	var data_list: Array[EntityData] = []
+
+	var save_data = Game.get_save_data()
+
+	data_list = save_data.entity_data_list.filter(func(data): return data.last_known_location_id == location_id)
+
+	return data_list

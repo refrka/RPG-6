@@ -76,15 +76,17 @@ func load_data(entity_data: EntityData) -> void:
 
 
 
-func update_location() -> void:
+func update_location(location_id: StringName, spawn_id: StringName) -> void:
 
 	if data:
 
-		var location_scene = Scenes.get_scene(LocationScene)
+		var location_scene = Scenes.get_location_scene(location_id)
 
-		data.last_known_location_id = location_scene.location_id
+		data.last_known_location_id = location_id
 
-		data.last_known_position = global_position
+		var spawn_point = location_scene.get_spawn_point(spawn_id)
+
+		data.last_known_position = spawn_point.global_position
 
 
 
