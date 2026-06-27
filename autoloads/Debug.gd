@@ -13,6 +13,8 @@ var debug_overlay: DebugOverlay
 
 func _ready() -> void:
 
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	debug_overlay = get_tree().get_first_node_in_group("debug_overlay")
 
 	_deactivate()

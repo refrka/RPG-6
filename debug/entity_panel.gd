@@ -35,6 +35,25 @@ func _ready() -> void:
 
 
 
+
+
+func refresh() -> void:
+
+	match types[type_list.selected]:
+
+		"data":
+
+			_load_entity_data()
+
+		"def":
+
+			_load_entity_defs()
+
+
+
+
+
+
 func _clear_entity_list() -> void:
 
 	entity_list.clear()

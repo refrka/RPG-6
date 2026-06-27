@@ -26,6 +26,9 @@ func _ready() -> void:
 
 	entity_button.toggled.connect(_on_entity_toggled)
 
+	refresh_button.pressed.connect(_on_refresh_pressed)
+
+	_on_main_toggled(true)
 
 
 
@@ -58,3 +61,14 @@ func _on_entity_toggled(_state: bool) -> void:
 	location_panel.visible = false
 
 	entity_panel.visible = true
+
+
+
+
+func _on_refresh_pressed() -> void:
+
+	main_panel.refresh()
+
+	location_panel.refresh()
+
+	entity_panel.refresh()

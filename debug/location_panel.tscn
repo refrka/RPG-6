@@ -2,20 +2,39 @@
 
 [ext_resource type="Script" uid="uid://cs75quo8egiw2" path="res://debug/location_panel.gd" id="1_fw08y"]
 
-[node name="LocationPanel" type="MarginContainer" unique_id=474946769]
-visible = false
+[node name="LocationPanel" type="MarginContainer" unique_id=474946769 node_paths=PackedStringArray("location_list", "show_current_button", "show_button", "location_id_label")]
 script = ExtResource("1_fw08y")
+location_list = NodePath("VBoxContainer/HBoxContainer2/LocationList")
+show_current_button = NodePath("VBoxContainer/ShowCurrentButton")
+show_button = NodePath("VBoxContainer/HBoxContainer2/ShowButton")
+location_id_label = NodePath("VBoxContainer/HBoxContainer/LocationIDLabel")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1066409709]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1479254839]
+[node name="ShowCurrentButton" type="Button" parent="VBoxContainer" unique_id=164862797]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "show current location"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=426797696]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1790381763]
+[node name="LocationList" type="OptionButton" parent="VBoxContainer/HBoxContainer2" unique_id=2015645797]
+custom_minimum_size = Vector2(200, 30)
 layout_mode = 2
-text = "location_id:"
 
-[node name="LocationIDLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=366559938]
+[node name="ShowButton" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=508796522]
+custom_minimum_size = Vector2(75, 30)
 layout_mode = 2
-size_flags_horizontal = 10
+text = "show"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=991982208]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=854635884]
+layout_mode = 2
+text = "location id:"
+
+[node name="LocationIDLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=504581370]
+layout_mode = 2

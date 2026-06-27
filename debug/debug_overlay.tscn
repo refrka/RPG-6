@@ -8,6 +8,7 @@
 [sub_resource type="ButtonGroup" id="ButtonGroup_aajxx"]
 
 [node name="DebugOverlay" type="Control" unique_id=1357979542 node_paths=PackedStringArray("main_button", "location_button", "entity_button", "refresh_button", "main_panel", "location_panel", "entity_panel") groups=["debug_overlay"]]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
