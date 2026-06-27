@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://lto67vq0xpfi"]
+
+[ext_resource type="Script" uid="uid://0xdr54mucxi1" path="res://debug/entity_panel.gd" id="1_mcfua"]
+[ext_resource type="Script" uid="uid://dbufccwn4pxbs" path="res://debug/entity_display.gd" id="2_5u3i2"]
+
+[node name="EntityPanel" type="MarginContainer" unique_id=739312355 node_paths=PackedStringArray("type_list", "entity_list", "show_button", "local_check_box", "entity_display")]
+script = ExtResource("1_mcfua")
+type_list = NodePath("VBoxContainer/HBoxContainer/TypeList")
+entity_list = NodePath("VBoxContainer/HBoxContainer/EntityList")
+show_button = NodePath("VBoxContainer/HBoxContainer/ShowButton")
+local_check_box = NodePath("VBoxContainer/HBoxContainer/LocalCheckBox")
+entity_display = NodePath("VBoxContainer/EntityDisplay")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2010790831]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=378138250]
+layout_mode = 2
+
+[node name="TypeList" type="OptionButton" parent="VBoxContainer/HBoxContainer" unique_id=1382736771]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "data"
+popup/item_0/id = 0
+popup/item_1/text = "def"
+popup/item_1/id = 1
+
+[node name="EntityList" type="OptionButton" parent="VBoxContainer/HBoxContainer" unique_id=1159518934]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+
+[node name="LocalCheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer" unique_id=100261343]
+layout_mode = 2
+text = "Local"
+
+[node name="ShowButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1206002878]
+custom_minimum_size = Vector2(75, 30)
+layout_mode = 2
+text = "show"
+
+[node name="EntityDisplay" type="MarginContainer" parent="VBoxContainer" unique_id=215245077 node_paths=PackedStringArray("data_display", "def_display", "entity_id_label", "unique_id_label", "view_def_button")]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_5u3i2")
+data_display = NodePath("DataDisplay")
+def_display = NodePath("DefDisplay")
+entity_id_label = NodePath("DefDisplay/VBoxContainer/HBoxContainer/EntityIDLabel")
+unique_id_label = NodePath("DataDisplay/VBoxContainer/HBoxContainer/UniqueIDLabel")
+view_def_button = NodePath("DataDisplay/VBoxContainer/HBoxContainer/ViewDefButton")
+
+[node name="DataDisplay" type="MarginContainer" parent="VBoxContainer/EntityDisplay" unique_id=499451727]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/EntityDisplay/DataDisplay" unique_id=880183536]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/EntityDisplay/DataDisplay/VBoxContainer" unique_id=1827917363]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/EntityDisplay/DataDisplay/VBoxContainer/HBoxContainer" unique_id=1553953436]
+layout_mode = 2
+text = "unique_id: "
+
+[node name="UniqueIDLabel" type="Label" parent="VBoxContainer/EntityDisplay/DataDisplay/VBoxContainer/HBoxContainer" unique_id=1975143237]
+layout_mode = 2
+
+[node name="ViewDefButton" type="Button" parent="VBoxContainer/EntityDisplay/DataDisplay/VBoxContainer/HBoxContainer" unique_id=1020673290]
+layout_mode = 2
+text = "view def"
+
+[node name="DefDisplay" type="MarginContainer" parent="VBoxContainer/EntityDisplay" unique_id=1648221831]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/EntityDisplay/DefDisplay" unique_id=17562022]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/EntityDisplay/DefDisplay/VBoxContainer" unique_id=15597511]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/EntityDisplay/DefDisplay/VBoxContainer/HBoxContainer" unique_id=1838718734]
+layout_mode = 2
+text = "entity_id: "
+
+[node name="EntityIDLabel" type="Label" parent="VBoxContainer/EntityDisplay/DefDisplay/VBoxContainer/HBoxContainer" unique_id=1575588775]
+layout_mode = 2

@@ -93,7 +93,9 @@ func _load_entity_data() -> void:
 
 				entity_data = Entities.create_data(character_node)
 
-				character_node.update_location()
+				entity_data.last_known_location_id = location_id
+
+				entity_data.last_known_position = character_node.global_position
 
 			else:
 

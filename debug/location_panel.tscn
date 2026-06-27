@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dwora5ykkonv8"]
+
+[ext_resource type="Script" uid="uid://cs75quo8egiw2" path="res://debug/location_panel.gd" id="1_fw08y"]
+
+[node name="LocationPanel" type="MarginContainer" unique_id=474946769]
+visible = false
+script = ExtResource("1_fw08y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1066409709]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1479254839]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1790381763]
+layout_mode = 2
+text = "location_id:"
+
+[node name="LocationIDLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=366559938]
+layout_mode = 2
+size_flags_horizontal = 10

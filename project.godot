@@ -22,6 +22,7 @@ Scenes="*uid://cb22k2gmfjem8"
 UI="*uid://xqjwrsyo1413"
 Entities="*uid://rw0udofs4sce"
 Saves="*uid://bywoakyaq1gbo"
+Debug="*uid://xa16liimi8ud"
 
 [display]
 

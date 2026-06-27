@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://bfho774q0al3o"]
+
+[ext_resource type="Script" uid="uid://ctjr7wn1i8jyu" path="res://debug/debug_overlay.gd" id="1_xbgyx"]
+[ext_resource type="PackedScene" uid="uid://kcbtsmdb5d16" path="res://debug/main_panel.tscn" id="2_rnicy"]
+[ext_resource type="PackedScene" uid="uid://lto67vq0xpfi" path="res://debug/entity_panel.tscn" id="3_wml7l"]
+[ext_resource type="PackedScene" uid="uid://dwora5ykkonv8" path="res://debug/location_panel.tscn" id="3_xf5nc"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_aajxx"]
+
+[node name="DebugOverlay" type="Control" unique_id=1357979542 node_paths=PackedStringArray("main_button", "location_button", "entity_button", "refresh_button", "main_panel", "location_panel", "entity_panel") groups=["debug_overlay"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_xbgyx")
+main_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MainButton")
+location_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/LocationButton")
+entity_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/EntityButton")
+refresh_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/RefreshButton")
+main_panel = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MainPanel")
+location_panel = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/LocationPanel")
+entity_panel = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/EntityPanel")
+metadata/_custom_type_script = "uid://bo8xxaqdea4ft"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=17279434]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1805151315]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1266136779]
+layout_mode = 2
+
+[node name="MainButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1224780199]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_aajxx")
+text = "Main"
+
+[node name="LocationButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=481301209]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_aajxx")
+text = "Location"
+
+[node name="EntityButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2056688738]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_aajxx")
+text = "Entity"
+
+[node name="RefreshButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=113989842]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Refresh"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=1285706965]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer" unique_id=637346157]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="MainPanel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1639482755 instance=ExtResource("2_rnicy")]
+visible = false
+layout_mode = 2
+
+[node name="LocationPanel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=474946769 instance=ExtResource("3_xf5nc")]
+layout_mode = 2
+
+[node name="EntityPanel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=739312355 instance=ExtResource("3_wml7l")]
+layout_mode = 2

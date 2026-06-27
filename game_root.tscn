@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cuulvxdb4v0i0" path="res://ui/main_menu.tscn" id="2_bxsma"]
 [ext_resource type="PackedScene" uid="uid://ba2bdhn8qtup2" path="res://world/world_scene.tscn" id="2_lkrbl"]
 [ext_resource type="PackedScene" uid="uid://c5nb2o6fata6k" path="res://ui/game_menu.tscn" id="3_lkrbl"]
+[ext_resource type="PackedScene" uid="uid://bfho774q0al3o" path="res://debug/debug_overlay.tscn" id="5_wd1uf"]
 
 [node name="GameRoot" type="Node" unique_id=828412104]
 script = ExtResource("1_pjpa4")
@@ -20,3 +21,7 @@ script = ExtResource("1_pjpa4")
 
 [node name="MainMenu" parent="MainMenuCanvas" unique_id=809595668 instance=ExtResource("2_bxsma")]
 visible = false
+
+[node name="DebugCanvas" type="CanvasLayer" parent="." unique_id=717836855 groups=["debug_canvas"]]
+
+[node name="DebugOverlay" parent="DebugCanvas" unique_id=1357979542 instance=ExtResource("5_wd1uf")]
