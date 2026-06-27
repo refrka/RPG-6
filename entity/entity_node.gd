@@ -32,6 +32,8 @@ func _enter_tree() -> void:
 
 
 
+
+
 func get_component(component_name: StringName) -> Component:
 
 	for component in component_root.get_children():
@@ -44,6 +46,10 @@ func get_component(component_name: StringName) -> Component:
 
 
 
+
+func get_all_components() -> Array:
+
+	return component_root.get_children()
 
 
 

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c4i3oc2bag4c7" path="res://player/player_node.gd" id="2_a3uy3"]
 [ext_resource type="Resource" uid="uid://dtewowtdwd85g" path="res://player/player_def.tres" id="3_3nrky"]
 [ext_resource type="Script" uid="uid://bjs6xwrqdfj8f" path="res://component/input_component.gd" id="3_d0owe"]
+[ext_resource type="Script" uid="uid://35wym2xo2ksh" path="res://player/interaction_sensor.gd" id="4_k12ae"]
 
 [sub_resource type="Gradient" id="Gradient_a3uy3"]
 
@@ -15,6 +16,9 @@ height = 32
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d0owe"]
 radius = 8.0
 height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aajxx"]
+radius = 40.012497
 
 [node name="PlayerNode" unique_id=1735178076 instance=ExtResource("1_ynuq4")]
 collision_layer = 64
@@ -29,6 +33,15 @@ texture = SubResource("GradientTexture2D_hvr88")
 position = Vector2(0, -8)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_d0owe")
+
+[node name="InteractionSensor" type="Area2D" parent="." index="2" unique_id=396160957]
+position = Vector2(0, -16)
+collision_layer = 0
+collision_mask = 48
+script = ExtResource("4_k12ae")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionSensor" index="0" unique_id=698394134]
+shape = SubResource("CircleShape2D_aajxx")
 
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1494875897) index="1" unique_id=294223112]
 script = ExtResource("3_d0owe")
