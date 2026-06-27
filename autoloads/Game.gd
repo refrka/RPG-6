@@ -124,6 +124,8 @@ func get_player() -> PlayerNode:
 		player = load("res://player/player_node.tscn").instantiate()
 
 		add_child(player)
+
+		player._initialize()
 	
 	return player
 

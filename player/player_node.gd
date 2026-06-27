@@ -9,7 +9,11 @@ class_name PlayerNode extends CharacterNode
 
 
 
-func _enter_tree() -> void:
+
+
+
+
+func _initialize() -> void:
 
 	super()
 

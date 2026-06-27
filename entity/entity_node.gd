@@ -1,10 +1,14 @@
 class_name EntityNode extends PhysicsBody2D
 
 
+var initialized:= false
+
 
 @export var def: EntityDef
 
 var data: EntityData
+
+@export var state_machine: StateMachine
 
 @export var component_root: ComponentRoot
 
@@ -18,11 +22,15 @@ var data: EntityData
 
 
 
-func _enter_tree() -> void:
+func _initialize() -> void:
+
+	initialized = true
 
 	component_root.setup(self)
 
-	
+	if state_machine:
+
+		state_machine.setup(self)
 
 
 

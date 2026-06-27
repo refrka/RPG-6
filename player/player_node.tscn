@@ -20,9 +20,10 @@ height = 32.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_aajxx"]
 radius = 40.012497
 
-[node name="PlayerNode" unique_id=1735178076 instance=ExtResource("1_ynuq4")]
+[node name="PlayerNode" unique_id=1735178076 node_paths=PackedStringArray("interaction_sensor") instance=ExtResource("1_ynuq4")]
 collision_layer = 64
 script = ExtResource("2_a3uy3")
+interaction_sensor = NodePath("InteractionSensor")
 def = ExtResource("3_3nrky")
 
 [node name="Sprite2D" parent="VisualRoot" parent_id_path=PackedInt32Array(799522844) index="0" unique_id=533581725]

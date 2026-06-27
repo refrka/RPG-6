@@ -18,6 +18,10 @@ func _ready() -> void:
 
 	super()
 
+	for character_node in character_root.get_children():
+
+		character_node._initialize()
+
 	for transition_zone in transition_zones.get_children():
 
 		transition_zone._setup(self)

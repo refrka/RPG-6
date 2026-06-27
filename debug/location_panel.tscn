@@ -34,7 +34,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=854635884]
 layout_mode = 2
-text = "location id:"
+text = "location_id:"
 
 [node name="LocationIDLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=504581370]
 layout_mode = 2
