@@ -18,6 +18,8 @@ var location_data_list: Array[LocationData]
 
 var entity_data_list: Array[EntityData]
 
+var quest_data_list: Array[QuestData]
+
 
 
 
@@ -49,6 +51,19 @@ func get_entity_data(unique_id: StringName) -> EntityData:
 
 
 
+func get_quest_data(quest_id: StringName) -> QuestData:
+
+	for quest_data in quest_data_list:
+
+		if quest_data.quest_id == quest_id:
+
+			return quest_data
+
+	return null
+
+
+
+
 
 func get_dictionary() -> Dictionary:
 
@@ -69,6 +84,10 @@ func get_dictionary() -> Dictionary:
 	for entity_data in entity_data_list:
 
 		save_dict["entity_data"].append(entity_data.get_dictionary())
+
+	for quest_data in quest_data_list:
+
+		save_dict["quest_data"].append(quest_data.get_dictionary())
 
 	last_dict = save_dict
 
@@ -102,11 +121,17 @@ static func load_dictionary(save_dict: Dictionary) -> SaveData:
 	for dict in save_dict["entity_data"]:
 
 		var entity_data = EntityData.load_dictionary(dict)
-
-		var def = Entities.get_def(dict["entity_id"])
-		
-		entity_data.def = def
 		
 		save_data.entity_data_list.append(entity_data)
+
+	if !save_dict.has("quest_data"):
+
+		save_dict["quest_data"] = []
+
+	for dict in save_dict["quest_data"]:
+
+		var quest_data = QuestData.load_dictionary(dict)
+
+		save_data.quest_data_list.append(quest_data)
 
 	return save_data

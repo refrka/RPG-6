@@ -3,6 +3,8 @@ class_name QuestData extends Resource
 
 enum QuestState {
 
+	UNKNOWN,
+
 	AVAILABLE,
 
 	ACTIVE,
@@ -20,6 +22,40 @@ var state: QuestState
 
 
 
+var source_entity: EntityNode
+
+var state_condition_sets: Dictionary[QuestState, Array]
+
+
+
+
+func set_state(new_state: QuestState) -> void:
+
+	state = new_state
+
+
+
+
+
+func can_set_state(new_state: QuestState) -> bool:
+
+	var passed = true
+
+	if !state_condition_sets.has(new_state):
+
+		return passed
+
+	var condition_sets = state_condition_sets[new_state]
+
+	for condition_set in condition_sets:
+
+		if !condition_set.evaluate():
+
+			passed = false
+
+			break
+
+	return passed
 
 
 

@@ -14,4 +14,6 @@ var data = {
 
 	"entity_data": [ ],
 
+	"quest_data": [ ],
+
 }
