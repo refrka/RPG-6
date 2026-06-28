@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://u2gj13bgr5dt" path="res://entity/character/character_node.tscn" id="1_o88vc"]
 [ext_resource type="Resource" uid="uid://p2elbn88fe3" path="res://entity/character/npc/mim/mim_def.tres" id="2_o88vc"]
+[ext_resource type="Script" uid="uid://bvojpb3bx072h" path="res://component/dialogue_component.gd" id="3_gnloq"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tnxjk"]
 size = Vector2(12, 32)
@@ -19,3 +20,8 @@ texture = SubResource("PlaceholderTexture2D_tnxjk")
 [node name="CollisionShape2D" parent="." index="1" unique_id=443757228]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_ut6t0")
+
+[node name="DialogueComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1494875897) index="1" unique_id=632899938]
+script = ExtResource("3_gnloq")
+type = 2
+duration = 1.0

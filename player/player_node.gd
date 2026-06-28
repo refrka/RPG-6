@@ -18,3 +18,6 @@ func _initialize() -> void:
 	super()
 
 	interaction_sensor.setup(self)
+
+
+

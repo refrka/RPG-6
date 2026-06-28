@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://dtewowtdwd85g" path="res://player/player_def.tres" id="3_3nrky"]
 [ext_resource type="Script" uid="uid://bjs6xwrqdfj8f" path="res://component/input_component.gd" id="3_d0owe"]
 [ext_resource type="Script" uid="uid://35wym2xo2ksh" path="res://player/interaction_sensor.gd" id="4_k12ae"]
+[ext_resource type="Script" uid="uid://bqti7cpbo63co" path="res://state/interacting_state.gd" id="6_fpdhf"]
 
 [sub_resource type="Gradient" id="Gradient_a3uy3"]
 
@@ -47,3 +48,7 @@ shape = SubResource("CircleShape2D_aajxx")
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1494875897) index="1" unique_id=294223112]
 script = ExtResource("3_d0owe")
 metadata/_custom_type_script = "uid://bjs6xwrqdfj8f"
+
+[node name="InteractingState" type="Node" parent="StateMachine" parent_id_path=PackedInt32Array(1354769864) index="1" unique_id=2006701358]
+script = ExtResource("6_fpdhf")
+metadata/_custom_type_script = "uid://bqti7cpbo63co"

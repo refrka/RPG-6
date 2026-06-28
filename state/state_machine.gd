@@ -78,9 +78,9 @@ func _change_state(new_state: State) -> void:
 
 		return
 
-	else:
+	elif current_state:
 
-		new_state._exit()
+		current_state._exit()
 
 	current_state = new_state
 
