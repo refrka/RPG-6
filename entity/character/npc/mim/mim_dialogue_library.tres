@@ -2,6 +2,51 @@
 
 [ext_resource type="Script" uid="uid://cf73dbbry3glj" path="res://dialogue/dialogue_branch.gd" id="1_i8481"]
 [ext_resource type="Script" uid="uid://bj3g7rd5esaii" path="res://dialogue/dialogue_library.gd" id="2_7ghy7"]
+[ext_resource type="Script" uid="uid://bm4tki6d2coyc" path="res://dialogue/dialogue_node.gd" id="2_o7fyb"]
+[ext_resource type="Script" uid="uid://cauofvsusjrcb" path="res://dialogue/dialogue_root_node.gd" id="3_8ysgb"]
+
+[sub_resource type="Resource" id="Resource_egusr"]
+script = ExtResource("2_o7fyb")
+option_text = "Only 1 option (in branch #1)"
+dialogue_text = "Yep, only one option/response here."
+metadata/_custom_type_script = "uid://bm4tki6d2coyc"
+
+[sub_resource type="Resource" id="Resource_jnk4k"]
+script = ExtResource("3_8ysgb")
+option_text = "Root option #1"
+dialogue_text = "You just chose root option #1!"
+option_nodes = Array[ExtResource("2_o7fyb")]([SubResource("Resource_egusr")])
+metadata/_custom_type_script = "uid://cauofvsusjrcb"
+
+[sub_resource type="Resource" id="Resource_qx4e7"]
+script = ExtResource("1_i8481")
+root_node = SubResource("Resource_jnk4k")
+metadata/_custom_type_script = "uid://cf73dbbry3glj"
+
+[sub_resource type="Resource" id="Resource_lvm7h"]
+script = ExtResource("2_o7fyb")
+option_text = "Yes"
+dialogue_text = "Great! Keep it up. The good work. Good"
+metadata/_custom_type_script = "uid://bm4tki6d2coyc"
+
+[sub_resource type="Resource" id="Resource_j83uu"]
+script = ExtResource("2_o7fyb")
+option_text = "No"
+dialogue_text = "Interesting... there's something meta going on here."
+metadata/_custom_type_script = "uid://bm4tki6d2coyc"
+
+[sub_resource type="Resource" id="Resource_vt2iq"]
+script = ExtResource("3_8ysgb")
+option_text = "Root option #2"
+dialogue_text = "You've chosen option #2! Do you know how to answer a yes or no question?"
+option_nodes = Array[ExtResource("2_o7fyb")]([SubResource("Resource_lvm7h"), SubResource("Resource_j83uu")])
+metadata/_custom_type_script = "uid://cauofvsusjrcb"
+
+[sub_resource type="Resource" id="Resource_wajie"]
+script = ExtResource("1_i8481")
+root_node = SubResource("Resource_vt2iq")
+metadata/_custom_type_script = "uid://cf73dbbry3glj"
 
 [resource]
 script = ExtResource("2_7ghy7")
+branches = Array[ExtResource("1_i8481")]([SubResource("Resource_qx4e7"), SubResource("Resource_wajie")])

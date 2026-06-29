@@ -80,7 +80,7 @@ func _load_entity_defs() -> void:
 
 			var path = sub_dir + dir_name
 
-			if path.ends_with(".tres"):
+			if path.ends_with("_def.tres"):
 
 				var def = load(path)
 

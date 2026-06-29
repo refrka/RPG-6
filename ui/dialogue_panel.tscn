@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://d060v1bx4aw1o" path="res://ui/dialogue_panel.gd" id="1_eb2dg"]
 
-[node name="DialoguePanel" type="MarginContainer" unique_id=1140416346 node_paths=PackedStringArray("dialogue_section", "dialogue_label", "option_section", "option_list", "barter_button", "close_button")]
-offset_right = 1280.0
-offset_bottom = 16.0
+[node name="DialoguePanel" type="MarginContainer" unique_id=1140416346 node_paths=PackedStringArray("dialogue_section", "dialogue_label", "option_section", "option_list", "barter_button", "close_button") groups=["dialogue_panel"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
@@ -22,6 +25,7 @@ close_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContai
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 8
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=491542907]
 layout_mode = 2

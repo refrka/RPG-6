@@ -28,9 +28,21 @@ enum InteractionType {
 
 func interact() -> bool:
 
-	return false
+	UI.open_dialogue(entity)
+
+	return true
+
+
+
 
 
 func complete() -> void:
 
-	pass
+	end()
+
+
+
+func end() -> void:
+	
+	UI.close_dialogue()
+

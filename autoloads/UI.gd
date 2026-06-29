@@ -1,9 +1,10 @@
 extends Node
 
 
+@onready var dialogue_panel_scene:= preload("res://ui/dialogue_panel.tscn")
 
 
-
+var overlay_root: Control
 
 var overlay_registry:= {}
 
@@ -19,7 +20,7 @@ func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-
+	overlay_root = get_tree().get_first_node_in_group("overlay_root")
 
 
 
@@ -43,7 +44,24 @@ func _ready() -> void:
 
 
 
+func open_dialogue(target_entity: EntityNode) -> void:
 
+	var dialogue_panel = dialogue_panel_scene.instantiate()
+
+	overlay_root.add_child(dialogue_panel)
+
+	dialogue_panel.load_root_options(target_entity)
+
+
+
+
+
+
+func close_dialogue() -> void:
+
+	var dialogue_panel = get_tree().get_first_node_in_group("dialogue_panel")
+
+	dialogue_panel.queue_free()
 
 
 

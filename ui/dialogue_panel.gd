@@ -46,7 +46,7 @@ func load_root_options(target_entity: EntityNode) -> Array[DialogueRootNode]:
 
 	for dialogue_branch in dialogue_library.branches:
 
-		if dialogue_branch.show_condition_set.evaluate():
+		if dialogue_branch.show_condition_set and dialogue_branch.show_condition_set.evaluate():
 
 			root_options.append(dialogue_branch.root_node)
 

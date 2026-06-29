@@ -76,6 +76,8 @@ func _end_interaction() -> void:
 
 	timer = 0.0
 
+	target_component.end()
+
 	target_component = null
 
 	entity.state_machine.request_state("idle")

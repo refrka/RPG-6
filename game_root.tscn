@@ -15,6 +15,15 @@ script = ExtResource("1_pjpa4")
 
 [node name="OverlayCanvas" type="CanvasLayer" parent="." unique_id=1301090531]
 
+[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=270718495 groups=["overlay_root"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="GameMenu" parent="OverlayCanvas" unique_id=1943266367 instance=ExtResource("3_lkrbl")]
 
 [node name="MainMenuCanvas" type="CanvasLayer" parent="." unique_id=1269583312 groups=["main_menu_canvas"]]
