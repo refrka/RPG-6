@@ -2,6 +2,11 @@ class_name DialoguePanel extends MarginContainer
 
 
 
+signal close_requested
+
+
+
+
 @export var dialogue_section: MarginContainer
 
 @export var entity_name_label: Label
@@ -29,6 +34,11 @@ var current_options: Array[DialogueNode]
 
 
 
+
+
+func _ready() -> void:
+
+	close_button.pressed.connect(_on_close_pressed)
 
 
 
@@ -81,3 +91,24 @@ func _clear_options() -> void:
 		option_button.queue_free()
 
 	current_options.clear()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _on_close_pressed() -> void:
+
+	close_requested.emit()

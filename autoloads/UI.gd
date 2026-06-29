@@ -44,7 +44,7 @@ func _ready() -> void:
 
 
 
-func open_dialogue(target_entity: EntityNode) -> void:
+func open_dialogue(target_entity: EntityNode) -> DialoguePanel:
 
 	var dialogue_panel = dialogue_panel_scene.instantiate()
 
@@ -52,6 +52,7 @@ func open_dialogue(target_entity: EntityNode) -> void:
 
 	dialogue_panel.load_root_options(target_entity)
 
+	return dialogue_panel
 
 
 

@@ -2,6 +2,10 @@ class_name InteractableComponent extends Component
 
 
 
+signal end_requested
+
+
+
 enum InteractionType {
 
 	INSTANT,
@@ -28,7 +32,9 @@ enum InteractionType {
 
 func interact() -> bool:
 
-	UI.open_dialogue(entity)
+	var panel = UI.open_dialogue(entity)
+
+	panel.close_requested.connect(_on_close_requested)
 
 	return true
 
@@ -42,7 +48,24 @@ func complete() -> void:
 
 
 
+
+
 func end() -> void:
 	
 	UI.close_dialogue()
 
+
+
+
+
+
+
+
+
+
+
+
+
+func _on_close_requested() -> void:
+
+	end_requested.emit()

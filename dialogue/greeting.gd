@@ -1,7 +1,7 @@
-class_name Greeting extends Resource
+class_name Greeting extends DialogueNode
 
 
 
 
-@export var text: String
+@export var greeting_text: String
 

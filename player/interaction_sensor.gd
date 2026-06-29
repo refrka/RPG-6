@@ -59,6 +59,10 @@ func _start_interaction() -> void:
 
 		if target_component.interact():
 
+			if !target_component.end_requested.is_connected(_on_end_requested_by_component):
+
+				target_component.end_requested.connect(_on_end_requested_by_component)
+
 			entity.state_machine.request_state("interacting")
 
 			if target_component.duration > 0.0 and target_component.type == InteractableComponent.InteractionType.HOLD:
@@ -68,6 +72,10 @@ func _start_interaction() -> void:
 			return
 
 	_end_interaction()
+
+
+
+
 
 
 
@@ -177,6 +185,15 @@ func _on_interact_released() -> void:
 
 
 
+
+func _on_end_requested_by_component() -> void:
+
+	_end_interaction()
+
+
+
+
+
 func _process(delta: float) -> void:
 
 	if !_is_interacting():
@@ -194,3 +211,6 @@ func _process(delta: float) -> void:
 			timer = 0.0
 
 			_complete_interaction()
+
+
+
