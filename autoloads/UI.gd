@@ -50,7 +50,7 @@ func open_dialogue(target_entity: EntityNode) -> DialoguePanel:
 
 	overlay_root.add_child(dialogue_panel)
 
-	dialogue_panel.load_root_options(target_entity)
+	dialogue_panel.load_dialogue(target_entity)
 
 	return dialogue_panel
 

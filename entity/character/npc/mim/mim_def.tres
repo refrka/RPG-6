@@ -7,5 +7,6 @@
 script = ExtResource("1_jailc")
 unique_id = &"mim"
 entity_id = &"mim"
+display_name = &"Mim"
 scene_path = "res://entity/character/npc/mim/mim.tscn"
 dialogue_library = ExtResource("1_dovli")

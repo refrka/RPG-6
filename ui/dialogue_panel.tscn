@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://g3o0lv7ydx5o"]
 
 [ext_resource type="Script" uid="uid://d060v1bx4aw1o" path="res://ui/dialogue_panel.gd" id="1_eb2dg"]
+[ext_resource type="PackedScene" uid="uid://ct4psyjy8mby4" path="res://ui/dialogue_option.tscn" id="2_m0nle"]
 
-[node name="DialoguePanel" type="MarginContainer" unique_id=1140416346 node_paths=PackedStringArray("dialogue_section", "dialogue_label", "option_section", "option_list", "barter_button", "close_button") groups=["dialogue_panel"]]
+[node name="DialoguePanel" type="MarginContainer" unique_id=1140416346 node_paths=PackedStringArray("dialogue_section", "entity_name_label", "dialogue_label", "option_section", "option_list", "barter_button", "close_button") groups=["dialogue_panel"]]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,10 +16,11 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 script = ExtResource("1_eb2dg")
 dialogue_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/DialogueSection")
+entity_name_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/EnttiyNameLabel")
 dialogue_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/DialogueSection/VBoxContainer/MarginContainer/DialogueLabel")
 option_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/OptionSection")
 option_list = NodePath("PanelContainer/MarginContainer/VBoxContainer/OptionSection/VBoxContainer/MarginContainer/OptionList")
-barter_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/BarterButton")
+barter_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/MarginContainer/BarterButton")
 close_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/CloseButton")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=861538144]
@@ -40,20 +42,31 @@ theme_override_constants/separation = 8
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=58131578]
 layout_mode = 2
+theme_override_constants/separation = 16
 
 [node name="EnttiyNameLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=293050535]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Entity name"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=229350144]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BarterButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer" unique_id=580548809]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer" unique_id=1704096253]
+layout_mode = 2
+
+[node name="BarterButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/MarginContainer" unique_id=580548809]
+custom_minimum_size = Vector2(75, 30)
 layout_mode = 2
 text = "Barter"
 
+[node name="DialogueButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/MarginContainer" unique_id=871987663]
+layout_mode = 2
+text = "Dialogue"
+
 [node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer" unique_id=286609929]
+custom_minimum_size = Vector2(75, 30)
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Close"
@@ -69,6 +82,8 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/DialogueSection/VBoxContainer" unique_id=1097844971]
 layout_mode = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
 
 [node name="DialogueLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/DialogueSection/VBoxContainer/MarginContainer" unique_id=1677649608]
 layout_mode = 2
@@ -77,6 +92,7 @@ fit_content = true
 horizontal_alignment = 1
 
 [node name="OptionSection" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2095443847]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/OptionSection" unique_id=1534438189]
@@ -91,15 +107,32 @@ layout_mode = 2
 [node name="OptionList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/OptionSection/VBoxContainer/MarginContainer" unique_id=149080378]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/OptionSection/VBoxContainer/MarginContainer/OptionList" unique_id=1183797878]
+[node name="DialogueOption" parent="PanelContainer/MarginContainer/VBoxContainer/OptionSection/VBoxContainer/MarginContainer/OptionList" unique_id=1887730824 instance=ExtResource("2_m0nle")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/OptionSection/VBoxContainer/MarginContainer/OptionList/HBoxContainer" unique_id=2089106117]
+[node name="BarterSection" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=692148452]
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
-text = ">"
 
-[node name="OptionButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/OptionSection/VBoxContainer/MarginContainer/OptionList/HBoxContainer" unique_id=1487697999]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BarterSection" unique_id=947712353]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BarterSection/HBoxContainer" unique_id=1875393750]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Option"
-alignment = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BarterSection/HBoxContainer" unique_id=1739961342]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BarterSection/HBoxContainer/VBoxContainer" unique_id=878905932]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BarterSection/HBoxContainer/VBoxContainer" unique_id=1449588796]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BarterSection/HBoxContainer" unique_id=889263511]
+layout_mode = 2
+size_flags_horizontal = 3

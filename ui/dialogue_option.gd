@@ -1,0 +1,1 @@
+class_name DialogueOption extends MarginContainer

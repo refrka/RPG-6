@@ -11,7 +11,11 @@ class_name IsInLocation extends ConditionFunction
 
 
 
-func evaluate(_data: Dictionary) -> bool:
+func evaluate(_data: Dictionary = {}) -> bool:
+
+	if _data.has("location_id"):
+
+		location_id = _data["location_id"]
 
 	var location_scene = Scenes.get_scene(LocationScene)
 

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ct4psyjy8mby4"]
+
+[ext_resource type="Script" uid="uid://c0hkdbbhpi0ps" path="res://ui/dialogue_option.gd" id="1_14cfh"]
+
+[node name="DialogueOption" type="MarginContainer" unique_id=1887730824]
+script = ExtResource("1_14cfh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1135857745]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1303204950]
+layout_mode = 2
+text = ">"
+
+[node name="OptionButton" type="Button" parent="HBoxContainer" unique_id=354451598]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Option"
+alignment = 0
