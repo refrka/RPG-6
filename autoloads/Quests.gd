@@ -35,6 +35,12 @@ func set_quest_state(quest_id: StringName, state: QuestData.QuestState) -> Quest
 
 		quest_data.set_state(state)
 
+	var quest_def = get_quest_def(quest_id)
+
+	if quest_def == null:
+
+		return null
+
 	quest_data = _create_quest_data(quest_id, state)
 
 	return quest_data
@@ -68,6 +74,17 @@ func get_quest_data(quest_id: StringName) -> QuestData:
 		if quest_data.quest_id == quest_id:
 
 			return quest_data
+
+	return null
+
+
+
+
+func get_quest_def(quest_id: StringName) -> QuestDef:
+
+	if def_registry.has(quest_id):
+
+		return def_registry[quest_id]
 
 	return null
 
