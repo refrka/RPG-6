@@ -1,6 +1,16 @@
 class_name LocationScene extends GameScene
 
 
+
+enum Region {
+
+	FOREST,
+
+}
+
+
+@export var region: Region
+
 @export var location_id: StringName
 
 @export var transition_zones: Node2D
@@ -11,6 +21,9 @@ class_name LocationScene extends GameScene
 
 
 var location_data: LocationData
+
+
+
 
 
 

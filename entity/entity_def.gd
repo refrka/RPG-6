@@ -14,3 +14,7 @@ class_name EntityDef extends Resource
 @export var entity_id: StringName
 
 @export var scene_path: String
+
+
+
+@export var dialogue_library: DialogueLibrary

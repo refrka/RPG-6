@@ -36,6 +36,22 @@ func _ready() -> void:
 ##  Top-level Methods
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 func register_overlay(overlay: UIOverlay) -> void:
 
 	overlay_registry[overlay.get_script()] = overlay

@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://p2elbn88fe3"]
 
+[ext_resource type="Resource" uid="uid://cp35aq5ncjvnd" path="res://entity/character/npc/mim/mim_dialogue_library.tres" id="1_dovli"]
 [ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="1_jailc"]
 
 [resource]
@@ -7,3 +8,4 @@ script = ExtResource("1_jailc")
 unique_id = &"mim"
 entity_id = &"mim"
 scene_path = "res://entity/character/npc/mim/mim.tscn"
+dialogue_library = ExtResource("1_dovli")
