@@ -33,6 +33,9 @@ func set_state(new_state: QuestState) -> void:
 
 	state = new_state
 
+	if state == QuestState.COMPLETE:
+
+		Events.fire(QuestCompletedEvent)
 
 
 

@@ -1,7 +1,15 @@
 [gd_resource type="Resource" script_class="QuestDef" format=3 uid="uid://ceq2qjj6hsd08"]
 
 [ext_resource type="Script" uid="uid://1r4mo0y16wii" path="res://quest/quest_def.gd" id="1_5nec3"]
+[ext_resource type="Script" uid="uid://c1st6ax4v3s6u" path="res://quest/quest_source.gd" id="2_q8rg1"]
+
+[sub_resource type="Resource" id="Resource_m0nle"]
+script = ExtResource("2_q8rg1")
+entity_id = &"mim"
 
 [resource]
 script = ExtResource("1_5nec3")
+quest_id = &"quest_1"
+title = "The first quest of the game"
+sources = Array[ExtResource("2_q8rg1")]([SubResource("Resource_m0nle")])
 metadata/_custom_type_script = "uid://1r4mo0y16wii"
