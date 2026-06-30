@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cauofvsusjrcb" path="res://dialogue/dialogue_root_node.gd" id="3_8ysgb"]
 [ext_resource type="Script" uid="uid://b32d40200yjiv" path="res://dialogue/greeting.gd" id="7_di6ht"]
 
-[sub_resource type="Resource" id="Resource_03s34"]
+[sub_resource type="Resource" id="Resource_8ysgb"]
 script = ExtResource("2_o7fyb")
 option_text = "Here's another option in this branch"
 dialogue_text = "You selected the next option, and this one did a thing for a quest!"
@@ -16,7 +16,7 @@ metadata/_custom_type_script = "uid://bm4tki6d2coyc"
 script = ExtResource("3_8ysgb")
 option_text = "This is a regular dialogue root node option"
 dialogue_text = "You selected the option!"
-option_nodes = Array[ExtResource("2_o7fyb")]([SubResource("Resource_03s34")])
+option_nodes = Array[ExtResource("2_o7fyb")]([SubResource("Resource_8ysgb")])
 metadata/_custom_type_script = "uid://cauofvsusjrcb"
 
 [sub_resource type="Resource" id="Resource_4fose"]

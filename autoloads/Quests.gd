@@ -37,6 +37,10 @@ func set_quest_state(quest_id: StringName, new_state: QuestData.QuestState) -> Q
 
 	quest_data.set_state(new_state)
 
+	if new_state == QuestData.QuestState.ACTIVE:
+
+		quest_data.set_stage(0)
+
 	return quest_data
 
 
@@ -143,6 +147,8 @@ func get_quest_dialogue_nodes(entity_node: EntityNode) -> Array[QuestDialogueNod
 
 				set_quest_state(def.quest_id, QuestData.QuestState.AVAILABLE)
 
+			if get_quest_state(def.quest_id) == QuestData.QuestState.AVAILABLE:
+
 				unevaluated_dialogue_nodes.append(def.source_dialogue_node)
 
 		elif quest_data:
@@ -195,8 +201,6 @@ func _create_quest_data(quest_id: StringName) -> QuestData:
 	quest_data.stage_completed.connect(_on_quest_stage_completed)
 
 	quest_data.state_changed.connect(_on_quest_state_changed)
-
-	quest_data.set_stage(0)
 
 	var save_data = Game.get_save_data()
 
@@ -255,6 +259,10 @@ func _load_quest_defs() -> void:
 			if path.ends_with(".tres"):
 
 				var def = load(path)
+
+				if not def is QuestDef:
+
+					continue
 
 				def_registry[def.quest_id] = def
 

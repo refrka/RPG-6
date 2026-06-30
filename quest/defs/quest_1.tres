@@ -9,7 +9,9 @@
 [ext_resource type="Script" uid="uid://cdp33gtgt4jpi" path="res://quest/quest_objective.gd" id="4_upt0e"]
 [ext_resource type="Script" uid="uid://k2sbbp8m2ftj" path="res://quest/objectives/discover_location_objective.gd" id="5_fsbdh"]
 [ext_resource type="Script" uid="uid://bm4tki6d2coyc" path="res://dialogue/dialogue_node.gd" id="5_ngq7o"]
+[ext_resource type="Script" uid="uid://dymrj5u6n55yn" path="res://command_function/command_function.gd" id="5_t6h0n"]
 [ext_resource type="Script" uid="uid://cinwhtekgcr6p" path="res://quest/objectives/start_dialogue_objective.gd" id="6_t8qw7"]
+[ext_resource type="Script" uid="uid://ctns1uf21m71i" path="res://command_function/command_set.gd" id="7_ul77m"]
 [ext_resource type="Script" uid="uid://b3etsdiil5o71" path="res://quest/quest_dialogue_node.gd" id="8_4yldl"]
 [ext_resource type="Script" uid="uid://b7ap34gg0vd7i" path="res://quest/objectives/enter_dialogue_node_objective.gd" id="12_cp7nc"]
 
@@ -23,31 +25,38 @@ script = ExtResource("3_cp7nc")
 condition_functions = Array[ExtResource("1_xpc7t")]([SubResource("Resource_upt0e")])
 metadata/_custom_type_script = "uid://exfr7rx7f2ep"
 
+[sub_resource type="Resource" id="Resource_4yldl"]
+script = ExtResource("7_ul77m")
+metadata/_custom_type_script = "uid://ctns1uf21m71i"
+
 [sub_resource type="Resource" id="Resource_xpc7t"]
 script = ExtResource("8_4yldl")
+quest_id = &"quest_1"
 option_text = "The First Quest"
 dialogue_text = "You started the first quest!"
+enter_command_set = SubResource("Resource_4yldl")
 metadata/_custom_type_script = "uid://b3etsdiil5o71"
 
 [sub_resource type="Resource" id="Resource_m0nle"]
 script = ExtResource("2_t8qw7")
 entity_id = &"mim"
 
-[sub_resource type="Resource" id="Resource_ga8e4"]
+[sub_resource type="Resource" id="Resource_t6h0n"]
 script = ExtResource("5_fsbdh")
 location_id = &"forest_east"
 metadata/_custom_type_script = "uid://k2sbbp8m2ftj"
 
 [sub_resource type="Resource" id="Resource_p52o8"]
 script = ExtResource("3_oeku4")
-objectives = Array[ExtResource("4_upt0e")]([SubResource("Resource_ga8e4")])
+objectives = Array[ExtResource("4_upt0e")]([SubResource("Resource_t6h0n")])
 metadata/_custom_type_script = "uid://1w4p4qfmgsfk"
 
 [sub_resource type="Resource" id="Resource_t8qw7"]
 script = ExtResource("6_t8qw7")
 target_unique_id = &"mim"
 
-[sub_resource type="Resource" id="Resource_cp7nc"]
+[sub_resource type="Resource" id="Resource_v5bma"]
+resource_name = "shuit"
 script = ExtResource("5_ngq7o")
 option_text = "Here's another option in this branch"
 dialogue_text = "You selected the next option, and this one did a thing for a quest!"
@@ -55,7 +64,7 @@ metadata/_custom_type_script = "uid://bm4tki6d2coyc"
 
 [sub_resource type="Resource" id="Resource_xd1uq"]
 script = ExtResource("12_cp7nc")
-target_dialogue_node = SubResource("Resource_cp7nc")
+target_dialogue_node = SubResource("Resource_v5bma")
 metadata/_custom_type_script = "uid://b7ap34gg0vd7i"
 
 [sub_resource type="Resource" id="Resource_mt3kx"]

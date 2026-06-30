@@ -120,7 +120,25 @@ func load_barter(target_entity: EntityNode) -> void:
 
 func _enter_dialogue_node(dialogue_node: DialogueNode) -> void:
 
+	if dialogue_node is QuestDialogueNode:
+
+		if Quests.get_quest_state(dialogue_node.quest_id) == QuestData.QuestState.AVAILABLE:
+
+			Quests.set_quest_state(dialogue_node.quest_id, QuestData.QuestState.ACTIVE)
+
+	if dialogue_node.enter_command_set:
+
+		dialogue_node.enter_command_set.execute()
+
 	Events.fire(DialogueNodeEnteredEvent, {"dialogue_node": dialogue_node})
+
+	_clear_options()
+
+	for option in dialogue_node.option_nodes:
+
+		_add_option(option)
+
+
 
 
 
@@ -201,4 +219,4 @@ func _on_barter_pressed() -> void:
 
 func _on_option_selected(option_node: DialogueNode) -> void:
 
-	print(option_node)
+	_enter_dialogue_node(option_node)

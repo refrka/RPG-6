@@ -64,7 +64,7 @@ func _process(_delta: float) -> void:
 
 	else:
 
-		move_velocity = move_velocity.move_toward(move_dir * 150.0, 1200)
+		move_velocity = move_velocity.move_toward(move_dir * 250.0, 1200)
 
 	if can_move:
 

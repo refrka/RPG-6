@@ -33,7 +33,7 @@ var completed_stage_objectives: Array[QuestObjective]
 var source_entity: EntityNode
 
 
-
+var quest_counters: Dictionary[QuestObjective, int]
 
 
 
@@ -95,6 +95,9 @@ func get_stage(index:= -1) -> QuestStage:
 
 
 
+func get_state() -> QuestState:
+
+	return state
 
 
 
@@ -134,6 +137,10 @@ func _is_stage_complete() -> bool:
 
 
 func _on_objective_completed(objective: QuestObjective, stage: QuestStage) -> void:
+
+	if state != QuestState.ACTIVE:
+
+		set_state(QuestData.QuestState.ACTIVE)
 
 	if completed_stage_objectives.has(objective):
 

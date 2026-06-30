@@ -1,11 +1,37 @@
 [gd_resource type="Resource" script_class="QuestDef" format=3 uid="uid://brj5kduky6gsl"]
 
+[ext_resource type="Script" uid="uid://nbjf6g73vksc" path="res://condition_function/condition_function.gd" id="1_ga8e4"]
 [ext_resource type="Script" uid="uid://1r4mo0y16wii" path="res://quest/quest_def.gd" id="1_uvku0"]
+[ext_resource type="Script" uid="uid://bi8xu0q2jn7pw" path="res://condition_function/is_quest_state.gd" id="2_nr0sy"]
 [ext_resource type="Script" uid="uid://c1st6ax4v3s6u" path="res://quest/quest_source.gd" id="2_y3bu7"]
 [ext_resource type="Script" uid="uid://1w4p4qfmgsfk" path="res://quest/quest_stage.gd" id="3_4fose"]
+[ext_resource type="Script" uid="uid://exfr7rx7f2ep" path="res://condition_function/condition_set.gd" id="3_ax11x"]
 [ext_resource type="Script" uid="uid://cdp33gtgt4jpi" path="res://quest/quest_objective.gd" id="4_nbolb"]
 [ext_resource type="Script" uid="uid://b3etsdiil5o71" path="res://quest/quest_dialogue_node.gd" id="5_nbolb"]
+[ext_resource type="Script" uid="uid://bm4tki6d2coyc" path="res://dialogue/dialogue_node.gd" id="5_nr0sy"]
 [ext_resource type="Script" uid="uid://b7ap34gg0vd7i" path="res://quest/objectives/enter_dialogue_node_objective.gd" id="6_g1waa"]
+
+[sub_resource type="Resource" id="Resource_g1waa"]
+script = ExtResource("2_nr0sy")
+quest_id = &"quest_1"
+quest_state = 2
+metadata/_custom_type_script = "uid://bi8xu0q2jn7pw"
+
+[sub_resource type="Resource" id="Resource_nbolb"]
+script = ExtResource("3_ax11x")
+condition_functions = Array[ExtResource("1_ga8e4")]([SubResource("Resource_g1waa")])
+metadata/_custom_type_script = "uid://exfr7rx7f2ep"
+
+[sub_resource type="Resource" id="Resource_ga8e4"]
+script = ExtResource("5_nbolb")
+option_text = "Quest 2 source dialogue node (option)!"
+dialogue_text = "n o text hsisihstht"
+metadata/_custom_type_script = "uid://b3etsdiil5o71"
+
+[sub_resource type="Resource" id="Resource_t6h0n"]
+script = ExtResource("2_y3bu7")
+entity_id = &"mim"
+metadata/_custom_type_script = "uid://c1st6ax4v3s6u"
 
 [sub_resource type="Resource" id="Resource_8ysgb"]
 script = ExtResource("6_g1waa")
@@ -20,5 +46,8 @@ metadata/_custom_type_script = "uid://1w4p4qfmgsfk"
 script = ExtResource("1_uvku0")
 quest_id = &"quest_2"
 title = "The Second Quest (#2)"
+sources = Array[ExtResource("2_y3bu7")]([SubResource("Resource_t6h0n")])
 stages = Array[ExtResource("3_4fose")]([SubResource("Resource_y3bu7")])
+available_condition_set = SubResource("Resource_nbolb")
+source_dialogue_node = SubResource("Resource_ga8e4")
 metadata/_custom_type_script = "uid://1r4mo0y16wii"

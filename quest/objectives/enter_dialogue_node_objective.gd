@@ -9,6 +9,8 @@ class_name EnterDialogueNodeObjective extends QuestObjective
 
 func _initialize() -> void:
 
+	print("init enter dialogue node obj: ", target_dialogue_node)
+
 	Events.subscribe(DialogueNodeEnteredEvent, _on_dialogue_node_entered)
 
 
@@ -18,8 +20,10 @@ func _initialize() -> void:
 
 func _on_dialogue_node_entered(event: Event) -> void:
 
-	if event["dialogue_node"] == target_dialogue_node:
+	print("dialogue node heard")
 
-		print("we found the node")
+	if event.data["dialogue_node"] == target_dialogue_node:
+
+		print("entered the correct node!")
 
 		completed.emit(self)

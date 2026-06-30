@@ -10,7 +10,18 @@ class_name DiscoverLocationObjective extends QuestObjective
 
 func _initialize() -> void:
 
+	var location_data = Game.get_location_data(location_id)
+
+	print("initializing quest objective: discover location objective")
+
+	if location_data != null:
+
+		completed.emit(self)
+
 	Events.subscribe(LocationDiscoveredEvent, _on_location_discovered)
+
+
+
 
 
 
