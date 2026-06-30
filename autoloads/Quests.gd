@@ -93,6 +93,31 @@ func get_quest_def(quest_id: StringName) -> QuestDef:
 
 
 
+func get_quests_with_source(entity_node: EntityNode) -> Array[QuestDef]:
+
+	var quest_defs: Array[QuestDef] = []
+
+	for def in def_registry.values():
+
+		for source in def.sources:
+
+			if source.match(entity_node):
+				
+				if def.available_condition_set and !def.available_condition_set.evaluate():
+
+					continue
+
+				quest_defs.append(def)
+
+	return quest_defs
+
+
+
+
+
+
+
+
 
 
 
@@ -117,7 +142,7 @@ func _create_quest_data(quest_id: StringName, initial_state:= QuestData.QuestSta
 
 func _load_quest_defs() -> void:
 
-	var sub_dirs = ["quest"]
+	var sub_dirs = ["res://quest/"]
 
 	while !sub_dirs.is_empty():
 

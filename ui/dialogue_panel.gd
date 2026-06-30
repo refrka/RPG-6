@@ -85,6 +85,7 @@ func load_dialogue(target_entity: EntityNode) -> void:
 		root_options.append(dialogue_branch.root_node)
 
 
+	print(Quests.get_quests_with_source(target_entity))
 
 
 	for option in root_options:

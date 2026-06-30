@@ -67,10 +67,6 @@ func get_entity_id() -> StringName:
 
 	var entity_id = def.entity_id
 
-	if def.template:
-
-		entity_id = def.template.entity_id
-
 	return entity_id
 
 
@@ -78,6 +74,18 @@ func get_entity_id() -> StringName:
 func get_unique_id() -> StringName:
 
 	return def.unique_id
+
+
+
+func get_template_id() -> StringName:
+
+	var template_id = &""
+
+	if def.template:
+
+		template_id = def.template.entity_id
+
+	return template_id
 
 
 
@@ -91,6 +99,8 @@ func get_display_name() -> String:
 		display_name = def.template.display_name
 
 	return display_name
+
+
 
 
 

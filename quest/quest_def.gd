@@ -21,3 +21,8 @@ enum QuestType {
 @export var title: String
 
 @export var sources: Array[QuestSource]
+
+
+
+
+@export var available_condition_set: ConditionSet

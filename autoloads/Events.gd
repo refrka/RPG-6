@@ -14,7 +14,7 @@ func subscribe(event_script: Script, callback: Callable) -> void:
 
 		subscriptions[event_script] = []
 
-	if !subscriptions.has(callback):
+	if !subscriptions[event_script].has(callback):
 
 		subscriptions[event_script].append(callback)
 
@@ -43,4 +43,4 @@ func call_subscriptions(event: Event) -> void:
 
 			if callback.is_valid():
 
-				callback.call(event.data)
+				callback.call(event)

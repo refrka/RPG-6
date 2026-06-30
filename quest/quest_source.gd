@@ -19,4 +19,8 @@ func match(entity_node: EntityNode) -> bool:
 
 		return true
 
+	if entity_node.get_template_id() == entity_id:
+
+		return true
+
 	return false
