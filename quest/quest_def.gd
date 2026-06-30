@@ -18,3 +18,6 @@ enum QuestType {
 
 @export var type: QuestType
 
+@export var title: String
+
+@export var sources: Array[QuestSource]

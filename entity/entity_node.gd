@@ -75,6 +75,12 @@ func get_entity_id() -> StringName:
 
 
 
+func get_unique_id() -> StringName:
+
+	return def.unique_id
+
+
+
 
 func get_display_name() -> String:
 
