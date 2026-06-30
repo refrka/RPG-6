@@ -87,7 +87,9 @@ func load_dialogue(target_entity: EntityNode) -> void:
 		root_options.append(dialogue_branch.root_node)
 
 
-	# print(Quests.get_quests_with_source(target_entity))
+	root_options.append_array(Quests.get_quest_dialogue_nodes(target_entity))
+
+
 
 
 	for option in root_options:
@@ -118,13 +120,13 @@ func load_barter(target_entity: EntityNode) -> void:
 
 func _enter_dialogue_node(dialogue_node: DialogueNode) -> void:
 
-	pass
+	Events.fire(DialogueNodeEnteredEvent, {"dialogue_node": dialogue_node})
 
 
 
 func _exit_dialogue_node(dialogue_node: DialogueNode) -> void:
 
-	pass
+	Events.fire(DialogueNodeExitedEvent, {"dialogue_node": dialogue_node})
 
 
 

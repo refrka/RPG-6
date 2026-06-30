@@ -6,6 +6,9 @@ class_name QuestObjective extends Resource
 signal completed(objective: QuestObjective)
 
 
+@export var dialogue_nodes: Array[QuestDialogueNode]
+
+
 func _initialize() -> void:
 
 	pass

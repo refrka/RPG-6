@@ -33,11 +33,7 @@ var dialogue_open:= false
 func interact() -> bool:
 
 	if entity.def.dialogue_library:
-
-		if Quests.get_quest_state("quest_1") == QuestData.QuestState.UNKNOWN:
-
-			Quests.start_quest("quest_1")
-
+		
 		Events.fire(DialogueStartedEvent, {"entity_node": entity})
 
 		var panel = UI.open_dialogue(entity)

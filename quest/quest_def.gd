@@ -26,4 +26,7 @@ enum QuestType {
 
 
 
+
 @export var available_condition_set: ConditionSet
+
+@export var source_dialogue_node: QuestDialogueNode

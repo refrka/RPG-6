@@ -4,99 +4,26 @@
 [ext_resource type="Script" uid="uid://bj3g7rd5esaii" path="res://dialogue/dialogue_library.gd" id="2_7ghy7"]
 [ext_resource type="Script" uid="uid://bm4tki6d2coyc" path="res://dialogue/dialogue_node.gd" id="2_o7fyb"]
 [ext_resource type="Script" uid="uid://cauofvsusjrcb" path="res://dialogue/dialogue_root_node.gd" id="3_8ysgb"]
-[ext_resource type="Script" uid="uid://nbjf6g73vksc" path="res://condition_function/condition_function.gd" id="4_j5ynb"]
-[ext_resource type="Script" uid="uid://bi8xu0q2jn7pw" path="res://condition_function/is_quest_state.gd" id="5_l8erc"]
-[ext_resource type="Script" uid="uid://exfr7rx7f2ep" path="res://condition_function/condition_set.gd" id="6_cxjfd"]
 [ext_resource type="Script" uid="uid://b32d40200yjiv" path="res://dialogue/greeting.gd" id="7_di6ht"]
 
-[sub_resource type="Resource" id="Resource_egusr"]
+[sub_resource type="Resource" id="Resource_03s34"]
 script = ExtResource("2_o7fyb")
-option_text = "Only 1 option (in branch #1)"
-dialogue_text = "Yep, only one option/response here."
+option_text = "Here's another option in this branch"
+dialogue_text = "You selected the next option, and this one did a thing for a quest!"
 metadata/_custom_type_script = "uid://bm4tki6d2coyc"
 
-[sub_resource type="Resource" id="Resource_jnk4k"]
+[sub_resource type="Resource" id="Resource_nbolb"]
 script = ExtResource("3_8ysgb")
-option_text = "Root option #1 (quest incomplete)"
-dialogue_text = "You just chose root option #1!"
-option_nodes = Array[ExtResource("2_o7fyb")]([SubResource("Resource_egusr")])
+option_text = "This is a regular dialogue root node option"
+dialogue_text = "You selected the option!"
+option_nodes = Array[ExtResource("2_o7fyb")]([SubResource("Resource_03s34")])
 metadata/_custom_type_script = "uid://cauofvsusjrcb"
 
-[sub_resource type="Resource" id="Resource_l8erc"]
-script = ExtResource("5_l8erc")
-quest_id = &"quest_1"
-quest_state = 2
-metadata/_custom_type_script = "uid://bi8xu0q2jn7pw"
-
-[sub_resource type="Resource" id="Resource_j5ynb"]
-script = ExtResource("6_cxjfd")
-condition_functions = Array[ExtResource("4_j5ynb")]([SubResource("Resource_l8erc")])
-metadata/_custom_type_script = "uid://exfr7rx7f2ep"
-
-[sub_resource type="Resource" id="Resource_qx4e7"]
+[sub_resource type="Resource" id="Resource_4fose"]
 script = ExtResource("1_i8481")
-show_condition_set = SubResource("Resource_j5ynb")
-root_node = SubResource("Resource_jnk4k")
-metadata/_custom_type_script = "uid://cf73dbbry3glj"
-
-[sub_resource type="Resource" id="Resource_lvm7h"]
-script = ExtResource("2_o7fyb")
-option_text = "Yes"
-dialogue_text = "Great! Keep it up. The good work. Good"
-metadata/_custom_type_script = "uid://bm4tki6d2coyc"
-
-[sub_resource type="Resource" id="Resource_j83uu"]
-script = ExtResource("2_o7fyb")
-option_text = "No"
-dialogue_text = "Interesting... there's something meta going on here."
-metadata/_custom_type_script = "uid://bm4tki6d2coyc"
-
-[sub_resource type="Resource" id="Resource_vt2iq"]
-script = ExtResource("3_8ysgb")
-option_text = "Root option #2 (quest is complete)"
-dialogue_text = "You've chosen option #2! Do you know how to answer a yes or no question?"
-option_nodes = Array[ExtResource("2_o7fyb")]([SubResource("Resource_lvm7h"), SubResource("Resource_j83uu")])
-metadata/_custom_type_script = "uid://cauofvsusjrcb"
-
-[sub_resource type="Resource" id="Resource_t8qw7"]
-script = ExtResource("5_l8erc")
-quest_id = &"quest_1"
-quest_state = 4
-metadata/_custom_type_script = "uid://bi8xu0q2jn7pw"
-
-[sub_resource type="Resource" id="Resource_mt3kx"]
-script = ExtResource("6_cxjfd")
-condition_functions = Array[ExtResource("4_j5ynb")]([SubResource("Resource_t8qw7")])
-metadata/_custom_type_script = "uid://exfr7rx7f2ep"
-
-[sub_resource type="Resource" id="Resource_wajie"]
-script = ExtResource("1_i8481")
-show_condition_set = SubResource("Resource_mt3kx")
-root_node = SubResource("Resource_vt2iq")
-metadata/_custom_type_script = "uid://cf73dbbry3glj"
-
-[sub_resource type="Resource" id="Resource_cxjfd"]
-script = ExtResource("3_8ysgb")
-option_text = "option 3 (quest is READY)"
-metadata/_custom_type_script = "uid://cauofvsusjrcb"
-
-[sub_resource type="Resource" id="Resource_di6ht"]
-script = ExtResource("5_l8erc")
-quest_id = &"quest_1"
-quest_state = 3
-metadata/_custom_type_script = "uid://bi8xu0q2jn7pw"
-
-[sub_resource type="Resource" id="Resource_kb5co"]
-script = ExtResource("6_cxjfd")
-condition_functions = Array[ExtResource("4_j5ynb")]([SubResource("Resource_di6ht")])
-metadata/_custom_type_script = "uid://exfr7rx7f2ep"
-
-[sub_resource type="Resource" id="Resource_x5m3d"]
-script = ExtResource("1_i8481")
-show_condition_set = SubResource("Resource_kb5co")
-root_node = SubResource("Resource_cxjfd")
+root_node = SubResource("Resource_nbolb")
 metadata/_custom_type_script = "uid://cf73dbbry3glj"
 
 [resource]
 script = ExtResource("2_7ghy7")
-branches = Array[ExtResource("1_i8481")]([SubResource("Resource_qx4e7"), SubResource("Resource_wajie"), SubResource("Resource_x5m3d")])
+branches = Array[ExtResource("1_i8481")]([SubResource("Resource_4fose")])

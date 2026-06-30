@@ -55,7 +55,7 @@ func set_stage(new_index: int) -> void:
 
 	stage_index = new_index
 
-	if _is_quest_ready():
+	if is_quest_ready():
 
 		set_state(QuestState.READY)
 
@@ -81,6 +81,17 @@ func get_def() -> QuestDef:
 
 
 
+func get_stage(index:= -1) -> QuestStage:
+
+	if index == -1:
+
+		index = stage_index
+
+	if is_quest_ready():
+
+		return null
+
+	return get_def().stages[index]
 
 
 
@@ -88,8 +99,7 @@ func get_def() -> QuestDef:
 
 
 
-
-func _is_quest_ready() -> bool:
+func is_quest_ready() -> bool:
 
 	if stage_index > get_def().stages.size() - 1:
 
@@ -102,7 +112,7 @@ func _is_quest_ready() -> bool:
 
 func _is_stage_complete() -> bool:
 
-	if _is_quest_ready():
+	if is_quest_ready():
 
 		return true
 
@@ -140,6 +150,7 @@ func _on_objective_completed(objective: QuestObjective, stage: QuestStage) -> vo
 		set_stage(stage_index + 1)
 
 		stage_completed.emit(self, stage)
+
 
 
 

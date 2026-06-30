@@ -24,27 +24,6 @@ func _ready() -> void:
 
 
 
-func start_quest(quest_id: StringName) -> QuestData:
-
-	var quest_data = get_quest_data(quest_id)
-
-	if quest_data:
-
-		return null
-
-	quest_data = _create_quest_data(quest_id)
-
-	quest_data.set_state(QuestData.QuestState.ACTIVE)
-
-	var save_data = Game.get_save_data()
-
-	save_data.quest_data_list.append(quest_data)
-
-	return quest_data
-
-
-
-
 
 
 
@@ -77,6 +56,18 @@ func get_quest_state(quest_id: StringName) -> QuestData.QuestState:
 
 	return QuestData.QuestState.UNKNOWN
 
+
+
+
+func get_quest_stage(quest_id: StringName, stage_index:= -1) -> QuestStage:
+
+	var quest_data = get_quest_data(quest_id)
+
+	if !quest_data:
+
+		return null
+	
+	return quest_data.get_stage(stage_index)
 
 
 
@@ -128,6 +119,49 @@ func get_quests_with_source(entity_node: EntityNode) -> Array[QuestDef]:
 
 
 
+func get_quest_dialogue_nodes(entity_node: EntityNode) -> Array[QuestDialogueNode]:
+
+	var unevaluated_dialogue_nodes: Array[QuestDialogueNode] = []
+
+	var evaluated_dialogue_nodes: Array[QuestDialogueNode] = []
+
+	for def in def_registry.values():
+
+		var quest_data = get_quest_data(def.quest_id)
+
+		if _is_valid_quest_source(entity_node, def):
+
+			if !quest_data:
+				
+				if def.available_condition_set and !def.available_condition_set.evaluate():
+
+					continue
+
+				# Quest is not started but is available from this source
+
+				quest_data = _create_quest_data(def.quest_id)
+
+				set_quest_state(def.quest_id, QuestData.QuestState.AVAILABLE)
+
+				unevaluated_dialogue_nodes.append(def.source_dialogue_node)
+
+		elif quest_data:
+
+			# Quest is started and this is not the source
+
+			var current_stage = quest_data.get_stage()
+
+			unevaluated_dialogue_nodes.append_array(current_stage.get_dialogue_nodes())
+			
+	for dialogue_node in unevaluated_dialogue_nodes:
+
+		if dialogue_node.show_condition_set and !dialogue_node.show_condition_set.evaluate({"entity_node": entity_node}):
+
+			continue
+
+		evaluated_dialogue_nodes.append(dialogue_node)
+
+	return evaluated_dialogue_nodes
 
 
 
@@ -135,6 +169,17 @@ func get_quests_with_source(entity_node: EntityNode) -> Array[QuestDef]:
 
 
 
+
+
+func _is_valid_quest_source(entity_node: EntityNode, quest_def: QuestDef) -> bool:
+
+	for source in quest_def.sources:
+
+		if source.match(entity_node):
+
+			return true
+
+	return false
 
 
 
@@ -152,6 +197,10 @@ func _create_quest_data(quest_id: StringName) -> QuestData:
 	quest_data.state_changed.connect(_on_quest_state_changed)
 
 	quest_data.set_stage(0)
+
+	var save_data = Game.get_save_data()
+
+	save_data.quest_data_list.append(quest_data)
 
 	return quest_data
 

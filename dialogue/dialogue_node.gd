@@ -12,6 +12,8 @@ class_name DialogueNode extends Resource
 @export var exit_command_set: CommandSet
 
 
+
+
 @export var option_nodes: Array[DialogueNode]
 
 

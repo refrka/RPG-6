@@ -22,6 +22,17 @@ func _initialize() -> void:
 
 
 
+func get_dialogue_nodes() -> Array[QuestDialogueNode]:
+
+	var dialogue_nodes: Array[QuestDialogueNode] = []
+
+	for objective in objectives:
+
+		dialogue_nodes.append_array(objective.dialogue_nodes)
+
+	return dialogue_nodes
+
+	
 
 
 func _on_quest_objective_completed(objective: QuestObjective) -> void:
