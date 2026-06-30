@@ -6,3 +6,6 @@ class_name QuestObjective extends Resource
 signal completed(objective: QuestObjective)
 
 
+func _initialize() -> void:
+
+	pass

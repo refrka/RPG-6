@@ -12,7 +12,7 @@ class_name ConditionSet extends Resource
 
 
 
-func evaluate(_data: Dictionary) -> bool:
+func evaluate(_data: Dictionary = {}) -> bool:
 
 	var passed:= true
 

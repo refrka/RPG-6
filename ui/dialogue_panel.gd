@@ -75,6 +75,8 @@ func load_dialogue(target_entity: EntityNode) -> void:
 	var dialogue_library = target_entity.def.dialogue_library
 
 
+	
+
 
 	for dialogue_branch in dialogue_library.branches:
 
@@ -147,6 +149,8 @@ func _add_option(dialogue_node: DialogueNode) -> void:
 	current_options.append(dialogue_node)
 
 	var option = dialouge_option_scene.instantiate()
+
+	option.set_option_text(dialogue_node.option_text)
 
 	option.selected.connect(_on_option_selected.bind(dialogue_node))
 

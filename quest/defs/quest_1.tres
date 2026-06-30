@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://1w4p4qfmgsfk" path="res://quest/quest_stage.gd" id="3_oeku4"]
 [ext_resource type="Script" uid="uid://cdp33gtgt4jpi" path="res://quest/quest_objective.gd" id="4_upt0e"]
 [ext_resource type="Script" uid="uid://k2sbbp8m2ftj" path="res://quest/objectives/discover_location_objective.gd" id="5_fsbdh"]
+[ext_resource type="Script" uid="uid://cinwhtekgcr6p" path="res://quest/objectives/start_dialogue_objective.gd" id="6_t8qw7"]
 
 [sub_resource type="Resource" id="Resource_m0nle"]
 script = ExtResource("2_t8qw7")
@@ -20,10 +21,19 @@ script = ExtResource("3_oeku4")
 objectives = Array[ExtResource("4_upt0e")]([SubResource("Resource_ga8e4")])
 metadata/_custom_type_script = "uid://1w4p4qfmgsfk"
 
+[sub_resource type="Resource" id="Resource_t8qw7"]
+script = ExtResource("6_t8qw7")
+target_unique_id = &"mim"
+
+[sub_resource type="Resource" id="Resource_mt3kx"]
+script = ExtResource("3_oeku4")
+objectives = Array[ExtResource("4_upt0e")]([SubResource("Resource_t8qw7")])
+metadata/_custom_type_script = "uid://1w4p4qfmgsfk"
+
 [resource]
 script = ExtResource("1_mt3kx")
 quest_id = &"quest_1"
 title = "The first quest of the game"
 sources = Array[ExtResource("2_t8qw7")]([SubResource("Resource_m0nle")])
-stages = Array[ExtResource("3_oeku4")]([SubResource("Resource_p52o8")])
+stages = Array[ExtResource("3_oeku4")]([SubResource("Resource_p52o8"), SubResource("Resource_mt3kx")])
 metadata/_custom_type_script = "uid://1r4mo0y16wii"

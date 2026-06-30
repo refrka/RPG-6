@@ -34,19 +34,17 @@ func interact() -> bool:
 
 	if entity.def.dialogue_library:
 
+		if Quests.get_quest_state("quest_1") == QuestData.QuestState.UNKNOWN:
+
+			Quests.start_quest("quest_1")
+
+		Events.fire(DialogueStartedEvent, {"entity_node": entity})
+
 		var panel = UI.open_dialogue(entity)
 
 		panel.close_requested.connect(_on_close_requested)
 
 		dialogue_open = true
-
-		if Quests.get_quest_state("quest_1") == QuestData.QuestState.READY:
-
-			Quests.set_quest_state("quest_1", QuestData.QuestState.COMPLETE)
-
-		elif Quests.get_quest_state("quest_1") == QuestData.QuestState.UNKNOWN:
-
-			Quests.start_quest("quest_1")
 
 		return true
 

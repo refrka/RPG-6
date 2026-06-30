@@ -3,7 +3,9 @@ class_name QuestData extends Resource
 
 signal state_changed(quest_data: QuestData)
 
-signal completed(quest_data: QuestData)
+signal objective_completed(quest_data: QuestData, objective: QuestObjective)
+
+signal stage_completed(quest_data: QuestData, stage: QuestStage)
 
 
 enum QuestState {
@@ -129,11 +131,15 @@ func _on_objective_completed(objective: QuestObjective, stage: QuestStage) -> vo
 
 	completed_stage_objectives.append(objective)
 
+	objective_completed.emit(self, objective)
+
 	if _is_stage_complete():
 
 		stage.objective_completed.disconnect(_on_objective_completed)
 
 		set_stage(stage_index + 1)
+
+		stage_completed.emit(self, stage)
 
 
 

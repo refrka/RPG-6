@@ -145,6 +145,10 @@ func _create_quest_data(quest_id: StringName) -> QuestData:
 
 	quest_data.quest_id = quest_id
 
+	quest_data.objective_completed.connect(_on_quest_objective_completed)
+
+	quest_data.stage_completed.connect(_on_quest_stage_completed)
+
 	quest_data.state_changed.connect(_on_quest_state_changed)
 
 	quest_data.set_stage(0)
@@ -168,12 +172,20 @@ func _on_quest_state_changed(quest_data: QuestData) -> void:
 
 		QuestData.QuestState.COMPLETE:
 
-			pass
+			Events.fire(QuestCompletedEvent, {"quest_data": quest_data})
 
 
 
 
+func _on_quest_objective_completed(quest_data: QuestData, objective: QuestObjective) -> void:
 
+	Events.fire(QuestObjectiveCompletedEvent, {"quest_data": quest_data, "objective": objective})
+
+
+
+func _on_quest_stage_completed(quest_data: QuestData, stage: QuestStage) -> void:
+
+	Events.fire(QuestStageCompletedEvent, {"quest_data": quest_data, "stage": stage})
 
 
 

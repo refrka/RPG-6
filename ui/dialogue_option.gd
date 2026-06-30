@@ -18,6 +18,11 @@ func _ready() -> void:
 
 
 
+func set_option_text(text: String) -> void:
+
+	option_button.text = text
+
+
 
 
 func _on_option_selected() -> void:
