@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c0hkdbbhpi0ps" path="res://ui/dialogue_option.gd" id="1_14cfh"]
 
-[node name="DialogueOption" type="MarginContainer" unique_id=1887730824]
+[node name="DialogueOption" type="MarginContainer" unique_id=1887730824 node_paths=PackedStringArray("option_button")]
 script = ExtResource("1_14cfh")
+option_button = NodePath("HBoxContainer/OptionButton")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1135857745]
 layout_mode = 2

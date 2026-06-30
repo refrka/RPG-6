@@ -86,6 +86,7 @@ func load_dialogue(target_entity: EntityNode) -> void:
 
 
 
+
 	for option in root_options:
 
 		_add_option(option)
@@ -111,6 +112,24 @@ func load_barter(target_entity: EntityNode) -> void:
 
 
 
+
+func _enter_dialogue_node(dialogue_node: DialogueNode) -> void:
+
+	pass
+
+
+
+func _exit_dialogue_node(dialogue_node: DialogueNode) -> void:
+
+	pass
+
+
+
+
+
+
+
+
 func _load_entity(entity_node: EntityNode) -> void:
 
 	current_entity = entity_node
@@ -127,6 +146,8 @@ func _add_option(dialogue_node: DialogueNode) -> void:
 	current_options.append(dialogue_node)
 
 	var option = dialouge_option_scene.instantiate()
+
+	option.selected.connect(_on_option_selected.bind(dialogue_node))
 
 	option_list.add_child(option)
 
@@ -169,3 +190,8 @@ func _on_close_pressed() -> void:
 func _on_barter_pressed() -> void:
 
 	pass
+
+
+func _on_option_selected(option_node: DialogueNode) -> void:
+
+	print(option_node)

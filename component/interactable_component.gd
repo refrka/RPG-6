@@ -21,7 +21,7 @@ enum InteractionType {
 @export var duration:= 0.0
 
 
-
+var dialogue_open:= false
 
 
 
@@ -32,11 +32,17 @@ enum InteractionType {
 
 func interact() -> bool:
 
-	var panel = UI.open_dialogue(entity)
+	if entity.def.dialogue_library:
 
-	panel.close_requested.connect(_on_close_requested)
+		var panel = UI.open_dialogue(entity)
 
-	return true
+		panel.close_requested.connect(_on_close_requested)
+
+		dialogue_open = true
+
+		return true
+
+	return false
 
 
 
@@ -51,8 +57,10 @@ func complete() -> void:
 
 
 func end() -> void:
-	
-	UI.close_dialogue()
+
+	if dialogue_open:
+		
+		UI.close_dialogue()
 
 
 

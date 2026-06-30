@@ -63,8 +63,6 @@ func get_quest_state(quest_id: StringName) -> QuestData.QuestState:
 
 
 
-
-
 func get_quest_data(quest_id: StringName) -> QuestData:
 
 	var save_data = Game.get_save_data()
@@ -87,6 +85,12 @@ func get_quest_def(quest_id: StringName) -> QuestDef:
 		return def_registry[quest_id]
 
 	return null
+
+
+
+\
+
+
 
 
 

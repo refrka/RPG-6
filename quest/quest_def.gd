@@ -17,3 +17,4 @@ enum QuestType {
 @export var quest_id: StringName
 
 @export var type: QuestType
+
