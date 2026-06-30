@@ -33,8 +33,6 @@ var completed_stage_objectives: Array[QuestObjective]
 var source_entity: EntityNode
 
 
-var quest_counters: Dictionary[QuestObjective, int]
-
 
 
 
@@ -172,6 +170,8 @@ func get_dictionary() -> Dictionary:
 
 	save_dict["state"] = state
 
+	save_dict["stage_index"] = stage_index
+
 	return save_dict
 
 
@@ -185,6 +185,8 @@ static func load_dictionary(save_dict: Dictionary) -> QuestData:
 	quest_data.quest_id = save_dict["quest_id"]
 
 	quest_data.state = int(save_dict["state"]) as QuestState
+
+	quest_data.stage_index = int(save_dict["stage_index"])
 
 	return quest_data
 

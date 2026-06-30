@@ -9,6 +9,9 @@ signal completed(objective: QuestObjective)
 @export var dialogue_nodes: Array[QuestDialogueNode]
 
 
+var counter:= 0
+
+
 
 func _initialize() -> void:
 

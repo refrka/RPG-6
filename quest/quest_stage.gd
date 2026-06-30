@@ -14,7 +14,9 @@ func _initialize() -> void:
 
 	for objective in objectives:
 
-		objective.completed.connect(_on_quest_objective_completed)
+		if !objective.completed.is_connected(_on_quest_objective_completed):
+
+			objective.completed.connect(_on_quest_objective_completed)
 
 		objective._initialize()
 
@@ -32,7 +34,7 @@ func get_dialogue_nodes() -> Array[QuestDialogueNode]:
 
 	return dialogue_nodes
 
-	
+
 
 
 func _on_quest_objective_completed(objective: QuestObjective) -> void:

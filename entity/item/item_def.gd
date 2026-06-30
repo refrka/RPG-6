@@ -1,0 +1,1 @@
+class_name ItemDef extends EntityDef
