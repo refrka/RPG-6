@@ -93,4 +93,4 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		if entity.def.entity_id == "mim":
 
-			entity.update_location("forest_start", "start")
+			entity.update_location_data("forest_start", "start")

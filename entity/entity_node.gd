@@ -8,6 +8,8 @@ var initialized:= false
 
 var data: EntityData
 
+var inventory: Inventory
+
 @export var state_machine: StateMachine
 
 @export var component_root: ComponentRoot
@@ -32,7 +34,11 @@ func _initialize() -> void:
 
 		state_machine.setup(self)
 
+	if def.default_inventory:
 
+		inventory = def.default_inventory.duplicate()
+
+		inventory.initialize()
 
 
 
@@ -118,7 +124,7 @@ func load_data(entity_data: EntityData) -> void:
 
 
 
-func update_location(location_id: StringName, spawn_id: StringName) -> void:
+func update_location_data(location_id: StringName, spawn_id: StringName) -> void:
 
 	if data:
 

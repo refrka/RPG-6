@@ -20,3 +20,7 @@ class_name EntityDef extends Resource
 
 
 @export var dialogue_library: DialogueLibrary
+
+
+
+@export var default_inventory: Inventory

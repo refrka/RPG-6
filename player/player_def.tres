@@ -1,8 +1,16 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://dtewowtdwd85g"]
 
+[ext_resource type="Script" uid="uid://cv5lmfcq1wla4" path="res://inventory/inventory.gd" id="1_8fxaj"]
 [ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="1_cujn1"]
+[ext_resource type="Script" uid="uid://cs8d8vgjqde7f" path="res://inventory/slot_data.gd" id="2_y8wuh"]
+
+[sub_resource type="Resource" id="Resource_m0nle"]
+script = ExtResource("1_8fxaj")
+size = 9
+metadata/_custom_type_script = "uid://cv5lmfcq1wla4"
 
 [resource]
 script = ExtResource("1_cujn1")
 unique_id = &"player"
 entity_id = &"player"
+default_inventory = SubResource("Resource_m0nle")
