@@ -22,6 +22,7 @@ enum QuestType {
 
 @export var sources: Array[QuestSource]
 
+@export var stages: Array[QuestStage]
 
 
 

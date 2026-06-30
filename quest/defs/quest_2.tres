@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="QuestDef" format=3 uid="uid://sr2k8fjdltds"]
+
+[ext_resource type="Script" uid="uid://1r4mo0y16wii" path="res://quest/quest_def.gd" id="1_uvku0"]
+[ext_resource type="Script" uid="uid://c1st6ax4v3s6u" path="res://quest/quest_source.gd" id="2_y3bu7"]
+[ext_resource type="Script" uid="uid://1w4p4qfmgsfk" path="res://quest/quest_stage.gd" id="3_4fose"]
+[ext_resource type="Script" uid="uid://cdp33gtgt4jpi" path="res://quest/quest_objective.gd" id="4_nbolb"]
+[ext_resource type="Script" uid="uid://k2sbbp8m2ftj" path="res://quest/objectives/discover_location_objective.gd" id="5_g1waa"]
+
+[sub_resource type="Resource" id="Resource_emukl"]
+script = ExtResource("2_y3bu7")
+unique_id = &"mim"
+metadata/_custom_type_script = "uid://c1st6ax4v3s6u"
+
+[sub_resource type="Resource" id="Resource_4fose"]
+script = ExtResource("5_g1waa")
+
+[sub_resource type="Resource" id="Resource_aqmkg"]
+script = ExtResource("3_4fose")
+objectives = Array[ExtResource("4_nbolb")]([SubResource("Resource_4fose")])
+
+[resource]
+script = ExtResource("1_uvku0")
+sources = Array[ExtResource("2_y3bu7")]([SubResource("Resource_emukl")])
+stages = Array[ExtResource("3_4fose")]([SubResource("Resource_aqmkg")])
+metadata/_custom_type_script = "uid://1r4mo0y16wii"

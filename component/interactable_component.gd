@@ -40,6 +40,14 @@ func interact() -> bool:
 
 		dialogue_open = true
 
+		if Quests.get_quest_state("quest_1") == QuestData.QuestState.READY:
+
+			Quests.set_quest_state("quest_1", QuestData.QuestState.COMPLETE)
+
+		elif Quests.get_quest_state("quest_1") == QuestData.QuestState.UNKNOWN:
+
+			Quests.start_quest("quest_1")
+
 		return true
 
 	return false

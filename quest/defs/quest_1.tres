@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="QuestDef" format=3 uid="uid://ceq2qjj6hsd08"]
+
+[ext_resource type="Script" uid="uid://1r4mo0y16wii" path="res://quest/quest_def.gd" id="1_mt3kx"]
+[ext_resource type="Script" uid="uid://c1st6ax4v3s6u" path="res://quest/quest_source.gd" id="2_t8qw7"]
+[ext_resource type="Script" uid="uid://1w4p4qfmgsfk" path="res://quest/quest_stage.gd" id="3_oeku4"]
+[ext_resource type="Script" uid="uid://cdp33gtgt4jpi" path="res://quest/quest_objective.gd" id="4_upt0e"]
+[ext_resource type="Script" uid="uid://k2sbbp8m2ftj" path="res://quest/objectives/discover_location_objective.gd" id="5_fsbdh"]
+
+[sub_resource type="Resource" id="Resource_m0nle"]
+script = ExtResource("2_t8qw7")
+entity_id = &"mim"
+
+[sub_resource type="Resource" id="Resource_ga8e4"]
+script = ExtResource("5_fsbdh")
+location_id = &"forest_east"
+metadata/_custom_type_script = "uid://k2sbbp8m2ftj"
+
+[sub_resource type="Resource" id="Resource_p52o8"]
+script = ExtResource("3_oeku4")
+objectives = Array[ExtResource("4_upt0e")]([SubResource("Resource_ga8e4")])
+metadata/_custom_type_script = "uid://1w4p4qfmgsfk"
+
+[resource]
+script = ExtResource("1_mt3kx")
+quest_id = &"quest_1"
+title = "The first quest of the game"
+sources = Array[ExtResource("2_t8qw7")]([SubResource("Resource_m0nle")])
+stages = Array[ExtResource("3_oeku4")]([SubResource("Resource_p52o8")])
+metadata/_custom_type_script = "uid://1r4mo0y16wii"

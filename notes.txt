@@ -1,0 +1,9 @@
+
+
+>> Quests.start_quest(quest_id)
+
+>> Quests._create_quest_data(quest_id)
+
+>> Quests.set_stage(quest_id, stage_index)
+
+>> QuestObjective._initialize()

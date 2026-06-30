@@ -24,26 +24,44 @@ func _ready() -> void:
 
 
 
-
-
-
-func set_quest_state(quest_id: StringName, state: QuestData.QuestState) -> QuestData:
+func start_quest(quest_id: StringName) -> QuestData:
 
 	var quest_data = get_quest_data(quest_id)
 
 	if quest_data:
 
-		quest_data.set_state(state)
-
-	var quest_def = get_quest_def(quest_id)
-
-	if quest_def == null:
-
 		return null
 
-	quest_data = _create_quest_data(quest_id, state)
+	quest_data = _create_quest_data(quest_id)
+
+	quest_data.set_state(QuestData.QuestState.ACTIVE)
+
+	var save_data = Game.get_save_data()
+
+	save_data.quest_data_list.append(quest_data)
 
 	return quest_data
+
+
+
+
+
+
+
+
+
+
+
+func set_quest_state(quest_id: StringName, new_state: QuestData.QuestState) -> QuestData:
+
+	var quest_data = get_quest_data(quest_id)
+
+	quest_data.set_state(new_state)
+
+	return quest_data
+
+
+
 
 
 
@@ -89,10 +107,6 @@ func get_quest_def(quest_id: StringName) -> QuestDef:
 
 
 
-
-
-
-
 func get_quests_with_source(entity_node: EntityNode) -> Array[QuestDef]:
 
 	var quest_defs: Array[QuestDef] = []
@@ -123,13 +137,17 @@ func get_quests_with_source(entity_node: EntityNode) -> Array[QuestDef]:
 
 
 
-func _create_quest_data(quest_id: StringName, initial_state:= QuestData.QuestState.ACTIVE) -> QuestData:
+
+
+func _create_quest_data(quest_id: StringName) -> QuestData:
 
 	var quest_data = QuestData.new()
 
 	quest_data.quest_id = quest_id
 
-	quest_data.state = initial_state
+	quest_data.state_changed.connect(_on_quest_state_changed)
+
+	quest_data.set_stage(0)
 
 	return quest_data
 
@@ -140,9 +158,30 @@ func _create_quest_data(quest_id: StringName, initial_state:= QuestData.QuestSta
 
 
 
+func _on_quest_state_changed(quest_data: QuestData) -> void:
+
+	match quest_data.state:
+
+		QuestData.QuestState.READY:
+
+			pass
+
+		QuestData.QuestState.COMPLETE:
+
+			pass
+
+
+
+
+
+
+
+
+
+
 func _load_quest_defs() -> void:
 
-	var sub_dirs = ["res://quest/"]
+	var sub_dirs = ["res://quest/defs/"]
 
 	while !sub_dirs.is_empty():
 

@@ -204,8 +204,6 @@ func _process(delta: float) -> void:
 
 		timer -= delta
 
-		print(timer)
-
 		if timer <= 0.0:
 
 			timer = 0.0
