@@ -12,6 +12,7 @@ var spawn_id: StringName
 
 var last_dict: Dictionary
 
+var inventory: Inventory
 
 
 var location_data_list: Array[LocationData]
@@ -66,9 +67,7 @@ func get_quest_data(quest_id: StringName) -> QuestData:
 
 
 func get_dictionary() -> Dictionary:
-
-	var player = Game.get_player()
-
+	
 	var save_dict = load("res://system/save_template.gd").new().data
 
 	save_dict["save_id"] = save_id
@@ -79,7 +78,7 @@ func get_dictionary() -> Dictionary:
 
 	save_dict["spawn_id"] = spawn_id
 
-	save_dict["inventory"] = player.inventory.get_dictionary()
+	save_dict["inventory"] = inventory.get_dictionary()
 
 	for location_data in location_data_list:
 
@@ -104,10 +103,6 @@ func get_dictionary() -> Dictionary:
 
 static func load_dictionary(save_dict: Dictionary) -> SaveData:
 
-	var player = Game.get_player()
-
-	player.inventory.load_dictionary(save_dict["inventory"])
-
 	var save_data = SaveData.new()
 
 	save_data.last_dict = save_dict
@@ -119,6 +114,8 @@ static func load_dictionary(save_dict: Dictionary) -> SaveData:
 	save_data.location_id = save_dict["location_id"]
 
 	save_data.spawn_id = save_dict["spawn_id"]
+
+	save_data.inventory = Inventory.load_dictionary(save_dict["inventory"])
 
 	for dict in save_dict["location_data"]:
 

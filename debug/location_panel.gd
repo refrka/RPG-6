@@ -74,8 +74,12 @@ func _on_show_current_pressed() -> void:
 
 func _on_show_pressed() -> void:
 
-	var location_id = location_list.get_item_text(location_list.selected)
+	if location_list.selected == -1:
 
+		return
+
+	var location_id = location_list.get_item_text(location_list.selected)
+	
 	var _location_data = Game.get_location_data(location_id)
 
 	display_location_data(_location_data)

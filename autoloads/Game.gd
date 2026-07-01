@@ -40,6 +40,8 @@ func start(save_id: StringName) -> void:
 
 	var world_scene = Scenes.load_scene(WorldScene)
 
+	get_player()
+
 	if active_save_data.last_dict["location_id"] == "":
 
 		player.one_time_setup()
@@ -51,6 +53,8 @@ func start(save_id: StringName) -> void:
 	var location_scene = world_scene.load_location(active_save_data.last_dict["location_id"])
 
 	location_scene.spawn_player(active_save_data.last_dict["spawn_id"])
+
+	player.inventory = active_save_data.inventory
 
 	player._activate()
 

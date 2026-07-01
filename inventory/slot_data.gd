@@ -21,8 +21,21 @@ func set_data(_item_id: StringName, _quantity: int, _item_data: ItemData = null)
 
 	quantity = _quantity
 
+	if is_empty():
+
+		clear_data()
+
 	slot_updated.emit(self)
 
+
+
+
+
+func clear_data() -> void:
+
+	item_id = &""
+
+	quantity = 0
 
 
 
@@ -42,11 +55,15 @@ func is_empty() -> bool:
 
 
 
-func _can_accept(_item_id: StringName, _quantity:= 1) -> bool:
+func _can_accept(_item_id: StringName, _quantity: int, _item_data: ItemData = null) -> bool:
 
 	if is_empty():
 
 		return true
+
+	if _item_data != null:
+
+		return false
 
 	if item_id != _item_id:
 

@@ -6,6 +6,24 @@ class_name PlayerNode extends CharacterNode
 
 
 
+func _ready() -> void:
+
+	data = PlayerData.new()
+
+
+
+
+func one_time_setup() -> void:
+
+	super()
+
+	var save_data = Game.get_save_data()
+
+	save_data.inventory = inventory
+
+
+
+
 
 
 
@@ -27,6 +45,4 @@ func _initialize() -> void:
 	super()
 
 	interaction_sensor.setup(self)
-
-	load_data(PlayerData.new())
 
