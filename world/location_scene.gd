@@ -58,6 +58,25 @@ func get_spawn_point(spawn_id: StringName) -> SpawnPoint:
 
 
 
+func get_nearest_spawn_point(target_entity: EntityNode) -> SpawnPoint:
+
+	var nearest_spawn: SpawnPoint = null
+
+	var nearest_distance:= INF
+
+	for spawn_point in spawn_point_root.get_children():
+
+		var distance = target_entity.global_position.distance_to(spawn_point.global_position)
+
+		if !nearest_spawn or distance < nearest_distance:
+
+			nearest_spawn = spawn_point
+
+			nearest_distance = distance
+
+	return nearest_spawn
+
+
 
 
 
@@ -72,8 +91,7 @@ func spawn_player(spawn_id: StringName) -> void:
 
 	player.global_position = spawn_point.global_position
 
-
-
+	player._update_location_data(location_id, spawn_id)
 
 
 

@@ -37,6 +37,9 @@ func is_empty() -> bool:
 
 
 
+
+
+
 func _can_accept(_item_id: StringName, _quantity:= 1) -> bool:
 
 	if is_empty():

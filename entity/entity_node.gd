@@ -38,8 +38,6 @@ func _initialize() -> void:
 
 		inventory = def.default_inventory.duplicate()
 
-		inventory.initialize()
-
 
 
 
@@ -118,13 +116,15 @@ func load_data(entity_data: EntityData) -> void:
 
 	data.node = self
 
+	data.def = def
+
 	global_position = data.last_known_position
 
 
 
 
 
-func update_location_data(location_id: StringName, spawn_id: StringName) -> void:
+func _update_location_data(location_id: StringName, spawn_id: StringName) -> void:
 
 	if data:
 

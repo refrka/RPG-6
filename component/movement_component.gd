@@ -40,7 +40,22 @@ func halt() -> void:
 
 
 
+func _stop_move() -> void:
 
+	move_stopped.emit()
+
+	var location_scene = Scenes.get_scene(LocationScene)
+
+	var spawn_point = location_scene.get_nearest_spawn_point(entity)
+
+	entity._update_location_data(location_scene.location_id, spawn_point.spawn_id)
+
+
+
+
+func _start_move() -> void:
+
+	move_started.emit()
 
 
 
@@ -74,15 +89,18 @@ func _process(_delta: float) -> void:
 
 	if current_velocity != Vector2.ZERO and move_velocity == Vector2.ZERO:
 
-		move_stopped.emit()
+		_stop_move()
 
 	elif current_velocity == Vector2.ZERO and move_velocity != Vector2.ZERO:
 
-		move_started.emit()
+		_start_move()
 
 	if current_velocity != entity.velocity:
 
 		current_velocity = entity.velocity
+
+
+
 
 
 
@@ -93,4 +111,4 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		if entity.def.entity_id == "mim":
 
-			entity.update_location_data("forest_start", "start")
+			entity._update_location_data("forest_start", "start")

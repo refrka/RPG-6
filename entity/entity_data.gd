@@ -13,7 +13,7 @@ var last_known_position: Vector2
 
 
 
-func get_dictionary() -> Dictionary:
+func _get_dictionary() -> Dictionary:
 
 	var save_dict = {}
 

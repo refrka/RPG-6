@@ -67,6 +67,8 @@ func get_quest_data(quest_id: StringName) -> QuestData:
 
 func get_dictionary() -> Dictionary:
 
+	var player = Game.get_player()
+
 	var save_dict = load("res://system/save_template.gd").new().data
 
 	save_dict["save_id"] = save_id
@@ -83,7 +85,7 @@ func get_dictionary() -> Dictionary:
 	
 	for entity_data in entity_data_list:
 
-		save_dict["entity_data"].append(entity_data.get_dictionary())
+		save_dict["entity_data"].append(entity_data._get_dictionary())
 
 	for quest_data in quest_data_list:
 

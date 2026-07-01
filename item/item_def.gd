@@ -15,7 +15,9 @@ class_name ItemDef extends Resource
 
 
 
+func is_unique() -> bool:
 
+	return unique_id != &""
 
 
 
