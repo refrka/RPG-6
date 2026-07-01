@@ -29,6 +29,8 @@ var inventory:= Inventory.new()
 
 func _initialize() -> void:
 
+	assert(def != null, "No entity definition for %s" % self.name)
+
 	initialized = true
 
 	component_root.setup(self)

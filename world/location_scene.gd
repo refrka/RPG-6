@@ -17,6 +17,8 @@ enum Region {
 
 @export var character_root: Node2D
 
+@export var object_root: Node2D
+
 @export var spawn_point_root: Node2D
 
 
@@ -34,6 +36,10 @@ func _ready() -> void:
 	for character_node in character_root.get_children():
 
 		character_node._initialize()
+
+	for object_node in object_root.get_children():
+
+		object_node._initialize()
 
 	for transition_zone in transition_zones.get_children():
 
