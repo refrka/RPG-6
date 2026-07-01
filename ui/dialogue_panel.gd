@@ -143,7 +143,13 @@ func _enter_dialogue_node(dialogue_node: DialogueNode) -> void:
 
 	if dialogue_node.enter_command_set:
 
-		dialogue_node.enter_command_set.execute()
+		var data = {}
+
+		if dialogue_node is QuestDialogueNode:
+
+			data["quest_id"] = dialogue_node.quest_id
+
+		dialogue_node.enter_command_set.execute(data)
 
 	Events.fire(DialogueNodeEnteredEvent, {"dialogue_node": dialogue_node})
 

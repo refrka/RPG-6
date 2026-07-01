@@ -22,6 +22,10 @@ enum QuestType {
 
 @export var sources: Array[QuestSource]
 
+@export var recipient_entity_id: StringName
+
+@export var recipient_unique_id: StringName
+
 @export var stages: Array[QuestStage]
 
 

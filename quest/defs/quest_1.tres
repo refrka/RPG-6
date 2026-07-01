@@ -7,9 +7,9 @@
 [ext_resource type="Script" uid="uid://k2sbbp8m2ftj" path="res://quest/objectives/discover_location_objective.gd" id="5_fsbdh"]
 [ext_resource type="Script" uid="uid://bm4tki6d2coyc" path="res://dialogue/dialogue_node.gd" id="5_ngq7o"]
 [ext_resource type="Script" uid="uid://dymrj5u6n55yn" path="res://command_function/command_function.gd" id="5_t6h0n"]
-[ext_resource type="Script" uid="uid://cinwhtekgcr6p" path="res://quest/objectives/start_dialogue_objective.gd" id="6_t8qw7"]
 [ext_resource type="Script" uid="uid://ctns1uf21m71i" path="res://command_function/command_set.gd" id="7_ul77m"]
 [ext_resource type="Script" uid="uid://b3etsdiil5o71" path="res://quest/quest_dialogue_node.gd" id="8_4yldl"]
+[ext_resource type="Script" uid="uid://cqsdmp73ecjt4" path="res://command_function/submit_quest.gd" id="10_xpc7t"]
 
 [sub_resource type="Resource" id="Resource_4yldl"]
 script = ExtResource("7_ul77m")
@@ -45,20 +45,29 @@ script = ExtResource("3_oeku4")
 objectives = Array[ExtResource("4_upt0e")]([SubResource("Resource_t6h0n")])
 metadata/_custom_type_script = "uid://1w4p4qfmgsfk"
 
-[sub_resource type="Resource" id="Resource_t8qw7"]
-script = ExtResource("6_t8qw7")
-target_unique_id = &"mim"
+[sub_resource type="Resource" id="Resource_nr0sy"]
+script = ExtResource("10_xpc7t")
 
-[sub_resource type="Resource" id="Resource_mt3kx"]
-script = ExtResource("3_oeku4")
-objectives = Array[ExtResource("4_upt0e")]([SubResource("Resource_t8qw7")])
-metadata/_custom_type_script = "uid://1w4p4qfmgsfk"
+[sub_resource type="Resource" id="Resource_fsbdh"]
+script = ExtResource("7_ul77m")
+command_functions = Array[ExtResource("5_t6h0n")]([SubResource("Resource_nr0sy")])
+metadata/_custom_type_script = "uid://ctns1uf21m71i"
+
+[sub_resource type="Resource" id="Resource_6hs1l"]
+script = ExtResource("8_4yldl")
+quest_id = &"quest_1"
+option_text = "Submit quest 1"
+dialogue_text = "You turned in the quest!"
+enter_command_set = SubResource("Resource_fsbdh")
+metadata/_custom_type_script = "uid://b3etsdiil5o71"
 
 [resource]
 script = ExtResource("1_mt3kx")
 quest_id = &"quest_1"
 title = "The First Quest"
 sources = Array[ExtResource("2_t8qw7")]([SubResource("Resource_m0nle")])
-stages = Array[ExtResource("3_oeku4")]([SubResource("Resource_p52o8"), SubResource("Resource_mt3kx")])
+recipient_unique_id = &"mim"
+stages = Array[ExtResource("3_oeku4")]([SubResource("Resource_p52o8")])
 source_dialogue_node = SubResource("Resource_xpc7t")
+submit_dialogue_node = SubResource("Resource_6hs1l")
 metadata/_custom_type_script = "uid://1r4mo0y16wii"

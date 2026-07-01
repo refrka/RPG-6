@@ -53,6 +53,10 @@ func set_stage(new_index: int) -> void:
 
 	stage_index = new_index
 
+	if is_quest_complete():
+
+		return
+
 	if is_quest_ready():
 
 		set_state(QuestState.READY)
@@ -79,13 +83,15 @@ func get_def() -> QuestDef:
 
 
 
+
+
 func get_stage(index:= -1) -> QuestStage:
 
 	if index == -1:
 
 		index = stage_index
 
-	if is_quest_ready():
+	if is_quest_ready() or is_quest_complete():
 
 		return null
 
@@ -93,9 +99,14 @@ func get_stage(index:= -1) -> QuestStage:
 
 
 
+
+
 func get_state() -> QuestState:
 
 	return state
+
+
+
 
 
 
@@ -138,7 +149,9 @@ func is_stage_complete() -> bool:
 
 
 
+func is_quest_complete() -> bool:
 
+	return state == QuestState.COMPLETE and stage_index == -1
 
 
 

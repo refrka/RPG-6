@@ -41,6 +41,10 @@ func set_quest_state(quest_id: StringName, new_state: QuestData.QuestState) -> Q
 
 		quest_data.set_stage(0)
 
+	elif new_state == QuestData.QuestState.COMPLETE:
+
+		quest_data.set_stage(-1)
+
 	return quest_data
 
 
@@ -133,6 +137,18 @@ func get_quest_dialogue_nodes(entity_node: EntityNode) -> Array[QuestDialogueNod
 
 		var quest_data = get_quest_data(def.quest_id)
 
+		# First check if the we show a submit node. If so, skip the rest.
+
+		if quest_data and quest_data.is_quest_ready():
+
+			# Quest is ready to turn in, is this entity a recipient?
+
+			if entity_node.get_unique_id() == def.recipient_unique_id or entity_node.get_entity_id() == def.recipient_entity_id:
+
+				unevaluated_dialogue_nodes.append(def.submit_dialogue_node)
+
+				continue
+
 		if _is_valid_quest_source(entity_node, def):
 
 			# Is this quest data relevant to this entity
@@ -141,9 +157,11 @@ func get_quest_dialogue_nodes(entity_node: EntityNode) -> Array[QuestDialogueNod
 				
 				if def.available_condition_set and !def.available_condition_set.evaluate():
 
+					# The quest is not available at this time
+
 					continue
 
-				# Quest is not started but is available from this source
+				# This is the first contact with this quest and it is available, so create it and set it to AVAILABLE
 
 				quest_data = _create_quest_data(def.quest_id)
 
@@ -151,15 +169,17 @@ func get_quest_dialogue_nodes(entity_node: EntityNode) -> Array[QuestDialogueNod
 
 			if get_quest_state(def.quest_id) == QuestData.QuestState.AVAILABLE:
 
+				# The quest has not been started and is AVAILABLE
+
 				unevaluated_dialogue_nodes.append(def.source_dialogue_node)
 
 		elif quest_data:
 
-			# Quest is started and this is not the source
+			# Get relevant nodes for the current quest stage
 
 			var current_stage = quest_data.get_stage()
 
-			unevaluated_dialogue_nodes.append_array(current_stage.get_dialogue_nodes())
+			unevaluated_dialogue_nodes.append_array(current_stage.get_dialogue_nodes(entity_node))
 			
 	for dialogue_node in unevaluated_dialogue_nodes:
 
@@ -222,6 +242,10 @@ func _create_quest_data(quest_id: StringName) -> QuestData:
 func _on_quest_state_changed(quest_data: QuestData) -> void:
 
 	match quest_data.state:
+
+		QuestData.QuestState.ACTIVE:
+
+			Events.fire(QuestStartedEvent, {"quest_data": quest_data})
 
 		QuestData.QuestState.READY:
 

@@ -27,7 +27,7 @@ func _initialize() -> void:
 
 
 
-func get_dialogue_nodes() -> Array[QuestDialogueNode]:
+func get_dialogue_nodes(dialogue_source: EntityNode) -> Array[QuestDialogueNode]:
 
 	var dialogue_nodes: Array[QuestDialogueNode] = []
 
