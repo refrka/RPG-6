@@ -6,11 +6,15 @@ var data = {
 
 	"last_save_unix": 0.0,
 
-	"location_id": "forest_start",
+	"location_id": "",
 
-	"spawn_id": "start",
+	"spawn_id": "",
 
-	"inventory": { },
+	"inventory": { 
+
+		"slots": []
+
+	},
 
 	"location_data": [ ],
 

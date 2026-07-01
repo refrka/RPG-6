@@ -10,7 +10,6 @@ class_name PlayerNode extends CharacterNode
 
 
 
-
 func _update_location_data(location_id: StringName, spawn_id: StringName) -> void:
 
 	var save_data = Game.get_save_data()

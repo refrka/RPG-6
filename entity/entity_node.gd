@@ -8,7 +8,7 @@ var initialized:= false
 
 var data: EntityData
 
-var inventory: Inventory
+var inventory:= Inventory.new()
 
 @export var state_machine: StateMachine
 
@@ -17,6 +17,9 @@ var inventory: Inventory
 
 
 
+
+
+@export var body_collision: CollisionShape2D
 
 
 
@@ -34,13 +37,20 @@ func _initialize() -> void:
 
 		state_machine.setup(self)
 
-	if def.default_inventory:
+	if not self is PlayerNode and def.default_inventory:
 
 		inventory = def.default_inventory.duplicate()
 
 
 
 
+
+
+func one_time_setup() -> void:
+
+	if def.default_inventory:
+
+		inventory = def.default_inventory.duplicate()
 
 
 
@@ -156,3 +166,32 @@ func _load_dictionary() -> void:
 
 
 
+
+
+
+
+
+
+func _activate() -> void:
+
+	show()
+
+	for component in get_all_components():
+
+		component._activate()
+
+	body_collision.disabled = false
+
+
+
+
+
+func _deactivate() -> void:
+
+	hide()
+
+	for component in get_all_components():
+
+		component._deactivate()
+
+	body_collision.disabled = true

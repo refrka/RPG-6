@@ -40,9 +40,19 @@ func start(save_id: StringName) -> void:
 
 	var world_scene = Scenes.load_scene(WorldScene)
 
+	if active_save_data.last_dict["location_id"] == "":
+
+		player.one_time_setup()
+
+		active_save_data.last_dict["location_id"] = "forest_start"
+
+		active_save_data.last_dict["spawn_id"] = "start"
+
 	var location_scene = world_scene.load_location(active_save_data.last_dict["location_id"])
 
 	location_scene.spawn_player(active_save_data.last_dict["spawn_id"])
+
+	player._activate()
 
 
 
@@ -126,6 +136,8 @@ func get_player() -> PlayerNode:
 		add_child(player)
 
 		player._initialize()
+
+		player._deactivate()
 	
 	return player
 

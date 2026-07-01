@@ -67,7 +67,9 @@ func _get_dictionary() -> Dictionary:
 
 	save_dict["item_id"] = item_id
 
-	save_dict["item_data"] = item_data.get_dictionary()
+	if item_data:
+
+		save_dict["item_data"] = item_data.get_dictionary()
 
 	save_dict["quantity"] = quantity
 
@@ -85,7 +87,7 @@ static func _load_dictionary(save_dict: Dictionary) -> SlotData:
 
 	slot_data.item_id = save_dict["item_id"]
 
-	if !save_dict["item_data"].is_empty():
+	if save_dict.has("item_data"):
 
 		slot_data.item_data = ItemData.load_dictionary(save_dict["item_data"])
 
