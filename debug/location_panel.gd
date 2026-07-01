@@ -1,4 +1,4 @@
-class_name LocationPanel extends MarginContainer
+class_name LocationPanel extends DebugPanel
 
 
 
@@ -79,7 +79,7 @@ func _on_show_pressed() -> void:
 		return
 
 	var location_id = location_list.get_item_text(location_list.selected)
-	
+
 	var _location_data = Game.get_location_data(location_id)
 
 	display_location_data(_location_data)

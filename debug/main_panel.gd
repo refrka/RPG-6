@@ -1,4 +1,4 @@
-class_name MainPanel extends MarginContainer
+class_name MainPanel extends DebugPanel
 
 
 
@@ -9,14 +9,3 @@ class_name MainPanel extends MarginContainer
 
 
 
-
-
-
-
-
-
-
-
-func refresh() -> void:
-
-	pass

@@ -1,4 +1,4 @@
-class_name EntityPanel extends MarginContainer
+class_name EntityPanel extends DebugPanel
 
 
 

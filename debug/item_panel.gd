@@ -1,0 +1,1 @@
+class_name ItemPanel extends DebugPanel

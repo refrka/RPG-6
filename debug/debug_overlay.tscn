@@ -4,10 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://kcbtsmdb5d16" path="res://debug/main_panel.tscn" id="2_rnicy"]
 [ext_resource type="PackedScene" uid="uid://lto67vq0xpfi" path="res://debug/entity_panel.tscn" id="3_wml7l"]
 [ext_resource type="PackedScene" uid="uid://dwora5ykkonv8" path="res://debug/location_panel.tscn" id="3_xf5nc"]
+[ext_resource type="Script" uid="uid://had754pu3emk" path="res://debug/quest_panel.gd" id="5_ft4av"]
+[ext_resource type="Script" uid="uid://7fhv6aderghq" path="res://debug/item_panel.gd" id="6_5gfxd"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_aajxx"]
 
-[node name="DebugOverlay" type="Control" unique_id=1357979542 node_paths=PackedStringArray("main_button", "location_button", "entity_button", "refresh_button", "main_panel", "location_panel", "entity_panel") groups=["debug_overlay"]]
+[node name="DebugOverlay" type="Control" unique_id=1357979542 node_paths=PackedStringArray("main_button", "location_button", "entity_button", "quest_button", "item_button", "refresh_button", "main_panel", "location_panel", "entity_panel", "quest_panel", "item_panel") groups=["debug_overlay"]]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -20,10 +22,14 @@ script = ExtResource("1_xbgyx")
 main_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MainButton")
 location_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/LocationButton")
 entity_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/EntityButton")
+quest_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/QuestButton")
+item_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/ItemButton")
 refresh_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/RefreshButton")
 main_panel = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/MainPanel")
 location_panel = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/LocationPanel")
 entity_panel = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/EntityPanel")
+quest_panel = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/QuestPanel")
+item_panel = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ItemPanel")
 metadata/_custom_type_script = "uid://bo8xxaqdea4ft"
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=17279434]
@@ -40,7 +46,7 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1805151315]
-custom_minimum_size = Vector2(500, 200)
+custom_minimum_size = Vector2(550, 200)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -70,6 +76,20 @@ toggle_mode = true
 button_group = SubResource("ButtonGroup_aajxx")
 text = "Entity"
 
+[node name="QuestButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=899940460]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_aajxx")
+text = "Quest"
+
+[node name="ItemButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=104079446]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_aajxx")
+text = "Item"
+
 [node name="RefreshButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=113989842]
 custom_minimum_size = Vector2(80, 30)
 layout_mode = 2
@@ -96,3 +116,11 @@ layout_mode = 2
 
 [node name="EntityPanel" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=739312355 instance=ExtResource("3_wml7l")]
 layout_mode = 2
+
+[node name="QuestPanel" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=330210174]
+layout_mode = 2
+script = ExtResource("5_ft4av")
+
+[node name="ItemPanel" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1991782839]
+layout_mode = 2
+script = ExtResource("6_5gfxd")
