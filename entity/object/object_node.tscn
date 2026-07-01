@@ -7,6 +7,8 @@
 
 [node name="ObjectNode" type="StaticBody2D" unique_id=760273018 node_paths=PackedStringArray("state_machine", "component_root", "body_collision")]
 y_sort_enabled = true
+collision_layer = 32
+collision_mask = 48
 script = ExtResource("1_vfshi")
 state_machine = NodePath("StateMachine")
 component_root = NodePath("ComponentRoot")

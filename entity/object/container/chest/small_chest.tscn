@@ -3,6 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://jyrgqo755dng" path="res://entity/object/object_node.tscn" id="1_yvi23"]
 [ext_resource type="Resource" uid="uid://byvx240rd1w5c" path="res://entity/object/container/chest/small_chest_def.tres" id="2_fg66b"]
 [ext_resource type="Texture2D" uid="uid://duh24jriadugv" path="res://entity/object/container/chest/small_chest_sprite.png" id="2_h3qs1"]
+[ext_resource type="Script" uid="uid://dla17lmlivc8h" path="res://component/container_component.gd" id="4_fg66b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31tei"]
+size = Vector2(24, 10)
 
 [node name="SmallChest" unique_id=760273018 instance=ExtResource("1_yvi23")]
 def = ExtResource("2_fg66b")
@@ -11,3 +15,11 @@ def = ExtResource("2_fg66b")
 position = Vector2(0, -11)
 texture = ExtResource("2_h3qs1")
 hframes = 2
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=966139657]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_31tei")
+
+[node name="ContainerComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(354913512) index="0" unique_id=865470587]
+script = ExtResource("4_fg66b")
+type = 1
