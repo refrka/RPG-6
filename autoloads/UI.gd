@@ -9,9 +9,9 @@ var overlay_root: Control
 var overlay_registry:= {}
 
 
-var pause_count:= 0
+var pause_list: Array[UIOverlay]
 
-
+var overlay_list: Array[UIOverlay]
 
 
 
@@ -62,6 +62,10 @@ func close_dialogue() -> void:
 
 	var dialogue_panel = get_tree().get_first_node_in_group("dialogue_panel")
 
+	dialogue_panel.toggle()
+
+	remove_overlay(dialogue_panel)
+
 	dialogue_panel.queue_free()
 
 
@@ -98,10 +102,32 @@ func deactivate_overlays() -> void:
 
 
 
+func add_overlay(overlay: UIOverlay) -> void:
 
-func add_pause() -> void:
+	overlay_list.append(overlay)
 
-	pause_count += 1
+	if overlay.pause:
+
+		add_pause(overlay)
+
+
+
+
+
+func remove_overlay(overlay: UIOverlay) -> void:
+
+	overlay_list.erase(overlay)
+
+	if overlay.pause:
+
+		remove_pause(overlay)
+
+
+
+
+func add_pause(pause_source: UIOverlay) -> void:
+
+	pause_list.append(pause_source)
 
 	if !Game.is_paused():
 
@@ -111,14 +137,13 @@ func add_pause() -> void:
 
 
 
-func remove_pause() -> void:
+func remove_pause(pause_source: UIOverlay) -> void:
 
-	pause_count = max(0, pause_count - 1)
+	pause_list.erase(pause_source)
 
-	if pause_count <= 0 and Game.is_paused():
+	if pause_list.is_empty():
 
 		Game.resume()
-
 
 
 
@@ -149,6 +174,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		if Game.is_active():
 
-			var menu = _get_overlay(GameMenu)
+			if !overlay_list.is_empty():
 
-			menu.toggle()
+				var overlay = overlay_list.pop_back()
+
+				overlay.toggle()
+
+			else:
+
+				var menu = _get_overlay(GameMenu)
+
+				menu.toggle()

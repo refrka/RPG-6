@@ -135,6 +135,8 @@ func get_quest_dialogue_nodes(entity_node: EntityNode) -> Array[QuestDialogueNod
 
 		if _is_valid_quest_source(entity_node, def):
 
+			# Is this quest data relevant to this entity
+
 			if !quest_data:
 				
 				if def.available_condition_set and !def.available_condition_set.evaluate():

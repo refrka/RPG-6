@@ -1,4 +1,4 @@
-class_name DialoguePanel extends MarginContainer
+class_name DialoguePanel extends UIOverlay
 
 
 
@@ -64,6 +64,8 @@ func _ready() -> void:
 
 func load_dialogue(target_entity: EntityNode) -> void:
 
+	_activate()
+
 	current_section = option_section
 
 	_load_entity(target_entity)
@@ -101,8 +103,6 @@ func load_dialogue(target_entity: EntityNode) -> void:
 
 
 
-
-
 func load_barter(target_entity: EntityNode) -> void:
 
 	current_section = barter_section
@@ -111,8 +111,23 @@ func load_barter(target_entity: EntityNode) -> void:
 
 		_load_entity(target_entity)
 
-	
 
+
+
+
+
+
+func toggle() -> void:
+
+	if active: 
+
+		_deactivate()
+
+		close_requested.emit()
+
+	else:
+
+		_activate()
 
 
 

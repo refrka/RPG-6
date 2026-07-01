@@ -28,15 +28,15 @@ func toggle() -> void:
 
 
 
+
+
 func _activate() -> void:
 
 	active = true
 
 	show()
 
-	if pause:
-
-		UI.add_pause()
+	UI.add_overlay(self)
 
 
 
@@ -47,6 +47,4 @@ func _deactivate() -> void:
 
 	hide()
 
-	if pause:
-
-		UI.remove_pause()
+	UI.remove_overlay(self)
