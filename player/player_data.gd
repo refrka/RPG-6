@@ -1,4 +1,4 @@
-class_name PlayerData extends EntityData
+class_name PlayerData extends CharacterData
 
 
 
