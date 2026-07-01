@@ -6,7 +6,7 @@ class_name Inventory extends Resource
 
 @export var slots: Array[SlotData]
 
-
+@export var gold: int
 
 
 
@@ -18,6 +18,7 @@ func add_item(item_id: StringName, quantity: int, item_data: ItemData = null) ->
 	var new_count = slot_data.quantity + quantity
 
 	slot_data.set_data(item_id, new_count, item_data)
+
 
 
 
@@ -42,6 +43,20 @@ func remove_item(item_id: StringName, quantity: int) -> int:
 	var remaining = quantity - quantity_removed
 
 	return remaining
+
+
+
+
+
+
+func transfer_item(target_inventory: Inventory, item_id: StringName, quantity: int, item_data: ItemData = null) -> void:
+
+	var slot_data = target_inventory.get_slot_for(item_id, quantity, item_data)
+
+	var new_quantity = slot_data.quantity + quantity
+	
+	slot_data.set_data(item_id, new_quantity, item_data)
+
 
 
 
@@ -90,6 +105,8 @@ func get_dictionary() -> Dictionary:
 
 		save_dict["slots"].append(slot_data._get_dictionary())
 
+	save_dict["gold"] = gold
+
 	return save_dict
 
 
@@ -104,5 +121,7 @@ static func load_dictionary(save_dict: Dictionary) -> Inventory:
 	for dict in save_dict["slots"]:
 
 		inventory.slots.append(SlotData._load_dictionary(dict))
+
+	inventory.gold = int(save_dict["gold"])
 
 	return inventory

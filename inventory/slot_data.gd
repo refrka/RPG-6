@@ -108,6 +108,6 @@ static func _load_dictionary(save_dict: Dictionary) -> SlotData:
 
 		slot_data.item_data = ItemData.load_dictionary(save_dict["item_data"])
 
-	slot_data.quantity = save_dict["quantity"]
+	slot_data.quantity = int(save_dict["quantity"])
 
 	return slot_data
