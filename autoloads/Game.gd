@@ -66,6 +66,10 @@ func end() -> void:
 
 	save()
 
+	_reset_player()
+
+	player._deactivate()
+
 	active_save_data = null
 
 
@@ -182,6 +186,13 @@ func is_paused() -> bool:
 
 
 
+
+
+func _reset_player() -> void:
+
+	player.reset()
+
+	player.reparent(self)
 
 
 

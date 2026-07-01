@@ -25,6 +25,13 @@ func one_time_setup() -> void:
 
 
 
+func reset() -> void:
+
+	inventory.clear()
+
+
+
+
 
 
 
@@ -45,4 +52,7 @@ func _initialize() -> void:
 	super()
 
 	interaction_sensor.setup(self)
+
+
+
 

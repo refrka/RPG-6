@@ -12,7 +12,9 @@ var data = {
 
 	"inventory": { 
 
-		"slots": []
+		"items": { },
+
+		"gold": 0,
 
 	},
 

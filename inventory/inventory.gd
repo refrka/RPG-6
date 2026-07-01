@@ -1,10 +1,13 @@
 class_name Inventory extends Resource
 
 
+signal inventory_updated(item_id: StringName, new_quantity: int)
 
 
 
-@export var slots: Array[SlotData]
+@export var items: Dictionary[StringName, int]
+
+@export var equipment: Dictionary[StringName, ItemData]
 
 @export var gold: int
 
@@ -12,12 +15,12 @@ class_name Inventory extends Resource
 
 
 func add_item(item_id: StringName, quantity: int, item_data: ItemData = null) -> void:
-	
-	var slot_data = get_slot_for(item_id, quantity, item_data)
 
-	var new_count = slot_data.quantity + quantity
+	if items.has(item_id):
 
-	slot_data.set_data(item_id, new_count, item_data)
+		items[item_id] += quantity
+
+	inventory_updated.emit(item_id, items[item_id])
 
 
 
@@ -26,21 +29,23 @@ func add_item(item_id: StringName, quantity: int, item_data: ItemData = null) ->
 
 func remove_item(item_id: StringName, quantity: int) -> int:
 
-	var slot_data = get_first_slot_with(item_id)
+	var remaining:= quantity
 
-	var quantity_removed = 0
+	if items.has(item_id):
 
-	while quantity_removed < quantity and slot_data != null:
+		var removed = min(quantity, items[item_id])
 
-		quantity_removed = min(quantity, slot_data.quantity)
+		items[item_id] -= removed
 
-		var new_count = slot_data.quantity - quantity_removed
+		remaining -= removed
 
-		slot_data.set_data(item_id, new_count)
+	var new_count = items[item_id]
 
-		slot_data = get_first_slot_with(item_id)
+	if new_count <= 0:
 
-	var remaining = quantity - quantity_removed
+		items.erase(item_id)
+
+	inventory_updated.emit(item_id, new_count)
 
 	return remaining
 
@@ -48,48 +53,13 @@ func remove_item(item_id: StringName, quantity: int) -> int:
 
 
 
+func clear() -> void:
 
-func transfer_item(target_inventory: Inventory, item_id: StringName, quantity: int, item_data: ItemData = null) -> void:
+	items.clear()
 
-	var slot_data = target_inventory.get_slot_for(item_id, quantity, item_data)
+	equipment.clear()
 
-	var new_quantity = slot_data.quantity + quantity
-	
-	slot_data.set_data(item_id, new_quantity, item_data)
-
-
-
-
-
-
-
-func get_slot_for(item_id: StringName, quantity: int, item_data: ItemData) -> SlotData:
-
-	for slot_data in slots:
-
-		if slot_data._can_accept(item_id, quantity, item_data):
-
-			return slot_data
-
-	var slot_data = SlotData.new()
-
-	slots.append(slot_data)
-
-	return slot_data
-
-
-
-
-func get_first_slot_with(item_id: StringName) -> SlotData:
-
-	for slot_data in slots:
-		
-		if slot_data.item_id == item_id:
-
-			return slot_data
-
-	return null
-
+	gold = 0
 
 
 
@@ -99,11 +69,11 @@ func get_dictionary() -> Dictionary:
 
 	var save_dict = {}
 
-	save_dict["slots"] = []
+	save_dict["items"] = {}
 
-	for slot_data in slots:
+	for item_id in items:
 
-		save_dict["slots"].append(slot_data._get_dictionary())
+		save_dict["items"][item_id] = items[item_id]
 
 	save_dict["gold"] = gold
 
@@ -118,9 +88,9 @@ static func load_dictionary(save_dict: Dictionary) -> Inventory:
 
 	var inventory = Inventory.new()
 
-	for dict in save_dict["slots"]:
+	for item_id in save_dict["items"]:
 
-		inventory.slots.append(SlotData._load_dictionary(dict))
+		inventory.items[item_id] = int(save_dict["items"][item_id])
 
 	inventory.gold = int(save_dict["gold"])
 

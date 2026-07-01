@@ -2,18 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cv5lmfcq1wla4" path="res://inventory/inventory.gd" id="1_8fxaj"]
 [ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="1_cujn1"]
-[ext_resource type="Script" uid="uid://cs8d8vgjqde7f" path="res://inventory/slot_data.gd" id="2_y8wuh"]
-
-[sub_resource type="Resource" id="Resource_fpdhf"]
-script = ExtResource("2_y8wuh")
-item_id = &"apple"
-quantity = 99
-metadata/_custom_type_script = "uid://cs8d8vgjqde7f"
+[ext_resource type="Script" uid="uid://dbqd6vaiy5k0p" path="res://item/item_data.gd" id="1_y8wuh"]
 
 [sub_resource type="Resource" id="Resource_m0nle"]
 script = ExtResource("1_8fxaj")
-size = 9
-slots = Array[ExtResource("2_y8wuh")]([SubResource("Resource_fpdhf")])
+items = Dictionary[StringName, int]({
+&"apple": 69
+})
 metadata/_custom_type_script = "uid://cv5lmfcq1wla4"
 
 [resource]
