@@ -6,6 +6,8 @@ signal slot_updated(slot_data: SlotData)
 
 @export var item_id: StringName
 
+@export var item_data: ItemData
+
 @export var quantity:= 0
 
 
@@ -13,7 +15,7 @@ signal slot_updated(slot_data: SlotData)
 
 
 
-func set_data(_item_id: StringName, _quantity: int) -> void:
+func set_data(_item_id: StringName, _quantity: int, _item_data: ItemData = null) -> void:
 
 	item_id = _item_id
 
@@ -51,3 +53,42 @@ func _can_accept(_item_id: StringName, _quantity:= 1) -> bool:
 		return false
 
 	return true
+
+
+
+
+
+
+
+
+func _get_dictionary() -> Dictionary:
+
+	var save_dict = {}
+
+	save_dict["item_id"] = item_id
+
+	save_dict["item_data"] = item_data.get_dictionary()
+
+	save_dict["quantity"] = quantity
+
+	return save_dict
+
+
+
+
+
+
+
+static func _load_dictionary(save_dict: Dictionary) -> SlotData:
+
+	var slot_data = SlotData.new()
+
+	slot_data.item_id = save_dict["item_id"]
+
+	if !save_dict["item_data"].is_empty():
+
+		slot_data.item_data = ItemData.load_dictionary(save_dict["item_data"])
+
+	slot_data.quantity = save_dict["quantity"]
+
+	return slot_data

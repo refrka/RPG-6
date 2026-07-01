@@ -79,6 +79,8 @@ func get_dictionary() -> Dictionary:
 
 	save_dict["spawn_id"] = spawn_id
 
+	save_dict["inventory"] = player.inventory.get_dictionary()
+
 	for location_data in location_data_list:
 
 		save_dict["location_data"].append(location_data.get_dictionary())
@@ -101,6 +103,10 @@ func get_dictionary() -> Dictionary:
 
 
 static func load_dictionary(save_dict: Dictionary) -> SaveData:
+
+	var player = Game.get_player()
+
+	player.inventory.load_dictionary(save_dict["inventory"])
 
 	var save_data = SaveData.new()
 

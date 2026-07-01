@@ -25,3 +25,35 @@ func get_slot_for(item_id: StringName, quantity:= 1) -> SlotData:
 			return slot_data
 
 	return null
+
+
+
+
+
+
+
+
+func get_dictionary() -> Dictionary:
+
+	var save_dict = {}
+
+	save_dict["slots"] = []
+
+	for slot_data in slots:
+
+		save_dict["slots"].append(slot_data._get_dictionary())
+
+	return save_dict
+
+
+
+
+
+
+func load_dictionary(save_dict: Dictionary) -> Inventory:
+
+	for dict in save_dict["slots"]:
+
+		slots.append(SlotData._load_dictionary(dict))
+
+	return self

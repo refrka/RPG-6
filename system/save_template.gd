@@ -10,6 +10,8 @@ var data = {
 
 	"spawn_id": "start",
 
+	"inventory": { },
+
 	"location_data": [ ],
 
 	"entity_data": [ ],

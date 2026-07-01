@@ -31,4 +31,3 @@ func _initialize() -> void:
 
 	load_data(PlayerData.new())
 
-
