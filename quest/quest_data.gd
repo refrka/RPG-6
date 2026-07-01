@@ -111,7 +111,16 @@ func is_quest_ready() -> bool:
 
 
 
-func _is_stage_complete() -> bool:
+func is_objective_complete(objective: QuestObjective) -> bool:
+
+	return completed_stage_objectives.has(objective)
+
+
+
+
+
+
+func is_stage_complete() -> bool:
 
 	if is_quest_ready():
 
@@ -148,7 +157,7 @@ func _on_objective_completed(objective: QuestObjective, stage: QuestStage) -> vo
 
 	objective_completed.emit(self, objective)
 
-	if _is_stage_complete():
+	if is_stage_complete():
 
 		stage.objective_completed.disconnect(_on_objective_completed)
 

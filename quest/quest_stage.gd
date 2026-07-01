@@ -24,6 +24,9 @@ func _initialize() -> void:
 
 
 
+
+
+
 func get_dialogue_nodes() -> Array[QuestDialogueNode]:
 
 	var dialogue_nodes: Array[QuestDialogueNode] = []

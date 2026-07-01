@@ -15,21 +15,13 @@ class_name Inventory extends Resource
 
 
 
-func initialize() -> void:
 
-	_resize()
+func get_slot_for(item_id: StringName, quantity:= 1) -> SlotData:
 
+	for slot_data in slots:
 
+		if slot_data._can_accept(item_id, quantity):
 
+			return slot_data
 
-
-
-func _resize() -> void:
-
-	while slots.size() > size:
-
-		slots.pop_back()
-
-	while slots.size() < size:
-
-		slots.append(SlotData.new())
+	return null

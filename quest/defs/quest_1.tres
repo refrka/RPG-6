@@ -1,10 +1,7 @@
 [gd_resource type="Resource" script_class="QuestDef" format=3 uid="uid://ceq2qjj6hsd08"]
 
 [ext_resource type="Script" uid="uid://1r4mo0y16wii" path="res://quest/quest_def.gd" id="1_mt3kx"]
-[ext_resource type="Script" uid="uid://nbjf6g73vksc" path="res://condition_function/condition_function.gd" id="1_xpc7t"]
-[ext_resource type="Script" uid="uid://divqlyav8ug41" path="res://condition_function/is_location_discovered.gd" id="2_ngq7o"]
 [ext_resource type="Script" uid="uid://c1st6ax4v3s6u" path="res://quest/quest_source.gd" id="2_t8qw7"]
-[ext_resource type="Script" uid="uid://exfr7rx7f2ep" path="res://condition_function/condition_set.gd" id="3_cp7nc"]
 [ext_resource type="Script" uid="uid://1w4p4qfmgsfk" path="res://quest/quest_stage.gd" id="3_oeku4"]
 [ext_resource type="Script" uid="uid://cdp33gtgt4jpi" path="res://quest/quest_objective.gd" id="4_upt0e"]
 [ext_resource type="Script" uid="uid://k2sbbp8m2ftj" path="res://quest/objectives/discover_location_objective.gd" id="5_fsbdh"]
@@ -13,16 +10,6 @@
 [ext_resource type="Script" uid="uid://cinwhtekgcr6p" path="res://quest/objectives/start_dialogue_objective.gd" id="6_t8qw7"]
 [ext_resource type="Script" uid="uid://ctns1uf21m71i" path="res://command_function/command_set.gd" id="7_ul77m"]
 [ext_resource type="Script" uid="uid://b3etsdiil5o71" path="res://quest/quest_dialogue_node.gd" id="8_4yldl"]
-
-[sub_resource type="Resource" id="Resource_upt0e"]
-script = ExtResource("2_ngq7o")
-location_id = &"forest_east"
-metadata/_custom_type_script = "uid://divqlyav8ug41"
-
-[sub_resource type="Resource" id="Resource_oeku4"]
-script = ExtResource("3_cp7nc")
-condition_functions = Array[ExtResource("1_xpc7t")]([SubResource("Resource_upt0e")])
-metadata/_custom_type_script = "uid://exfr7rx7f2ep"
 
 [sub_resource type="Resource" id="Resource_4yldl"]
 script = ExtResource("7_ul77m")
@@ -40,9 +27,17 @@ metadata/_custom_type_script = "uid://b3etsdiil5o71"
 script = ExtResource("2_t8qw7")
 entity_id = &"mim"
 
+[sub_resource type="Resource" id="Resource_ngq7o"]
+script = ExtResource("8_4yldl")
+quest_id = &"quest_1"
+option_text = "About that location...."
+dialogue_text = "What about it?"
+metadata/_custom_type_script = "uid://b3etsdiil5o71"
+
 [sub_resource type="Resource" id="Resource_t6h0n"]
 script = ExtResource("5_fsbdh")
 location_id = &"forest_east"
+dialogue_nodes = Array[ExtResource("8_4yldl")]([SubResource("Resource_ngq7o")])
 metadata/_custom_type_script = "uid://k2sbbp8m2ftj"
 
 [sub_resource type="Resource" id="Resource_p52o8"]
@@ -65,6 +60,5 @@ quest_id = &"quest_1"
 title = "The First Quest"
 sources = Array[ExtResource("2_t8qw7")]([SubResource("Resource_m0nle")])
 stages = Array[ExtResource("3_oeku4")]([SubResource("Resource_p52o8"), SubResource("Resource_mt3kx")])
-available_condition_set = SubResource("Resource_oeku4")
 source_dialogue_node = SubResource("Resource_xpc7t")
 metadata/_custom_type_script = "uid://1r4mo0y16wii"

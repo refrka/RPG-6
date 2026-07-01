@@ -177,6 +177,8 @@ func get_quest_dialogue_nodes(entity_node: EntityNode) -> Array[QuestDialogueNod
 
 
 
+
+
 func _is_valid_quest_source(entity_node: EntityNode, quest_def: QuestDef) -> bool:
 
 	for source in quest_def.sources:
