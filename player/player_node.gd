@@ -62,6 +62,4 @@ func _update_location_data(location_id: StringName, spawn_id: StringName) -> voi
 
 func _on_inventory_updated(item_id: StringName, count: int) -> void:
 
-	print("heard")
-
 	Events.fire(ItemsAddedToInventoryEvent, {"item_id": item_id, "count": count})

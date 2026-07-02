@@ -1,6 +1,8 @@
 class_name NotificationOverlay extends UIOverlay
 
 
+signal complete
+
 
 @export var notification_panel: MarginContainer
 
@@ -47,11 +49,13 @@ func show_notification() -> void:
 
 func hide_notification() -> void:
 
+	_stop_timer()
+
 	animation_player.play("hide")
 
 	await animation_player.animation_finished
 
-	queue_free()
+	complete.emit()
 
 
 

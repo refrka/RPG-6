@@ -8,6 +8,8 @@ extends Node
 
 var overlay_root: Control
 
+var notification_root: Control
+
 var overlay_registry:= {}
 
 
@@ -23,6 +25,8 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	overlay_root = get_tree().get_first_node_in_group("overlay_root")
+
+	notification_root = get_tree().get_first_node_in_group("notification_root")
 
 	Events.subscribe(ItemsAddedToInventoryEvent, _on_items_added_to_inventory)
 
@@ -45,11 +49,9 @@ func show_notification(message: String) -> void:
 
 	var overlay = notification_overlay_scene.instantiate()
 
-	overlay_root.add_child(overlay)
-
 	overlay.set_message(message)
 
-	overlay.show_notification()
+	notification_root.add_notification(overlay)
 
 
 
