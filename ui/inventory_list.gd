@@ -80,7 +80,7 @@ func _show_all_rows() -> void:
 
 func _sort_alphabetical(string_a: StringName, string_b: StringName) -> bool:
 
-	return string_a > string_b
+	return string_a < string_b
 
 
 

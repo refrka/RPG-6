@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b7nsmhi1rfvqf" path="res://game_root.gd" id="1_pjpa4"]
 [ext_resource type="PackedScene" uid="uid://cuulvxdb4v0i0" path="res://ui/main_menu.tscn" id="2_bxsma"]
 [ext_resource type="PackedScene" uid="uid://ba2bdhn8qtup2" path="res://world/world_scene.tscn" id="2_lkrbl"]
-[ext_resource type="PackedScene" uid="uid://c7sbl586r3mjg" path="res://ui/ player_profile.tscn" id="3_0o8ui"]
+[ext_resource type="PackedScene" uid="uid://ckaqvm4265qeg" path="res://ui/player_profile.tscn" id="3_0o8ui"]
 [ext_resource type="PackedScene" uid="uid://c5nb2o6fata6k" path="res://ui/game_menu.tscn" id="3_lkrbl"]
 [ext_resource type="PackedScene" uid="uid://bfho774q0al3o" path="res://debug/debug_overlay.tscn" id="5_wd1uf"]
 
@@ -26,7 +26,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="PlayerProfile" parent="OverlayCanvas/OverlayRoot" unique_id=821772573 instance=ExtResource("3_0o8ui")]
-process_mode = 3
 layout_mode = 1
 
 [node name="GameMenu" parent="OverlayCanvas" unique_id=1943266367 instance=ExtResource("3_lkrbl")]

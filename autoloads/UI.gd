@@ -73,6 +73,13 @@ func close_dialogue() -> void:
 
 
 
+func open_container(target_container: EntityNode) -> void:
+
+	pass
+
+
+
+
 
 
 func register_overlay(overlay: UIOverlay) -> void:
