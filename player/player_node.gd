@@ -12,6 +12,14 @@ func _ready() -> void:
 
 
 
+func _initialize() -> void:
+
+	super()
+
+	interaction_sensor.setup(self)
+
+
+
 
 func one_time_setup() -> void:
 
@@ -30,6 +38,11 @@ func reset() -> void:
 
 
 
+func load_inventory(_inventory: Inventory) -> void:
+
+	inventory = _inventory
+
+	inventory.inventory_updated.connect(_on_inventory_updated)
 
 
 
@@ -46,12 +59,9 @@ func _update_location_data(location_id: StringName, spawn_id: StringName) -> voi
 
 
 
-func _initialize() -> void:
 
-	super()
+func _on_inventory_updated(item_id: StringName, count: int) -> void:
 
-	interaction_sensor.setup(self)
+	print("heard")
 
-
-
-
+	Events.fire(ItemsAddedToInventoryEvent, {"item_id": item_id, "count": count})

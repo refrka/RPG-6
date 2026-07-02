@@ -54,7 +54,7 @@ func start(save_id: StringName) -> void:
 
 	location_scene.spawn_player(active_save_data.last_dict["spawn_id"])
 
-	player.inventory = active_save_data.inventory
+	player.load_inventory(active_save_data.inventory)
 
 	var player_profile = UI.get_overlay(PlayerProfile)
 

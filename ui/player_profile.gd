@@ -38,3 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Game.is_active():
 
 			toggle()
+
+			if !active:
+
+				Game.player.inventory.add_item("apple", 4)

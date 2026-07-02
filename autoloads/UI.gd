@@ -3,6 +3,8 @@ extends Node
 
 @onready var dialogue_panel_scene:= preload("res://ui/dialogue_panel.tscn")
 
+@onready var notification_overlay_scene:= preload("res://ui/notification_overlay.tscn")
+
 
 var overlay_root: Control
 
@@ -22,6 +24,7 @@ func _ready() -> void:
 
 	overlay_root = get_tree().get_first_node_in_group("overlay_root")
 
+	Events.subscribe(ItemsAddedToInventoryEvent, _on_items_added_to_inventory)
 
 
 
@@ -34,11 +37,19 @@ func _ready() -> void:
 
 
 
-##  Top-level Methods
 
 
 
 
+func show_notification(message: String) -> void:
+
+	var overlay = notification_overlay_scene.instantiate()
+
+	overlay_root.add_child(overlay)
+
+	overlay.set_message(message)
+
+	overlay.show_notification()
 
 
 
@@ -169,6 +180,31 @@ func _get_overlay(overlay_script: Script) -> UIOverlay:
 		return overlay_registry[overlay_script]
 
 	return null
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _on_items_added_to_inventory(event: ItemsAddedToInventoryEvent) -> void:
+
+	var message = "New items!"
+
+	show_notification(message)
+
+
+
+
+
+
+
 
 
 
