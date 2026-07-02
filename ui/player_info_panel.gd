@@ -1,0 +1,1 @@
+class_name PlayerInfoPanel extends MarginContainer

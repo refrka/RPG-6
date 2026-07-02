@@ -21,6 +21,9 @@ func one_time_setup() -> void:
 
 	save_data.inventory = inventory
 
+	var player_profile = UI.get_overlay(PlayerProfile)
+
+	player_profile.initialize(self)
 
 
 

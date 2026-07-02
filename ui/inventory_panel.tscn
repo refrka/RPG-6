@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dgr8vw2lph5hw"]
+
+[ext_resource type="Script" uid="uid://bu6ydfllg1tfg" path="res://ui/inventory_panel.gd" id="1_shgow"]
+[ext_resource type="PackedScene" uid="uid://pn2eu8jqm3r1" path="res://ui/inventory_list.tscn" id="2_2054l"]
+
+[node name="InventoryPanel" type="MarginContainer" unique_id=208801847 node_paths=PackedStringArray("inventory_list")]
+custom_minimum_size = Vector2(300, 350)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_shgow")
+inventory_list = NodePath("PanelContainer/InventoryList")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1338464580]
+custom_minimum_size = Vector2(300, 350)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="InventoryList" parent="PanelContainer" unique_id=1522671104 instance=ExtResource("2_2054l")]
+layout_mode = 2

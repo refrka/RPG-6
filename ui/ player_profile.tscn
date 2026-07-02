@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c7sbl586r3mjg"]
+
+[ext_resource type="PackedScene" uid="uid://dgr8vw2lph5hw" path="res://ui/inventory_panel.tscn" id="1_jfv08"]
+[ext_resource type="Script" uid="uid://b038blce7omk" path="res://ui/player_profile.gd" id="1_kwkr0"]
+[ext_resource type="Script" uid="uid://cveh7briuc04w" path="res://ui/player_inventory_panel.gd" id="2_288vj"]
+[ext_resource type="PackedScene" uid="uid://cx6ni3egwfijb" path="res://ui/player_info_panel.tscn" id="3_288vj"]
+
+[node name="PlayerProfile" type="MarginContainer" unique_id=821772573 node_paths=PackedStringArray("inventory_panel", "info_panel")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("1_kwkr0")
+inventory_panel = NodePath("PlayerInventoryPanel")
+info_panel = NodePath("PlayerInfoPanel")
+pause = true
+
+[node name="PlayerInventoryPanel" parent="." unique_id=208801847 instance=ExtResource("1_jfv08")]
+layout_mode = 2
+script = ExtResource("2_288vj")
+
+[node name="PlayerInfoPanel" parent="." unique_id=905907192 instance=ExtResource("3_288vj")]
+layout_mode = 2

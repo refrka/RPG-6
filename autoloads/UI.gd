@@ -77,6 +77,8 @@ func close_dialogue() -> void:
 
 func register_overlay(overlay: UIOverlay) -> void:
 
+	print(overlay.get_script())
+
 	overlay_registry[overlay.get_script()] = overlay
 
 

@@ -9,6 +9,7 @@ signal interact_released
 
 
 
+
 var movement_component: MovementComponent:
 
 	get:
