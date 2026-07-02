@@ -11,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
@@ -22,7 +23,9 @@ pause = true
 
 [node name="PlayerInventoryPanel" parent="." unique_id=208801847 instance=ExtResource("1_jfv08")]
 layout_mode = 2
+mouse_filter = 2
 script = ExtResource("2_288vj")
 
 [node name="PlayerInfoPanel" parent="." unique_id=905907192 instance=ExtResource("3_288vj")]
 layout_mode = 2
+mouse_filter = 2

@@ -14,7 +14,7 @@ signal inventory_updated(item_id: StringName, new_quantity: int)
 
 
 
-func add_item(item_id: StringName, quantity: int, item_data: ItemData = null) -> void:
+func add_item(item_id: StringName, quantity: int, _item_data: ItemData = null) -> void:
 
 	if items.has(item_id):
 

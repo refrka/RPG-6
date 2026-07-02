@@ -24,6 +24,8 @@ func _ready() -> void:
 
 	_load_save_list()
 
+	visibility_changed.connect(_on_visibility_changed)
+
 
 
 
@@ -71,6 +73,8 @@ func _on_start_new_game_pressed() -> void:
 
 	Saves.create_save(character_name)
 
+	new_character_name_entry.clear()
+
 
 
 
@@ -83,3 +87,11 @@ func _on_save_selected(save_data: SaveData) -> void:
 func _on_delete_pressed(save_data: SaveData) -> void:
 
 	Saves.delete_save_data(save_data.save_id)
+
+
+
+
+
+func _on_visibility_changed() -> void:
+
+	new_character_name_entry.clear()

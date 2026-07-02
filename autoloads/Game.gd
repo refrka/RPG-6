@@ -56,6 +56,10 @@ func start(save_id: StringName) -> void:
 
 	player.inventory = active_save_data.inventory
 
+	var player_profile = UI.get_overlay(PlayerProfile)
+
+	player_profile.initialize(player)
+
 	player._activate()
 
 
