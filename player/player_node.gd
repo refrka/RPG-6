@@ -40,9 +40,11 @@ func reset() -> void:
 
 func load_inventory(_inventory: Inventory) -> void:
 
-	inventory = _inventory
+	if inventory != _inventory:
 
-	inventory.inventory_updated.connect(_on_inventory_updated)
+		inventory = _inventory
+
+		inventory.inventory_updated.connect(_on_inventory_updated)
 
 
 

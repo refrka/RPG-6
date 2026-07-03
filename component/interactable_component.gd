@@ -61,6 +61,8 @@ func complete() -> void:
 func end() -> void:
 
 	if dialogue_open:
+
+		print("close it")
 		
 		UI.close_interaction_overlay()
 

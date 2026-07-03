@@ -84,7 +84,7 @@ func close_interaction_overlay() -> void:
 
 	var interaction_overlay = get_tree().get_first_node_in_group("interaction_overlay")
 
-	interaction_overlay._deactivate()
+	remove_overlay(interaction_overlay)
 
 	interaction_overlay.queue_free()
 

@@ -32,6 +32,10 @@ func _ready() -> void:
 
 
 func load_inventory(_inventory: Inventory) -> void:
+	
+	if inventory == _inventory:
+
+		return
 
 	inventory = _inventory
 

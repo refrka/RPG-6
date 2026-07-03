@@ -16,9 +16,11 @@ signal inventory_updated(item_id: StringName, quantity_changed: int, new_quantit
 
 func add_item(item_id: StringName, quantity: int, _item_data: ItemData = null) -> void:
 
-	if items.has(item_id):
+	if !items.has(item_id):
 
-		items[item_id] += quantity
+		items[item_id] = 0
+
+	items[item_id] += quantity
 
 	inventory_updated.emit(item_id, quantity, items[item_id])
 

@@ -143,8 +143,13 @@ func _load_barter_interface() -> void:
 
 
 
+func _deactivate() -> void:
 
+	super()
 
+	close_requested.emit()
+
+	
 
 
 func _on_close_pressed() -> void:

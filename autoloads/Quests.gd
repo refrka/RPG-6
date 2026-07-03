@@ -164,6 +164,8 @@ func get_quest_dialogue_nodes(entity_node: EntityNode) -> Array[QuestDialogueNod
 			# Is this quest data relevant to this entity
 
 			if !quest_data:
+
+				# This is the first contact with this quest
 				
 				if def.available_condition_set and !def.available_condition_set.evaluate():
 
@@ -171,7 +173,7 @@ func get_quest_dialogue_nodes(entity_node: EntityNode) -> Array[QuestDialogueNod
 
 					continue
 
-				# This is the first contact with this quest and it is available, so create it and set it to AVAILABLE
+				# The quest is available, so create it and set it to AVAILABLE
 
 				quest_data = _create_quest_data(def.quest_id)
 
