@@ -64,11 +64,21 @@ func _ready() -> void:
 
 func load_dialogue(target_entity: EntityNode) -> void:
 
+	option_section.visible = true
+
+	barter_section.visible = false
+
 	_activate()
 
 	current_section = option_section
 
-	_load_entity(target_entity)
+	dialogue_button.visible = false
+
+	barter_button.visible = true
+
+	if current_entity != target_entity:
+
+		_load_entity(target_entity)
 
 	_clear_options()
 
@@ -105,11 +115,21 @@ func load_dialogue(target_entity: EntityNode) -> void:
 
 func load_barter(target_entity: EntityNode) -> void:
 
+	dialogue_button.visible = true
+
+	barter_button.visible = false
+
+	option_section.visible = false
+
+	barter_section.visible = true
+
 	current_section = barter_section
 
 	if current_entity != target_entity:
 
 		_load_entity(target_entity)
+
+	
 
 
 
@@ -180,6 +200,16 @@ func _load_entity(entity_node: EntityNode) -> void:
 
 	entity_name_label.text = entity_node.get_display_name()
 
+	var barter_component = current_entity.get_component("barter")
+
+	if !barter_component:
+
+		barter_button.visible = false
+
+	else:
+
+		barter_button.visible = true
+
 
 
 
@@ -235,7 +265,7 @@ func _on_close_pressed() -> void:
 
 func _on_barter_pressed() -> void:
 
-	pass
+	load_barter(current_entity)
 
 
 func _on_option_selected(option_node: DialogueNode) -> void:

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d060v1bx4aw1o" path="res://ui/dialogue_panel.gd" id="1_eb2dg"]
 [ext_resource type="PackedScene" uid="uid://ct4psyjy8mby4" path="res://ui/dialogue_option.tscn" id="2_m0nle"]
 
-[node name="DialoguePanel" type="MarginContainer" unique_id=1140416346 node_paths=PackedStringArray("dialogue_section", "entity_name_label", "dialogue_label", "option_section", "option_list", "barter_button", "close_button") groups=["dialogue_panel"]]
+[node name="DialoguePanel" type="MarginContainer" unique_id=1140416346 node_paths=PackedStringArray("dialogue_section", "entity_name_label", "dialogue_label", "option_section", "option_list", "barter_section", "barter_button", "dialogue_button", "close_button") groups=["dialogue_panel"]]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,7 +20,9 @@ entity_name_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxC
 dialogue_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/DialogueSection/VBoxContainer/MarginContainer/DialogueLabel")
 option_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/OptionSection")
 option_list = NodePath("PanelContainer/MarginContainer/VBoxContainer/OptionSection/VBoxContainer/MarginContainer/OptionList")
+barter_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/BarterSection")
 barter_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/MarginContainer/BarterButton")
+dialogue_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/MarginContainer/DialogueButton")
 close_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/CloseButton")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=861538144]
@@ -110,7 +112,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="BarterSection" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=692148452]
-visible = false
 custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 

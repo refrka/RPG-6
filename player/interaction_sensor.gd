@@ -82,8 +82,6 @@ func _start_interaction() -> void:
 
 func _end_interaction() -> void:
 
-	print("end")
-
 	timer = 0.0
 
 	target_component.end()
