@@ -32,7 +32,11 @@ func setup(_entity: EntityNode = null) -> void:
 
 func _try_interact(_target_component: InteractableComponent) -> void:
 
-	if _target_component.can_interact():
+	if !_target_component and _is_interacting():
+
+		_end_interaction()
+
+	elif _target_component.can_interact():
 
 		if !_is_interacting():
 		
@@ -116,6 +120,10 @@ func _complete_interaction() -> void:
 
 func _get_interactable_component(entity_node: EntityNode) -> InteractableComponent:
 
+	if !entity_node:
+
+		return null
+
 	for component in entity_node.get_all_components():
 
 		if component is InteractableComponent:
@@ -161,11 +169,9 @@ func _on_interact_pressed() -> void:
 
 	var nearest_body = get_nearest_body()
 
-	if !nearest_body:
+	if !nearest_body and !_is_interacting():
 
 		return
-
-	print("pressed")
 
 	var interactable_component = _get_interactable_component(nearest_body)
 

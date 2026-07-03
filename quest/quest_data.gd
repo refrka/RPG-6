@@ -184,7 +184,7 @@ func _on_objective_completed(objective: QuestObjective, stage: QuestStage) -> vo
 
 
 
-func _get_dictionary() -> Dictionary:
+func get_dictionary() -> Dictionary:
 
 	var save_dict = {}
 

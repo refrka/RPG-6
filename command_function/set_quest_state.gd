@@ -9,6 +9,8 @@ class_name SetQuestState extends CommandFunction
 
 func execute(_data: Dictionary = {}) -> bool:
 
+	super(_data)
+
 	if _data.has("quest_id"):
 
 		quest_id = _data["quest_id"]

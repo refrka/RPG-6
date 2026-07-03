@@ -9,7 +9,10 @@
 [ext_resource type="Script" uid="uid://cdp33gtgt4jpi" path="res://quest/quest_objective.gd" id="4_nbolb"]
 [ext_resource type="Script" uid="uid://b3etsdiil5o71" path="res://quest/quest_dialogue_node.gd" id="5_nbolb"]
 [ext_resource type="Script" uid="uid://bm4tki6d2coyc" path="res://dialogue/dialogue_node.gd" id="5_nr0sy"]
+[ext_resource type="Script" uid="uid://dymrj5u6n55yn" path="res://command_function/command_function.gd" id="5_rettn"]
 [ext_resource type="Script" uid="uid://b7ap34gg0vd7i" path="res://quest/objectives/enter_dialogue_node_objective.gd" id="6_g1waa"]
+[ext_resource type="Script" uid="uid://6ijsb0ri2md7" path="res://command_function/set_quest_state.gd" id="6_wxorl"]
+[ext_resource type="Script" uid="uid://ctns1uf21m71i" path="res://command_function/command_set.gd" id="7_a4uf0"]
 
 [sub_resource type="Resource" id="Resource_g1waa"]
 script = ExtResource("2_nr0sy")
@@ -22,10 +25,22 @@ script = ExtResource("3_ax11x")
 condition_functions = Array[ExtResource("1_ga8e4")]([SubResource("Resource_g1waa")])
 metadata/_custom_type_script = "uid://exfr7rx7f2ep"
 
+[sub_resource type="Resource" id="Resource_ax11x"]
+script = ExtResource("6_wxorl")
+quest_id = &"quest_2"
+quest_state = 2
+metadata/_custom_type_script = "uid://6ijsb0ri2md7"
+
+[sub_resource type="Resource" id="Resource_nr0sy"]
+script = ExtResource("7_a4uf0")
+command_functions = Array[ExtResource("5_rettn")]([SubResource("Resource_ax11x")])
+metadata/_custom_type_script = "uid://ctns1uf21m71i"
+
 [sub_resource type="Resource" id="Resource_ga8e4"]
 script = ExtResource("5_nbolb")
 option_text = "Quest 2 source dialogue node (option)!"
 dialogue_text = "n o text hsisihstht"
+enter_command_set = SubResource("Resource_nr0sy")
 metadata/_custom_type_script = "uid://b3etsdiil5o71"
 
 [sub_resource type="Resource" id="Resource_t6h0n"]

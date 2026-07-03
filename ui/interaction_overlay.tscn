@@ -78,6 +78,10 @@ layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/DialogueSection" unique_id=1402111377]
 layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="DialogueTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/DialogueSection/MarginContainer" unique_id=1706344292]
 layout_mode = 2
@@ -97,12 +101,17 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer" unique_id=136950363]
 layout_mode = 2
 
-[node name="OptionsInterface" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer" unique_id=341166124]
+[node name="OptionsInterface" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer" unique_id=341166124 node_paths=PackedStringArray("options_list")]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 script = ExtResource("2_qprjb")
+options_list = NodePath("OptionsList")
+
+[node name="OptionsList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/OptionsInterface" unique_id=1984077127]
+layout_mode = 2
 
 [node name="BarterInterface" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer" unique_id=184595418]
+visible = false
 custom_minimum_size = Vector2(450, 305)
 layout_mode = 2
 script = ExtResource("3_u143o")

@@ -16,7 +16,9 @@ func _ready() -> void:
 
 	_load_quest_defs()
 
+	Events.subscribe(QuestStartedEvent, _on_quest_started_event)
 
+	Events.subscribe(QuestCompletedEvent, _on_quest_completed_event)
 
 
 
@@ -50,6 +52,14 @@ func set_quest_state(quest_id: StringName, new_state: QuestData.QuestState) -> Q
 
 
 
+
+func load_quest_data(quest_data: QuestData) -> void:
+
+	quest_data.objective_completed.connect(_on_quest_objective_completed)
+
+	quest_data.stage_completed.connect(_on_quest_stage_completed)
+
+	quest_data.state_changed.connect(_on_quest_state_changed)
 
 
 
@@ -272,6 +282,27 @@ func _on_quest_stage_completed(quest_data: QuestData, stage: QuestStage) -> void
 
 
 
+
+func _on_quest_started_event(event: QuestStartedEvent) -> void:
+
+	var quest_def = get_quest_def(event.data["quest_data"].quest_id)
+
+	UI.show_notification("New quest started: %s" % quest_def.title)
+
+
+
+
+func _on_quest_completed_event(event: QuestCompletedEvent) -> void:
+
+	var quest_def = get_quest_def(event.data["quest_data"].quest_id)
+
+	UI.show_notification("Quest completed: %s" % quest_def.title)
+
+
+
+
+
+
 func _load_quest_defs() -> void:
 
 	var sub_dirs = ["res://quest/defs/"]
@@ -297,3 +328,9 @@ func _load_quest_defs() -> void:
 			elif path.ends_with("/"):
 
 				sub_dirs.append(path)
+
+
+
+
+
+

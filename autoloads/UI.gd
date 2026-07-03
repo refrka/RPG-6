@@ -77,11 +77,14 @@ func open_interaction_overlay(target_entity: EntityNode) -> UIOverlay:
 
 
 
+
+
+
 func close_interaction_overlay() -> void:
 
 	var interaction_overlay = get_tree().get_first_node_in_group("interaction_overlay")
 
-	remove_overlay(interaction_overlay)
+	interaction_overlay._deactivate()
 
 	interaction_overlay.queue_free()
 

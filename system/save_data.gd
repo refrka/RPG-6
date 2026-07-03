@@ -139,4 +139,6 @@ static func load_dictionary(save_dict: Dictionary) -> SaveData:
 
 		save_data.quest_data_list.append(quest_data)
 
+		Quests.load_quest_data(quest_data)
+
 	return save_data

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://1r4mo0y16wii" path="res://quest/quest_def.gd" id="1_mt3kx"]
 [ext_resource type="Script" uid="uid://c1st6ax4v3s6u" path="res://quest/quest_source.gd" id="2_t8qw7"]
+[ext_resource type="Script" uid="uid://6ijsb0ri2md7" path="res://command_function/set_quest_state.gd" id="3_ngq7o"]
 [ext_resource type="Script" uid="uid://1w4p4qfmgsfk" path="res://quest/quest_stage.gd" id="3_oeku4"]
 [ext_resource type="Script" uid="uid://cdp33gtgt4jpi" path="res://quest/quest_objective.gd" id="4_upt0e"]
 [ext_resource type="Script" uid="uid://k2sbbp8m2ftj" path="res://quest/objectives/discover_location_objective.gd" id="5_fsbdh"]
@@ -11,8 +12,15 @@
 [ext_resource type="Script" uid="uid://b3etsdiil5o71" path="res://quest/quest_dialogue_node.gd" id="8_4yldl"]
 [ext_resource type="Script" uid="uid://cqsdmp73ecjt4" path="res://command_function/submit_quest.gd" id="10_xpc7t"]
 
+[sub_resource type="Resource" id="Resource_dovli"]
+script = ExtResource("3_ngq7o")
+quest_id = &"quest_1"
+quest_state = 2
+metadata/_custom_type_script = "uid://6ijsb0ri2md7"
+
 [sub_resource type="Resource" id="Resource_4yldl"]
 script = ExtResource("7_ul77m")
+command_functions = Array[ExtResource("5_t6h0n")]([SubResource("Resource_dovli")])
 metadata/_custom_type_script = "uid://ctns1uf21m71i"
 
 [sub_resource type="Resource" id="Resource_xpc7t"]

@@ -14,6 +14,7 @@ signal close_requested
 
 
 
+
 @export var dialogue_button: Button
 
 @export var barter_button: Button
@@ -33,8 +34,9 @@ signal close_requested
 
 
 
-
 var current_entity: EntityNode
+
+var current_dialogue_node: DialogueNode
 
 var barter_component: InteractableComponent
 
@@ -49,7 +51,15 @@ var dialogue_component: DialogueComponent
 
 func _ready() -> void:
 
+	barter_button.pressed.connect(_load_barter_interface)
+
+	dialogue_button.pressed.connect(_load_options_interface)
+
 	close_button.pressed.connect(_on_close_pressed)
+
+	options_interface.dialogue_option_selected.connect(_on_dialogue_option_selected)
+
+	options_interface.branch_ended.connect(_on_branch_ended)
 
 
 
@@ -80,19 +90,53 @@ func load_interaction(target_entity: EntityNode) -> void:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 func _load_options_interface() -> void:
 
 	barter_interface.visible = false
 
 	options_interface.visible = true
 
+	barter_button.visible = true
+
+	dialogue_button.visible = false
+
+	options_interface.load_root_options(current_entity)
+
+
+
+
+
+
+
+
 
 
 
 func _load_barter_interface() -> void:
 
-	pass
+	barter_interface.visible = true
 
+	options_interface.visible = false
+
+	barter_button.visible = false
+
+	dialogue_button.visible = true
 
 
 
@@ -106,3 +150,30 @@ func _load_barter_interface() -> void:
 func _on_close_pressed() -> void:
 
 	close_requested.emit()
+
+
+
+
+func _on_dialogue_option_selected(dialogue_node: DialogueNode) -> void:
+
+	if current_dialogue_node:
+
+		if current_dialogue_node.exit_command_set:
+
+			current_dialogue_node.exit_command_set.execute({"dialogue_node": dialogue_node})
+
+	current_dialogue_node = dialogue_node
+
+	dialogue_text_label.text = current_dialogue_node.dialogue_text
+
+	if current_dialogue_node.enter_command_set:
+
+		current_dialogue_node.enter_command_set.execute({"dialogue_node": dialogue_node})
+
+
+
+
+
+func _on_branch_ended() -> void:
+
+	options_interface.load_root_options(current_entity)
