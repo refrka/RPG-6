@@ -60,6 +60,6 @@ func _update_location_data(location_id: StringName, spawn_id: StringName) -> voi
 
 
 
-func _on_inventory_updated(item_id: StringName, count: int) -> void:
+func _on_inventory_updated(item_id: StringName, change: int, count: int) -> void:
 
-	Events.fire(ItemsAddedToInventoryEvent, {"item_id": item_id, "count": count})
+	Events.fire(ItemsAddedToInventoryEvent, {"item_id": item_id, "change": change, "count": count})

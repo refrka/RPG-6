@@ -1,7 +1,7 @@
 class_name Inventory extends Resource
 
 
-signal inventory_updated(item_id: StringName, new_quantity: int)
+signal inventory_updated(item_id: StringName, quantity_changed: int, new_quantity: int)
 
 
 
@@ -20,7 +20,7 @@ func add_item(item_id: StringName, quantity: int, _item_data: ItemData = null) -
 
 		items[item_id] += quantity
 
-	inventory_updated.emit(item_id, items[item_id])
+	inventory_updated.emit(item_id, quantity, items[item_id])
 
 
 
@@ -31,9 +31,11 @@ func remove_item(item_id: StringName, quantity: int) -> int:
 
 	var remaining:= quantity
 
+	var removed:= 0
+
 	if items.has(item_id):
 
-		var removed = min(quantity, items[item_id])
+		removed = min(quantity, items[item_id])
 
 		items[item_id] -= removed
 
@@ -45,7 +47,7 @@ func remove_item(item_id: StringName, quantity: int) -> int:
 
 		items.erase(item_id)
 
-	inventory_updated.emit(item_id, new_count)
+	inventory_updated.emit(item_id, -removed, new_count)
 
 	return remaining
 

@@ -33,7 +33,7 @@ var dialogue_open:= false
 func interact() -> bool:
 
 	if entity.def.dialogue_library:
-		
+
 		Events.fire(DialogueStartedEvent, {"entity_node": entity})
 
 		var panel = UI.open_dialogue(entity)
@@ -67,6 +67,10 @@ func end() -> void:
 
 
 
+
+func can_interact() -> bool:
+
+	return true
 
 
 

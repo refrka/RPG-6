@@ -2,6 +2,14 @@ class_name ContainerComponent extends InteractableComponent
 
 
 
+@export var loot_table: LootTable
+
+
+
+var looted:= false
+
+
+
 
 func _ready() -> void:
 
@@ -13,19 +21,23 @@ func _ready() -> void:
 
 func interact() -> bool:
 
-	var movement_component = Game.get_player().get_component("movement")
+	var loot = loot_table.get_loot(randf())
 
-	movement_component.can_move = false
+	var player = Game.get_player()
 
-	return true
+	for item_id in loot:
+
+		var count = loot[item_id]
+
+		player.inventory.add_item(item_id, count)
+
+	looted = true
+
+	return false
 
 
 
 
-func end() -> void:
+func can_interact() -> bool:
 
-	var movement_component = Game.get_player().get_component("movement")
-
-	movement_component.can_move = false
-
-
+	return !looted

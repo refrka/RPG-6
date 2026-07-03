@@ -32,7 +32,7 @@ func setup(_entity: EntityNode = null) -> void:
 
 func _try_interact(_target_component: InteractableComponent) -> void:
 
-	if _can_interact(_target_component):
+	if _target_component.can_interact():
 
 		if !_is_interacting():
 		
@@ -82,6 +82,8 @@ func _start_interaction() -> void:
 
 func _end_interaction() -> void:
 
+	print("end")
+
 	timer = 0.0
 
 	target_component.end()
@@ -125,11 +127,6 @@ func _get_interactable_component(entity_node: EntityNode) -> InteractableCompone
 
 
 
-
-
-func _can_interact(interactable_component: InteractableComponent) -> bool:
-
-	return true
 
 
 

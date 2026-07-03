@@ -197,7 +197,11 @@ func _get_overlay(overlay_script: Script) -> UIOverlay:
 
 func _on_items_added_to_inventory(event: ItemsAddedToInventoryEvent) -> void:
 
-	var message = "New items!"
+	var item_id = event.data["item_id"]
+
+	var change = event.data["change"]
+
+	var message = "%s (%s) added to inventory" % [item_id, change]
 
 	show_notification(message)
 

@@ -22,4 +22,3 @@ shape = SubResource("RectangleShape2D_31tei")
 
 [node name="ContainerComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(354913512) index="0" unique_id=865470587]
 script = ExtResource("4_fg66b")
-type = 1
