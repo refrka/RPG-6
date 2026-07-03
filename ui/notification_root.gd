@@ -10,13 +10,7 @@ var current_notification: NotificationOverlay
 
 func add_notification(overlay: NotificationOverlay) -> void:
 
-	add_child(overlay)
-
 	notification_list.append(overlay)
-
-	overlay.visible = false
-
-	overlay.complete.connect(_on_notification_complete)
 
 	if !current_notification:
 
@@ -29,6 +23,12 @@ func show_next_notification() -> void:
 
 	current_notification = notification_list.pop_front()
 
+	add_child(current_notification)
+
+	current_notification.visible = false
+
+	current_notification.hide_finished.connect(_on_overlay_hide_finished)
+
 	current_notification.visible = true
 
 	current_notification.show_notification()
@@ -37,9 +37,9 @@ func show_next_notification() -> void:
 
 
 
-func _on_notification_complete() -> void:
+func _on_overlay_hide_finished() -> void:
 
-	print("notificaiton complete")
+	current_notification.queue_free()
 
 	current_notification = null
 

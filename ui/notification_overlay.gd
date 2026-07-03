@@ -1,7 +1,8 @@
 class_name NotificationOverlay extends UIOverlay
 
 
-signal complete
+
+signal hide_finished
 
 
 @export var notification_panel: MarginContainer
@@ -18,6 +19,8 @@ var timer:= 0.0
 
 
 func _ready() -> void:
+
+	animation_player.animation_finished.connect(_on_animation_finished)
 
 	notification_panel.gui_input.connect(_on_gui_input)
 
@@ -39,10 +42,6 @@ func show_notification() -> void:
 
 	animation_player.play("show")
 
-	await animation_player.animation_finished
-
-	_start_timer()
-
 
 
 
@@ -52,10 +51,6 @@ func hide_notification() -> void:
 	_stop_timer()
 
 	animation_player.play("hide")
-
-	await animation_player.animation_finished
-
-	complete.emit()
 
 
 
@@ -101,6 +96,18 @@ func _on_mouse_exited() -> void:
 
 
 
+func _on_animation_finished(anim_name: String) -> void:
+
+	if anim_name == "hide":
+
+		hide_finished.emit()
+
+	elif anim_name == "show":
+
+		_start_timer()
+
+
+
 
 func _process(delta: float) -> void:
 
@@ -111,4 +118,6 @@ func _process(delta: float) -> void:
 		if timer <= 0.0:
 
 			hide_notification()
+
+
 
