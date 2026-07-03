@@ -99,6 +99,8 @@ func _cancel_interaction() -> void:
 
 
 
+
+
 func _complete_interaction() -> void:
 
 	target_component.complete()
@@ -162,6 +164,8 @@ func _on_interact_pressed() -> void:
 	if !nearest_body:
 
 		return
+
+	print("pressed")
 
 	var interactable_component = _get_interactable_component(nearest_body)
 

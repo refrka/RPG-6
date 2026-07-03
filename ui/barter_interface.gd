@@ -1,0 +1,1 @@
+class_name BarterInterface extends MarginContainer

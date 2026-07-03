@@ -36,7 +36,7 @@ func interact() -> bool:
 
 		Events.fire(DialogueStartedEvent, {"entity_node": entity})
 
-		var panel = UI.open_dialogue(entity)
+		var panel = UI.open_interaction_overlay(entity)
 
 		panel.close_requested.connect(_on_close_requested)
 
@@ -62,7 +62,7 @@ func end() -> void:
 
 	if dialogue_open:
 		
-		UI.close_dialogue()
+		UI.close_interaction_overlay()
 
 
 

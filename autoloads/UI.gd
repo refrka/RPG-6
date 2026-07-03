@@ -1,6 +1,10 @@
 extends Node
 
 
+
+
+@onready var interaction_overlay_scene:= preload("res://ui/interaction_overlay.tscn")
+
 @onready var dialogue_panel_scene:= preload("res://ui/dialogue_panel.tscn")
 
 @onready var notification_overlay_scene:= preload("res://ui/notification_overlay.tscn")
@@ -40,11 +44,6 @@ func _ready() -> void:
 
 
 
-
-
-
-
-
 func show_notification(message: String) -> void:
 
 	var overlay = notification_overlay_scene.instantiate()
@@ -52,6 +51,41 @@ func show_notification(message: String) -> void:
 	overlay.set_message(message)
 
 	notification_root.add_notification(overlay)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func open_interaction_overlay(target_entity: EntityNode) -> UIOverlay:
+
+	var interaction_overlay = interaction_overlay_scene.instantiate()
+
+	overlay_root.add_child(interaction_overlay)
+
+	interaction_overlay.load_interaction(target_entity)
+
+	return interaction_overlay
+
+
+
+func close_interaction_overlay() -> void:
+
+	var interaction_overlay = get_tree().get_first_node_in_group("interaction_overlay")
+
+	remove_overlay(interaction_overlay)
+
+	interaction_overlay.queue_free()
+
+
 
 
 
