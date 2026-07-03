@@ -21,6 +21,8 @@ enum Region {
 
 @export var spawn_point_root: Node2D
 
+@export var feature_root: Node2D
+
 
 var location_data: LocationData
 
@@ -43,7 +45,11 @@ func _ready() -> void:
 
 	for transition_zone in transition_zones.get_children():
 
-		transition_zone._setup(self)
+		transition_zone._initialize(self)
+
+	for feature in feature_root.get_children():
+
+		feature._initialize(self)
 
 	_load_entity_data()
 
@@ -61,6 +67,8 @@ func get_spawn_point(spawn_id: StringName) -> SpawnPoint:
 			return spawn_point
 
 	return null
+
+
 
 
 

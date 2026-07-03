@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 
-func _setup(_location_scene: LocationScene) -> void:
+func _initialize(_location_scene: LocationScene) -> void:
 
 	location_scene = _location_scene
 

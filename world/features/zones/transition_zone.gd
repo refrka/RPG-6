@@ -9,7 +9,7 @@ class_name TransitionZone extends Zone
 
 
 
-func _setup(_location_scene: LocationScene) -> void:
+func _initialize(_location_scene: LocationScene) -> void:
 
 	super(_location_scene)
 

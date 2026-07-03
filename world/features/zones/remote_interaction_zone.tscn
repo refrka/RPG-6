@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cds57g46vjill"]
+
+[ext_resource type="Script" uid="uid://5et1u4dbfuwb" path="res://world/features/zones/remote_interaction_zone.gd" id="1_pho4f"]
+[ext_resource type="Script" uid="uid://b40mybgkyv4vo" path="res://system/sensor.gd" id="2_tbiea"]
+
+[node name="RemoteInteractionZone" type="Node2D" unique_id=1548205995 node_paths=PackedStringArray("sensor")]
+script = ExtResource("1_pho4f")
+sensor = NodePath("Sensor")
+metadata/_custom_type_script = "uid://5et1u4dbfuwb"
+
+[node name="Sensor" type="Area2D" parent="." unique_id=1051889558]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("2_tbiea")
+metadata/_custom_type_script = "uid://b40mybgkyv4vo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sensor" unique_id=816207350]
