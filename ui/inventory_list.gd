@@ -113,7 +113,7 @@ func _on_search_entry_text_changed(text: String) -> void:
 
 
 
-func _on_inventory_updated(item_id: StringName, count: int) -> void:
+func _on_inventory_updated(item_id: StringName, _change: int, count: int) -> void:
 
 	var row = item_list_registry[item_id]
 

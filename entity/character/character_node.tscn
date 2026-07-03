@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bj1vu4vk2klub" path="res://state/state_machine.gd" id="4_ft58q"]
 [ext_resource type="Script" uid="uid://bi8xvbsytvcmc" path="res://state/idle_state.gd" id="5_nduuk"]
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=1735178076 node_paths=PackedStringArray("state_machine", "component_root", "body_collision")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=1735178076 node_paths=PackedStringArray("state_machine", "component_root", "body_sprite", "body_collision")]
 y_sort_enabled = true
 collision_layer = 16
 collision_mask = 16
@@ -14,6 +14,7 @@ motion_mode = 1
 script = ExtResource("1_ioq1x")
 state_machine = NodePath("StateMachine")
 component_root = NodePath("ComponentRoot")
+body_sprite = NodePath("VisualRoot/Sprite2D")
 body_collision = NodePath("CollisionShape2D")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=799522844]

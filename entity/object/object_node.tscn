@@ -5,13 +5,14 @@
 [ext_resource type="Script" uid="uid://bj1vu4vk2klub" path="res://state/state_machine.gd" id="2_vfshi"]
 [ext_resource type="Script" uid="uid://bi8xvbsytvcmc" path="res://state/idle_state.gd" id="3_3h0si"]
 
-[node name="ObjectNode" type="StaticBody2D" unique_id=760273018 node_paths=PackedStringArray("state_machine", "component_root", "body_collision")]
+[node name="ObjectNode" type="StaticBody2D" unique_id=760273018 node_paths=PackedStringArray("state_machine", "component_root", "body_sprite", "body_collision")]
 y_sort_enabled = true
 collision_layer = 32
 collision_mask = 48
 script = ExtResource("1_vfshi")
 state_machine = NodePath("StateMachine")
 component_root = NodePath("ComponentRoot")
+body_sprite = NodePath("VisualRoot/Sprite2D")
 body_collision = NodePath("CollisionShape2D")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=402356670]

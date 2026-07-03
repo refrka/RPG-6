@@ -33,6 +33,8 @@ func interact() -> bool:
 
 	looted = true
 
+	entity.body_sprite.frame = 1
+
 	return false
 
 

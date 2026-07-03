@@ -17,7 +17,7 @@ var inventory:= Inventory.new()
 
 
 
-
+@export var body_sprite: Sprite2D
 
 @export var body_collision: CollisionShape2D
 
