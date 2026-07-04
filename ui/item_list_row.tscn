@@ -27,9 +27,11 @@ layout_mode = 2
 text = "<"
 
 [node name="ItemIDLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=201779062]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "item name"
+vertical_alignment = 1
 
 [node name="ItemCountLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1979167450]
 layout_mode = 2

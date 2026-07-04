@@ -198,4 +198,4 @@ func _on_row_item_selected(row: ItemListRow) -> void:
 
 	var player = Game.get_player()
 
-	player.use_item(row.item_id)
+	player.use_item(row.item_id, true)

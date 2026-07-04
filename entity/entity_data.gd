@@ -13,6 +13,14 @@ var last_known_position: Vector2
 
 
 
+
+
+
+
+
+
+
+
 func _get_dictionary() -> Dictionary:
 
 	var save_dict = {}
@@ -24,6 +32,8 @@ func _get_dictionary() -> Dictionary:
 	save_dict["last_known_position_x"] = last_known_position.x
 
 	save_dict["last_known_position_y"] = last_known_position.y
+
+	print(node)
 
 	return save_dict
 

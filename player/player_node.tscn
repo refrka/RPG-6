@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://bjs6xwrqdfj8f" path="res://component/input_component.gd" id="3_d0owe"]
 [ext_resource type="Script" uid="uid://35wym2xo2ksh" path="res://player/interaction_sensor.gd" id="4_k12ae"]
 [ext_resource type="Script" uid="uid://bqti7cpbo63co" path="res://state/interacting_state.gd" id="6_fpdhf"]
+[ext_resource type="Script" uid="uid://dj54qsq3wup45" path="res://component/health_component.gd" id="6_rppns"]
+[ext_resource type="Script" uid="uid://d3krim3ji2wmx" path="res://component/effects_component.gd" id="7_a3l2y"]
 
 [sub_resource type="Gradient" id="Gradient_a3uy3"]
 
@@ -49,6 +51,14 @@ shape = SubResource("CircleShape2D_aajxx")
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1494875897) index="1" unique_id=294223112]
 script = ExtResource("3_d0owe")
 metadata/_custom_type_script = "uid://bjs6xwrqdfj8f"
+
+[node name="HealthComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1494875897) index="2" unique_id=835146901]
+script = ExtResource("6_rppns")
+metadata/_custom_type_script = "uid://dj54qsq3wup45"
+
+[node name="EffectsComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1494875897) index="3" unique_id=1463149769]
+script = ExtResource("7_a3l2y")
+metadata/_custom_type_script = "uid://d3krim3ji2wmx"
 
 [node name="InteractingState" type="Node" parent="StateMachine" parent_id_path=PackedInt32Array(1354769864) index="1" unique_id=2006701358]
 script = ExtResource("6_fpdhf")
