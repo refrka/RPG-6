@@ -177,15 +177,11 @@ func _complete_transaction() -> void:
 
 	var player = Game.get_player()
 
-	var total_buy_value = 0
+	var total_buy_value = _get_total_buy_value()
 
-	var total_sell_value = 0
+	var total_sell_value = _get_total_sell_value()
 
 	for row in buy_list_rows.values():
-
-		var item_def = Items.get_item_def(row.item_id)
-
-		total_buy_value += (item_def.gold_value * row.count)
 
 		player.inventory.add_item(row.item_id, row.count)
 
@@ -194,10 +190,6 @@ func _complete_transaction() -> void:
 		current_inventory.remove_item(row.item_id, row.count)
 
 	for row in sell_list_rows.values():
-
-		var item_def = Items.get_item_def(row.item_id)
-
-		total_sell_value += (item_def.gold_value * row.count)
 
 		player.inventory.remove_item(row.item_id, row.count)
 
@@ -237,17 +229,11 @@ func _can_complete_transaction() -> bool:
 
 		return false
 
-	var total_buy_value = 0
+	if player.inventory.gold < _get_total_buy_value():
 
-	for row in buy_list_rows.values():
+		return false
 
-		var item_def = Items.get_item_def(row.item_id)
-
-		total_buy_value += (item_def.gold_value * row.count)
-
-	total_buy_value = ceil(total_buy_value * entity_barter_inventory.buy_factor)
-
-	if player.inventory.gold < total_buy_value:
+	if current_inventory.gold < _get_total_sell_value():
 
 		return false
 
@@ -274,6 +260,57 @@ func _clear_sell_list() -> void:
 		child.queue_free()
 
 	sell_list_rows.clear()
+
+
+
+
+
+
+
+
+func _get_total_buy_value() -> int:
+
+	var total_value = 0
+	
+	for row in buy_list_rows.values():
+
+		var item_def = Items.get_item_def(row.item_id)
+
+		total_value += (item_def.gold_value * row.count)
+
+	print("buy (no factor):", total_value)
+
+	total_value = int(ceil(total_value * entity_barter_inventory.buy_factor))
+
+	print("buy:", total_value)
+
+	return total_value
+
+
+
+func _get_total_sell_value() -> int:
+
+	var total_value = 0
+	
+	for row in sell_list_rows.values():
+
+		var item_def = Items.get_item_def(row.item_id)
+
+		total_value += (item_def.gold_value * row.count)
+
+	print("sell (no factor):", total_value)
+
+	total_value = int(ceil(total_value * entity_barter_inventory.sell_factor))
+
+	print("sell:", total_value)
+
+	return total_value
+
+
+
+
+
+
 
 
 
