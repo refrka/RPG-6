@@ -15,6 +15,7 @@ class_name BarterInterface extends MarginContainer
 @export var sell_list: VBoxContainer
 
 
+
 var current_inventory: Inventory
 
 var entity_barter_inventory:= BarterInventory.new()
@@ -45,6 +46,8 @@ func load_barter_inventory(_inventory: Inventory) -> void:
 
 	player_barter_inventory.items = player.inventory.items.duplicate()
 
+	player_barter_inventory.gold = player.inventory.gold
+
 	player_inventory_list.load_inventory(player_barter_inventory, true, true)
 
 	if !player_inventory_list.row_left_pressed.is_connected(_on_row_left_pressed):
@@ -56,6 +59,8 @@ func load_barter_inventory(_inventory: Inventory) -> void:
 		player_inventory_list.row_right_pressed.connect(_on_row_right_pressed.bind(true, true))
 
 	entity_barter_inventory.items = current_inventory.items.duplicate()
+
+	entity_barter_inventory.gold = current_inventory.gold
 
 	entity_inventory_list.load_inventory(entity_barter_inventory, true, false)
 
@@ -172,7 +177,15 @@ func _complete_transaction() -> void:
 
 	var player = Game.get_player()
 
+	var total_buy_value = 0
+
+	var total_sell_value = 0
+
 	for row in buy_list_rows.values():
+
+		var item_def = Items.get_item_def(row.item_id)
+
+		total_buy_value += (item_def.gold_value * row.count)
 
 		player.inventory.add_item(row.item_id, row.count)
 
@@ -182,11 +195,31 @@ func _complete_transaction() -> void:
 
 	for row in sell_list_rows.values():
 
+		var item_def = Items.get_item_def(row.item_id)
+
+		total_sell_value += (item_def.gold_value * row.count)
+
 		player.inventory.remove_item(row.item_id, row.count)
 
 		current_inventory.add_item(row.item_id, row.count)
 
 		entity_barter_inventory.add_item(row.item_id, row.count)
+
+	player_barter_inventory.add_gold(total_sell_value)
+
+	player.inventory.add_gold(total_sell_value)
+
+	entity_barter_inventory.remove_gold(total_sell_value)
+
+	current_inventory.remove_gold(total_sell_value)
+
+	player_barter_inventory.remove_gold(total_buy_value)
+
+	player.inventory.remove_gold(total_buy_value)
+
+	entity_barter_inventory.add_gold(total_buy_value)
+
+	current_inventory.add_gold(total_buy_value)
 
 	_clear_buy_list()
 
@@ -198,7 +231,23 @@ func _complete_transaction() -> void:
 
 func _can_complete_transaction() -> bool:
 
+	var player = Game.get_player()
+
 	if buy_list_rows.is_empty() and sell_list_rows.is_empty():
+
+		return false
+
+	var total_buy_value = 0
+
+	for row in buy_list_rows.values():
+
+		var item_def = Items.get_item_def(row.item_id)
+
+		total_buy_value += (item_def.gold_value * row.count)
+
+	total_buy_value = ceil(total_buy_value * entity_barter_inventory.buy_factor)
+
+	if player.inventory.gold < total_buy_value:
 
 		return false
 

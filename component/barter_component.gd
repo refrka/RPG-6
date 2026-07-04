@@ -9,4 +9,3 @@ class_name BarterComponent extends InteractableComponent
 
 
 
-

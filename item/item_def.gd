@@ -10,7 +10,7 @@ class_name ItemDef extends Resource
 
 @export var display_name: StringName
 
-@export var gold_value: float
+@export var gold_value: int
 
 
 

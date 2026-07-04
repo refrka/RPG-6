@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bn8oh6quvbw5a" path="res://ui/inventory_list.gd" id="1_bxb1k"]
 [ext_resource type="PackedScene" uid="uid://cfb1npkaqt1s2" path="res://ui/item_list_row.tscn" id="2_ylmtr"]
 
-[node name="InventoryList" type="MarginContainer" unique_id=1522671104 node_paths=PackedStringArray("item_list", "search_entry")]
+[node name="InventoryList" type="MarginContainer" unique_id=1522671104 node_paths=PackedStringArray("item_list", "search_entry", "gold_label")]
 offset_right = 223.0
 offset_bottom = 210.0
 theme_override_constants/margin_left = 8
@@ -13,6 +13,7 @@ theme_override_constants/margin_bottom = 8
 script = ExtResource("1_bxb1k")
 item_list = NodePath("VBoxContainer/MarginContainer/ScrollContainer/ItemList")
 search_entry = NodePath("VBoxContainer/SearchEntry")
+gold_label = NodePath("VBoxContainer/HBoxContainer/GoldLabel")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2092235755]
 layout_mode = 2
@@ -24,6 +25,18 @@ placeholder_text = "Search items"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1280904476]
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=2092419802]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1954861842]
+layout_mode = 2
+text = "Gold:"
+
+[node name="GoldLabel" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1798612838]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1230043190]
 layout_mode = 2

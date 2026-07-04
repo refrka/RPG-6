@@ -3,6 +3,8 @@ class_name Inventory extends Resource
 
 signal inventory_updated(item_id: StringName, quantity_changed: int, new_quantity: int)
 
+signal gold_updated(quantity_changed: int, new_quantity: int)
+
 
 
 @export var items: Dictionary[StringName, int]
@@ -52,6 +54,24 @@ func remove_item(item_id: StringName, quantity: int) -> int:
 	inventory_updated.emit(item_id, -removed, new_count)
 
 	return remaining
+
+
+
+
+func add_gold(amount: int) -> void:
+
+	gold += amount
+
+	gold_updated.emit(amount, gold)
+
+
+
+
+func remove_gold(amount: int) -> void:
+
+	gold -= amount
+
+	gold_updated.emit(-amount, gold)
 
 
 

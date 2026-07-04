@@ -15,6 +15,7 @@ signal row_left_pressed(row: ItemListRow)
 
 @export var search_entry: LineEdit
 
+@export var gold_label: Label
 
 
 
@@ -60,6 +61,10 @@ func load_inventory(_inventory: Inventory, barter:= false, _is_player_inventory:
 		_add_item_row(item_id, count, barter, is_player_inventory)
 
 	inventory.inventory_updated.connect(_on_inventory_updated)
+
+	inventory.gold_updated.connect(_on_gold_updated)
+
+	gold_label.text = str(inventory.gold)
 
 
 
@@ -168,3 +173,10 @@ func _on_inventory_updated(item_id: StringName, _change: int, count: int) -> voi
 
 		_add_item_row(item_id, count, barter, is_player_inventory)
 
+
+
+
+
+func _on_gold_updated(_change: int, gold: int) -> void:
+
+	gold_label.text = str(gold)

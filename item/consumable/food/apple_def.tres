@@ -6,4 +6,5 @@
 script = ExtResource("1_c1y6r")
 item_id = &"apple"
 display_name = &"Apple"
+gold_value = 2
 metadata/_custom_type_script = "uid://bawgl8cm7yxma"
