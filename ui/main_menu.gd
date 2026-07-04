@@ -22,10 +22,16 @@ func _ready() -> void:
 
 	Saves.save_list_updated.connect(_load_save_list)
 
-	_load_save_list()
-
 	visibility_changed.connect(_on_visibility_changed)
 
+
+
+
+func _activate() -> void:
+
+	super()
+
+	Saves.load_current_saves()
 
 
 

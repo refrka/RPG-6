@@ -115,6 +115,8 @@ static func load_dictionary(save_dict: Dictionary) -> SaveData:
 
 	save_data.spawn_id = save_dict["spawn_id"]
 
+	print("load the inventory dict")
+
 	save_data.inventory = Inventory.load_dictionary(save_dict["inventory"])
 
 	for dict in save_dict["location_data"]:

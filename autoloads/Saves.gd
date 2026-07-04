@@ -17,8 +17,6 @@ func _ready() -> void:
 
 	_validate_path(SAVE_ROOT)
 
-	_load_current_saves()
-
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 
@@ -29,6 +27,14 @@ func _ready() -> void:
 
 
 ## Top-level Methods
+
+
+func load_current_saves() -> void:
+
+	_load_current_saves()
+
+
+
 
 
 
@@ -128,6 +134,8 @@ func delete_save_data(save_id: String) -> void:
 
 
 func _load_current_saves() -> void:
+
+	current_saves.clear()
 
 	for file_name in ResourceLoader.list_directory(SAVE_ROOT):
 

@@ -41,10 +41,6 @@ func _ready() -> void:
 func load_inventory(_inventory: Inventory, barter:= false, _is_player_inventory:= false) -> void:
 
 	is_player_inventory = _is_player_inventory
-	
-	if inventory == _inventory:
-
-		return
 
 	inventory = _inventory
 
@@ -60,9 +56,13 @@ func load_inventory(_inventory: Inventory, barter:= false, _is_player_inventory:
 
 		_add_item_row(item_id, count, barter, is_player_inventory)
 
-	inventory.inventory_updated.connect(_on_inventory_updated)
+	if !inventory.inventory_updated.is_connected(_on_inventory_updated):
 
-	inventory.gold_updated.connect(_on_gold_updated)
+		inventory.inventory_updated.connect(_on_inventory_updated)
+
+	if !inventory.gold_updated.is_connected(_on_gold_updated):
+
+		inventory.gold_updated.connect(_on_gold_updated)
 
 	gold_label.text = str(inventory.gold)
 
@@ -104,6 +104,8 @@ func _clear_item_list() -> void:
 	for child in item_list.get_children():
 
 		child.queue_free()
+
+	item_list_registry.clear()
 
 
 

@@ -44,7 +44,7 @@ func load_barter_inventory(_inventory: Inventory) -> void:
 
 	var player = Game.get_player()
 
-	player_barter_inventory.items = player.inventory.items.duplicate()
+	player_barter_inventory.items = player.inventory.items.duplicate(true)
 
 	player_barter_inventory.gold = player.inventory.gold
 
@@ -58,7 +58,7 @@ func load_barter_inventory(_inventory: Inventory) -> void:
 
 		player_inventory_list.row_right_pressed.connect(_on_row_right_pressed.bind(true, true))
 
-	entity_barter_inventory.items = current_inventory.items.duplicate()
+	entity_barter_inventory.items = current_inventory.items.duplicate(true)
 
 	entity_barter_inventory.gold = current_inventory.gold
 

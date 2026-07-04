@@ -44,7 +44,9 @@ func load_inventory(_inventory: Inventory) -> void:
 
 		inventory = _inventory
 
-		inventory.inventory_updated.connect(_on_inventory_updated)
+		if !inventory.inventory_updated.is_connected(_on_inventory_updated):
+
+			inventory.inventory_updated.connect(_on_inventory_updated)
 
 
 
