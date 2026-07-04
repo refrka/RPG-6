@@ -24,6 +24,8 @@ var inventory: Inventory
 
 var item_list_registry: Dictionary[StringName, ItemListRow]
 
+var is_barter: bool
+
 var is_player_inventory: bool
 
 
@@ -38,7 +40,9 @@ func _ready() -> void:
 
 
 
-func load_inventory(_inventory: Inventory, barter:= false, _is_player_inventory:= false) -> void:
+func load_inventory(_inventory: Inventory, _is_barter:= false, _is_player_inventory:= false) -> void:
+
+	is_barter = _is_barter
 
 	is_player_inventory = _is_player_inventory
 
@@ -54,7 +58,7 @@ func load_inventory(_inventory: Inventory, barter:= false, _is_player_inventory:
 
 		var count = inventory.items[item_id]
 
-		_add_item_row(item_id, count, barter, is_player_inventory)
+		_add_item_row(item_id, count, _is_barter, is_player_inventory)
 
 	if !inventory.inventory_updated.is_connected(_on_inventory_updated):
 
@@ -69,7 +73,7 @@ func load_inventory(_inventory: Inventory, barter:= false, _is_player_inventory:
 
 
 
-func _add_item_row(item_id: StringName, count: int, barter: bool, is_player_inventory: bool) -> void:
+func _add_item_row(item_id: StringName, count: int, _is_barter: bool, is_player_inventory: bool) -> void:
 
 	var row = item_list_row_scene.instantiate()
 
@@ -83,7 +87,7 @@ func _add_item_row(item_id: StringName, count: int, barter: bool, is_player_inve
 
 	item_list_registry[item_id] = row
 
-	if barter:
+	if _is_barter:
 
 		row.right_button.visible = is_player_inventory
 
@@ -91,9 +95,13 @@ func _add_item_row(item_id: StringName, count: int, barter: bool, is_player_inve
 
 	else:
 
+		print("added not barter row")
+
 		row.right_button.visible = false
 
 		row.left_button.visible = false
+
+		row.item_selected.connect(_on_row_item_selected.bind(row))
 
 
 
@@ -182,3 +190,12 @@ func _on_inventory_updated(item_id: StringName, _change: int, count: int) -> voi
 func _on_gold_updated(_change: int, gold: int) -> void:
 
 	gold_label.text = str(gold)
+
+
+
+
+func _on_row_item_selected(row: ItemListRow) -> void:
+
+	var player = Game.get_player()
+
+	player.use_item(row.item_id)

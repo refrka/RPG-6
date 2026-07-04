@@ -5,6 +5,8 @@ signal left_pressed
 
 signal right_pressed
 
+signal item_selected
+
 
 
 @export var item_id_label: Label
@@ -22,11 +24,17 @@ var count: int
 
 
 
+
+
+
+
 func _ready() -> void:
 
 	left_button.pressed.connect(left_pressed.emit)
 
 	right_button.pressed.connect(right_pressed.emit)
+
+	gui_input.connect(_on_gui_input)
 
 
 
@@ -37,10 +45,18 @@ func set_data(_item_id: StringName, _count: int) -> void:
 
 	count = _count
 
-	var item_def = Items.get_item_def(item_id)
+	var item_def = Items.get_def(item_id)
 
 	item_id_label.text = item_def.display_name
-	
+
 	item_count_label.text = str(count)
 
 
+
+
+
+func _on_gui_input(event: InputEvent) -> void:
+
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 2:
+
+		item_selected.emit()

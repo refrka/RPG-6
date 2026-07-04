@@ -15,7 +15,7 @@ func initialize(player: PlayerNode) -> void:
 
 	info_panel.load_info(player)
 
-	inventory_panel.load_inventory(player.inventory)
+	inventory_panel.load_inventory(player.inventory, false, true)
 
 
 
