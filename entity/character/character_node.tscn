@@ -10,7 +10,7 @@
 [node name="CharacterNode" type="CharacterBody2D" unique_id=1735178076 node_paths=PackedStringArray("nav_agent", "state_machine", "component_root", "body_sprite", "body_collision")]
 y_sort_enabled = true
 collision_layer = 16
-collision_mask = 16
+collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_ioq1x")
 nav_agent = NodePath("NavigationAgent2D")

@@ -25,7 +25,7 @@ radius = 40.012497
 
 [node name="PlayerNode" unique_id=1735178076 node_paths=PackedStringArray("interaction_sensor") instance=ExtResource("1_ynuq4")]
 collision_layer = 64
-collision_mask = 48
+collision_mask = 49
 script = ExtResource("2_a3uy3")
 interaction_sensor = NodePath("InteractionSensor")
 def = ExtResource("3_3nrky")

@@ -3,6 +3,8 @@ class_name Inventory extends Resource
 
 signal inventory_updated(item_id: StringName, quantity_changed: int, new_quantity: int)
 
+signal item_quantity_changed(item_id: StringName, quantity_changed: int, new_quantity: int)
+
 signal gold_updated(quantity_changed: int, new_quantity: int)
 
 

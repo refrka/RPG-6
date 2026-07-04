@@ -95,8 +95,6 @@ func _add_item_row(item_id: StringName, count: int, _is_barter: bool, is_player_
 
 	else:
 
-		print("added not barter row")
-
 		row.right_button.visible = false
 
 		row.left_button.visible = false

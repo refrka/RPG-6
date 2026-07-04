@@ -25,8 +25,8 @@ func _on_body_entered_zone(body: PhysicsBody2D) -> void:
 
 		return
 
-	
+	if body is PlayerNode:
 
-	Game.change_location.call_deferred(location_id, spawn_id)
+		Game.change_location.call_deferred(location_id, spawn_id)
 
-	_deactivate()
+		_deactivate()

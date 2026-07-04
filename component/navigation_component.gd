@@ -28,6 +28,8 @@ func set_target_pos(new_pos: Vector2) -> void:
 
 	target_pos = new_pos
 
+	entity.nav_agent.target_position = target_pos
+
 
 
 
@@ -46,6 +48,8 @@ func _process(_delta: float) -> void:
 		return
 
 	if entity.nav_agent.is_navigation_finished():
+
+		movement_component.halt()
 
 		return
 

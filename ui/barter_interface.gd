@@ -290,11 +290,7 @@ func _get_total_buy_value() -> int:
 
 		total_value += (item_def.gold_value * row.count)
 
-	print("buy (no factor):", total_value)
-
 	total_value = int(ceil(total_value * entity_barter_inventory.buy_factor))
-
-	print("buy:", total_value)
 
 	return total_value
 
@@ -310,11 +306,7 @@ func _get_total_sell_value() -> int:
 
 		total_value += (item_def.gold_value * row.count)
 
-	print("sell (no factor):", total_value)
-
 	total_value = int(ceil(total_value * entity_barter_inventory.sell_factor))
-
-	print("sell:", total_value)
 
 	return total_value
 

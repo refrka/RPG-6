@@ -48,6 +48,8 @@ func _process(_delta: float) -> void:
 
 		return
 
+	
+
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 	movement_component.set_move_dir(input_dir)

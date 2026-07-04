@@ -19,8 +19,6 @@ var can_move:= true
 
 
 
-
-
 func set_move_dir(dir: Vector2) -> void:
 
 	move_dir = dir

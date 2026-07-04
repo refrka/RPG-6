@@ -47,13 +47,24 @@ func reset() -> void:
 
 func load_inventory(_inventory: Inventory) -> void:
 
-	if inventory != _inventory:
+	inventory = _inventory
 
-		inventory = _inventory
+	if !inventory.inventory_updated.is_connected(_on_inventory_updated):
 
-		if !inventory.inventory_updated.is_connected(_on_inventory_updated):
+		inventory.inventory_updated.connect(_on_inventory_updated)
 
-			inventory.inventory_updated.connect(_on_inventory_updated)
+
+
+
+
+func _activate() -> void:
+
+	super()
+
+	var navigation_component = get_component("navigation")
+
+	navigation_component._deactivate()
+
 
 
 
@@ -72,5 +83,7 @@ func _update_location_data(location_id: StringName, spawn_id: StringName) -> voi
 
 
 func _on_inventory_updated(item_id: StringName, change: int, count: int) -> void:
+
+	print("fire it")
 
 	Events.fire(ItemsAddedToInventoryEvent, {"item_id": item_id, "change": change, "count": count})
