@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="HealthBuffEffect" format=3 uid="uid://cxlbvg38mkfea"]
+
+[ext_resource type="Script" uid="uid://tb4o2p87rktk" path="res://effect/health_buff_effect.gd" id="1_x2f10"]
+
+[resource]
+script = ExtResource("1_x2f10")

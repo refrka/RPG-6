@@ -33,8 +33,6 @@ func _get_dictionary() -> Dictionary:
 
 	save_dict["last_known_position_y"] = last_known_position.y
 
-	print(node)
-
 	return save_dict
 
 

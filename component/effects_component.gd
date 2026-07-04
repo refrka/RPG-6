@@ -24,3 +24,21 @@ func add_effect(effect: Effect) -> void:
 		return
 
 	active_effects.append(effect)
+
+
+
+
+
+
+
+func get_dictionary() -> Dictionary:
+
+	var save_dict = {}
+
+	save_dict["active_effects"] = []
+
+	for effect in active_effects:
+
+		save_dict["active_effects"].append(effect._get_dictionary())
+
+	return save_dict

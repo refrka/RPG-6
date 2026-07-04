@@ -121,7 +121,7 @@ func get_display_name() -> String:
 
 
 
-	
+
 
 
 
@@ -130,6 +130,10 @@ func get_display_name() -> String:
 
 
 func load_data(entity_data: EntityData) -> void:
+
+	if entity_data == null:
+
+		return
 
 	data = entity_data
 

@@ -23,3 +23,12 @@ func apply_effect(_target_entity: EntityNode) -> void:
 func get_display_name() -> String:
 
 	return display_name
+
+
+
+
+
+
+func _get_dictionary() -> Dictionary:
+
+	return {}

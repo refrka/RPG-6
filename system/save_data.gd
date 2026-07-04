@@ -25,6 +25,12 @@ var quest_data_list: Array[QuestData]
 
 
 
+var player_data:= PlayerData.new()
+
+
+
+
+
 func get_location_data(_location_id: StringName) -> LocationData:
 
 	for location_data in location_data_list:
@@ -80,6 +86,8 @@ func get_dictionary() -> Dictionary:
 
 	save_dict["inventory"] = inventory.get_dictionary()
 
+	save_dict["player_data"] = player_data._get_dictionary()
+
 	for location_data in location_data_list:
 
 		save_dict["location_data"].append(location_data.get_dictionary())
@@ -114,8 +122,6 @@ static func load_dictionary(save_dict: Dictionary) -> SaveData:
 	save_data.location_id = save_dict["location_id"]
 
 	save_data.spawn_id = save_dict["spawn_id"]
-
-	print("load the inventory dict")
 
 	save_data.inventory = Inventory.load_dictionary(save_dict["inventory"])
 

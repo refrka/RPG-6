@@ -4,16 +4,16 @@
 [ext_resource type="Script" uid="uid://clnbt3sdyo1l4" path="res://item/consumable/consumable_def.gd" id="1_c1y6r"]
 [ext_resource type="Script" uid="uid://cuukrrs4yriep" path="res://effect/restore_health_effect.gd" id="2_vpk46"]
 
-[sub_resource type="Resource" id="Resource_ysirl"]
+[sub_resource type="Resource" id="Resource_2374n"]
 script = ExtResource("2_vpk46")
 amount = 1.0
 effect_id = &"restore_health"
-display_name = "Restore health"
+display_name = "Heal"
 metadata/_custom_type_script = "uid://cuukrrs4yriep"
 
 [resource]
 script = ExtResource("1_c1y6r")
-effects_on_consume = Array[ExtResource("1_2374n")]([SubResource("Resource_ysirl")])
+effects_on_consume = Array[ExtResource("1_2374n")]([SubResource("Resource_2374n")])
 item_id = &"apple"
 display_name = &"Apple"
 gold_value = 2

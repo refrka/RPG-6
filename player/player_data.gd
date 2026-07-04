@@ -11,4 +11,14 @@ func _get_dictionary() -> Dictionary:
 
 	var save_dict = {}
 
+	save_dict["component_data"] = {}
+
+	if node:
+
+		for component in node.get_all_components():
+
+			if component.has_method("get_dictionary"):
+
+				save_dict["component_data"][component.get_component_name()] = component.get_dictionary()
+
 	return save_dict

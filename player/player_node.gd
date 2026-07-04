@@ -12,11 +12,18 @@ func _ready() -> void:
 
 
 
+
+
+
 func _initialize() -> void:
 
 	super()
 
 	interaction_sensor.setup(self)
+
+	var save_data = Game.get_save_data()
+
+	load_data(save_data.player_data)
 
 
 
