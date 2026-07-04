@@ -114,10 +114,11 @@ options_list = NodePath("OptionsList")
 [node name="OptionsList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/OptionsInterface" unique_id=1984077127]
 layout_mode = 2
 
-[node name="BarterInterface" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer" unique_id=184595418 node_paths=PackedStringArray("player_inventory_list", "entity_inventory_list", "buy_list", "sell_list")]
+[node name="BarterInterface" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer" unique_id=184595418 node_paths=PackedStringArray("complete_transaction_button", "player_inventory_list", "entity_inventory_list", "buy_list", "sell_list")]
 custom_minimum_size = Vector2(1000, 500)
 layout_mode = 2
 script = ExtResource("3_u143o")
+complete_transaction_button = NodePath("HBoxContainer/VBoxContainer2/CompleteTransactionButton")
 player_inventory_list = NodePath("HBoxContainer/VBoxContainer/PlayerInventoryList")
 entity_inventory_list = NodePath("HBoxContainer/VBoxContainer3/EntityInventoryList")
 buy_list = NodePath("HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/BuyList")
@@ -219,6 +220,10 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="CompleteTransactionButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2" unique_id=1013525156]
+layout_mode = 2
+text = "Complete Transaction"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer" unique_id=1075340736]
 layout_mode = 2

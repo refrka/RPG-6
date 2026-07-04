@@ -4,7 +4,7 @@ class_name BarterInterface extends MarginContainer
 @onready var item_list_row_scene:= preload("res://ui/item_list_row.tscn")
 
 
-
+@export var complete_transaction_button: Button
 
 @export var player_inventory_list: InventoryList
 
@@ -15,9 +15,11 @@ class_name BarterInterface extends MarginContainer
 @export var sell_list: VBoxContainer
 
 
-var entity_barter_inventory: Inventory
+var current_inventory: Inventory
 
-var player_barter_inventory: Inventory
+var entity_barter_inventory:= BarterInventory.new()
+
+var player_barter_inventory:= BarterInventory.new()
 
 
 var sell_list_rows: Dictionary[StringName, ItemListRow]
@@ -26,11 +28,22 @@ var buy_list_rows: Dictionary[StringName, ItemListRow]
 
 
 
+
+func _ready() -> void:
+
+	complete_transaction_button.pressed.connect(_on_complete_transaction_pressed)
+
+
+
+
+
 func load_barter_inventory(_inventory: Inventory) -> void:
+
+	current_inventory = _inventory
 
 	var player = Game.get_player()
 
-	player_barter_inventory = player.inventory.duplicate()
+	player_barter_inventory.items = player.inventory.items.duplicate()
 
 	player_inventory_list.load_inventory(player_barter_inventory, true, true)
 
@@ -42,7 +55,7 @@ func load_barter_inventory(_inventory: Inventory) -> void:
 
 		player_inventory_list.row_right_pressed.connect(_on_row_right_pressed.bind(true, true))
 
-	entity_barter_inventory = _inventory.duplicate()
+	entity_barter_inventory.items = current_inventory.items.duplicate()
 
 	entity_inventory_list.load_inventory(entity_barter_inventory, true, false)
 
@@ -154,6 +167,68 @@ func _remove_from_buy_list(item_id: StringName) -> void:
 
 
 
+
+func _complete_transaction() -> void:
+
+	var player = Game.get_player()
+
+	for row in buy_list_rows.values():
+
+		player.inventory.add_item(row.item_id, row.count)
+
+		player_barter_inventory.add_item(row.item_id, row.count)
+
+		current_inventory.remove_item(row.item_id, row.count)
+
+	for row in sell_list_rows.values():
+
+		player.inventory.remove_item(row.item_id, row.count)
+
+		current_inventory.add_item(row.item_id, row.count)
+
+		entity_barter_inventory.add_item(row.item_id, row.count)
+
+	_clear_buy_list()
+
+	_clear_sell_list()
+
+
+
+
+
+func _can_complete_transaction() -> bool:
+
+	if buy_list_rows.is_empty() and sell_list_rows.is_empty():
+
+		return false
+
+	return true
+
+
+
+
+
+func _clear_buy_list() -> void:
+
+	for child in buy_list.get_children():
+
+		child.queue_free()
+
+	buy_list_rows.clear()
+
+
+
+func _clear_sell_list() -> void:
+
+	for child in sell_list.get_children():
+
+		child.queue_free()
+
+	sell_list_rows.clear()
+
+
+
+
 func _on_row_left_pressed(row: ItemListRow, is_inventory_row: bool, is_player_inventory: bool) -> void:
 
 	if is_inventory_row:
@@ -195,3 +270,15 @@ func _on_row_right_pressed(row: ItemListRow, is_inventory_row: bool, is_player_i
 			_remove_from_buy_list(row.item_id)
 
 			entity_barter_inventory.add_item(row.item_id, 1)
+
+
+
+
+
+
+
+func _on_complete_transaction_pressed() -> void:
+
+	if _can_complete_transaction():
+
+		_complete_transaction()
