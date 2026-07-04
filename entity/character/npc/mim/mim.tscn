@@ -2,14 +2,22 @@
 
 [ext_resource type="PackedScene" uid="uid://u2gj13bgr5dt" path="res://entity/character/character_node.tscn" id="1_o88vc"]
 [ext_resource type="Resource" uid="uid://p2elbn88fe3" path="res://entity/character/npc/mim/mim_def.tres" id="2_o88vc"]
+[ext_resource type="Script" uid="uid://dbqd6vaiy5k0p" path="res://item/item_data.gd" id="4_lpw1t"]
 [ext_resource type="Script" uid="uid://biopr4r1kuq1k" path="res://component/dialogue_component.gd" id="4_qxwvc"]
 [ext_resource type="Script" uid="uid://bdhuvvpoce3b1" path="res://component/barter_component.gd" id="4_ut6t0"]
+[ext_resource type="Script" uid="uid://uop250wyp74b" path="res://inventory/barter_inventory.gd" id="5_fqnju"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tnxjk"]
 size = Vector2(12, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ut6t0"]
 size = Vector2(12, 6)
+
+[sub_resource type="Resource" id="Resource_dovli"]
+script = ExtResource("5_fqnju")
+items = Dictionary[StringName, int]({
+&"apple": 50
+})
 
 [node name="Mim" unique_id=1735178076 instance=ExtResource("1_o88vc")]
 def = ExtResource("2_o88vc")
@@ -24,6 +32,7 @@ shape = SubResource("RectangleShape2D_ut6t0")
 
 [node name="BarterComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1494875897) index="1" unique_id=1829083306]
 script = ExtResource("4_ut6t0")
+inventory = SubResource("Resource_dovli")
 type = 1
 metadata/_custom_type_script = "uid://bdhuvvpoce3b1"
 

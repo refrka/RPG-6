@@ -70,6 +70,8 @@ func load_interaction(target_entity: EntityNode) -> void:
 
 	current_entity = target_entity
 
+	entity_name_label.text = current_entity.get_display_name()
+
 	barter_component = target_entity.get_component("barter")
 
 	dialogue_component = target_entity.get_component("dialogue")
@@ -138,6 +140,7 @@ func _load_barter_interface() -> void:
 
 	dialogue_button.visible = true
 
+	barter_interface.load_barter_inventory(barter_component.inventory)
 
 
 
@@ -149,7 +152,7 @@ func _deactivate() -> void:
 
 	close_requested.emit()
 
-	
+
 
 
 func _on_close_pressed() -> void:

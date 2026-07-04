@@ -2,23 +2,27 @@
 
 [ext_resource type="Script" uid="uid://c58w36m04pfwa" path="res://ui/item_list_row.gd" id="1_ysirl"]
 
-[node name="ItemListRow" type="PanelContainer" unique_id=417008536 node_paths=PackedStringArray("item_id_label", "item_count_label")]
+[node name="ItemListRow" type="PanelContainer" unique_id=417008536 node_paths=PackedStringArray("item_id_label", "item_count_label", "left_button", "right_button")]
 script = ExtResource("1_ysirl")
 item_id_label = NodePath("MarginContainer/HBoxContainer/ItemIDLabel")
 item_count_label = NodePath("MarginContainer/HBoxContainer/ItemCountLabel")
+left_button = NodePath("MarginContainer/HBoxContainer/LeftButton")
+right_button = NodePath("MarginContainer/HBoxContainer/RightButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=258859692]
 layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1420542941]
 layout_mode = 2
+theme_override_constants/separation = 8
 
-[node name="ToPlayerButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1042646039]
+[node name="LeftButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1042646039]
 visible = false
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 text = "<"
 
@@ -31,7 +35,7 @@ text = "item name"
 layout_mode = 2
 text = "0"
 
-[node name="ToBarterButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1673514574]
-visible = false
+[node name="RightButton" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1673514574]
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 text = ">"

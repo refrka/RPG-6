@@ -1,17 +1,46 @@
 class_name ItemListRow extends PanelContainer
 
 
+signal left_pressed
+
+signal right_pressed
+
+
 
 @export var item_id_label: Label
 
 @export var item_count_label: Label
 
+@export var left_button: Button
+
+@export var right_button: Button
+
+
+var item_id: StringName
+
+var count: int
+
+
+
+func _ready() -> void:
+
+	left_button.pressed.connect(left_pressed.emit)
+
+	right_button.pressed.connect(right_pressed.emit)
 
 
 
 
-func set_data(item_id: StringName, count: int) -> void:
+func set_data(_item_id: StringName, _count: int) -> void:
 
-	item_id_label.text = item_id
+	item_id = _item_id
 
+	count = _count
+
+	var item_def = Items.get_item_def(item_id)
+
+	item_id_label.text = item_def.display_name
+	
 	item_count_label.text = str(count)
+
+

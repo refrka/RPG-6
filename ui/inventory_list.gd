@@ -1,6 +1,12 @@
 class_name InventoryList extends MarginContainer
 
 
+signal row_right_pressed(row: ItemListRow)
+
+signal row_left_pressed(row: ItemListRow)
+
+
+
 @onready var item_list_row_scene:= preload("res://ui/item_list_row.tscn")
 
 
@@ -31,7 +37,7 @@ func _ready() -> void:
 
 
 
-func load_inventory(_inventory: Inventory) -> void:
+func load_inventory(_inventory: Inventory, barter:= false, is_player_inventory:= false) -> void:
 	
 	if inventory == _inventory:
 
@@ -53,12 +59,27 @@ func load_inventory(_inventory: Inventory) -> void:
 
 		row.set_data(item_id, count)
 
+		row.left_pressed.connect(row_left_pressed.emit.bind(row))
+
+		row.right_pressed.connect(row_right_pressed.emit.bind(row))
+
 		item_list.add_child(row)
 
 		item_list_registry[item_id] = row
 
-	inventory.inventory_updated.connect(_on_inventory_updated)
+		if barter:
 
+			row.right_button.visible = is_player_inventory
+
+			row.left_button.visible = not is_player_inventory
+
+		else:
+
+			row.right_button.visible = false
+
+			row.left_button.visible = false
+
+	inventory.inventory_updated.connect(_on_inventory_updated)
 
 
 
@@ -122,3 +143,4 @@ func _on_inventory_updated(item_id: StringName, _change: int, count: int) -> voi
 	var row = item_list_registry[item_id]
 
 	row.set_data(item_id, count)
+
