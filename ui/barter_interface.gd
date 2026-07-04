@@ -181,6 +181,8 @@ func _complete_transaction() -> void:
 
 	var total_sell_value = _get_total_sell_value()
 
+	var difference_value = total_buy_value - total_sell_value
+
 	for row in buy_list_rows.values():
 
 		player.inventory.add_item(row.item_id, row.count)
@@ -197,21 +199,29 @@ func _complete_transaction() -> void:
 
 		entity_barter_inventory.add_item(row.item_id, row.count)
 
-	player_barter_inventory.add_gold(total_sell_value)
+	if difference_value < 0:
 
-	player.inventory.add_gold(total_sell_value)
+		# Sell value is greater than buy value - player gets gold
 
-	entity_barter_inventory.remove_gold(total_sell_value)
+		player_barter_inventory.add_gold(-difference_value)
 
-	current_inventory.remove_gold(total_sell_value)
+		player.inventory.add_gold(-difference_value)
 
-	player_barter_inventory.remove_gold(total_buy_value)
+		entity_barter_inventory.remove_gold(-difference_value)
 
-	player.inventory.remove_gold(total_buy_value)
+		current_inventory.remove_gold(-difference_value)
 
-	entity_barter_inventory.add_gold(total_buy_value)
+	else:
 
-	current_inventory.add_gold(total_buy_value)
+		# Player is spending gold
+
+		player_barter_inventory.remove_gold(difference_value)
+
+		player.inventory.remove_gold(difference_value)
+
+		entity_barter_inventory.add_gold(difference_value)
+
+		current_inventory.add_gold(difference_value)
 
 	_clear_buy_list()
 
@@ -225,15 +235,17 @@ func _can_complete_transaction() -> bool:
 
 	var player = Game.get_player()
 
+	var difference = _get_total_buy_value() - _get_total_sell_value()
+
 	if buy_list_rows.is_empty() and sell_list_rows.is_empty():
 
 		return false
 
-	if player.inventory.gold < _get_total_buy_value():
+	if player.inventory.gold < difference:
 
 		return false
 
-	if current_inventory.gold < _get_total_sell_value():
+	if current_inventory.gold < -difference:
 
 		return false
 

@@ -19,6 +19,7 @@ script = ExtResource("5_fqnju")
 items = Dictionary[StringName, int]({
 &"apple": 50
 })
+gold = 25
 
 [node name="Mim" unique_id=1735178076 instance=ExtResource("1_o88vc")]
 def = ExtResource("2_o88vc")

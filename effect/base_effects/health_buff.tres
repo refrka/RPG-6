@@ -4,3 +4,5 @@
 
 [resource]
 script = ExtResource("1_x2f10")
+effect_id = &"health_buff"
+display_name = "health_buff"

@@ -1,7 +1,7 @@
 class_name CharacterNode extends EntityNode
 
 
-
+@export var nav_agent: NavigationAgent2D
 
 
 func use_item(item_id: StringName, in_inventory: bool) -> void:

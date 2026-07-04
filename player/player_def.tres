@@ -10,6 +10,7 @@ items = Dictionary[StringName, int]({
 &"apple": 60,
 &"wood": 5
 })
+gold = 100
 metadata/_custom_type_script = "uid://cv5lmfcq1wla4"
 
 [resource]
