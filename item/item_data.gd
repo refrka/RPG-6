@@ -2,7 +2,19 @@ class_name ItemData extends Resource
 
 
 
+
 var def: ItemDef
+
+
+
+
+
+
+
+
+func get_item_id() -> StringName:
+
+	return def.item_id
 
 
 
@@ -22,6 +34,10 @@ func get_dictionary() -> Dictionary:
 
 
 static func load_dictionary(save_dict: Dictionary) -> ItemData:
+
+	if save_dict.is_empty():
+
+		return null
 
 	var item_data = ItemData.new()
 

@@ -41,4 +41,4 @@ func _unhandled_input(event: InputEvent) -> void:
 
 			if !active:
 
-				Game.player.inventory.add_item("apple", 4)
+				Game.player.inventory.add_item("short_sword", 1)

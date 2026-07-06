@@ -10,30 +10,6 @@ class_name CharacterNode extends EntityNode
 
 
 
-func _initialize() -> void:
-
-	super()
-
-	if def.entity_id == "mim":
-
-		print("sub it")
-
-		Events.subscribe(ItemsAddedToInventoryEvent, _on_added)
-
-
-
-
-
-func _on_added(event: Event) -> void:
-
-	var command = MoveToPosition.new()
-
-	var command_data = {"entity_marker_id": "marker_1", "actor": self}
-
-	command.execute(command_data)
-
-
-
 
 
 func use_item(item_id: StringName, in_inventory: bool) -> void:

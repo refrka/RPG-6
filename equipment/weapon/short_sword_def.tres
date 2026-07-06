@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EquipmentDef" format=3 uid="uid://cioffpcppd5up"]
+
+[ext_resource type="Script" uid="uid://c0270bbuqs5jd" path="res://equipment/equipment_def.gd" id="1_dg3jr"]
+
+[resource]
+script = ExtResource("1_dg3jr")
+item_id = &"short_sword"
+display_name = &"Short sword"
+gold_value = 15

@@ -49,9 +49,9 @@ func load_inventory(_inventory: Inventory) -> void:
 
 	inventory = _inventory
 
-	if !inventory.inventory_updated.is_connected(_on_inventory_updated):
+	if !inventory.item_quantity_changed.is_connected(_on_inventory_quantity_changed):
 
-		inventory.inventory_updated.connect(_on_inventory_updated)
+		inventory.item_quantity_changed.connect(_on_inventory_quantity_changed)
 
 
 
@@ -82,8 +82,8 @@ func _update_location_data(location_id: StringName, spawn_id: StringName) -> voi
 
 
 
-func _on_inventory_updated(item_id: StringName, change: int, count: int) -> void:
+func _on_inventory_quantity_changed(item_id: StringName, change: int, count: int) -> void:
 
-	print("fire it")
+	var item_def = Items.get_item_def(item_id)
 
-	Events.fire(ItemsAddedToInventoryEvent, {"item_id": item_id, "change": change, "count": count})
+	Events.fire(ItemsAddedToInventoryEvent, {"item_name": item_def.display_name, "change": change, "count": count})

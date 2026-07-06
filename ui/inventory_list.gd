@@ -24,6 +24,8 @@ var inventory: Inventory
 
 var item_list_registry: Dictionary[StringName, ItemListRow]
 
+var equipment_list_registry: Dictionary[ItemData, ItemListRow]
+
 var is_barter: bool
 
 var is_player_inventory: bool
@@ -58,11 +60,15 @@ func load_inventory(_inventory: Inventory, _is_barter:= false, _is_player_invent
 
 		var count = inventory.items[item_id]
 
-		_add_item_row(item_id, count, _is_barter, is_player_inventory)
+		_add_item_row(item_id, count, is_barter, is_player_inventory)
 
-	if !inventory.inventory_updated.is_connected(_on_inventory_updated):
+	for item_data in inventory.equipment:
 
-		inventory.inventory_updated.connect(_on_inventory_updated)
+		_add_item_row(item_data.get_item_id(), 1, is_barter, is_player_inventory)
+
+	if !inventory.item_quantity_changed.is_connected(_on_inventory_quantity_changed):
+
+		inventory.item_quantity_changed.connect(_on_inventory_quantity_changed)
 
 	if !inventory.gold_updated.is_connected(_on_gold_updated):
 
@@ -73,7 +79,7 @@ func load_inventory(_inventory: Inventory, _is_barter:= false, _is_player_invent
 
 
 
-func _add_item_row(item_id: StringName, count: int, _is_barter: bool, is_player_inventory: bool) -> void:
+func _add_item_row(item_id: StringName, count: int, _is_barter: bool, _is_player_inventory: bool) -> void:
 
 	var row = item_list_row_scene.instantiate()
 
@@ -89,9 +95,9 @@ func _add_item_row(item_id: StringName, count: int, _is_barter: bool, is_player_
 
 	if _is_barter:
 
-		row.right_button.visible = is_player_inventory
+		row.right_button.visible = _is_player_inventory
 
-		row.left_button.visible = not is_player_inventory
+		row.left_button.visible = not _is_player_inventory
 
 	else:
 
@@ -100,6 +106,27 @@ func _add_item_row(item_id: StringName, count: int, _is_barter: bool, is_player_
 		row.left_button.visible = false
 
 		row.item_selected.connect(_on_row_item_selected.bind(row))
+
+
+
+
+
+
+func _add_equipment_row(item_data: ItemData, _is_barter: bool, _is_player_inventory: bool) -> void:
+
+	var row = item_list_row_scene.instantiate()
+
+	row.set_data(item_data.get_item_id(), 1)
+
+	row.left_pressed.connect(row_left_pressed.emit.bind(row))
+
+	row.right_pressed.connect(row_right_pressed.emit.bind(row))
+
+	item_list.add_child(row)
+
+	equipment_list_registry[item_data] = row
+
+
 
 
 
@@ -159,7 +186,7 @@ func _on_search_entry_text_changed(text: String) -> void:
 
 
 
-func _on_inventory_updated(item_id: StringName, _change: int, count: int) -> void:
+func _on_inventory_quantity_changed(item_id: StringName, _change: int, count: int) -> void:
 
 	if item_list_registry.has(item_id):
 
@@ -177,9 +204,9 @@ func _on_inventory_updated(item_id: StringName, _change: int, count: int) -> voi
 
 	else:
 
-		var barter = inventory is BarterInventory
+		var _is_barter = true if inventory is BarterInventory else false
 
-		_add_item_row(item_id, count, barter, is_player_inventory)
+		_add_item_row(item_id, count, _is_barter, is_player_inventory)
 
 
 
