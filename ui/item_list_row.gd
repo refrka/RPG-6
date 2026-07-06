@@ -45,7 +45,7 @@ func set_data(_item_id: StringName, _count: int) -> void:
 
 	count = _count
 
-	var item_def = Items.get_def(item_id)
+	var item_def = Items.get_item_def(item_id)
 
 	item_id_label.text = item_def.display_name
 

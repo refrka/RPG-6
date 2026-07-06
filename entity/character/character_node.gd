@@ -26,9 +26,11 @@ func _initialize() -> void:
 
 func _on_added(event: Event) -> void:
 
-	var nav_com = get_component("navigation")
+	var command = MoveToPosition.new()
 
-	nav_com.set_target_pos(global_position + Vector2(50,0))
+	var command_data = {"entity_marker_id": "marker_1", "actor": self}
+
+	command.execute(command_data)
 
 
 
@@ -36,17 +38,17 @@ func _on_added(event: Event) -> void:
 
 func use_item(item_id: StringName, in_inventory: bool) -> void:
 
-	var def = Items.get_def(item_id)
+	var item_def = Items.get_item_def(item_id)
 	
 	var used:= false
 
 	var effects_component = get_component("effects")
 
-	match def.get_script():
+	match item_def.get_script():
 
 		ConsumableDef:
 
-			for effect in def.effects_on_consume:
+			for effect in item_def.effects_on_consume:
 
 				effects_component.add_effect(effect)
 

@@ -25,6 +25,6 @@ static func load_dictionary(save_dict: Dictionary) -> ItemData:
 
 	var item_data = ItemData.new()
 
-	item_data.def = Items.get_def(save_dict["item_id"])
+	item_data.def = Items.get_item_def(save_dict["item_id"])
 
 	return item_data

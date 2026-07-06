@@ -27,6 +27,8 @@ y_sort_enabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=443757228]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=280236029]
+path_desired_distance = 10.0
+debug_enabled = true
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=1494875897]
 script = ExtResource("2_l8yc8")

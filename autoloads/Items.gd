@@ -20,7 +20,7 @@ func _ready() -> void:
 
 
 
-func get_def(item_id: StringName) -> ItemDef:
+func get_item_def(item_id: StringName) -> ItemDef:
 
 	if def_registry.has(item_id):
 

@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_jailc")
+move_speed = 75.0
 unique_id = &"mim"
 entity_id = &"mim"
 display_name = &"Mim"

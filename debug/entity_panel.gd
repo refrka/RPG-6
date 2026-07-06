@@ -114,7 +114,7 @@ func _on_show_pressed() -> void:
 
 			var entity_id = entity_list.get_item_text(entity_list.selected)
 
-			var entity_def = Entities.get_def(entity_id)
+			var entity_def = Entities.get_entity_def(entity_id)
 
 			entity_display.display_entity_def(entity_def)
 

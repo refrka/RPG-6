@@ -44,7 +44,7 @@ static func load_dictionary(save_dict: Dictionary) -> EntityData:
 
 	var entity_data = EntityData.new()
 
-	var _def = Entities.get_def(save_dict["entity_id"])
+	var _def = Entities.get_entity_def(save_dict["entity_id"])
 
 	entity_data.def = _def
 

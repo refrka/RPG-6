@@ -23,6 +23,8 @@ enum Region {
 
 @export var feature_root: Node2D
 
+@export var marker_root: Node2D
+
 
 var location_data: LocationData
 
@@ -31,9 +33,9 @@ var location_data: LocationData
 
 
 
-func _ready() -> void:
+func _initialize(_location_data: LocationData) -> void:
 
-	super()
+	_load_location_data(_location_data)
 
 	for character_node in character_root.get_children():
 
@@ -94,6 +96,20 @@ func get_nearest_spawn_point(target_entity: EntityNode) -> SpawnPoint:
 
 
 
+func get_entity_marker(marker_id: StringName) -> EntityMarker:
+
+	for marker in marker_root.get_children():
+
+		if marker.marker_id == marker_id:
+
+			return marker
+
+	return null
+
+
+
+
+
 
 func spawn_player(spawn_id: StringName) -> void:
 
@@ -111,7 +127,7 @@ func spawn_player(spawn_id: StringName) -> void:
 
 
 
-func load_location_data(_location_data: LocationData) -> void:
+func _load_location_data(_location_data: LocationData) -> void:
 
 	location_data = _location_data
 

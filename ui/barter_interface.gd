@@ -286,7 +286,7 @@ func _get_total_buy_value() -> int:
 	
 	for row in buy_list_rows.values():
 
-		var item_def = Items.get_def(row.item_id)
+		var item_def = Items.get_item_def(row.item_id)
 
 		total_value += (item_def.gold_value * row.count)
 
@@ -302,7 +302,7 @@ func _get_total_sell_value() -> int:
 	
 	for row in sell_list_rows.values():
 
-		var item_def = Items.get_def(row.item_id)
+		var item_def = Items.get_item_def(row.item_id)
 
 		total_value += (item_def.gold_value * row.count)
 

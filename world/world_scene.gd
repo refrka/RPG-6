@@ -31,7 +31,7 @@ func load_location(location_id: StringName) -> LocationScene:
 
 	var location_data = _get_location_data(location_scene)
 
-	active_location.load_location_data(location_data)
+	active_location._initialize(location_data)
 
 	return active_location
 

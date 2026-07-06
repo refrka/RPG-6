@@ -24,7 +24,7 @@ func _ready() -> void:
 
 
 
-func get_def(entity_id: StringName) -> EntityDef:
+func get_entity_def(entity_id: StringName) -> EntityDef:
 
 	if def_registry.has(entity_id):
 
