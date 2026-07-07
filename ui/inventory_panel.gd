@@ -3,6 +3,8 @@ class_name InventoryPanel extends MarginContainer
 
 
 
+signal item_use_requested(item_data: ItemData)
+
 
 
 
@@ -13,26 +15,14 @@ class_name InventoryPanel extends MarginContainer
 
 
 
-
-
-
 func _ready() -> void:
 
-	Game.game_started.connect(_on_game_started)
-
-	Game.game_ended.connect(_on_game_ended)
+	inventory_list.item_use_requested.connect(item_use_requested.emit)
 
 
 
 
-func _on_game_started() -> void:
 
-	var player = Game.get_player()
+func load_inventory(inventory: NewInventory, is_player_inventory: bool) -> void:
 
-	inventory_list.load_items(player.inventory.get_items())
-
-
-
-func _on_game_ended() -> void:
-
-	inventory_list.clear()
+	inventory_list.load_items(inventory.items, is_player_inventory)

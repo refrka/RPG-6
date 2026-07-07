@@ -12,7 +12,7 @@ class_name CharacterNode extends EntityNode
 
 
 
-func use_item(item_data, in_inventory: bool) -> void:
+func use_item(item_data, in_inventory:= true) -> void:
 
 	var item_def = item_data.get_def()
 	

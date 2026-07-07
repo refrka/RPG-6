@@ -11,10 +11,23 @@ class_name PlayerProfile extends UIOverlay
 
 
 
+func _ready() -> void:
+
+	super()
+
+	Game.game_started.connect(_on_game_started)
+
+	Game.game_ended.connect(_on_game_ended)
+
+	inventory_panel.item_use_requested.connect(_on_item_use_requested)
+
+
+
+
+
 func initialize(player: PlayerNode) -> void:
 
 	info_panel.load_info(player)
-
 
 
 
@@ -25,6 +38,33 @@ func _on_profile_pressed() -> void:
 
 	toggle()
 
+
+
+
+
+func _on_game_started() -> void:
+
+	var player = Game.get_player()
+
+	inventory_panel.load_inventory(player.inventory, true)
+
+
+
+
+
+func _on_game_ended() -> void:
+
+	inventory_panel.clear_inventory()
+
+
+
+
+
+func _on_item_use_requested(item_data: NewItemData) -> void:
+
+	var player = Game.get_player()
+
+	player.use_item(item_data)
 
 
 

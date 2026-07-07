@@ -2,6 +2,10 @@ class_name InventoryList extends MarginContainer
 
 
 
+signal item_use_requested(item_data: ItemData)
+
+
+
 
 @onready var item_list_row_scene:= preload("res://ui/item_list_row.tscn")
 
@@ -45,17 +49,44 @@ func clear() -> void:
 
 
 
-func load_items(items: Array[NewItemData]) -> void:
+
+
+
+func load_items(items: Array[NewItemData], _is_player_inventory:= false) -> void:
+
+	is_player_inventory = _is_player_inventory
 
 	for item_data in items:
 
-		var row = item_list_row_scene.instantiate()
+		_add_item_row(item_data)
 
-		row.set_data(item_data)
 
-		item_list.add_child(row)
 
-		item_list_rows[item_data] = row
+
+
+
+
+
+
+
+func _add_item_row(item_data: NewItemData) -> void:
+
+	var row = item_list_row_scene.instantiate()
+
+	row.set_data(item_data)
+
+	item_list.add_child(row)
+
+	item_list_rows[item_data] = row
+
+	row.left_pressed.connect(_on_row_left_pressed)
+
+	row.right_pressed.connect(_on_row_right_pressed)
+
+	if is_player_inventory:
+
+		row.use_requested.connect(_on_row_use_requested)
+
 
 
 
@@ -95,3 +126,20 @@ func _on_search_entry_text_changed(text: String) -> void:
 
 
 
+
+func _on_row_left_pressed(row: ItemListRow) -> void:
+
+	pass
+
+
+
+func _on_row_right_pressed(row: ItemListRow) -> void:
+
+	pass
+
+
+
+
+func _on_row_use_requested(row: ItemListRow) -> void:
+
+	item_use_requested.emit(row.item_data)
