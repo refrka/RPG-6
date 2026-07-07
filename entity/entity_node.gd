@@ -8,7 +8,7 @@ var initialized:= false
 
 var data: EntityData
 
-var inventory:= Inventory.new()
+var inventory:= NewInventory.new()
 
 @export var state_machine: StateMachine
 
@@ -39,9 +39,11 @@ func _initialize() -> void:
 
 		state_machine.setup(self)
 
-	if not self is PlayerNode and def.default_inventory:
+	if not self is PlayerNode and def.default_new_inventory:
 
-		inventory = def.default_inventory.duplicate()
+		inventory = def.default_new_inventory.duplicate()
+
+		inventory.initialize()
 
 
 
@@ -50,9 +52,11 @@ func _initialize() -> void:
 
 func one_time_setup() -> void:
 
-	if def.default_inventory:
+	if def.default_new_inventory:
 
-		inventory = def.default_inventory.duplicate()
+		inventory = def.default_new_inventory.duplicate()
+
+		inventory.initialize()
 
 
 

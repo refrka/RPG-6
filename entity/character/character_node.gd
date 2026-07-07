@@ -12,9 +12,9 @@ class_name CharacterNode extends EntityNode
 
 
 
-func use_item(item_id: StringName, in_inventory: bool) -> void:
+func use_item(item_data, in_inventory: bool) -> void:
 
-	var item_def = Items.get_item_def(item_id)
+	var item_def = item_data.get_def()
 	
 	var used:= false
 
@@ -32,4 +32,4 @@ func use_item(item_id: StringName, in_inventory: bool) -> void:
 
 	if used and in_inventory:
 
-		inventory.remove_item(item_id, 1)
+		item_data.remove_count(1)

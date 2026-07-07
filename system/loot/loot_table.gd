@@ -10,14 +10,14 @@ class_name LootTable extends Resource
 
 
 
-func get_loot(roll: float) -> Dictionary[StringName, int]:
+func get_loot(roll: float) -> Array[NewItemData]:
 
-	var loot: Dictionary[StringName, int] = {}
+	var loot: Array[NewItemData] = []
 
 	for entry in entries:
 
 		if roll <= entry.chance:
 
-			loot.merge(entry.loot_set.items)
+			loot.append_array(entry.loot_set.items)
 
 	return loot

@@ -31,13 +31,34 @@ func get_item_def(item_id: StringName) -> ItemDef:
 
 
 
-func create_data(item_def: ItemDef) -> ItemData:
+func create_data(item_def: ItemDef, count:= 1, with_data_id:= false) -> NewItemData:
 
-	var item_data = ItemData.new()
+	var item_data = NewItemData.new()
 
-	item_data.def = item_def
+	item_data.item_def = item_def
+
+	item_data.count = count
+
+	if with_data_id and count == 1:
+
+		item_data.data_id = _generate_data_id(item_def.item_id)
 
 	return item_data
+
+
+
+
+
+
+
+
+func _generate_data_id(item_id: StringName) -> StringName:
+
+	var data_id = &"%s_%s" % [item_id, randi()]
+
+	return data_id
+
+
 
 
 

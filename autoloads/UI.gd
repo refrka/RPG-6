@@ -236,9 +236,9 @@ func _on_items_added_to_inventory(event: ItemsAddedToInventoryEvent) -> void:
 
 	var item_name = event.data["item_name"]
 
-	var change = event.data["change"]
+	var amount = event.data["amount"]
 
-	var message = "%s (%s) added to inventory" % [item_name, change]
+	var message = "%s (%s) added to inventory" % [item_name, amount]
 
 	show_notification(message)
 

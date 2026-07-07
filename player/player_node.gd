@@ -45,13 +45,13 @@ func reset() -> void:
 
 
 
-func load_inventory(_inventory: Inventory) -> void:
+func load_inventory(_inventory: NewInventory) -> void:
 
 	inventory = _inventory
 
-	if !inventory.item_quantity_changed.is_connected(_on_inventory_quantity_changed):
+	if !inventory.item_data_count_updated.is_connected(_on_item_data_count_updated):
 
-		inventory.item_quantity_changed.connect(_on_inventory_quantity_changed)
+		inventory.item_data_count_updated.connect(_on_item_data_count_updated)
 
 
 
@@ -82,8 +82,8 @@ func _update_location_data(location_id: StringName, spawn_id: StringName) -> voi
 
 
 
-func _on_inventory_quantity_changed(item_id: StringName, change: int, count: int) -> void:
+func _on_item_data_count_updated(amount: int, item_data: NewItemData, removed: bool) -> void:
 
-	var item_def = Items.get_item_def(item_id)
+	amount = amount * -1 if removed else amount
 
-	Events.fire(ItemsAddedToInventoryEvent, {"item_name": item_def.display_name, "change": change, "count": count})
+	Events.fire(ItemsAddedToInventoryEvent, {"item_name": item_data.get_def().display_name, "amount": amount, "count": item_data.get_count()})

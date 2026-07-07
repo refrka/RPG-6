@@ -1,14 +1,19 @@
 class_name Inventory extends Resource
 
 
+## DEPRECATED
 signal item_quantity_changed(item_id: StringName, quantity_changed: int, new_quantity: int)
 
 signal gold_updated(quantity_changed: int, new_quantity: int)
 
 
 
+
+
+## DEPRECATED
 @export var items: Dictionary[StringName, int]
 
+## DEPRECATED
 @export var equipment: Array[ItemData]
 
 @export var equipped_weapon: ItemData
@@ -27,17 +32,14 @@ signal gold_updated(quantity_changed: int, new_quantity: int)
 
 
 
+## DEPRECATED
 func add_item(item_id: StringName, quantity: int, _item_data: ItemData = null) -> void:
 
 	var item_def = Items.get_item_def(item_id)
 
 	if item_def is EquipmentDef:
 
-		var item_data = Items.create_data(item_def)
-
-		equipment.append(item_data)
-
-		item_quantity_changed.emit(item_id, 1, 1)
+		pass
 
 	else:
 
@@ -54,6 +56,7 @@ func add_item(item_id: StringName, quantity: int, _item_data: ItemData = null) -
 
 
 
+## DEPRECATED
 func remove_item(item_id: StringName, quantity: int) -> int:
 
 	var remaining:= quantity

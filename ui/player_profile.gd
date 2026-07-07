@@ -15,7 +15,6 @@ func initialize(player: PlayerNode) -> void:
 
 	info_panel.load_info(player)
 
-	inventory_panel.load_inventory(player.inventory, false, true)
 
 
 
@@ -38,7 +37,3 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Game.is_active():
 
 			toggle()
-
-			if !active:
-
-				Game.player.inventory.add_item("short_sword", 1)

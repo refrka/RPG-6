@@ -1,10 +1,6 @@
 class_name InventoryList extends MarginContainer
 
 
-signal row_right_pressed(row: ItemListRow)
-
-signal row_left_pressed(row: ItemListRow)
-
 
 
 @onready var item_list_row_scene:= preload("res://ui/item_list_row.tscn")
@@ -19,12 +15,9 @@ signal row_left_pressed(row: ItemListRow)
 
 
 
+var item_list_rows: Dictionary[NewItemData, ItemListRow]
 
-var inventory: Inventory
 
-var item_list_registry: Dictionary[StringName, ItemListRow]
-
-var equipment_list_registry: Dictionary[ItemData, ItemListRow]
 
 var is_barter: bool
 
@@ -35,6 +28,8 @@ var is_player_inventory: bool
 
 func _ready() -> void:
 
+	_clear_item_list()
+
 	search_entry.text_changed.connect(_on_search_entry_text_changed)
 
 
@@ -42,89 +37,29 @@ func _ready() -> void:
 
 
 
-func load_inventory(_inventory: Inventory, _is_barter:= false, _is_player_inventory:= false) -> void:
 
-	is_barter = _is_barter
-
-	is_player_inventory = _is_player_inventory
-
-	inventory = _inventory
+func clear() -> void:
 
 	_clear_item_list()
 
-	var items = inventory.items.keys().duplicate()
 
-	items.sort_custom(_sort_alphabetical)
 
-	for item_id in items:
 
-		var count = inventory.items[item_id]
+func load_items(items: Array[NewItemData]) -> void:
 
-		_add_item_row(item_id, count, is_barter, is_player_inventory)
+	for item_data in items:
 
-	for item_data in inventory.equipment:
+		var row = item_list_row_scene.instantiate()
 
-		_add_item_row(item_data.get_item_id(), 1, is_barter, is_player_inventory)
+		row.set_data(item_data)
 
-	if !inventory.item_quantity_changed.is_connected(_on_inventory_quantity_changed):
+		item_list.add_child(row)
 
-		inventory.item_quantity_changed.connect(_on_inventory_quantity_changed)
-
-	if !inventory.gold_updated.is_connected(_on_gold_updated):
-
-		inventory.gold_updated.connect(_on_gold_updated)
-
-	gold_label.text = str(inventory.gold)
+		item_list_rows[item_data] = row
 
 
 
 
-func _add_item_row(item_id: StringName, count: int, _is_barter: bool, _is_player_inventory: bool) -> void:
-
-	var row = item_list_row_scene.instantiate()
-
-	row.set_data(item_id, count)
-
-	row.left_pressed.connect(row_left_pressed.emit.bind(row))
-
-	row.right_pressed.connect(row_right_pressed.emit.bind(row))
-
-	item_list.add_child(row)
-
-	item_list_registry[item_id] = row
-
-	if _is_barter:
-
-		row.right_button.visible = _is_player_inventory
-
-		row.left_button.visible = not _is_player_inventory
-
-	else:
-
-		row.right_button.visible = false
-
-		row.left_button.visible = false
-
-		row.item_selected.connect(_on_row_item_selected.bind(row))
-
-
-
-
-
-
-func _add_equipment_row(item_data: ItemData, _is_barter: bool, _is_player_inventory: bool) -> void:
-
-	var row = item_list_row_scene.instantiate()
-
-	row.set_data(item_data.get_item_id(), 1)
-
-	row.left_pressed.connect(row_left_pressed.emit.bind(row))
-
-	row.right_pressed.connect(row_right_pressed.emit.bind(row))
-
-	item_list.add_child(row)
-
-	equipment_list_registry[item_data] = row
 
 
 
@@ -138,22 +73,16 @@ func _clear_item_list() -> void:
 
 		child.queue_free()
 
-	item_list_registry.clear()
-
-
-
-func _show_all_rows() -> void:
-
-	for row in item_list_registry.values():
-
-		row.visible = true
+	item_list_rows.clear()
 
 
 
 
-func _sort_alphabetical(string_a: StringName, string_b: StringName) -> bool:
 
-	return string_a < string_b
+
+func _sort_alphabetical(item_data_a: NewItemData, item_data_b: NewItemData) -> bool:
+
+	return item_data_a.get_item_id() < item_data_b.get_item_id()
 
 
 
@@ -162,65 +91,7 @@ func _sort_alphabetical(string_a: StringName, string_b: StringName) -> bool:
 
 func _on_search_entry_text_changed(text: String) -> void:
 
-	if text == "":
-
-		_show_all_rows()
-
-		return
-
-	for item_id in item_list_registry:
-
-		text = text.lstrip(" \"'\\/[]{}!@#$%^&*()").rstrip(" \"'\\/[]{}!@#$%^&*()")
-
-		var row = item_list_registry[item_id]
-
-		if item_id.contains(text):
-
-			row.visible = true
-
-		else:
-
-			row.visible = false
+	pass
 
 
 
-
-
-func _on_inventory_quantity_changed(item_id: StringName, _change: int, count: int) -> void:
-
-	if item_list_registry.has(item_id):
-
-		var row = item_list_registry[item_id]
-
-		if count == 0:
-
-			item_list_registry.erase(item_id)
-				
-			row.queue_free()
-
-		else:
-
-			row.set_data(item_id, count)
-
-	else:
-
-		var _is_barter = true if inventory is BarterInventory else false
-
-		_add_item_row(item_id, count, _is_barter, is_player_inventory)
-
-
-
-
-
-func _on_gold_updated(_change: int, gold: int) -> void:
-
-	gold_label.text = str(gold)
-
-
-
-
-func _on_row_item_selected(row: ItemListRow) -> void:
-
-	var player = Game.get_player()
-
-	player.use_item(row.item_id, true)

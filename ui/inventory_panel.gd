@@ -16,7 +16,23 @@ class_name InventoryPanel extends MarginContainer
 
 
 
+func _ready() -> void:
 
-func load_inventory(inventory: Inventory, is_barter:= false, is_player_inventory:= true) -> void:
+	Game.game_started.connect(_on_game_started)
 
-	inventory_list.load_inventory(inventory, is_barter, is_player_inventory)
+	Game.game_ended.connect(_on_game_ended)
+
+
+
+
+func _on_game_started() -> void:
+
+	var player = Game.get_player()
+
+	inventory_list.load_items(player.inventory.get_items())
+
+
+
+func _on_game_ended() -> void:
+
+	inventory_list.clear()

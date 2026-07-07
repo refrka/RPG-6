@@ -1,4 +1,4 @@
-class_name BarterInventory extends Inventory
+class_name BarterInventory extends NewInventory
 
 
 

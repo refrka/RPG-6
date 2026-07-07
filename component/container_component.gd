@@ -25,11 +25,9 @@ func interact() -> bool:
 
 	var player = Game.get_player()
 
-	for item_id in loot:
+	for item_data in loot:
 
-		var count = loot[item_id]
-
-		player.inventory.add_item(item_id, count)
+		player.inventory.add_item_data(item_data)
 
 	looted = true
 

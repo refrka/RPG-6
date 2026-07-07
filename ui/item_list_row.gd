@@ -18,11 +18,7 @@ signal item_selected
 @export var right_button: Button
 
 
-var item_id: StringName
-
-var count: int
-
-
+var item_data: NewItemData
 
 
 
@@ -39,15 +35,17 @@ func _ready() -> void:
 
 
 
-func set_data(_item_id: StringName, _count: int) -> void:
+func set_data(_item_data: NewItemData, count:= -1) -> void:
 
-	item_id = _item_id
+	item_data = _item_data
 
-	count = _count
-
-	var item_def = Items.get_item_def(item_id)
+	var item_def = Items.get_item_def(item_data.get_item_id())
 
 	item_id_label.text = item_def.display_name
+
+	if count == -1:
+
+		count = item_data.get_count()
 
 	item_count_label.text = str(count)
 

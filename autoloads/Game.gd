@@ -1,7 +1,9 @@
 extends Node
 
 
+signal game_started
 
+signal game_ended
 
 
 
@@ -62,6 +64,8 @@ func start(save_id: StringName) -> void:
 
 	player._activate()
 
+	game_started.emit()
+
 
 
 
@@ -75,6 +79,8 @@ func end() -> void:
 	player._deactivate()
 
 	active_save_data = null
+
+	game_ended.emit()
 
 
 

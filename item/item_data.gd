@@ -2,7 +2,6 @@ class_name ItemData extends Resource
 
 
 
-
 var def: ItemDef
 
 
