@@ -19,7 +19,7 @@ signal item_use_requested(item_data: ItemData)
 
 
 
-var item_list_rows: Dictionary[NewItemData, ItemListRow]
+var item_list_rows: Dictionary[ItemData, ItemListRow]
 
 
 
@@ -52,7 +52,7 @@ func clear() -> void:
 
 
 
-func load_items(items: Array[NewItemData], _is_player_inventory:= false) -> void:
+func load_items(items: Array[ItemData], _is_player_inventory:= false) -> void:
 
 	is_player_inventory = _is_player_inventory
 
@@ -69,7 +69,7 @@ func load_items(items: Array[NewItemData], _is_player_inventory:= false) -> void
 
 
 
-func _add_item_row(item_data: NewItemData) -> void:
+func _add_item_row(item_data: ItemData) -> void:
 
 	var row = item_list_row_scene.instantiate()
 
@@ -111,7 +111,7 @@ func _clear_item_list() -> void:
 
 
 
-func _sort_alphabetical(item_data_a: NewItemData, item_data_b: NewItemData) -> bool:
+func _sort_alphabetical(item_data_a: ItemData, item_data_b: ItemData) -> bool:
 
 	return item_data_a.get_item_id() < item_data_b.get_item_id()
 

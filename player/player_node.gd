@@ -45,7 +45,7 @@ func reset() -> void:
 
 
 
-func load_inventory(_inventory: NewInventory) -> void:
+func load_inventory(_inventory: Inventory) -> void:
 
 	inventory = _inventory
 
@@ -82,7 +82,7 @@ func _update_location_data(location_id: StringName, spawn_id: StringName) -> voi
 
 
 
-func _on_item_data_count_updated(amount: int, item_data: NewItemData, removed: bool) -> void:
+func _on_item_data_count_updated(amount: int, item_data: ItemData, removed: bool) -> void:
 
 	amount = amount * -1 if removed else amount
 

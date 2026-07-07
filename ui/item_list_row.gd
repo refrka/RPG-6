@@ -20,7 +20,7 @@ signal use_requested
 
 
 
-var item_data: NewItemData
+var item_data: ItemData
 
 
 
@@ -37,7 +37,7 @@ func _ready() -> void:
 
 
 
-func set_data(_item_data: NewItemData, count:= -1) -> void:
+func set_data(_item_data: ItemData, count:= -1) -> void:
 
 	item_data = _item_data
 
@@ -66,6 +66,6 @@ func _on_gui_input(event: InputEvent) -> void:
 
 
 
-func _on_count_updated(_amount: int, _item_data: NewItemData, _removed: bool) -> void:
+func _on_count_updated(_amount: int, _item_data: ItemData, _removed: bool) -> void:
 
 	item_count_label.text = str(_item_data.get_count())

@@ -1,7 +1,7 @@
-class_name NewItemData extends Resource
+class_name ItemData extends Resource
 
 
-signal count_updated(amount: int, item_data: NewItemData, removed: bool)
+signal count_updated(amount: int, item_data: ItemData, removed: bool)
 
 signal data_emptied
 
@@ -92,9 +92,9 @@ func get_dictionary() -> Dictionary:
 
 
 
-static func load_dictionary(save_dict: Dictionary) -> NewItemData:
+static func load_dictionary(save_dict: Dictionary) -> ItemData:
 
-	var item_data = NewItemData.new()
+	var item_data = ItemData.new()
 
 	item_data.def = Items.get_item_def(save_dict["item_id"])
 

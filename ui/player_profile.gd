@@ -60,7 +60,7 @@ func _on_game_ended() -> void:
 
 
 
-func _on_item_use_requested(item_data: NewItemData) -> void:
+func _on_item_use_requested(item_data: ItemData) -> void:
 
 	var player = Game.get_player()
 

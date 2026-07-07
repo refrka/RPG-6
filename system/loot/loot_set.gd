@@ -2,4 +2,4 @@ class_name LootSet extends Resource
 
 
 
-@export var items: Array[NewItemData]
+@export var items: Array[ItemData]

@@ -10,9 +10,9 @@ class_name LootTable extends Resource
 
 
 
-func get_loot(roll: float) -> Array[NewItemData]:
+func get_loot(roll: float) -> Array[ItemData]:
 
-	var loot: Array[NewItemData] = []
+	var loot: Array[ItemData] = []
 
 	for entry in entries:
 

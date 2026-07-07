@@ -12,7 +12,7 @@ var spawn_id: StringName
 
 var last_dict: Dictionary
 
-var inventory: NewInventory
+var inventory: Inventory
 
 
 var location_data_list: Array[LocationData]
@@ -123,7 +123,7 @@ static func load_dictionary(save_dict: Dictionary) -> SaveData:
 
 	save_data.spawn_id = save_dict["spawn_id"]
 
-	save_data.inventory = NewInventory.load_dictionary(save_dict["inventory"])
+	save_data.inventory = Inventory.load_dictionary(save_dict["inventory"])
 
 	for dict in save_dict["location_data"]:
 

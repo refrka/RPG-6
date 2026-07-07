@@ -1,4 +1,4 @@
-class_name ItemData extends Resource
+class_name OldItemData extends Resource
 
 
 
@@ -32,13 +32,13 @@ func get_dictionary() -> Dictionary:
 
 
 
-static func load_dictionary(save_dict: Dictionary) -> ItemData:
+static func load_dictionary(save_dict: Dictionary) -> OldItemData:
 
 	if save_dict.is_empty():
 
 		return null
 
-	var item_data = ItemData.new()
+	var item_data = OldItemData.new()
 
 	item_data.def = Items.get_item_def(save_dict["item_id"])
 

@@ -23,6 +23,6 @@ func _ready() -> void:
 
 
 
-func load_inventory(inventory: NewInventory, is_player_inventory: bool) -> void:
+func load_inventory(inventory: Inventory, is_player_inventory: bool) -> void:
 
 	inventory_list.load_items(inventory.items, is_player_inventory)

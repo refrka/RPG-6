@@ -25,7 +25,5 @@ class_name EntityDef extends Resource
 
 @export var default_inventory: Inventory
 
-@export var default_new_inventory: NewInventory
-
 
 @export var base_health:= 1.0
