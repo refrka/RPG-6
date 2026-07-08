@@ -140,7 +140,7 @@ func _load_barter_interface() -> void:
 
 	dialogue_button.visible = true
 
-	barter_interface.load_barter_inventory(barter_component.inventory)
+	barter_interface.load_inventory(barter_component.inventory)
 
 
 

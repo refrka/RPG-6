@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://8lee84264rm2" path="res://ui/interaction_overlay.gd" id="1_ov6j1"]
 [ext_resource type="Script" uid="uid://bbi7tyu1wg5o6" path="res://ui/options_interface.gd" id="2_qprjb"]
 [ext_resource type="Script" uid="uid://dujyi177t2euk" path="res://ui/barter_interface.gd" id="3_u143o"]
-[ext_resource type="PackedScene" uid="uid://pn2eu8jqm3r1" path="res://ui/inventory_list.tscn" id="4_u143o"]
+[ext_resource type="PackedScene" uid="uid://cka2fy2ie0egf" path="res://ui/barter_sell_list_row.tscn" id="4_vjlly"]
+[ext_resource type="PackedScene" uid="uid://cocf0kjxjd4gg" path="res://ui/barter_buy_list_row.tscn" id="5_prd4c"]
 
 [node name="InteractionOverlay" type="MarginContainer" unique_id=252307293 node_paths=PackedStringArray("options_interface", "barter_interface", "dialogue_button", "barter_button", "close_button", "entity_name_label", "dialogue_text_label") groups=["interaction_overlay"]]
 process_mode = 3
@@ -115,130 +116,99 @@ options_list = NodePath("OptionsList")
 [node name="OptionsList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/OptionsInterface" unique_id=1984077127]
 layout_mode = 2
 
-[node name="BarterInterface" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer" unique_id=184595418 node_paths=PackedStringArray("complete_transaction_button", "player_inventory_list", "entity_inventory_list", "buy_list", "sell_list")]
+[node name="BarterInterface" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer" unique_id=184595418 node_paths=PackedStringArray("player_item_list", "player_gold_label", "entity_item_list", "entity_gold_label")]
 custom_minimum_size = Vector2(1000, 500)
 layout_mode = 2
 script = ExtResource("3_u143o")
-complete_transaction_button = NodePath("HBoxContainer/VBoxContainer2/CompleteTransactionButton")
-player_inventory_list = NodePath("HBoxContainer/VBoxContainer/PlayerInventoryList")
-entity_inventory_list = NodePath("HBoxContainer/VBoxContainer3/EntityInventoryList")
-buy_list = NodePath("HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/BuyList")
-sell_list = NodePath("HBoxContainer/VBoxContainer2/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/SellList")
+player_item_list = NodePath("HBoxContainer/VBoxContainer/ScrollContainer/PlayerItemList")
+player_gold_label = NodePath("HBoxContainer/VBoxContainer/MarginContainer2/PlayerGold")
+entity_item_list = NodePath("HBoxContainer/VBoxContainer2/ScrollContainer/EntityItemList")
+entity_gold_label = NodePath("HBoxContainer/VBoxContainer2/MarginContainer2/EntityGold")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface" unique_id=673833491]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer" unique_id=381066074]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer" unique_id=661530739]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer" unique_id=838778441]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer" unique_id=1961397548]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer/MarginContainer" unique_id=1863334711]
 layout_mode = 2
 text = "Your Inventory"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer" unique_id=1668564068]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer" unique_id=2052329129]
 layout_mode = 2
 
-[node name="PlayerInventoryList" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer" unique_id=1522671104 instance=ExtResource("4_u143o")]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer" unique_id=1641459342]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2" unique_id=959042191]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer" unique_id=702127910]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer" unique_id=565777612]
-layout_mode = 2
-text = "Buy"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer" unique_id=1863148029]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer" unique_id=1743578503]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer" unique_id=1610295039]
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer" unique_id=937258285]
 layout_mode = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=1021076585]
+[node name="PlayerGold" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer/MarginContainer2" unique_id=870892398]
 layout_mode = 2
+text = "100 g"
 
-[node name="BuyList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer" unique_id=1165889515]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer" unique_id=519293643]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PlayerItemList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer/ScrollContainer" unique_id=666143333]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2" unique_id=713023491]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer2" unique_id=1566097676]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer2/VBoxContainer" unique_id=68501399]
-layout_mode = 2
-text = "Sell"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer2/VBoxContainer" unique_id=1626566495]
+[node name="BarterSellListRow" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer/ScrollContainer/PlayerItemList" unique_id=817829777 instance=ExtResource("4_vjlly")]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer2/VBoxContainer" unique_id=1564735581]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer2/VBoxContainer/PanelContainer" unique_id=1077168804]
-layout_mode = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
-
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer" unique_id=554735427]
-layout_mode = 2
-
-[node name="SellList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer2/VBoxContainer/PanelContainer/MarginContainer/ScrollContainer" unique_id=1597871477]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="CompleteTransactionButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2" unique_id=1013525156]
-custom_minimum_size = Vector2(0, 35)
-layout_mode = 2
-text = "Complete Transaction"
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer" unique_id=1075340736]
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer" unique_id=10688401]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer3" unique_id=141521452]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2" unique_id=856955586]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="EntityInventoryLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer" unique_id=50241321]
 layout_mode = 2
 text = "Entity Inventory"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer3" unique_id=938309699]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2" unique_id=883469484]
 layout_mode = 2
 
-[node name="EntityInventoryList" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer3" unique_id=266390475 instance=ExtResource("4_u143o")]
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2" unique_id=1614798194]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="EntityGold" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer2" unique_id=670054987]
+layout_mode = 2
+text = "1000 g"
+horizontal_alignment = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2" unique_id=1346095438]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="EntityItemList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/ScrollContainer" unique_id=563634779]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BarterBuyListRow" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/ScrollContainer/EntityItemList" unique_id=1384628872 instance=ExtResource("5_prd4c")]
+layout_mode = 2

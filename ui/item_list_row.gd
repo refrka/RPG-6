@@ -39,6 +39,12 @@ func _ready() -> void:
 
 func set_data(_item_data: ItemData, count:= -1) -> void:
 
+	if item_data == _item_data:
+
+		count = item_data.get_count()
+
+		return
+
 	item_data = _item_data
 
 	var item_def = Items.get_item_def(item_data.get_item_id())

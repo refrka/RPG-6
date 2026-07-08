@@ -47,6 +47,8 @@ func add_item_data(item_data: ItemData) -> void:
 
 	item_data.count_updated.connect(_on_item_data_count_updated)
 
+	item_data.count_updated.emit(item_data.get_count(), item_data, false)
+
 
 
 

@@ -86,4 +86,6 @@ func _on_item_data_count_updated(amount: int, item_data: ItemData, removed: bool
 
 	amount = amount * -1 if removed else amount
 
+	print("count updated for: ", item_data.get_def().display_name)
+
 	Events.fire(ItemsAddedToInventoryEvent, {"item_name": item_data.get_def().display_name, "amount": amount, "count": item_data.get_count()})

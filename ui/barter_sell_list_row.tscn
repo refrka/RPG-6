@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cka2fy2ie0egf"]
+
+[ext_resource type="Script" uid="uid://1vpn1uhcgjc6" path="res://ui/barter_sell_list_row.gd" id="1_xm31n"]
+
+[node name="BarterSellListRow" type="PanelContainer" unique_id=817829777 node_paths=PackedStringArray("item_label", "sell_button", "count_entry")]
+script = ExtResource("1_xm31n")
+item_label = NodePath("MarginContainer/HBoxContainer/Label")
+sell_button = NodePath("MarginContainer/HBoxContainer/Button")
+count_entry = NodePath("MarginContainer/HBoxContainer/LineEdit")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2143173536]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1740483959]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=2034131539]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Item Name (99)"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/HBoxContainer" unique_id=2012676416]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+placeholder_text = "0"
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer" unique_id=2141769981]
+custom_minimum_size = Vector2(50, 35)
+layout_mode = 2
+text = "Sell"
