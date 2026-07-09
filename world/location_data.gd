@@ -31,6 +31,8 @@ func get_dictionary() -> Dictionary:
 
 	save_dict["location_id"] = location_id
 
+	print(location_scene.get_objects_with_component("container"))
+
 	return save_dict
 
 

@@ -26,3 +26,10 @@ func _ready() -> void:
 func load_inventory(inventory: Inventory, is_player_inventory: bool) -> void:
 
 	inventory_list.load_inventory(inventory, is_player_inventory)
+
+
+
+
+func clear_inventory() -> void:
+
+	inventory_list.clear()

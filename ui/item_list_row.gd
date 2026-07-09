@@ -1,10 +1,6 @@
 class_name ItemListRow extends PanelContainer
 
 
-signal left_pressed
-
-signal right_pressed
-
 signal use_requested
 
 
@@ -12,10 +8,6 @@ signal use_requested
 @export var item_id_label: Label
 
 @export var item_count_label: Label
-
-@export var left_button: Button
-
-@export var right_button: Button
 
 
 
@@ -27,10 +19,6 @@ var item_data: ItemData
 
 
 func _ready() -> void:
-
-	left_button.pressed.connect(left_pressed.emit)
-
-	right_button.pressed.connect(right_pressed.emit)
 
 	gui_input.connect(_on_gui_input)
 

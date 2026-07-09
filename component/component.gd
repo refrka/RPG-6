@@ -45,8 +45,3 @@ func _deactivate() -> void:
 	active = false
 
 
-
-
-
-
-

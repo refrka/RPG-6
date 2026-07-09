@@ -102,6 +102,8 @@ func get_dictionary() -> Dictionary:
 
 	last_dict = save_dict
 
+	player_data.last_save_dict = save_dict["player_data"]
+
 	return save_dict
 
 

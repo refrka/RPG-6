@@ -19,6 +19,7 @@ func _ready() -> void:
 
 
 
+
 func interact() -> bool:
 
 	var loot = loot_table.get_loot(randf())
@@ -38,6 +39,32 @@ func interact() -> bool:
 
 
 
+
+
 func can_interact() -> bool:
 
 	return !looted
+
+
+
+
+
+
+
+func get_dictionary() -> Dictionary:
+
+	var save_dict = {}
+
+	save_dict["component_name"] = get_component_name()
+
+	save_dict["looted"] = looted
+
+	return save_dict
+
+
+
+
+
+func load_dictionary(save_dict: Dictionary) -> void:
+
+	looted = save_dict["looted"]

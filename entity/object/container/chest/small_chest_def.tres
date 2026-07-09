@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_nsgy6")
+unique_id = &"test"
 entity_id = &"small_chest"
 display_name = &"Small Chest"
 scene_path = "res://entity/object/container/chest/small_chest.tscn"

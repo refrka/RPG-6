@@ -11,7 +11,7 @@ func _get_dictionary() -> Dictionary:
 
 	var save_dict = {}
 
-	save_dict["component_data"] = {}
+	save_dict["components"] = {}
 
 	if node:
 
@@ -19,6 +19,6 @@ func _get_dictionary() -> Dictionary:
 
 			if component.has_method("get_dictionary"):
 
-				save_dict["component_data"][component.get_component_name()] = component.get_dictionary()
+				save_dict["components"][component.get_component_name()] = component.get_dictionary()
 
 	return save_dict

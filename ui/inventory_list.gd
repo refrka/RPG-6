@@ -35,7 +35,9 @@ func _ready() -> void:
 
 	_clear_item_list()
 
-	search_entry.text_changed.connect(_on_search_entry_text_changed)
+	search_entry.text_changed.connect(_on_search_text_changed)
+
+	search_entry.editing_toggled.connect(_on_search_editing_toggled)
 
 
 
@@ -44,6 +46,8 @@ func _ready() -> void:
 
 
 func clear() -> void:
+
+	current_inventory = null
 
 	_clear_item_list()
 
@@ -88,10 +92,6 @@ func _add_item_row(item_data: ItemData) -> ItemListRow:
 
 	item_list_rows[item_data] = row
 
-	row.left_pressed.connect(_on_row_left_pressed)
-
-	row.right_pressed.connect(_on_row_right_pressed)
-
 	if is_player_inventory:
 
 		row.use_requested.connect(_on_row_use_requested)
@@ -128,6 +128,14 @@ func _clear_item_list() -> void:
 
 
 
+func _show_all_rows() -> void:
+
+	for row in item_list_rows.values():
+
+		row.visible = true
+
+
+
 
 
 func _sort_alphabetical(item_data_a: ItemData, item_data_b: ItemData) -> bool:
@@ -139,22 +147,34 @@ func _sort_alphabetical(item_data_a: ItemData, item_data_b: ItemData) -> bool:
 
 
 
-func _on_search_entry_text_changed(text: String) -> void:
+func _on_search_text_changed(text: String) -> void:
 
-	pass
+	if text == "":
+
+		_show_all_rows()
+
+		return
+
+	for item_data in item_list_rows:
+
+		var row = item_list_rows[item_data]
+
+		if item_data.get_def().display_name.to_lower().contains(text.to_lower()):
+
+			row.visible = true
+
+		else:
+
+			row.visible = false
 
 
 
 
-func _on_row_left_pressed(row: ItemListRow) -> void:
+func _on_search_editing_toggled(state: bool) -> void:
 
-	pass
+	if state == false:
 
-
-
-func _on_row_right_pressed(row: ItemListRow) -> void:
-
-	pass
+		search_entry.release_focus()
 
 
 
@@ -162,6 +182,8 @@ func _on_row_right_pressed(row: ItemListRow) -> void:
 func _on_row_use_requested(row: ItemListRow) -> void:
 
 	item_use_requested.emit(row.item_data)
+
+
 
 
 

@@ -18,10 +18,14 @@ var data = {
 
 	},
 
+	"player_data": { },
+
 	"location_data": [ ],
 
 	"entity_data": [ ],
 
 	"quest_data": [ ],
+
+	"components": { },
 
 }

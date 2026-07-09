@@ -110,6 +110,24 @@ func get_entity_marker(marker_id: StringName) -> EntityMarker:
 
 
 
+func get_objects_with_component(component_name: StringName) -> Array[ObjectNode]:
+
+	var objects: Array[ObjectNode] = []
+
+	for object in object_root.get_children():
+
+		if object.get_component(component_name) != null:
+
+			objects.append(object)
+
+	return objects
+
+
+
+
+
+
+
 
 func spawn_player(spawn_id: StringName) -> void:
 
@@ -131,6 +149,8 @@ func _load_location_data(_location_data: LocationData) -> void:
 
 	location_data = _location_data
 
+	location_data.location_scene = self
+
 
 
 
@@ -148,7 +168,7 @@ func _load_entity_data() -> void:
 
 	for character_node in character_root.get_children():
 
-		var unique_id = character_node.def.unique_id
+		var unique_id = character_node.get_unique_id()
 
 		if unique_id != &"":
 
@@ -166,6 +186,8 @@ func _load_entity_data() -> void:
 
 			else:
 
+				entity_data.node = character_node
+
 				if entity_data.last_known_location_id != location_id:
 
 					character_node.queue_free()
@@ -176,6 +198,36 @@ func _load_entity_data() -> void:
 
 			character_node.load_data(entity_data)
 
+	for object_node in object_root.get_children():
+
+		var unique_id = object_node.get_unique_id()
+
+		if unique_id != &"":
+
+			var entity_data = Game.get_entity_data(unique_id)
+
+			if entity_data == null:
+
+				entity_data = Entities.create_data(object_node)
+
+				object_node.one_time_setup()
+
+				entity_data.last_known_location_id = location_id
+
+				entity_data.last_known_position = object_node.global_position
+
+			else:
+
+				entity_data.node = object_node
+
+				if entity_data.last_known_location_id != location_id:
+
+					object_node.queue_free()
+
+				else:
+
+					location_entity_data.erase(entity_data)
+
 	for entity_data in location_entity_data:
 
 		var node = Entities.create_node(entity_data.def)
@@ -184,7 +236,14 @@ func _load_entity_data() -> void:
 
 			character_root.add_child(node)
 
+		elif node is ObjectNode:
+
+			object_root.add_child(node)
+
 		node.load_data(entity_data)
+
+
+
 
 
 

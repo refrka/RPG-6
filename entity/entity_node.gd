@@ -147,6 +147,15 @@ func load_data(entity_data: EntityData) -> void:
 
 	global_position = data.last_known_position
 
+	if data.last_save_dict.has("components"):
+
+		for dict in data.last_save_dict["components"]:
+
+			var component = get_component(dict["component_name"])
+
+			if component:
+
+				component.load_dictionary(dict)
 
 
 
@@ -162,24 +171,6 @@ func _update_location_data(location_id: StringName, spawn_id: StringName) -> voi
 		var spawn_point = location_scene.get_spawn_point(spawn_id)
 
 		data.last_known_position = spawn_point.global_position
-
-
-
-
-
-func _get_dictionary() -> Dictionary:
-
-	var save_dict = {}
-
-	return save_dict
-
-
-
-
-
-func _load_dictionary() -> void:
-
-	pass
 
 
 

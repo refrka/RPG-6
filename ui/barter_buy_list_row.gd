@@ -15,6 +15,7 @@ signal buy_requested(item_data: ItemData, count: int)
 
 var item_data: ItemData
 
+var current_count_entry: String
 
 
 
@@ -22,6 +23,7 @@ func _ready() -> void:
 
 	buy_button.pressed.connect(_on_buy_pressed)
 
+	count_entry.text_changed.connect(_on_count_entry_text_changed)
 
 
 
@@ -54,6 +56,8 @@ func _on_count_updated() -> void:
 		queue_free()
 
 
+
+
 	
 
 func _on_buy_pressed() -> void:
@@ -65,3 +69,18 @@ func _on_buy_pressed() -> void:
 	var count = int(count_entry.text)
 
 	buy_requested.emit(item_data, count)
+
+
+
+
+func _on_count_entry_text_changed(text: String) -> void:
+
+	if !text.is_valid_int():
+
+		count_entry.text = current_count_entry
+
+		count_entry.caret_column = text.length()
+
+	else:
+
+		current_count_entry = text

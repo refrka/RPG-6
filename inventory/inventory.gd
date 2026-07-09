@@ -25,8 +25,16 @@ func initialize() -> void:
 
 	for item_data in items:
 
-		item_data.count_updated.connect(_on_item_data_count_updated)
+		if !item_data.count_updated.is_connected(_on_item_data_count_updated):
 
+			item_data.count_updated.connect(_on_item_data_count_updated)
+
+
+
+
+func clear() -> void:
+
+	pass
 
 
 
