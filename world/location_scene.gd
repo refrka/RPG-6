@@ -228,6 +228,8 @@ func _load_entity_data() -> void:
 
 					location_entity_data.erase(entity_data)
 
+			object_node.load_data(entity_data)
+
 	for entity_data in location_entity_data:
 
 		var node = Entities.create_node(entity_data.def)

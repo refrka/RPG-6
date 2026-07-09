@@ -10,6 +10,8 @@ var active:= false
 
 
 
+
+
 func _setup(_entity: EntityNode) -> void:
 
 	entity = _entity

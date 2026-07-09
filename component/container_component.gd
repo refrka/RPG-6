@@ -19,7 +19,6 @@ func _ready() -> void:
 
 
 
-
 func interact() -> bool:
 
 	var loot = loot_table.get_loot(randf())
@@ -30,9 +29,7 @@ func interact() -> bool:
 
 		player.inventory.add_item_data(item_data)
 
-	looted = true
-
-	entity.body_sprite.frame = 1
+	_set_loot_state(true)
 
 	return false
 
@@ -44,6 +41,34 @@ func interact() -> bool:
 func can_interact() -> bool:
 
 	return !looted
+
+
+
+
+
+
+
+
+func _set_loot_state(state: bool) -> void:
+
+	looted = state
+
+	_update_looted_visuals()
+
+
+
+
+
+
+func _update_looted_visuals() -> void:
+
+	if looted:
+
+		entity.body_sprite.frame = 1
+
+	else:
+
+		entity.body_sprite.frame = 0
 
 
 
@@ -68,3 +93,5 @@ func get_dictionary() -> Dictionary:
 func load_dictionary(save_dict: Dictionary) -> void:
 
 	looted = save_dict["looted"]
+
+	_update_looted_visuals()

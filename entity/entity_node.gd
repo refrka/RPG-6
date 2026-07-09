@@ -149,13 +149,17 @@ func load_data(entity_data: EntityData) -> void:
 
 	if data.last_save_dict.has("components"):
 
-		for dict in data.last_save_dict["components"]:
+		for component_name in data.last_save_dict["components"]:
 
-			var component = get_component(dict["component_name"])
+			var dict = data.last_save_dict["components"][component_name]
+
+			var component = get_component(component_name)
 
 			if component:
 
 				component.load_dictionary(dict)
+
+
 
 
 
