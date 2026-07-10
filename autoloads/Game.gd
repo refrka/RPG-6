@@ -180,6 +180,12 @@ func get_entity_data(unique_id: StringName) -> EntityData:
 
 
 
+func get_camera() -> Camera2D:
+
+	var camera = get_tree().get_first_node_in_group("game_camera")
+
+	return camera
+
 
 
 func is_active() -> bool:

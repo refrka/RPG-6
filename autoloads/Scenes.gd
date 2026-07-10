@@ -3,6 +3,8 @@ extends Node
 
 
 
+var cutscene_list: Dictionary[StringName, Cutscene]
+
 var scene_registry:= {}
 
 
@@ -15,6 +17,8 @@ var active_scene: GameScene
 func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
+
+	_load_cutscenes()
 
 
 
@@ -118,3 +122,30 @@ func _load_scene(scene_script: Script) -> GameScene:
 		scene._activate()
 
 	return scene
+
+
+
+
+
+
+func _load_cutscenes() -> void:
+
+	var sub_dirs = ["res://cutscene/"]
+
+	while !sub_dirs.is_empty():
+
+		var sub_dir = sub_dirs.pop_back()
+
+		for file_name in ResourceLoader.list_directory(sub_dir):
+
+			var path = sub_dir + file_name
+
+			if path.ends_with(".tres"):
+
+				var cutscene = load(path) as Cutscene
+
+				cutscene_list[cutscene.cutscene_id] = cutscene
+
+			elif path.ends_with("/"):
+
+				sub_dirs.append(path)

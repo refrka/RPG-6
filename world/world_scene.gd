@@ -11,6 +11,9 @@ var location_data_list: Array[LocationData]
 
 
 
+
+
+
 func load_location(location_id: StringName) -> LocationScene:
 
 	var location_scene = Scenes.get_location_scene(location_id)

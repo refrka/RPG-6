@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cuulvxdb4v0i0" path="res://ui/main_menu.tscn" id="2_bxsma"]
 [ext_resource type="PackedScene" uid="uid://ba2bdhn8qtup2" path="res://world/world_scene.tscn" id="2_lkrbl"]
 [ext_resource type="PackedScene" uid="uid://ckaqvm4265qeg" path="res://ui/player_profile.tscn" id="3_0o8ui"]
+[ext_resource type="Script" uid="uid://dyrvdi8n4fqeb" path="res://system/game_camera.gd" id="3_ledqy"]
 [ext_resource type="PackedScene" uid="uid://c5nb2o6fata6k" path="res://ui/game_menu.tscn" id="3_lkrbl"]
 [ext_resource type="Script" uid="uid://bng85w3cg36bq" path="res://ui/notification_root.gd" id="4_8gxew"]
 [ext_resource type="PackedScene" uid="uid://bfho774q0al3o" path="res://debug/debug_overlay.tscn" id="5_wd1uf"]
@@ -12,8 +13,14 @@
 script = ExtResource("1_pjpa4")
 
 [node name="WorldCanvas" type="CanvasLayer" parent="." unique_id=376096639 groups=["world_canvas"]]
+follow_viewport_enabled = true
 
 [node name="WorldScene" parent="WorldCanvas" unique_id=56361412 instance=ExtResource("2_lkrbl")]
+
+[node name="GameCamera" type="Camera2D" parent="WorldCanvas/WorldScene" unique_id=1643355901 groups=["game_camera"]]
+anchor_mode = 0
+script = ExtResource("3_ledqy")
+metadata/_custom_type_script = "uid://dyrvdi8n4fqeb"
 
 [node name="OverlayCanvas" type="CanvasLayer" parent="." unique_id=1301090531]
 
@@ -49,3 +56,5 @@ visible = false
 [node name="DebugCanvas" type="CanvasLayer" parent="." unique_id=717836855 groups=["debug_canvas"]]
 
 [node name="DebugOverlay" parent="DebugCanvas" unique_id=1357979542 instance=ExtResource("5_wd1uf")]
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1744014793]
