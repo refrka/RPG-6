@@ -3,6 +3,8 @@ class_name ItemData extends Resource
 
 signal count_updated(amount: int, item_data: ItemData, removed: bool)
 
+signal data_set
+
 signal data_emptied
 
 
@@ -14,6 +16,18 @@ var data_id: StringName
 
 
 @export var count:= 1
+
+
+
+
+func set_data(_def: ItemDef, _count: int) -> void:
+
+	def = _def
+
+	count = _count
+
+	data_set.emit()
+
 
 
 
@@ -103,3 +117,5 @@ static func load_dictionary(save_dict: Dictionary) -> ItemData:
 	item_data.count = int(save_dict["count"])
 
 	return item_data
+
+

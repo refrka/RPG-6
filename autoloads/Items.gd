@@ -31,6 +31,23 @@ func get_item_def(item_id: StringName) -> ItemDef:
 
 
 
+func get_value_of_items(item_list: Dictionary[ItemData, int]) -> int:
+
+	var total:= 0
+
+	for item_data in item_list:
+
+		var count = item_list[item_data]
+
+		var def = item_data.get_def()
+
+		total = total + (def.gold_value * count)
+
+	return  total
+
+
+
+
 func create_data(item_def: ItemDef, count:= 1, with_data_id:= false) -> ItemData:
 
 	var item_data = ItemData.new()

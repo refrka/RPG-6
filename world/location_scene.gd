@@ -37,6 +37,8 @@ var location_data: LocationData
 
 func _initialize(_location_data: LocationData) -> void:
 
+	Events.subscribe(ContainerStateChanged, _on_container_state_changed)
+
 	for character_node in character_root.get_children():
 
 		character_node._initialize()
@@ -59,8 +61,13 @@ func _initialize(_location_data: LocationData) -> void:
 
 	_load_entity_data()
 
-	Events.subscribe(ContainerStateChanged, _on_container_state_changed)
 
+
+
+
+func _unload() -> void:
+
+	Events.unsubscribe(ContainerStateChanged, _on_container_state_changed)
 
 
 
@@ -149,8 +156,6 @@ func get_objects_with_component(component_name: StringName) -> Array[ObjectNode]
 
 func get_container_states() -> Array[bool]:
 
-	print("getting the states!!")
-
 	var states: Array[bool] = []
 
 	var container_nodes = get_objects_with_component("container")
@@ -189,11 +194,7 @@ func _load_location_data(_location_data: LocationData) -> void:
 
 	location_data.location_scene = self
 
-	print("loading loc data")
-
 	if !location_data.discovered:
-
-		print("this not discovered")
 
 		location_data.container_states = get_container_states()
 

@@ -50,12 +50,21 @@ func update_label() -> void:
 
 
 
-func _on_count_updated() -> void:
+
+
+func _on_count_updated(_amount: int, _item_data: ItemData, _removed: bool) -> void:
 
 	if item_data.get_count() <= 0:
 
 		queue_free()
+
+	else:
+
+		update_label()
 		
+
+
+
 
 
 func _on_sell_pressed() -> void:
@@ -73,9 +82,13 @@ func _on_sell_pressed() -> void:
 	
 
 
+
+
+
+
 func _on_count_entry_text_changed(text: String) -> void:
 
-	if !text.is_valid_int():
+	if text != "" and (!text.is_valid_int() or int(text) > item_data.get_count()):
 
 		count_entry.text = current_count_entry
 

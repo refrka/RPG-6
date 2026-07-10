@@ -38,6 +38,8 @@ func load_location(location_id: StringName) -> LocationScene:
 
 func unload_location() -> void:
 
+	active_location._unload()
+
 	active_location.queue_free()
 
 

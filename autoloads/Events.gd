@@ -21,6 +21,18 @@ func subscribe(event_script: Script, callback: Callable) -> void:
 
 
 
+func unsubscribe(event_script: Script, callback: Callable) -> void:
+
+	if subscriptions.has(event_script) and subscriptions[event_script].has(callback):
+
+		subscriptions[event_script].erase(callback)
+
+		if subscriptions[event_script].is_empty():
+
+			subscriptions.erase(event_script)
+
+
+
 
 
 func fire(event_script: Script, _data: Dictionary = {}) -> void:

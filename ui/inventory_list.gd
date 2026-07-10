@@ -61,6 +61,8 @@ func load_inventory(inventory: Inventory, _is_player_inventory:= false) -> void:
 
 	current_inventory = inventory
 
+	gold_label.text = "%s g" % inventory.get_gold_count()
+
 	current_inventory.item_data_count_updated.connect(_on_inventory_count_updated)
 
 	is_player_inventory = _is_player_inventory

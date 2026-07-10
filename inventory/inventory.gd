@@ -3,6 +3,8 @@ class_name Inventory extends Resource
 
 signal item_data_count_updated(amount: int, item_data: ItemData, removed: bool)
 
+signal gold_updated(amount: int, new_total: int, removed: bool)
+
 
 
 @export var items: Array[ItemData]
@@ -62,7 +64,32 @@ func add_item_data(item_data: ItemData) -> void:
 
 
 
-func remove_item_by_data(item_data: ItemData) -> void:
+
+func add_item_def(item_def: ItemDef, count:= 1) -> void:
+
+	var item_data = get_item_data_by_def(item_def)
+
+	if item_data:
+
+		item_data.add_count(count)
+
+	else:
+
+		item_data = ItemData.new()
+
+		item_data.count_updated.connect(_on_item_data_count_updated)
+
+		item_data.set_data(item_def, count)
+
+		items.append(item_data)
+
+		item_data.count_updated.emit(item_data.get_count(), item_data, false)
+
+
+
+
+
+func remove_item_by_data(item_data: ItemData, count:= 1) -> void:
 
 	if item_data.data_id == &"":
 
@@ -72,7 +99,7 @@ func remove_item_by_data(item_data: ItemData) -> void:
 
 			return
 
-		current_data.remove_count(item_data.get_count())
+		current_data.remove_count(count)
 
 	else:
 
@@ -83,8 +110,6 @@ func remove_item_by_data(item_data: ItemData) -> void:
 			return
 
 		current_data.remove_count(1)
-
-
 
 
 
@@ -102,6 +127,41 @@ func remove_item_by_def(item_def: ItemDef, count:= 1) -> void:
 
 
 
+
+
+
+func add_gold(amount: int) -> void:
+
+	gold += amount
+	
+	gold_updated.emit(amount, gold, false)
+
+
+
+func remove_gold(amount: int) -> void:
+
+	gold -= amount
+	
+	gold_updated.emit(amount, gold, true)
+
+
+
+
+
+
+func transfer_to_inventory(item_data: ItemData, target_inventory: Inventory,  count:= 1) -> void:
+
+	var target_data = target_inventory.get_item_data_by_def(item_data.get_def())
+
+	if target_data:
+
+		target_data.add_count(count)
+
+	else:
+
+		target_inventory.add_item_def(item_data.get_def(), count)
+
+	item_data.remove_count(count)
 
 
 

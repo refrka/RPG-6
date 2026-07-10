@@ -198,7 +198,7 @@ theme_override_constants/margin_bottom = 4
 
 [node name="EntityGold" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2/MarginContainer2" unique_id=670054987]
 layout_mode = 2
-text = "1000 g"
+text = "0 g"
 horizontal_alignment = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/BarterInterface/HBoxContainer/VBoxContainer2" unique_id=1346095438]

@@ -43,3 +43,5 @@ static func load_dictionary(save_dict: Dictionary) -> OldItemData:
 	item_data.def = Items.get_item_def(save_dict["item_id"])
 
 	return item_data
+
+

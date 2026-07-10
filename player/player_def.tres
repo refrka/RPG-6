@@ -2,18 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dxav521qgve83" path="res://inventory/inventory.gd" id="1_8fxaj"]
 [ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="1_cujn1"]
-[ext_resource type="Resource" uid="uid://bcwgsd18maldn" path="res://item/material/wood_def.tres" id="2_y8wuh"]
 [ext_resource type="Script" uid="uid://clgn0f7qqcs3s" path="res://item/new_item_data.gd" id="3_3jfkr"]
-
-[sub_resource type="Resource" id="Resource_txq3f"]
-script = ExtResource("3_3jfkr")
-def = ExtResource("2_y8wuh")
-count = 250
-metadata/_custom_type_script = "uid://clgn0f7qqcs3s"
 
 [sub_resource type="Resource" id="Resource_782li"]
 script = ExtResource("1_8fxaj")
-items = Array[ExtResource("3_3jfkr")]([SubResource("Resource_txq3f")])
+gold = 100
 metadata/_custom_type_script = "uid://dxav521qgve83"
 
 [resource]

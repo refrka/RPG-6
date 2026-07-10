@@ -5,9 +5,7 @@ var discovered:= false
 
 var location_id: StringName
 
-
 var location_scene: LocationScene
-
 
 var container_states: Array[bool]
 
