@@ -25,10 +25,6 @@ func load_location(location_id: StringName) -> LocationScene:
 
 	active_location = location_scene
 
-	if Game.get_location_data(location_id) == null:
-
-		Events.fire(LocationDiscoveredEvent, {"location_id": location_id})
-
 	var location_data = _get_location_data(location_scene)
 
 	active_location._initialize(location_data)

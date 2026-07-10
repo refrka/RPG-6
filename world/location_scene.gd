@@ -26,6 +26,8 @@ enum Region {
 @export var marker_root: Node2D
 
 
+
+
 var location_data: LocationData
 
 
@@ -34,8 +36,6 @@ var location_data: LocationData
 
 
 func _initialize(_location_data: LocationData) -> void:
-
-	_load_location_data(_location_data)
 
 	for character_node in character_root.get_children():
 
@@ -53,7 +53,13 @@ func _initialize(_location_data: LocationData) -> void:
 
 		feature._initialize(self)
 
+	_load_location_data(_location_data)
+
+	_load_container_states()
+
 	_load_entity_data()
+
+	Events.subscribe(ContainerStateChanged, _on_container_state_changed)
 
 
 
@@ -109,6 +115,21 @@ func get_entity_marker(marker_id: StringName) -> EntityMarker:
 
 
 
+func get_entity_index(entity_node: EntityNode) -> int:
+
+	var list: Array = []
+
+	if entity_node is CharacterNode:
+
+		list = character_root.get_children()
+
+	elif entity_node is ObjectNode:
+
+		list = object_root.get_children()
+
+	return list.find(entity_node)
+
+
 
 func get_objects_with_component(component_name: StringName) -> Array[ObjectNode]:
 
@@ -124,6 +145,23 @@ func get_objects_with_component(component_name: StringName) -> Array[ObjectNode]
 
 
 
+
+
+func get_container_states() -> Array[bool]:
+
+	print("getting the states!!")
+
+	var states: Array[bool] = []
+
+	var container_nodes = get_objects_with_component("container")
+
+	for node in container_nodes:
+
+		var container_component = node.get_component("container")
+
+		states.append(container_component.looted)
+
+	return states
 
 
 
@@ -151,6 +189,19 @@ func _load_location_data(_location_data: LocationData) -> void:
 
 	location_data.location_scene = self
 
+	print("loading loc data")
+
+	if !location_data.discovered:
+
+		print("this not discovered")
+
+		location_data.container_states = get_container_states()
+
+		location_data.discovered = true
+
+		Events.fire(LocationDiscoveredEvent, {"location_id": location_id})
+
+
 
 
 
@@ -165,6 +216,29 @@ func _load_entity_data() -> void:
 	# Create new data for authored entities with unique_ids (once during first load)
 	# Remove entities that have a different location_id
 	# Spawn non-authored entities with this location_id
+
+	_load_characters(location_entity_data)
+
+	_load_objects(location_entity_data)
+
+	for entity_data in location_entity_data:
+
+		var node = Entities.create_node(entity_data.def)
+
+		if node is CharacterNode:
+
+			character_root.add_child(node)
+
+		elif node is ObjectNode:
+
+			object_root.add_child(node)
+
+		node.load_data(entity_data)
+
+
+
+
+func _load_characters(location_entity_data: Array[EntityData]) -> void:
 
 	for character_node in character_root.get_children():
 
@@ -198,6 +272,12 @@ func _load_entity_data() -> void:
 
 			character_node.load_data(entity_data)
 
+
+
+
+
+func _load_objects(location_entity_data: Array[EntityData]) -> void:
+
 	for object_node in object_root.get_children():
 
 		var unique_id = object_node.get_unique_id()
@@ -230,20 +310,6 @@ func _load_entity_data() -> void:
 
 			object_node.load_data(entity_data)
 
-	for entity_data in location_entity_data:
-
-		var node = Entities.create_node(entity_data.def)
-
-		if node is CharacterNode:
-
-			character_root.add_child(node)
-
-		elif node is ObjectNode:
-
-			object_root.add_child(node)
-
-		node.load_data(entity_data)
-
 
 
 
@@ -259,3 +325,45 @@ func _get_location_entity_data() -> Array[EntityData]:
 	data_list = save_data.entity_data_list.filter(func(data): return data.last_known_location_id == location_id)
 
 	return data_list
+
+
+
+
+
+func _load_container_states() -> void:
+
+	var container_nodes = get_objects_with_component("container")
+
+	if container_nodes.is_empty():
+
+		return
+
+	for i in range(container_nodes.size()):
+
+		var container_node = container_nodes[i]
+
+		var container_component = container_node.get_component("container")
+
+		container_component.set_loot_state(location_data.container_states[i])
+
+
+
+
+
+
+
+
+
+
+
+
+func _on_container_state_changed(event: Event) -> void:
+
+	var container_node = event.data["container_node"]
+	
+	var state = event.data["state"]
+
+	var index = get_entity_index(container_node)
+
+	location_data.update_container_state(index, state)
+

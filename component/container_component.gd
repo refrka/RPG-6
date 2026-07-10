@@ -29,7 +29,7 @@ func interact() -> bool:
 
 		player.inventory.add_item_data(item_data)
 
-	_set_loot_state(true)
+	set_loot_state(true)
 
 	return false
 
@@ -49,11 +49,13 @@ func can_interact() -> bool:
 
 
 
-func _set_loot_state(state: bool) -> void:
+func set_loot_state(state: bool) -> void:
 
 	looted = state
 
 	_update_looted_visuals()
+
+	Events.fire(ContainerStateChanged, {"container_node": entity, "state": state})
 
 
 

@@ -35,11 +35,13 @@ func get_entity_def(entity_id: StringName) -> EntityDef:
 
 
 
+
 func create_node(entity_def: EntityDef) -> EntityNode:
 
 	var node_scene = load(entity_def.scene_path)
 
 	return node_scene.instantiate()
+
 
 
 
@@ -65,6 +67,14 @@ func create_data(entity_node: EntityNode) -> EntityData:
 	return entity_data
 
 
+
+
+
+func _generate_unique_id(def: EntityDef) -> StringName:
+
+	return &"%s_%s" % [def.entity_id, randi()]
+
+	
 
 
 
