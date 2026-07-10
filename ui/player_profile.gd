@@ -76,4 +76,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		if Game.is_active():
 
-			toggle()
+			if active:
+
+				toggle()
+
+			elif UI.overlay_list.is_empty():
+
+				toggle()
