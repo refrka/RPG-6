@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bdhuvvpoce3b1" path="res://component/barter_component.gd" id="4_ut6t0"]
 [ext_resource type="Resource" uid="uid://bcwgsd18maldn" path="res://item/material/wood_def.tres" id="5_jq4fq"]
 [ext_resource type="Script" uid="uid://dxav521qgve83" path="res://inventory/inventory.gd" id="6_bhma2"]
-[ext_resource type="Script" uid="uid://clgn0f7qqcs3s" path="res://item/new_item_data.gd" id="6_x2j70"]
+[ext_resource type="Script" uid="uid://clgn0f7qqcs3s" path="res://item/item_data.gd" id="6_x2j70"]
 [ext_resource type="Script" uid="uid://dj54qsq3wup45" path="res://component/health_component.gd" id="7_fqnju"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tnxjk"]

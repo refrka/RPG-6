@@ -41,6 +41,28 @@ func clear() -> void:
 
 
 
+
+func transfer_to_inventory(item_data: ItemData, target_inventory: Inventory,  count:= 1) -> void:
+
+	var target_data = target_inventory.get_item_data_by_def(item_data.get_def())
+
+	if target_data:
+
+		target_data.add_count(count)
+
+	else:
+
+		target_inventory.add_item_def(item_data.get_def(), count)
+
+	item_data.remove_count(count)
+
+
+
+
+
+
+
+
 func add_item_data(item_data: ItemData) -> void:
 
 	if item_data.data_id == &"":
@@ -84,6 +106,7 @@ func add_item_def(item_def: ItemDef, count:= 1) -> void:
 		items.append(item_data)
 
 		item_data.count_updated.emit(item_data.get_count(), item_data, false)
+
 
 
 
@@ -149,19 +172,20 @@ func remove_gold(amount: int) -> void:
 
 
 
-func transfer_to_inventory(item_data: ItemData, target_inventory: Inventory,  count:= 1) -> void:
 
-	var target_data = target_inventory.get_item_data_by_def(item_data.get_def())
 
-	if target_data:
 
-		target_data.add_count(count)
 
-	else:
 
-		target_inventory.add_item_def(item_data.get_def(), count)
 
-	item_data.remove_count(count)
+
+
+
+
+
+
+
+
 
 
 
