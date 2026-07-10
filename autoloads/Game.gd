@@ -64,6 +64,8 @@ func start(save_id: StringName) -> void:
 
 	player._activate()
 
+	Scenes.start_cutscene("opening")
+
 	game_started.emit()
 
 
@@ -128,11 +130,24 @@ func resume() -> void:
 
 
 
-func change_location(location_id: StringName, spawn_id:="start") -> void:
+func load_location(location_id: StringName) -> LocationScene:
 
-	var world_scene = Scenes.get_scene(WorldScene)
+	var world_scene = Scenes.get_scene(WorldScene) as WorldScene
 
 	var location_scene = world_scene.load_location(location_id)
+
+	return location_scene
+
+
+
+
+
+
+
+
+func change_location(location_id: StringName, spawn_id:="start") -> void:
+
+	var location_scene = load_location(location_id)
 
 	location_scene.spawn_player(spawn_id)
 

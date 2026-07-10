@@ -3,10 +3,11 @@ extends Node
 
 
 
+var modulate_rect: ModulateRect
+
 var cutscene_list: Dictionary[StringName, Cutscene]
 
 var scene_registry:= {}
-
 
 var active_scene: GameScene
 
@@ -17,6 +18,8 @@ var active_scene: GameScene
 func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
+
+	modulate_rect = get_tree().get_first_node_in_group("modulate_rect")
 
 	_load_cutscenes()
 
@@ -33,6 +36,20 @@ func register_scene(scene: GameScene) -> void:
 	scene_registry[scene.get_script()] = scene
 
 
+
+
+
+func start_cutscene(cutscene_id: StringName) -> Cutscene:
+
+	var cutscene = _get_cutscene(cutscene_id)
+
+	if !cutscene:
+
+		return null
+
+	cutscene.start()
+
+	return cutscene
 
 
 
@@ -93,6 +110,46 @@ func get_location_scene(location_id: StringName) -> LocationScene:
 
 	return location_scene
 
+
+
+
+
+
+
+func fade_modulate_rect(out:= true, color:= Color.BLACK) -> void:
+
+	if out:
+
+		modulate_rect.fade_out(color)
+
+	else:
+
+		modulate_rect.fade_in()
+
+
+
+
+
+
+func _set_modulate_rect(modulate: Color, fade:= false) -> void:
+
+	if fade:
+
+		return
+
+	modulate_rect.modulate = modulate
+
+
+
+
+
+func _get_cutscene(cutscene_id: StringName) -> Cutscene:
+
+	if !cutscene_list.has(cutscene_id):
+
+		return null
+
+	return cutscene_list[cutscene_id]
 
 
 

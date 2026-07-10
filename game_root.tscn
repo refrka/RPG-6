@@ -8,6 +8,59 @@
 [ext_resource type="PackedScene" uid="uid://c5nb2o6fata6k" path="res://ui/game_menu.tscn" id="3_lkrbl"]
 [ext_resource type="Script" uid="uid://bng85w3cg36bq" path="res://ui/notification_root.gd" id="4_8gxew"]
 [ext_resource type="PackedScene" uid="uid://bfho774q0al3o" path="res://debug/debug_overlay.tscn" id="5_wd1uf"]
+[ext_resource type="Script" uid="uid://iad5mcxppypg" path="res://system/modulate_rect.gd" id="9_6t5o2"]
+
+[sub_resource type="Animation" id="Animation_6t5o2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_aiwur"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_krhou"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_krhou"]
+_data = {
+&"RESET": SubResource("Animation_6t5o2"),
+&"fade_in": SubResource("Animation_aiwur"),
+&"fade_out": SubResource("Animation_krhou")
+}
 
 [node name="GameRoot" type="Node" unique_id=828412104]
 script = ExtResource("1_pjpa4")
@@ -58,3 +111,19 @@ visible = false
 [node name="DebugOverlay" parent="DebugCanvas" unique_id=1357979542 instance=ExtResource("5_wd1uf")]
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1744014793]
+
+[node name="ModulateCanvas" type="CanvasLayer" parent="." unique_id=910410513]
+
+[node name="ModulateRect" type="ColorRect" parent="ModulateCanvas" unique_id=1252848160 node_paths=PackedStringArray("animation_player") groups=["modulate_rect"]]
+modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("9_6t5o2")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ModulateCanvas/ModulateRect" unique_id=565624073]
+libraries/ = SubResource("AnimationLibrary_krhou")

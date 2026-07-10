@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_53vr8")
 cutscene_id = &"opening"
+location_id = &"forest_start"
 metadata/_custom_type_script = "uid://dp0v526rguug"
