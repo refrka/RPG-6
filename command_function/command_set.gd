@@ -12,6 +12,9 @@ var command_index:= 0
 var data: Dictionary
 
 
+
+
+
 func execute(_data: Dictionary = {}) -> void:
 
 	data = _data

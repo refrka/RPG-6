@@ -13,9 +13,25 @@ class_name SpawnEntity extends CommandFunction
 
 func execute(_data: Dictionary = {}) -> bool:
 
+	super(_data)
+
 	var def: EntityDef = null
 
-	if entity_id != &"":
+	var entity_node: EntityNode = null
+
+	if data.has("entity_id"):
+
+		entity_id = data["entity_id"]
+
+	if data.has("unique_id"):
+
+		unique_id = data["unique_id"]
+
+	if data.has("entity_def"):
+
+		def = data["entity_def"]
+
+	elif entity_id != &"":
 
 		def = Entities.get_entity_def(entity_id)
 
@@ -23,7 +39,13 @@ func execute(_data: Dictionary = {}) -> bool:
 
 		def = Entities.get_unique_def(unique_id)
 
-	var entity_node = Entities.create_node(def)
+	if data.has("entity_node"):
+
+		entity_node = data["entity_node"]
+
+	else:
+
+		entity_node = Entities.create_node(def)
 
 	var location_scene = Scenes.get_scene(LocationScene)
 

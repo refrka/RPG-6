@@ -13,6 +13,8 @@ class_name MoveCamera extends CommandFunction
 
 func execute(_data: Dictionary = {}) -> bool:
 
+	super(_data)
+
 	var camera = Game.get_camera()
 
 	var tween = Game.get_tree().create_tween()
