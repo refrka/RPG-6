@@ -40,6 +40,7 @@ metadata/_custom_type_script = "uid://ctns1uf21m71i"
 script = ExtResource("5_nbolb")
 option_text = "Quest 2 source dialogue node (option)!"
 dialogue_text = "n o text hsisihstht"
+dialogue_lines = Array[String](["Quest 2 has begun"])
 enter_command_set = SubResource("Resource_nr0sy")
 metadata/_custom_type_script = "uid://b3etsdiil5o71"
 

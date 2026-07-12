@@ -42,6 +42,10 @@ func disable() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 
+	if !active:
+
+		return
+
 	if event.is_action_pressed("interact"):
 
 		interact_pressed.emit()

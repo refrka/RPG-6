@@ -12,13 +12,15 @@
 [sub_resource type="Resource" id="Resource_8ysgb"]
 script = ExtResource("2_o7fyb")
 option_text = "Here's another option in this branch"
-dialogue_text = "You selected the next option, and this one did a thing for a quest!"
+dialogue_text = "You selected the next option, and this one did a thing for a quest! [OLD]"
+dialogue_lines = Array[String](["You selected the next option, and this one did a thing for a quest!", "Here's another line talking about it because it's so interesting."])
 metadata/_custom_type_script = "uid://bm4tki6d2coyc"
 
 [sub_resource type="Resource" id="Resource_nbolb"]
 script = ExtResource("3_8ysgb")
 option_text = "This is a regular dialogue root node option"
-dialogue_text = "You selected the option!"
+dialogue_text = "You selected the option! [OLD]"
+dialogue_lines = Array[String](["You selected the option!"])
 option_nodes = Array[ExtResource("2_o7fyb")]([SubResource("Resource_8ysgb")])
 metadata/_custom_type_script = "uid://cauofvsusjrcb"
 

@@ -159,6 +159,10 @@ func load_data(entity_data: EntityData) -> void:
 
 				component.load_dictionary(dict)
 
+	if data.last_save_dict.has("inventory"):
+
+		inventory = Inventory.load_dictionary(data.last_save_dict["inventory"])
+
 
 
 

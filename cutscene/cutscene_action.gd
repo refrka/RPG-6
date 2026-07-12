@@ -13,7 +13,7 @@ signal action_completed
 
 func execute() -> void:
 
-	command_set.all_commands_executed.connect(_on_all_commands_executed)
+	command_set.all_commands_executed.connect(_on_all_commands_executed, CONNECT_ONE_SHOT)
 
 	command_set.execute()
 

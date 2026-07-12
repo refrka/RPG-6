@@ -41,6 +41,8 @@ func _get_dictionary() -> Dictionary:
 
 			save_dict["components"][component.get_component_name()] = component.get_dictionary()
 
+	save_dict["inventory"] = node.inventory.get_dictionary()
+
 	return save_dict
 
 

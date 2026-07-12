@@ -8,9 +8,11 @@ class_name ShowCutsceneDialogue extends CommandFunction
 
 func execute(_data: Dictionary = {}) -> bool:
 
-	var overlay = UI.open_interaction_overlay()
+	var interaction_overlay = UI.open_interaction_overlay()
 
-	overlay.close_requested.connect(_on_close_requested)
+	interaction_overlay.show_cutscene_dialogue(cutscene_dialogue)
+
+	interaction_overlay.close_requested.connect(_on_close_requested)
 
 	return true
 

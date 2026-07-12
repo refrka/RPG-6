@@ -30,7 +30,7 @@ func execute_action() -> void:
 
 	var action = actions[action_index]
 
-	action.action_completed.connect(_on_action_completed)
+	action.action_completed.connect(_on_action_completed, CONNECT_ONE_SHOT)
 
 	action.execute()
 

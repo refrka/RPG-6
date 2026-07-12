@@ -25,8 +25,6 @@ signal close_requested
 
 
 
-
-
 @export var entity_name_label: Label
 
 @export var dialogue_text_label: RichTextLabel
@@ -34,11 +32,17 @@ signal close_requested
 
 
 
+var line_index:= 0
+
 var greeting: Greeting
 
 var current_entity: EntityNode
 
+var current_dialogue_lines: Array[String]
+
 var current_dialogue_node: DialogueNode
+
+var cutscene_dialogue: CutsceneDialogue
 
 var barter_component: InteractableComponent
 
@@ -60,6 +64,8 @@ func _ready() -> void:
 	close_button.pressed.connect(_on_close_pressed)
 
 	options_interface.dialogue_option_selected.connect(_on_dialogue_option_selected)
+	
+	options_interface.next_line_pressed.connect(_on_next_line_pressed)
 
 	options_interface.branch_ended.connect(_on_branch_ended)
 
@@ -67,8 +73,9 @@ func _ready() -> void:
 
 
 
-
 func load_interaction(target_entity: EntityNode) -> void:
+
+	line_index = 0
 
 	current_entity = target_entity
 
@@ -77,6 +84,8 @@ func load_interaction(target_entity: EntityNode) -> void:
 	barter_component = target_entity.get_component("barter")
 
 	dialogue_component = target_entity.get_component("dialogue")
+
+	options_interface.hide_next_button()
 
 	if dialogue_component:
 
@@ -103,7 +112,38 @@ func set_greeting(_greeting: Greeting) -> void:
 
 
 
+func show_dialogue_line() -> void:
 
+	var line = current_dialogue_lines[line_index]
+
+	dialogue_text_label.text = line
+
+	if line_index < current_dialogue_lines.size() - 1:
+
+		options_interface.show_next_button()
+
+	else:
+
+		options_interface.hide_next_button()
+
+	_load_options_interface()
+
+
+
+
+
+
+func show_cutscene_dialogue(_cutscene_dialogue: CutsceneDialogue) -> void:
+
+	barter_button.visible = false
+
+	line_index = 0
+
+	cutscene_dialogue = _cutscene_dialogue
+
+	current_dialogue_lines = cutscene_dialogue.dialogue_lines
+
+	show_dialogue_line()
 
 
 
@@ -118,11 +158,13 @@ func _load_options_interface() -> void:
 
 	options_interface.visible = true
 
-	barter_button.visible = true
-
 	dialogue_button.visible = false
 
-	options_interface.load_root_options(current_entity)
+	if current_entity:
+
+		options_interface.load_root_options(current_entity)
+
+		barter_button.visible = true
 
 
 
@@ -150,6 +192,14 @@ func _load_barter_interface() -> void:
 
 
 
+func _clear_options() -> void:
+
+	pass
+
+
+
+
+
 func _deactivate() -> void:
 
 	super()
@@ -166,6 +216,16 @@ func _on_close_pressed() -> void:
 
 
 
+
+func _on_next_line_pressed() -> void:
+
+	line_index += 1
+
+	show_dialogue_line()
+
+
+
+
 func _on_dialogue_option_selected(dialogue_node: DialogueNode) -> void:
 
 	if current_dialogue_node:
@@ -176,7 +236,9 @@ func _on_dialogue_option_selected(dialogue_node: DialogueNode) -> void:
 
 	current_dialogue_node = dialogue_node
 
-	dialogue_text_label.text = current_dialogue_node.dialogue_text
+	current_dialogue_lines = current_dialogue_node.dialogue_lines
+
+	show_dialogue_line()
 
 	if current_dialogue_node.enter_command_set:
 

@@ -65,6 +65,7 @@ func load_inventory(_source_inventory: Inventory) -> void:
 
 		entity_item_list.add_child(row)
 
+	_update_entity_gold()
 
 
 
@@ -102,6 +103,8 @@ func _load_player_inventory() -> void:
 		row.sell_requested.connect(_on_sell_requested)
 
 		player_item_list.add_child(row)
+
+	_update_player_gold()
 
 
 
@@ -224,7 +227,7 @@ func _update_player_gold() -> void:
 
 func _update_entity_gold() -> void:
 
-	pass
+	entity_gold_label.text = "%s g" % source_inventory.get_gold_count()
 
 
 
@@ -307,15 +310,15 @@ func _on_sell_requested(item_data: ItemData, count: int) -> void:
 
 
 
-func _on_player_gold_updated(_amount: int, new_total: int, _removed: bool) -> void:
+func _on_player_gold_updated(_amount: int, _new_total: int, _removed: bool) -> void:
 
-	player_gold_label.text = "%s g" % new_total
+	_update_player_gold()
 
 
 
-func _on_entity_gold_updated(_amount: int, new_total: int, _removed: bool) -> void:
+func _on_entity_gold_updated(_amount: int, _new_total: int, _removed: bool) -> void:
 
-	entity_gold_label.text = "%s g" % new_total
+	_update_entity_gold()
 
 
 

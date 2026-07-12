@@ -61,6 +61,10 @@ func _initialize(_location_data: LocationData) -> void:
 
 	_load_entity_data()
 
+	var camera = Game.get_camera()
+
+	camera.global_position = self.global_position
+
 
 
 

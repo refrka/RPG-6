@@ -281,6 +281,8 @@ func get_dictionary() -> Dictionary:
 
 		save_dict["items"].append(item_data.get_dictionary())
 
+	save_dict["gold"] = gold
+
 	return save_dict
 
 
@@ -294,6 +296,12 @@ static func load_dictionary(save_dict: Dictionary) -> Inventory:
 	for dict in save_dict["items"]:
 
 		inventory.items.append(ItemData.load_dictionary(dict))
+
+	if !save_dict.has("gold"):
+
+		save_dict["gold"] = 0
+
+	inventory.gold = int(save_dict["gold"])
 
 	return inventory
 

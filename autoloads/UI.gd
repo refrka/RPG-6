@@ -25,6 +25,8 @@ var overlay_list: Array[UIOverlay]
 
 
 
+
+
 func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -68,7 +70,7 @@ func show_notification(message: String) -> void:
 
 func open_interaction_overlay(target_entity: EntityNode = null) -> UIOverlay:
 
-	var interaction_overlay = interaction_overlay_scene.instantiate()
+	var interaction_overlay = interaction_overlay_scene.instantiate() as InteractionOverlay
 
 	overlay_root.add_child(interaction_overlay)
 

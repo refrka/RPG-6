@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://8lee84264rm2" path="res://ui/interaction_overlay.gd" id="1_ov6j1"]
 [ext_resource type="Script" uid="uid://bbi7tyu1wg5o6" path="res://ui/options_interface.gd" id="2_qprjb"]
-[ext_resource type="PackedScene" uid="uid://ct4psyjy8mby4" path="res://ui/dialogue_option.tscn" id="3_prd4c"]
 [ext_resource type="Script" uid="uid://dujyi177t2euk" path="res://ui/barter_interface.gd" id="3_u143o"]
 [ext_resource type="PackedScene" uid="uid://cka2fy2ie0egf" path="res://ui/barter_sell_list_row.tscn" id="4_vjlly"]
 [ext_resource type="PackedScene" uid="uid://cocf0kjxjd4gg" path="res://ui/barter_buy_list_row.tscn" id="5_prd4c"]
@@ -110,18 +109,24 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="OptionsInterface" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer" unique_id=341166124 node_paths=PackedStringArray("options_list")]
-visible = false
+[node name="OptionsInterface" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer" unique_id=341166124 node_paths=PackedStringArray("options_list", "next_line_button")]
 custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 script = ExtResource("2_qprjb")
-options_list = NodePath("OptionsList")
+options_list = NodePath("MarginContainer/OptionsList")
+next_line_button = NodePath("MarginContainer/NextLineButton")
 
-[node name="OptionsList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/OptionsInterface" unique_id=1984077127]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/OptionsInterface" unique_id=1756460832]
 layout_mode = 2
 
-[node name="DialogueOption" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/OptionsInterface/OptionsList" unique_id=1887730824 instance=ExtResource("3_prd4c")]
+[node name="OptionsList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/OptionsInterface/MarginContainer" unique_id=1984077127]
 layout_mode = 2
+
+[node name="NextLineButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/OptionsInterface/MarginContainer" unique_id=1223163693]
+custom_minimum_size = Vector2(90, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Next Line"
 
 [node name="BarterInterface" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer" unique_id=184595418 node_paths=PackedStringArray("player_item_list", "player_gold_label", "entity_item_list", "entity_gold_label")]
 visible = false

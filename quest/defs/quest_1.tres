@@ -27,7 +27,8 @@ metadata/_custom_type_script = "uid://ctns1uf21m71i"
 script = ExtResource("8_4yldl")
 quest_id = &"quest_1"
 option_text = "The First Quest"
-dialogue_text = "You started the first quest!"
+dialogue_text = "You started the first quest! [OLD]"
+dialogue_lines = Array[String](["You started the first quest!"])
 enter_command_set = SubResource("Resource_4yldl")
 metadata/_custom_type_script = "uid://b3etsdiil5o71"
 
@@ -65,7 +66,8 @@ metadata/_custom_type_script = "uid://ctns1uf21m71i"
 script = ExtResource("8_4yldl")
 quest_id = &"quest_1"
 option_text = "Submit quest 1"
-dialogue_text = "You turned in the quest!"
+dialogue_text = "You turned in the quest! [OLD]"
+dialogue_lines = Array[String](["You turned in the quest!"])
 enter_command_set = SubResource("Resource_fsbdh")
 metadata/_custom_type_script = "uid://b3etsdiil5o71"
 

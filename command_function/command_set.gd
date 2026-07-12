@@ -21,7 +21,7 @@ func execute(_data: Dictionary = {}) -> void:
 
 	var command = command_functions[command_index]
 
-	command.command_executed.connect(_on_command_executed)
+	command.command_executed.connect(_on_command_executed, CONNECT_ONE_SHOT)
 
 	command.execute(data)
 

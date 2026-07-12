@@ -6,6 +6,7 @@ class_name DialogueNode extends Resource
 
 @export_multiline var dialogue_text: String
 
+@export_multiline var dialogue_lines: Array[String]
 
 
 

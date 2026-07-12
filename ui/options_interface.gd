@@ -4,6 +4,8 @@ class_name OptionsInterface extends MarginContainer
 
 signal dialogue_option_selected(dialogue_node: DialogueNode)
 
+signal next_line_pressed
+
 signal branch_ended
 
 
@@ -13,12 +15,27 @@ signal branch_ended
 
 @export var options_list: VBoxContainer
 
+@export var next_line_button: Button
+
+
+
 
 var current_options: Array[DialogueNode]
 
 
 
+func _ready() -> void:
+
+	next_line_button.pressed.connect(_on_next_line_pressed)
+
+
+
+
+
+
 func load_root_options(target_entity: EntityNode) -> void:
+
+	hide_next_button()
 
 	_clear_options()
 
@@ -41,6 +58,24 @@ func load_root_options(target_entity: EntityNode) -> void:
 		_add_option(option)
 
 	
+
+
+
+
+func show_next_button() -> void:
+
+	print("show it")
+
+	next_line_button.visible = true
+
+
+
+func hide_next_button() -> void:
+
+	print("hide it")
+
+	next_line_button.visible = false
+
 
 
 
@@ -108,3 +143,8 @@ func _on_option_selected(dialogue_node: DialogueNode) -> void:
 
 
 
+
+
+func _on_next_line_pressed() -> void:
+
+	next_line_pressed.emit()
