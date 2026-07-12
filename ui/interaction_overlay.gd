@@ -32,7 +32,7 @@ signal close_requested
 
 
 
-
+var greeting: Greeting
 
 var current_entity: EntityNode
 
@@ -91,9 +91,11 @@ func load_interaction(target_entity: EntityNode) -> void:
 
 
 
+func set_greeting(_greeting: Greeting) -> void:
 
+	greeting = _greeting
 
-
+	dialogue_text_label.text = greeting.greeting_text
 
 
 

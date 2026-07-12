@@ -18,11 +18,23 @@ var can_move:= true
 
 
 
+func enable() -> void:
+
+	_activate()
+
+
+
+func disable() -> void:
+
+	_deactivate()
+
+
+
+
 
 func set_move_dir(dir: Vector2) -> void:
 
 	move_dir = dir
-
 
 
 

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8lee84264rm2" path="res://ui/interaction_overlay.gd" id="1_ov6j1"]
 [ext_resource type="Script" uid="uid://bbi7tyu1wg5o6" path="res://ui/options_interface.gd" id="2_qprjb"]
+[ext_resource type="PackedScene" uid="uid://ct4psyjy8mby4" path="res://ui/dialogue_option.tscn" id="3_prd4c"]
 [ext_resource type="Script" uid="uid://dujyi177t2euk" path="res://ui/barter_interface.gd" id="3_u143o"]
 [ext_resource type="PackedScene" uid="uid://cka2fy2ie0egf" path="res://ui/barter_sell_list_row.tscn" id="4_vjlly"]
 [ext_resource type="PackedScene" uid="uid://cocf0kjxjd4gg" path="res://ui/barter_buy_list_row.tscn" id="5_prd4c"]
@@ -58,11 +59,13 @@ layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="DialogueButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Header/HBoxContainer/HBoxContainer" unique_id=444817039]
+visible = false
 custom_minimum_size = Vector2(75, 35)
 layout_mode = 2
 text = "Dialogue"
 
 [node name="BarterButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/Header/HBoxContainer/HBoxContainer" unique_id=74407085]
+visible = false
 custom_minimum_size = Vector2(75, 35)
 layout_mode = 2
 text = "Barter"
@@ -74,6 +77,7 @@ size_flags_horizontal = 10
 text = "Close"
 
 [node name="DialogueSection" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2080218840]
+custom_minimum_size = Vector2(450, 0)
 layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/DialogueSection" unique_id=344382888]
@@ -116,7 +120,11 @@ options_list = NodePath("OptionsList")
 [node name="OptionsList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/OptionsInterface" unique_id=1984077127]
 layout_mode = 2
 
+[node name="DialogueOption" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer/OptionsInterface/OptionsList" unique_id=1887730824 instance=ExtResource("3_prd4c")]
+layout_mode = 2
+
 [node name="BarterInterface" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/BottomSection/VBoxContainer/MarginContainer" unique_id=184595418 node_paths=PackedStringArray("player_item_list", "player_gold_label", "entity_item_list", "entity_gold_label")]
+visible = false
 custom_minimum_size = Vector2(1000, 500)
 layout_mode = 2
 script = ExtResource("3_u143o")

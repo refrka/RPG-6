@@ -64,7 +64,7 @@ func start(save_id: StringName) -> void:
 
 	player._activate()
 
-	Scenes.start_cutscene("opening")
+	_game_start_debug_method()
 
 	game_started.emit()
 
@@ -155,7 +155,14 @@ func change_location(location_id: StringName, spawn_id:="start") -> void:
 
 	active_save_data.spawn_id = spawn_id
 
-	
+
+
+
+
+
+
+
+
 
 
 
@@ -234,3 +241,40 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("quicksave"):
 
 		save()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _game_start_debug_method() -> void:
+
+	Scenes.start_cutscene("opening")

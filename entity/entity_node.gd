@@ -207,3 +207,27 @@ func _deactivate() -> void:
 		component._deactivate()
 
 	body_collision.disabled = true
+
+
+
+
+
+
+func _enable() -> void:
+
+	for component in get_all_components():
+
+		if component.has_method("enable"):
+
+			component.enable()
+
+
+
+
+func _disable() -> void:
+
+	for component in get_all_components():
+
+		if component.has_method("disable"):
+
+			component.disable()

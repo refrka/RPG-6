@@ -38,15 +38,15 @@ texture = SubResource("PlaceholderTexture2D_tnxjk")
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_ut6t0")
 
-[node name="BarterComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1494875897) index="1" unique_id=1829083306]
+[node name="DialogueComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1494875897) index="1" unique_id=1966362629]
+script = ExtResource("4_qxwvc")
+type = 1
+
+[node name="BarterComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1494875897) index="2" unique_id=1829083306]
 script = ExtResource("4_ut6t0")
 inventory = SubResource("Resource_bhma2")
 type = 1
 metadata/_custom_type_script = "uid://bdhuvvpoce3b1"
-
-[node name="DialogueComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1494875897) index="2" unique_id=1966362629]
-script = ExtResource("4_qxwvc")
-type = 1
 
 [node name="HealthComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1494875897) index="3" unique_id=980980624]
 script = ExtResource("7_fqnju")

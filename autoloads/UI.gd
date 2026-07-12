@@ -65,13 +65,17 @@ func show_notification(message: String) -> void:
 
 
 
-func open_interaction_overlay(target_entity: EntityNode) -> UIOverlay:
+func open_interaction_overlay(target_entity: EntityNode = null) -> UIOverlay:
 
 	var interaction_overlay = interaction_overlay_scene.instantiate()
 
 	overlay_root.add_child(interaction_overlay)
 
-	interaction_overlay.load_interaction(target_entity)
+	interaction_overlay.close_requested.connect(_on_interaction_overlay_close_requested)
+
+	if target_entity:
+
+		interaction_overlay.load_interaction(target_entity)
 
 	return interaction_overlay
 
@@ -245,7 +249,9 @@ func _on_items_added_to_inventory(event: ItemsAddedToInventoryEvent) -> void:
 
 
 
+func _on_interaction_overlay_close_requested() -> void:
 
+	close_interaction_overlay()
 
 
 

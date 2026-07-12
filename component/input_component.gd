@@ -25,6 +25,19 @@ var movement_component: MovementComponent:
 
 
 
+func enable() -> void:
+
+	_activate()
+
+
+
+func disable() -> void:
+
+	_deactivate()
+
+
+
+
 
 
 func _unhandled_input(event: InputEvent) -> void:

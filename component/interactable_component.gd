@@ -32,18 +32,6 @@ var dialogue_open:= false
 
 func interact() -> bool:
 
-	if entity.def.dialogue_library:
-
-		Events.fire(DialogueStartedEvent, {"entity_node": entity})
-
-		var panel = UI.open_interaction_overlay(entity)
-
-		panel.close_requested.connect(_on_close_requested)
-
-		dialogue_open = true
-
-		return true
-
 	return false
 
 
@@ -69,6 +57,8 @@ func end() -> void:
 
 
 func can_interact() -> bool:
+
+	
 
 	return true
 

@@ -41,6 +41,10 @@ func register_scene(scene: GameScene) -> void:
 
 func start_cutscene(cutscene_id: StringName) -> Cutscene:
 
+	var player = Game.get_player()
+
+	player._disable()
+
 	var cutscene = _get_cutscene(cutscene_id)
 
 	if !cutscene:
