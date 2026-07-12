@@ -8,10 +8,9 @@ class_name Cutscene extends Resource
 
 
 
+@export var actions: Array[CutsceneAction]
 
-
-
-
+var action_index:= 0
 
 
 
@@ -23,12 +22,27 @@ func start() -> void:
 
 		Game.load_location(location_id)
 
+	execute_action()
 
 
 
 
 
+func execute_action() -> void:
+
+	var action = actions[action_index]
+
+	action.action_completed.connect(_on_action_completed)
+
+	action.execute()
 
 
 
 
+func _on_action_completed() -> void:
+
+	action_index += 1
+
+	if action_index <= actions.size() - 1:
+
+		execute_action()
