@@ -5,7 +5,8 @@
 [ext_resource type="Script" uid="uid://dymrj5u6n55yn" path="res://command_function/command_function.gd" id="2_st7kb"]
 [ext_resource type="Script" uid="uid://b8bp81r5mwo2r" path="res://command_function/move_camera.gd" id="3_iuodo"]
 [ext_resource type="Script" uid="uid://ctns1uf21m71i" path="res://command_function/command_set.gd" id="4_2yfqd"]
-[ext_resource type="Script" uid="uid://dmo735j8vlejx" path="res://command_function/spawn_entity.gd" id="5_st7kb"]
+[ext_resource type="Script" uid="uid://dko771rgjbspm" path="res://cutscene/cutscene_dialogue.gd" id="5_iuodo"]
+[ext_resource type="Script" uid="uid://5n2f68kybegc" path="res://command_function/show_cutscene_dialogue.gd" id="6_2yfqd"]
 
 [sub_resource type="Resource" id="Resource_s2qg8"]
 script = ExtResource("3_iuodo")
@@ -21,15 +22,17 @@ script = ExtResource("1_xqj82")
 command_set = SubResource("Resource_x2j70")
 metadata/_custom_type_script = "uid://cxf4ohxuokvoi"
 
-[sub_resource type="Resource" id="Resource_xqj82"]
-script = ExtResource("5_st7kb")
-unique_id = &"ap"
-spawn_id = &"wolf_spawn"
-metadata/_custom_type_script = "uid://dmo735j8vlejx"
+[sub_resource type="Resource" id="Resource_4yldl"]
+script = ExtResource("5_iuodo")
+metadata/_custom_type_script = "uid://dko771rgjbspm"
+
+[sub_resource type="Resource" id="Resource_cp7nc"]
+script = ExtResource("6_2yfqd")
+cutscene_dialogue = SubResource("Resource_4yldl")
 
 [sub_resource type="Resource" id="Resource_rrdlc"]
 script = ExtResource("4_2yfqd")
-command_functions = Array[ExtResource("2_st7kb")]([SubResource("Resource_xqj82")])
+command_functions = Array[ExtResource("2_st7kb")]([SubResource("Resource_cp7nc")])
 metadata/_custom_type_script = "uid://ctns1uf21m71i"
 
 [sub_resource type="Resource" id="Resource_4rbj8"]

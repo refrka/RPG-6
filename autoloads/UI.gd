@@ -5,6 +5,7 @@ extends Node
 
 @onready var interaction_overlay_scene:= preload("res://ui/interaction_overlay.tscn")
 
+## DEPRECATED
 @onready var dialogue_panel_scene:= preload("res://ui/dialogue_panel.tscn")
 
 @onready var notification_overlay_scene:= preload("res://ui/notification_overlay.tscn")
@@ -97,7 +98,7 @@ func close_interaction_overlay() -> void:
 
 
 
-
+## DEPRECATED
 func open_dialogue(target_entity: EntityNode) -> DialoguePanel:
 
 	var dialogue_panel = dialogue_panel_scene.instantiate()
@@ -111,7 +112,7 @@ func open_dialogue(target_entity: EntityNode) -> DialoguePanel:
 
 
 
-
+## DEPRECATED
 func close_dialogue() -> void:
 
 	var dialogue_panel = get_tree().get_first_node_in_group("dialogue_panel")
