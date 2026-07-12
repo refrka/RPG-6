@@ -64,6 +64,8 @@ func start(save_id: StringName) -> void:
 
 	player._activate()
 
+	print("everything started")
+
 	_game_start_debug_method()
 
 	game_started.emit()

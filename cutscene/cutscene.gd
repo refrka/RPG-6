@@ -46,3 +46,11 @@ func _on_action_completed() -> void:
 	if action_index <= actions.size() - 1:
 
 		execute_action()
+
+	else:
+
+		action_index = 0
+
+		var player = Game.get_player()
+
+		player._enable()

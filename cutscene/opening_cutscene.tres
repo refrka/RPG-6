@@ -23,7 +23,7 @@ metadata/_custom_type_script = "uid://cxf4ohxuokvoi"
 
 [sub_resource type="Resource" id="Resource_xqj82"]
 script = ExtResource("5_st7kb")
-entity_id = &"wolf"
+unique_id = &"ap"
 spawn_id = &"wolf_spawn"
 metadata/_custom_type_script = "uid://dmo735j8vlejx"
 

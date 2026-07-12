@@ -40,4 +40,6 @@ func _on_command_executed() -> void:
 
 	else:
 
+		command_index = 0
+
 		all_commands_executed.emit()
