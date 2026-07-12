@@ -34,6 +34,18 @@ func get_entity_def(entity_id: StringName) -> EntityDef:
 
 
 
+func get_unique_def(unique_id: StringName) -> EntityDef:
+
+	for def in def_registry.values():
+
+		if def.unique_id == unique_id:
+
+			return def
+
+	return null
+
+
+
 
 
 func create_node(entity_def: EntityDef) -> EntityNode:

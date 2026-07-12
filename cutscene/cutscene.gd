@@ -6,7 +6,7 @@ class_name Cutscene extends Resource
 
 @export var location_id: StringName
 
-
+@export var dialogue: CutsceneDialogue
 
 @export var actions: Array[CutsceneAction]
 

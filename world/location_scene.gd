@@ -187,6 +187,19 @@ func spawn_player(spawn_id: StringName) -> void:
 
 
 
+func add_entity_node(entity_node: EntityNode) -> void:
+
+	if entity_node is CharacterNode:
+
+		character_root.add_child(entity_node)
+
+	if entity_node is ObjectNode:
+
+		object_root.add_child(entity_node)
+
+
+
+
 
 func _load_location_data(_location_data: LocationData) -> void:
 
@@ -224,17 +237,11 @@ func _load_entity_data() -> void:
 
 	for entity_data in location_entity_data:
 
-		var node = Entities.create_node(entity_data.def)
+		var entity_node = Entities.create_node(entity_data.def)
 
-		if node is CharacterNode:
+		add_entity_node(entity_node)
 
-			character_root.add_child(node)
-
-		elif node is ObjectNode:
-
-			object_root.add_child(node)
-
-		node.load_data(entity_data)
+		entity_node.load_data(entity_data)
 
 
 
