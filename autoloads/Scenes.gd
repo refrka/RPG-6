@@ -51,6 +51,8 @@ func start_cutscene(cutscene_id: StringName) -> Cutscene:
 
 		return null
 
+	cutscene.cutscene_finished.connect(_on_cutscene_finished)
+
 	cutscene.start()
 
 	return cutscene
@@ -210,3 +212,13 @@ func _load_cutscenes() -> void:
 			elif path.ends_with("/"):
 
 				sub_dirs.append(path)
+
+
+
+
+
+
+
+func _on_cutscene_finished() -> void:
+
+	pass

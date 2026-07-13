@@ -47,14 +47,6 @@ func unload_location() -> void:
 
 
 
-
-
-
-
-
-
-
-
 func _get_location_data(location_scene: LocationScene) -> LocationData:
 
 	var data: LocationData = null

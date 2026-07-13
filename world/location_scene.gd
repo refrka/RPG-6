@@ -217,8 +217,6 @@ func _load_location_data(_location_data: LocationData) -> void:
 
 		location_data.discovered = true
 
-		Events.fire(LocationDiscoveredEvent, {"location_id": location_id})
-
 
 
 
@@ -361,6 +359,22 @@ func _load_container_states() -> void:
 
 
 
+
+
+func _enable() -> void:
+
+	for character in character_root.get_children():
+
+		character._enable()
+
+
+
+
+func _disable() -> void:
+
+	for character in character_root.get_children():
+
+		character._disable()
 
 
 

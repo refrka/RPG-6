@@ -1,6 +1,8 @@
 class_name Cutscene extends Resource
 
 
+signal cutscene_finished
+
 
 @export var cutscene_id: StringName
 
@@ -11,14 +13,19 @@ class_name Cutscene extends Resource
 var action_index:= 0
 
 
+var current_location_scene: LocationScene
+
+
+
+
+
+
 
 func start() -> void:
 
-	var location_scene = Scenes.get_scene(LocationScene)
+	current_location_scene = Scenes.get_scene(LocationScene)
 
-	if location_scene.location_id != location_id:
-
-		Game.load_location(location_id)
+	Game.load_location(location_id)
 
 	execute_action()
 
@@ -37,6 +44,21 @@ func execute_action() -> void:
 
 
 
+
+
+
+
+
+func _end() -> void:
+
+	cutscene_finished.emit()
+
+
+
+
+
+
+
 func _on_action_completed() -> void:
 
 	action_index += 1
@@ -49,6 +71,5 @@ func _on_action_completed() -> void:
 
 		action_index = 0
 
-		var player = Game.get_player()
+		_end()
 
-		player._enable()
