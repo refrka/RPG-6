@@ -16,8 +16,6 @@ class_name MainMenu extends GameScene
 
 func _ready() -> void:
 
-	super()
-
 	start_new_game_button.pressed.connect(_on_start_new_game_pressed)
 
 	Saves.save_list_updated.connect(_load_save_list)
@@ -61,6 +59,15 @@ func _clear_save_list() -> void:
 
 
 
+
+
+
+
+
+
+
+
+
 func _on_start_new_game_pressed() -> void:
 
 	var character_name = new_character_name_entry.text
@@ -73,10 +80,10 @@ func _on_start_new_game_pressed() -> void:
 
 
 
-
 func _on_save_selected(save_data: SaveData) -> void:
 
 	pass
+
 
 
 

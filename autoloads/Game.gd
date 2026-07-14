@@ -14,18 +14,25 @@ var active_save_data: SaveData
 
 
 
-## Top-level Methods
-
 
 func launch() -> void:
 
-	pass
+	var main_menu = Scenes.get_scene(MainMenu)
+
+	Scenes.activate_scene(main_menu)
+
+	Events.fire(GameLaunchedEvent)
+
+
 
 
 
 func restart() -> void:
 
 	pass
+
+
+
 
 
 
@@ -39,9 +46,17 @@ func start(save_id: StringName) -> void:
 
 
 
+
+
+
+
 func end() -> void:
 
 	pass
+
+
+
+
 
 
 

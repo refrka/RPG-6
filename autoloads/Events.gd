@@ -1,0 +1,59 @@
+extends Node
+
+
+
+
+var subscriptions: Dictionary[Script, Array]
+
+
+
+
+func subscribe(event_script: Script, callback: Callable) -> void:
+
+	if !subscriptions.has(event_script):
+
+		subscriptions[event_script] = []
+
+	if !subscriptions[event_script].has(callback):
+
+		subscriptions[event_script].append(callback)
+
+
+
+
+
+func unsubscribe(event_script: Script, callback: Callable) -> void:
+
+	if subscriptions.has(event_script) and subscriptions[event_script].has(callback):
+
+		subscriptions[event_script].erase(callback)
+
+		if subscriptions[event_script].is_empty():
+
+			subscriptions.erase(event_script)
+
+
+
+
+
+func fire(event_script: Script, _data: Dictionary = {}) -> void:
+
+	var event = event_script.new()
+
+	event.fire(_data)
+
+	call_subscriptions(event)
+
+
+
+
+
+func call_subscriptions(event: Event) -> void:
+
+	if subscriptions.has(event.get_script()):
+
+		for callback in subscriptions[event.get_script()]:
+
+			if callback.is_valid():
+
+				callback.call(event)
