@@ -66,13 +66,15 @@ func _initialize(_location_data: LocationData) -> void:
 
 	camera.global_position = self.global_position
 
+	_activate()
+
 
 
 
 
 func _unload() -> void:
 
-	print("unloading: ", self)
+	_deactivate()
 
 	Events.unsubscribe(ContainerStateChanged, _on_container_state_changed)
 

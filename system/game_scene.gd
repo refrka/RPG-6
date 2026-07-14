@@ -28,11 +28,15 @@ func _ready() -> void:
 
 func _activate() -> void:
 
+	print("activating scene: ", self)
+
 	show()
 
 
 
 
 func _deactivate() -> void:
+
+	print("deactivating scene: ", self)
 
 	hide()
