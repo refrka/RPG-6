@@ -53,8 +53,6 @@ func new_load_location(location_id: StringName) -> LocationScene:
 
 		location_scene_list.append(location_scene)
 
-	_change_active_location(location_scene)
-
 	return location_scene
 
 
@@ -110,6 +108,8 @@ func load_location(location_id: StringName) -> LocationScene:
 
 func unload_location() -> void:
 
+	location_scene_list.erase(active_location)
+
 	active_location._unload()
 
 	active_location.queue_free()
@@ -135,12 +135,15 @@ func _change_active_location(new_location: LocationScene) -> void:
 
 	if active_location:
 
+		active_location._exit()
+
 		remove_child(active_location)
 
 	active_location = new_location
 
 	add_child(active_location)
 
+	active_location._enter()
 
 
 
@@ -149,11 +152,11 @@ func _change_active_location(new_location: LocationScene) -> void:
 
 
 
-func _get_location_data(location_scene: LocationScene) -> LocationData:
+func _get_location_data(location_scene: LocationScene) -> NewLocationData:
 
-	var data: LocationData = null
+	var data: NewLocationData = null
 
-	var save_data = Game.get_save_data()
+	var save_data = Game.get_new_save_data()
 
 	for location_data in save_data.location_data_list:
 
@@ -179,21 +182,21 @@ func _get_location_scene(location_id: StringName) -> LocationScene:
 
 			return location_scene
 
-	return Scenes.get_location_scene(location_id)
+	return null
 	
 
 
 
-func _create_location_data(location_scene: LocationScene) -> LocationData:
+func _create_location_data(location_scene: LocationScene) -> NewLocationData:
 
-	var data = LocationData.new()
+	var data = NewLocationData.new()
 
-	data.location_scene = location_scene
+	data.node = location_scene
 
 	data.location_id = location_scene.location_id
 
-	var save_data = Game.get_save_data()
+	var save_data = Game.get_new_save_data()
 
-	save_data.location_data_list.append(data)
+	save_data.register_instance(data)
 
 	return data

@@ -10,6 +10,26 @@ var data = {
 
 	"spawn_id": "",
 
+	"location_data_list": [ ],
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	"components": { },
+
 	"inventory": { 
 
 		"items": { },
@@ -18,14 +38,10 @@ var data = {
 
 	},
 
-	"player_data": { },
-
 	"location_data": [ ],
 
 	"entity_data": [ ],
 
 	"quest_data": [ ],
-
-	"components": { },
 
 }

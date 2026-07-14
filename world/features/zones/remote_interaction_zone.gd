@@ -7,6 +7,9 @@ var interactable_component: InteractableComponent
 
 
 
+
+
+
 func _ready() -> void:
 
 	sensor.body_entered.connect(_on_body_entered_zone)
@@ -32,6 +35,10 @@ func _get_interactable_component(entity_node: EntityNode) -> InteractableCompone
 
 
 func _on_body_entered_zone(_body: PhysicsBody2D) -> void:
+
+	if !active:
+
+		return
 
 	if interactable_component.can_interact():
 

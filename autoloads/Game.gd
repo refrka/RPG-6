@@ -23,12 +23,12 @@ func _ready() -> void:
 
 
 
-## Top-level Methods
-
 
 func launch() -> void:
 
-	Scenes.load_scene(MainMenu)
+	UI.deactivate_overlays()
+
+	NewScenes.activate_scene(MainMenu)
 
 
 
@@ -40,7 +40,7 @@ func start(save_id: StringName) -> void:
 
 		end()
 
-	active_save_data = Saves.load_save_data(save_id)
+	active_save_data = null
 
 	var world_scene = Scenes.load_scene(WorldScene)
 
@@ -66,6 +66,41 @@ func start(save_id: StringName) -> void:
 
 
 
+
+
+func new_start(save_id: StringName) -> void:
+
+	if active_new_save_data:
+
+		end()
+
+	active_new_save_data = Saves.load_save_data(save_id)
+
+	get_player(active_new_save_data.player_data)
+
+	var world_scene = NewScenes.activate_scene(NewWorldScene)
+
+	if active_new_save_data.last_dict["location_id"] == "":
+
+		active_new_save_data.last_dict["location_id"] = "forest_start"
+
+		active_new_save_data.location_id = "forest_start"
+
+		active_new_save_data.last_dict["spawn_id"] = "start"
+
+		active_new_save_data.spawn_id = "start"
+
+	world_scene.enter_location(active_new_save_data.last_dict["location_id"])
+
+
+
+
+
+
+
+
+
+
 func end() -> void:
 
 	save()
@@ -74,7 +109,7 @@ func end() -> void:
 
 	player._deactivate()
 
-	active_save_data = null
+	active_new_save_data = null
 
 	game_ended.emit()
 
@@ -84,13 +119,13 @@ func end() -> void:
 
 func save() -> void:
 
-	if !active_save_data:
+	if !active_new_save_data:
 
 		return
 
-	Saves.save_game(active_save_data)
+	Saves.save_game(active_new_save_data)
 
-	print("Game saved (%s : %s)" % [active_save_data.save_name, active_save_data.save_id])
+	print("Game saved (%s : %s)" % [active_new_save_data.save_name, active_new_save_data.save_id])
 
 
 
@@ -100,9 +135,9 @@ func exit() -> void:
 
 	end()
 
-	Scenes.close_scene(LocationScene)
+	UI.deactivate_overlays()
 
-	Scenes.load_scene(MainMenu)
+	NewScenes.activate_scene(MainMenu)
 
 
 
@@ -124,6 +159,7 @@ func resume() -> void:
 
 
 
+# DEPRECATED 
 func load_location(location_id: StringName) -> LocationScene:
 
 	var location_scene: LocationScene = Scenes.get_scene(LocationScene)
@@ -171,7 +207,7 @@ func change_location(location_id: StringName, spawn_id:="start") -> void:
 
 
 
-func get_player() -> PlayerNode:
+func get_player(player_data: PlayerData = null) -> PlayerNode:
 
 	if !player:
 
@@ -179,9 +215,13 @@ func get_player() -> PlayerNode:
 
 		add_child(player)
 
-		player._initialize()
+		player._setup()
 
 		player._deactivate()
+
+	if player_data:
+
+		player._initialize(player_data)
 	
 	return player
 
@@ -200,15 +240,15 @@ func get_new_save_data() -> NewSaveData:
 
 
 
-func get_location_data(location_id: StringName) -> LocationData:
+func get_location_data(location_id: StringName) -> NewLocationData:
 
-	return active_save_data.get_location_data(location_id)
+	return active_new_save_data.get_location_data(location_id)
 
 
 
 func get_entity_data(unique_id: StringName) -> EntityData:
 
-	return active_save_data.get_entity_data(unique_id)
+	return active_new_save_data.get_entity_data(unique_id)
 
 
 
@@ -222,7 +262,7 @@ func get_camera() -> Camera2D:
 
 func is_active() -> bool:
 
-	return active_save_data != null
+	return active_new_save_data != null
 
 
 func is_paused() -> bool:

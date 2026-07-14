@@ -1,1 +1,1 @@
-class_name CharacterData extends EntityData
+class_name CharacterData extends NewEntityData

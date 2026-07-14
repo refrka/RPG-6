@@ -42,7 +42,9 @@ func _try_interact(_target_component: InteractableComponent) -> void:
 		
 			target_component = _target_component
 
-			_start_interaction()
+			if target_component.active:
+
+				_start_interaction()
 
 		elif target_component and target_component.type == InteractableComponent.InteractionType.TOGGLE:
 

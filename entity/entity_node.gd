@@ -6,7 +6,9 @@ var initialized:= false
 
 @export var def: EntityDef
 
-var data: EntityData
+var data: NewEntityData
+
+var new_data: NewEntityData
 
 var inventory:= Inventory.new()
 
@@ -27,7 +29,7 @@ var inventory:= Inventory.new()
 
 
 
-func _initialize() -> void:
+func _setup() -> void:
 
 	assert(def != null, "No entity definition for %s" % self.name)
 
@@ -43,11 +45,13 @@ func _initialize() -> void:
 
 		state_machine.setup(self)
 
-	if not self is PlayerNode and def.default_inventory:
 
-		inventory = def.default_inventory.duplicate()
 
-		inventory.initialize()
+
+
+func _initialize(_entity_data: NewEntityData) -> void:
+
+	pass
 
 
 
@@ -137,11 +141,9 @@ func get_display_name() -> String:
 
 
 
-func load_data(entity_data: EntityData) -> void:
+func load_data(entity_data: NewEntityData) -> void:
 
-	if entity_data == null:
-
-		return
+	assert(entity_data != null, "Null entity_Data for %s" % self)
 
 	data = entity_data
 
@@ -149,13 +151,11 @@ func load_data(entity_data: EntityData) -> void:
 
 	data.def = def
 
-	global_position = data.last_known_position
+	if data.last_dict.has("components"):
 
-	if data.last_save_dict.has("components"):
+		for component_name in data.last_dict["components"]:
 
-		for component_name in data.last_save_dict["components"]:
-
-			var dict = data.last_save_dict["components"][component_name]
+			var dict = data.last_dict["components"][component_name]
 
 			var component = get_component(component_name)
 
@@ -163,11 +163,26 @@ func load_data(entity_data: EntityData) -> void:
 
 				component.load_dictionary(dict)
 
-	if data.last_save_dict.has("inventory"):
+	if data.last_dict.has("inventory"):
 
-		inventory = Inventory.load_dictionary(data.last_save_dict["inventory"])
+		inventory = Inventory.load_dictionary(data.last_dict["inventory"])
 
 
+
+
+
+
+func load_new_data(entity_data: NewEntityData) -> void:
+
+	assert(entity_data != null, "Null entity_data for %s" % self)
+
+	new_data = entity_data
+
+	new_data.node = self
+
+	new_data.def = def
+
+	
 
 
 
@@ -176,7 +191,7 @@ func _update_location_data(location_id: StringName, spawn_id: StringName) -> voi
 
 	if data:
 
-		var location_scene = Scenes.get_location_scene(location_id)
+		var location_scene = NewScenes.get_location_scene(location_id)
 
 		data.last_known_location_id = location_id
 

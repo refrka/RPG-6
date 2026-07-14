@@ -8,14 +8,14 @@ class_name PlayerNode extends CharacterNode
 
 func _ready() -> void:
 
-	data = PlayerData.new()
+	new_data = PlayerData.new()
 
 
 
 
 
 
-func _initialize() -> void:
+func _setup() -> void:
 
 	if initialized:
 
@@ -25,9 +25,12 @@ func _initialize() -> void:
 
 	interaction_sensor.setup(self)
 
-	var save_data = Game.get_save_data()
 
-	load_data(save_data.player_data)
+
+
+func _initialize(entity_data: NewEntityData) -> void:
+
+	load_data(entity_data)
 
 
 
@@ -36,9 +39,11 @@ func one_time_setup() -> void:
 
 	super()
 
-	var save_data = Game.get_save_data()
+	var save_data = Game.get_new_save_data()
 
 	save_data.inventory = inventory
+
+
 
 
 
@@ -90,7 +95,7 @@ func _activate() -> void:
 
 func _update_location_data(location_id: StringName, spawn_id: StringName) -> void:
 
-	var save_data = Game.get_save_data()
+	var save_data = Game.get_new_save_data()
 
 	save_data.location_id = location_id
 

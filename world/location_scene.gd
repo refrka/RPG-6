@@ -31,36 +31,14 @@ enum Region {
 
 var location_data: LocationData
 
+var data: NewLocationData
 
 
 
 
-
-func _initialize(_location_data: LocationData) -> void:
-
-	Events.subscribe(ContainerStateChanged, _on_container_state_changed)
-
-	for character_node in character_root.get_children():
-
-		character_node._initialize()
-
-	for object_node in object_root.get_children():
-
-		object_node._initialize()
-
-	for transition_zone in transition_zones.get_children():
-
-		transition_zone._initialize(self)
-
-	for feature in feature_root.get_children():
-
-		feature._initialize(self)
+func _initialize(_location_data: NewLocationData) -> void:
 
 	_load_location_data(_location_data)
-
-	_load_container_states()
-
-	_load_entity_data()
 
 	var camera = Game.get_camera()
 
@@ -193,6 +171,10 @@ func spawn_player(spawn_id: StringName) -> void:
 
 	player._update_location_data(location_id, spawn_id)
 
+	player._activate()
+
+	
+
 
 
 
@@ -210,17 +192,11 @@ func add_entity_node(entity_node: EntityNode) -> void:
 
 
 
-func _load_location_data(_location_data: LocationData) -> void:
+func _load_location_data(_location_data: NewLocationData) -> void:
 
-	location_data = _location_data
+	data = _location_data
 
-	location_data.location_scene = self
-
-	if !location_data.discovered:
-
-		location_data.container_states = get_container_states()
-
-		location_data.discovered = true
+	data.node = self
 
 
 
@@ -335,7 +311,7 @@ func _get_location_entity_data() -> Array[EntityData]:
 
 	var data_list: Array[EntityData] = []
 
-	var save_data = Game.get_save_data()
+	var save_data = Game.get_new_save_data()
 
 	data_list = save_data.entity_data_list.filter(func(data): return data.last_known_location_id == location_id)
 
@@ -346,8 +322,6 @@ func _get_location_entity_data() -> Array[EntityData]:
 
 
 func _load_container_states() -> void:
-
-	print("loading containers for: ", self)
 
 	var container_nodes = get_objects_with_component("container")
 

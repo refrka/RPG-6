@@ -54,7 +54,7 @@ func _stop_move() -> void:
 
 	move_stopped.emit()
 
-	var location_scene = Scenes.get_scene(LocationScene)
+	var location_scene = NewScenes.get_scene(NewLocationScene)
 
 	var spawn_point = location_scene.get_nearest_spawn_point(entity)
 

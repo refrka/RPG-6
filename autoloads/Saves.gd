@@ -10,6 +10,8 @@ const SAVE_ROOT = "user://saves/"
 
 var current_saves: Array[SaveData]
 
+var current_new_saves: Array[NewSaveData]
+
 
 
 
@@ -59,7 +61,28 @@ func create_save(save_name: String) -> void:
 
 
 
-func save_game(save_data: SaveData) -> void:
+func create_new_save(save_name: String) -> void:
+
+	var save_dict = load("res://system/save_template.gd").new().data
+
+	save_dict["save_name"] = save_name
+
+	save_dict["save_id"] = _generate_save_id()
+
+	var save_data = NewSaveData.load_dictionary(save_dict)
+
+	save_game(save_data)
+
+	current_new_saves.append(save_data)
+
+	save_list_updated.emit()
+
+
+
+
+
+
+func save_game(save_data: NewSaveData) -> void:
 
 	var save_dict = save_data.get_dictionary()
 
@@ -72,7 +95,7 @@ func save_game(save_data: SaveData) -> void:
 
 
 
-func load_save_data(save_id: String) -> SaveData:
+func load_save_data(save_id: String) -> NewSaveData:
 
 	var save_data = _get_save_data(save_id)
 	
@@ -103,6 +126,7 @@ func load_save_data(save_id: String) -> SaveData:
 
 
 
+
 func delete_save_data(save_id: String) -> void:
 
 	var save_data = _get_save_data(save_id)
@@ -111,7 +135,7 @@ func delete_save_data(save_id: String) -> void:
 
 		return
 
-	current_saves.erase(save_data)
+	current_new_saves.erase(save_data)
 
 	save_list_updated.emit()
 
@@ -135,7 +159,7 @@ func delete_save_data(save_id: String) -> void:
 
 func _load_current_saves() -> void:
 
-	current_saves.clear()
+	current_new_saves.clear()
 
 	for file_name in ResourceLoader.list_directory(SAVE_ROOT):
 
@@ -151,9 +175,9 @@ func _load_current_saves() -> void:
 
 			save_file.close()
 
-			var save_data = SaveData.load_dictionary(json.data)
+			var save_data = NewSaveData.load_dictionary(json.data)
 
-			current_saves.append(save_data)
+			current_new_saves.append(save_data)
 
 	save_list_updated.emit()
 
@@ -162,13 +186,25 @@ func _load_current_saves() -> void:
 
 
 
-func _get_save_data(save_id: String) -> SaveData:
+func _get_save_data(save_id: String) -> NewSaveData:
 
-	for save_data in current_saves:
+	for save_data in current_new_saves:
 
 		if save_data.save_id == save_id:
 
 			return save_data
+
+	return null
+
+
+
+func _get_new_save_data(save_id: StringName) -> NewSaveData:
+
+	for new_save_data in current_new_saves:
+
+		if new_save_data.save_id == save_id:
+
+			return new_save_data
 
 	return null
 

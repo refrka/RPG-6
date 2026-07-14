@@ -61,7 +61,7 @@ func start_cutscene(cutscene_id: StringName) -> Cutscene:
 
 
 
-func load_scene(scene_script: Script) -> GameScene:
+func load_scene(scene_script: Script) -> NewGameScene:
 
 	var scene = _load_scene(scene_script)
 
@@ -78,6 +78,8 @@ func close_scene(scene_script: Script) -> void:
 	var scene = get_scene(scene_script)
 
 	if scene:
+
+		scene._unload()
 
 		scene.queue_free()
 
@@ -100,9 +102,9 @@ func get_scene(scene_script: Script) -> GameScene:
 
 
 
-func get_location_scene(location_id: StringName) -> LocationScene:
+func get_location_scene(location_id: StringName) -> NewLocationScene:
 
-	var location_scene = get_scene(LocationScene)
+	var location_scene = get_scene(NewLocationScene)
 
 	if location_scene != null and location_scene.location_id == location_id:
 
@@ -161,16 +163,13 @@ func _get_cutscene(cutscene_id: StringName) -> Cutscene:
 
 
 
-
-## Private
-
-func _load_scene(scene_script: Script) -> GameScene:
+func _load_scene(scene_script: Script) -> NewGameScene:
 
 	for scene in get_tree().get_nodes_in_group("game_scene"):
 
 		scene._deactivate()
 
-	var scene: GameScene = null
+	var scene: NewGameScene = null
 
 	if scene_registry.has(scene_script):
 

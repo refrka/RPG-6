@@ -1,4 +1,4 @@
-class_name MainMenu extends GameScene
+class_name MainMenu extends NewGameScene
 
 
 @onready var save_list_row_scene:= preload("res://ui/save_list_row.tscn")
@@ -15,8 +15,6 @@ class_name MainMenu extends GameScene
 
 
 func _ready() -> void:
-
-	super()
 
 	start_new_game_button.pressed.connect(_on_start_new_game_pressed)
 
@@ -42,7 +40,7 @@ func _load_save_list() -> void:
 
 	_clear_save_list()
 
-	for save_data in Saves.current_saves:
+	for save_data in Saves.current_new_saves:
 
 		var row = save_list_row_scene.instantiate()
 		
@@ -77,24 +75,22 @@ func _on_start_new_game_pressed() -> void:
 
 		return
 
-	Saves.create_save(character_name)
+	Saves.create_new_save(character_name)
 
 	new_character_name_entry.clear()
 
 
 
 
-func _on_save_selected(save_data: SaveData) -> void:
+func _on_save_selected(save_data: NewSaveData) -> void:
 
-	Game.start(save_data.save_id)
+	Game.new_start(save_data.save_id)
 
 
 
-func _on_delete_pressed(save_data: SaveData) -> void:
+func _on_delete_pressed(save_data: NewSaveData) -> void:
 
 	Saves.delete_save_data(save_data.save_id)
-
-
 
 
 
