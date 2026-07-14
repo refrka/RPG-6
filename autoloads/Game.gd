@@ -9,6 +9,8 @@ signal game_ended
 
 var active_save_data: SaveData
 
+var active_new_save_data: NewSaveData
+
 var player: PlayerNode
 
 
@@ -189,6 +191,12 @@ func get_player() -> PlayerNode:
 func get_save_data() -> SaveData:
 
 	return active_save_data
+
+
+
+func get_new_save_data() -> NewSaveData:
+
+	return active_new_save_data
 
 
 
