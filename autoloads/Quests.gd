@@ -92,7 +92,7 @@ func get_quest_stage(quest_id: StringName, stage_index:= -1) -> QuestStage:
 
 func get_quest_data(quest_id: StringName) -> QuestData:
 
-	var save_data = Game.get_save_data()
+	var save_data = Game.get_new_save_data()
 
 	for quest_data in save_data.quest_data_list:
 
@@ -238,7 +238,7 @@ func _create_quest_data(quest_id: StringName) -> QuestData:
 
 	quest_data.state_changed.connect(_on_quest_state_changed)
 
-	var save_data = Game.get_save_data()
+	var save_data = Game.get_new_save_data()
 
 	save_data.quest_data_list.append(quest_data)
 

@@ -30,7 +30,7 @@ func activate_location(location_id: StringName) -> NewLocationScene:
 
 
 
-func enter_location(location_id: StringName) -> NewLocationScene:
+func enter_location(location_id: StringName, spawn_id: StringName = "") -> NewLocationScene:
 
 	if active_location:
 
@@ -40,7 +40,7 @@ func enter_location(location_id: StringName) -> NewLocationScene:
 
 	initialize_location(location_scene)
 
-	location_scene._enter()
+	location_scene._enter(spawn_id)
 	
 	return location_scene
 

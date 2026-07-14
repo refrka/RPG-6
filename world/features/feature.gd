@@ -4,7 +4,7 @@ class_name Feature extends Node2D
 
 var active:= false
 
-var location_scene: LocationScene
+var location_scene: NewLocationScene
 
 
 
@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 
-func _initialize(_location_scene: LocationScene) -> void:
+func _initialize(_location_scene: NewLocationScene) -> void:
 
 	location_scene = _location_scene
 

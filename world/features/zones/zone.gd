@@ -8,7 +8,7 @@ class_name Zone extends Feature
 
 
 
-func _initialize(_location_scene: LocationScene) -> void:
+func _initialize(_location_scene: NewLocationScene) -> void:
 
 	super(_location_scene)
 

@@ -38,7 +38,27 @@ var data: NewLocationData
 
 func _initialize(_location_data: NewLocationData) -> void:
 
+	for character_node in character_root.get_children():
+
+		character_node._initialize()
+
+	for object_node in object_root.get_children():
+
+		object_node._initialize()
+
+	for transition_zone in transition_zones.get_children():
+
+		transition_zone._initialize(self)
+
+	for feature in feature_root.get_children():
+
+		feature._initialize(self)
+
 	_load_location_data(_location_data)
+
+	_load_container_states()
+
+	_load_entity_data()
 
 	var camera = Game.get_camera()
 
@@ -170,10 +190,6 @@ func spawn_player(spawn_id: StringName) -> void:
 	player.global_position = spawn_point.global_position
 
 	player._update_location_data(location_id, spawn_id)
-
-	player._activate()
-
-	
 
 
 
@@ -322,6 +338,8 @@ func _get_location_entity_data() -> Array[EntityData]:
 
 
 func _load_container_states() -> void:
+
+	print("loading containers for: ", self)
 
 	var container_nodes = get_objects_with_component("container")
 

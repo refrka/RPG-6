@@ -183,17 +183,9 @@ func load_location(location_id: StringName) -> LocationScene:
 
 func change_location(location_id: StringName, spawn_id:="start") -> void:
 
-	var location_scene = load_location(location_id) as LocationScene
+	var world_scene = NewScenes.get_scene(NewWorldScene)
 
-	location_scene.spawn_player(spawn_id)
-
-	if !location_scene.location_data.discovered:
-
-		Events.fire(LocationDiscoveredEvent, {"location_id": location_id})
-
-	active_save_data.location_id = location_id
-
-	active_save_data.spawn_id = spawn_id
+	world_scene.enter_location(location_id, spawn_id)
 
 
 

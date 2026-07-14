@@ -59,9 +59,13 @@ func _start_interaction() -> void:
 
 	if !target_component:
 
+		print("no component")
+
 		return 
 
 	if !_is_interacting():
+
+		print("start interaction")
 
 		if target_component.interact():
 

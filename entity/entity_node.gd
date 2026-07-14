@@ -49,7 +49,7 @@ func _setup() -> void:
 
 
 
-func _initialize(_entity_data: NewEntityData) -> void:
+func _initialize(_entity_data: NewEntityData = null) -> void:
 
 	pass
 
@@ -143,7 +143,7 @@ func get_display_name() -> String:
 
 func load_data(entity_data: NewEntityData) -> void:
 
-	assert(entity_data != null, "Null entity_Data for %s" % self)
+	assert(entity_data != null, "Null entity_data for %s" % self)
 
 	data = entity_data
 

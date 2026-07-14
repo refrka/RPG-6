@@ -23,6 +23,8 @@ var location_data_list: Array[NewLocationData]
 
 var entity_data_list: Array[NewEntityData]
 
+var quest_data_list: Array[QuestData]
+
 
 
 

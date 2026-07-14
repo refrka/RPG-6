@@ -75,6 +75,8 @@ func load_location_scene(location_id: StringName) -> NewLocationScene:
 
 	var path = "res://world/locations/%s.scn" % location_id
 
+	print("path: ", path)
+
 	if FileAccess.file_exists(path):
 
 		return load(path).instantiate() as NewLocationScene

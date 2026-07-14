@@ -28,9 +28,11 @@ func _setup() -> void:
 
 
 
-func _initialize(entity_data: NewEntityData) -> void:
+func _initialize(entity_data: NewEntityData = null) -> void:
 
-	load_data(entity_data)
+	if entity_data:
+
+		load_data(entity_data)
 
 
 
