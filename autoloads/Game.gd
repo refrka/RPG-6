@@ -76,7 +76,9 @@ func new_start(save_id: StringName) -> void:
 
 	active_new_save_data = Saves.load_save_data(save_id)
 
-	get_player(active_new_save_data.player_data)
+	get_player()
+
+	player._initialize()
 
 	var world_scene = NewScenes.activate_scene(NewWorldScene)
 
@@ -91,6 +93,8 @@ func new_start(save_id: StringName) -> void:
 		active_new_save_data.spawn_id = "start"
 
 	world_scene.enter_location(active_new_save_data.last_dict["location_id"])
+
+	game_started.emit()
 
 
 

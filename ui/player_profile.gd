@@ -25,12 +25,6 @@ func _ready() -> void:
 
 
 
-func initialize(player: PlayerNode) -> void:
-
-	info_panel.load_info(player)
-
-
-
 
 
 
@@ -45,6 +39,8 @@ func _on_profile_pressed() -> void:
 func _on_game_started() -> void:
 
 	var player = Game.get_player()
+
+	info_panel.load_info(player)
 
 	inventory_panel.load_inventory(player.inventory, true)
 

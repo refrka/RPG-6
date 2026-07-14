@@ -51,7 +51,9 @@ func _setup() -> void:
 
 func _initialize(_entity_data: NewEntityData = null) -> void:
 
-	pass
+	if _entity_data:
+
+		load_new_data(_entity_data)
 
 
 
@@ -88,6 +90,17 @@ func get_all_components() -> Array:
 	return component_root.get_children()
 
 
+
+
+
+func get_def() -> EntityDef:
+
+	return def
+
+
+func get_data() -> NewEntityData:
+
+	return new_data
 
 
 
@@ -181,6 +194,25 @@ func load_new_data(entity_data: NewEntityData) -> void:
 	new_data.node = self
 
 	new_data.def = def
+
+	print("load inv")
+
+	load_inventory(entity_data.inventory)
+
+
+
+
+func load_inventory(_inventory: Inventory) -> void:
+
+	inventory = _inventory
+
+	inventory.initialize()
+
+
+
+func is_unique() -> bool:
+
+	return def.unique_id != &""
 
 	
 

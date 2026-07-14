@@ -28,12 +28,6 @@ func _setup() -> void:
 
 
 
-func _initialize(entity_data: NewEntityData = null) -> void:
-
-	if entity_data:
-
-		load_data(entity_data)
-
 
 
 
@@ -69,15 +63,15 @@ func get_display_name() -> String:
 
 
 
+
+
 func load_inventory(_inventory: Inventory) -> void:
 
-	inventory = _inventory
+	super(_inventory)
 
 	if !inventory.item_data_count_updated.is_connected(_on_item_data_count_updated):
 
 		inventory.item_data_count_updated.connect(_on_item_data_count_updated)
-
-	inventory.initialize()
 
 
 

@@ -9,6 +9,6 @@ class_name PlayerInfoPanel extends MarginContainer
 
 func load_info(_player: PlayerNode) -> void:
 
-	var save_data = Game.get_save_data()
+	var save_data = Game.get_new_save_data()
 
 	player_name_label.text = save_data.save_name

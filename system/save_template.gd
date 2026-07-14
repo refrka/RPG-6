@@ -26,8 +26,6 @@ var data = {
 
 
 
-
-
 	"components": { },
 
 	"inventory": { 
