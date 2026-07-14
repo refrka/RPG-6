@@ -64,15 +64,11 @@ func load_root_options(target_entity: EntityNode) -> void:
 
 func show_next_button() -> void:
 
-	print("show it")
-
 	next_line_button.visible = true
 
 
 
 func hide_next_button() -> void:
-
-	print("hide it")
 
 	next_line_button.visible = false
 

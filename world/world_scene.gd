@@ -7,6 +7,75 @@ var active_location: LocationScene
 
 var location_data_list: Array[LocationData]
 
+var location_scene_list: Array[LocationScene]
+
+
+
+
+
+
+
+
+
+
+# Location Loading Steps
+# [ The goal is to allow the storing/restoring of location scenes instead of instantiating/loading one at a  time. ]
+# [ This comes from working on Cutscenes - need a way to easily "cut" to another location, do a scene, then return to original scene. ]
+# 
+# 1. Load
+# 	> Instantiate and store only
+# 	> GameSceneState.UNLOADED
+# 	>>> new_load_location()
+# 
+# 1.5. Focus
+# 	> Show the scene visually regardless of entities
+# 
+# 2. Initialize
+# 	> 2-step process
+# 	a) Objects
+# 		> Populate location ObjectNodes
+# 	b) Characters
+# 		> Populate location CharacterNodes
+# 
+# 3. Spawn player/activate
+# 	> Spawn player in the location
+# 	> Activate all entities, features, etc
+
+
+
+
+
+func new_load_location(location_id: StringName) -> LocationScene:
+
+	var location_scene = _get_location_scene(location_id)
+
+	if !location_scene_list.has(location_scene):
+
+		location_scene_list.append(location_scene)
+
+	_change_active_location(location_scene)
+
+	return location_scene
+
+
+
+
+
+
+
+func enter_location(location_id: StringName) -> LocationScene:
+
+	if active_location:
+
+		active_location._unload()
+
+	var location_scene = new_load_location(location_id)
+
+	var location_data = _get_location_data(location_scene)
+
+	location_scene._initialize(location_data)
+	
+	return location_scene
 
 
 
@@ -16,7 +85,7 @@ var location_data_list: Array[LocationData]
 
 func load_location(location_id: StringName) -> LocationScene:
 
-	var location_scene = Scenes.get_location_scene(location_id)
+	var location_scene = _get_location_scene(location_id)
 
 	if active_location and active_location != location_scene:
 
@@ -47,6 +116,39 @@ func unload_location() -> void:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _change_active_location(new_location: LocationScene) -> void:
+
+	if active_location:
+
+		remove_child(active_location)
+
+	active_location = new_location
+
+	add_child(active_location)
+
+
+
+
+
+
+
+
+
 func _get_location_data(location_scene: LocationScene) -> LocationData:
 
 	var data: LocationData = null
@@ -67,6 +169,18 @@ func _get_location_data(location_scene: LocationScene) -> LocationData:
 
 
 
+
+
+func _get_location_scene(location_id: StringName) -> LocationScene:
+
+	for location_scene in location_scene_list:
+
+		if location_scene.location_id == location_id:
+
+			return location_scene
+
+	return Scenes.get_location_scene(location_id)
+	
 
 
 

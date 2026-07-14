@@ -13,7 +13,9 @@ func _initialize(_location_scene: LocationScene) -> void:
 
 	super(_location_scene)
 
-	sensor.body_entered.connect(_on_body_entered_zone)
+	if !sensor.body_entered.is_connected(_on_body_entered_zone):
+
+		sensor.body_entered.connect(_on_body_entered_zone)
 
 
 

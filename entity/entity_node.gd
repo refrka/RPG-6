@@ -31,6 +31,10 @@ func _initialize() -> void:
 
 	assert(def != null, "No entity definition for %s" % self.name)
 
+	if initialized:
+
+		return
+
 	initialized = true
 
 	component_root.setup(self)

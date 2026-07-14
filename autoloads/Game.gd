@@ -52,21 +52,11 @@ func start(save_id: StringName) -> void:
 
 		active_save_data.last_dict["spawn_id"] = "start"
 
-	var location_scene = world_scene.load_location(active_save_data.last_dict["location_id"])
+	var location_scene = world_scene.enter_location(active_save_data.last_dict["location_id"])
 
 	location_scene.spawn_player(active_save_data.last_dict["spawn_id"])
 
-	player.load_inventory(active_save_data.inventory)
-
-	var player_profile = UI.get_overlay(PlayerProfile)
-
-	player_profile.initialize(player)
-
-	player._activate()
-
-	print("everything started")
-
-	_game_start_debug_method()
+	_load_player()
 
 	game_started.emit()
 
@@ -134,9 +124,15 @@ func resume() -> void:
 
 func load_location(location_id: StringName) -> LocationScene:
 
+	var location_scene: LocationScene = Scenes.get_scene(LocationScene)
+
+	if location_scene != null and location_scene.location_id == location_id:
+
+		return location_scene
+
 	var world_scene = Scenes.get_scene(WorldScene) as WorldScene
 
-	var location_scene = world_scene.load_location(location_id)
+	location_scene = world_scene.enter_location(location_id)
 
 	return location_scene
 
@@ -227,6 +223,19 @@ func is_paused() -> bool:
 
 
 
+
+
+
+
+func _load_player() -> void:
+
+	player.load_inventory(active_save_data.inventory)
+
+	var player_profile = UI.get_overlay(PlayerProfile)
+
+	player_profile.initialize(player)
+
+	player._activate()
 
 
 

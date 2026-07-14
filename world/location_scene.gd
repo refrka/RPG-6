@@ -2,6 +2,7 @@ class_name LocationScene extends GameScene
 
 
 
+
 enum Region {
 
 	FOREST,
@@ -70,6 +71,8 @@ func _initialize(_location_data: LocationData) -> void:
 
 
 func _unload() -> void:
+
+	print("unloading: ", self)
 
 	Events.unsubscribe(ContainerStateChanged, _on_container_state_changed)
 
@@ -341,6 +344,8 @@ func _get_location_entity_data() -> Array[EntityData]:
 
 
 func _load_container_states() -> void:
+
+	print("loading containers for: ", self)
 
 	var container_nodes = get_objects_with_component("container")
 

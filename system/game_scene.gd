@@ -1,6 +1,18 @@
 class_name GameScene extends CanvasItem
 
 
+enum GameSceneState {
+
+	UNLOADED,
+
+	LOADED,
+
+	ACTIVE,
+
+	INACTIVE,
+
+}
+
 
 
 

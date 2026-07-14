@@ -17,6 +17,10 @@ func _ready() -> void:
 
 func _initialize() -> void:
 
+	if initialized:
+
+		return
+
 	super()
 
 	interaction_sensor.setup(self)

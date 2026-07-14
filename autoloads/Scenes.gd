@@ -221,4 +221,6 @@ func _load_cutscenes() -> void:
 
 func _on_cutscene_finished() -> void:
 
-	pass
+	var player = Game.get_player()
+
+	player._enable()
