@@ -20,7 +20,9 @@ func _ready() -> void:
 
 
 
+func get_player_node() -> PlayerNode:
 
+	return load("res://player/player_node.tscn").instantiate()
 
 
 
@@ -43,6 +45,10 @@ func get_unique_def(unique_id: StringName) -> EntityDef:
 			return def
 
 	return null
+
+
+
+
 
 
 

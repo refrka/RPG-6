@@ -14,11 +14,15 @@ var active_location: LocationScene
 
 
 
-func enter_location(location_id: StringName) -> LocationScene:
+func enter_location(location_id: StringName, spawn_id: StringName) -> LocationScene:
 
 	var location_scene = load_location(location_id)
 
 	change_active_location(location_scene)
+
+	var player = Game.get_player()
+
+	location_scene.spawn_entity(player, spawn_id)
 
 	return location_scene
 
@@ -73,6 +77,9 @@ func get_loaded_location(location_id: StringName) -> LocationScene:
 			return location_scene
 
 	return null
+
+
+
 
 
 

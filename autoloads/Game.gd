@@ -7,7 +7,7 @@ extends Node
 
 var active_save_data: SaveData
 
-
+var player: PlayerNode
 
 
 
@@ -44,7 +44,9 @@ func start(save_id: StringName) -> void:
 
 	var world_scene = Scenes.activate_scene(WorldScene)
 
-	var location_scene = world_scene.enter_location(active_save_data.get_last_location_id())
+	world_scene.enter_location(active_save_data.get_last_location_id(), active_save_data.get_last_spawn_id())
+
+	player._activate()
 
 
 
@@ -78,6 +80,21 @@ func is_active() -> bool:
 
 
 
+
+
+
+
+func get_player() -> PlayerNode:
+
+	if !player:
+
+		player = Entities.get_player_node()
+
+		add_child(player)
+
+		player._deactivate()
+
+	return player
 
 
 

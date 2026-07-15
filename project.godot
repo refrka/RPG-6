@@ -70,6 +70,12 @@ move_down={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="CharacterNode"
+2d_physics/layer_2="ObjectNode"
+2d_physics/layer_9="TileMapImpassable"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

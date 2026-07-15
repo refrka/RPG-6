@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dg5orf2ev1wl3"]
+
+[ext_resource type="PackedScene" uid="uid://u2gj13bgr5dt" path="res://entity/character/character_node.tscn" id="1_ynuq4"]
+[ext_resource type="Resource" uid="uid://dtewowtdwd85g" path="res://player/player_def.tres" id="2_a3uy3"]
+[ext_resource type="Script" uid="uid://c4i3oc2bag4c7" path="res://player/player_node.gd" id="2_d0owe"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_782li"]
+size = Vector2(16, 16)
+
+[node name="PlayerNode" unique_id=171203552 instance=ExtResource("1_ynuq4")]
+script = ExtResource("2_d0owe")
+def = ExtResource("2_a3uy3")
+
+[node name="Sprite2D" parent="VisualRoot" parent_id_path=PackedInt32Array(613685707) index="0" unique_id=2119401046]
+position = Vector2(0, -8)
+texture = SubResource("PlaceholderTexture2D_782li")

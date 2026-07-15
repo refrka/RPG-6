@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://jyrgqo755dng"]
+
+[ext_resource type="Script" uid="uid://bie0q14dmunl5" path="res://entity/object/object_node.gd" id="1_iy5f5"]
+
+[node name="ObjectNode" type="StaticBody2D" unique_id=1772553420 node_paths=PackedStringArray("body_sprite", "body_collision")]
+collision_layer = 2
+collision_mask = 259
+script = ExtResource("1_iy5f5")
+body_sprite = NodePath("VisualRoot/Sprite2D")
+body_collision = NodePath("CollisionShape2D")
+
+[node name="VisualRoot" type="Node2D" parent="." unique_id=694848386]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="VisualRoot" unique_id=982105107]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1639071665]

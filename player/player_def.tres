@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://dtewowtdwd85g"]
+
+[ext_resource type="Script" uid="uid://dg7ul3t3vj73g" path="res://entity/character/character_def.gd" id="1_cujn1"]
+
+[resource]
+script = ExtResource("1_cujn1")
+unique_id = &"player"
+entity_id = &"player"
+display_name = &"Player"
+scene_path = "res://player/player_node.tscn"
+metadata/_custom_type_script = "uid://dg7ul3t3vj73g"
