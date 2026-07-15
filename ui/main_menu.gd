@@ -82,7 +82,7 @@ func _on_start_new_game_pressed() -> void:
 
 func _on_save_selected(save_data: SaveData) -> void:
 
-	pass
+	Game.start(save_data.save_id)
 
 
 

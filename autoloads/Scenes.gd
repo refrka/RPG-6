@@ -35,7 +35,9 @@ func unregister_scene(scene: GameScene) -> void:
 
 
 
-func activate_scene(scene: GameScene) -> void:
+func activate_scene(scene_script: Script) -> GameScene:
+
+	var scene = get_scene(scene_script)
 
 	if active_scene:
 
@@ -44,6 +46,8 @@ func activate_scene(scene: GameScene) -> void:
 	active_scene = scene
 
 	scene._activate()
+
+	return scene
 
 
 
@@ -65,6 +69,24 @@ func get_scene(scene_script: Script) -> GameScene:
 
 
 
+
+func get_location_scene(location_id: StringName) -> LocationScene:
+
+	var location_scene: LocationScene = get_scene(LocationScene)
+
+	if location_scene:
+
+		return location_scene
+
+	var path = "res://world/locations/%s.scn" % location_id
+
+	if !FileAccess.file_exists(path):
+
+		return null
+
+	location_scene = load(path).instantiate()
+
+	return location_scene
 
 
 
