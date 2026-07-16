@@ -9,7 +9,7 @@ var data: Dictionary
 
 
 
-func evaluate(_data: Dictionary) -> bool:
+func evaluate(_data: Dictionary = {}) -> bool:
 
 	data = _data
 

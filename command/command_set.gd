@@ -3,13 +3,13 @@ class_name CommandSet extends Resource
 
 
 
-var commands: Array[Command]
+@export var commands: Array[Command]
 
 var data: Dictionary
 
 
 
-func execute(_data: Dictionary) -> bool:
+func execute(_data: Dictionary = {}) -> bool:
 
 	data = _data
 

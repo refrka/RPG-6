@@ -8,6 +8,7 @@ var scene_registry:= {}
 
 var active_scene: GameScene
 
+var active_cutscene: Cutscene
 
 
 
@@ -53,7 +54,34 @@ func activate_scene(scene_script: Script) -> GameScene:
 
 
 
-func get_scene(scene_script: Script) -> GameScene:
+
+
+
+func start_cutscene(cutscene: Cutscene) -> void:
+
+	active_cutscene = cutscene
+
+	cutscene.finished.connect(_on_cutscene_finished)
+
+	cutscene.paused_location_id = get_scene(LocationScene).location_id
+
+	var player = Game.get_player()
+
+	cutscene.paused_position = player.global_position
+
+	cutscene._start()
+
+
+
+
+
+
+
+func get_scene(scene_script: Script = null) -> GameScene:
+
+	if scene_script == null:
+
+		return active_scene
 
 	if !scene_registry.has(scene_script):
 
@@ -91,6 +119,26 @@ func get_location_scene(location_id: StringName) -> LocationScene:
 
 
 
+func get_cutscene(cutscene_id: StringName) -> Cutscene:
+
+	var path = "res://cutscene/%s.tres" % cutscene_id
+
+	assert(FileAccess.file_exists(path), "Invalid cutscene_id: %s" % cutscene_id)
+
+	return load(path)
+
+
+
+
+func start_timer(time: float) -> SceneTreeTimer:
+
+	var timer = get_tree().create_timer(time)
+
+	return timer
+
+
+
+
 func _load_scene(scene_script: Script) -> GameScene:
 
 	var scene: GameScene = null
@@ -108,3 +156,19 @@ func _load_scene(scene_script: Script) -> GameScene:
 		scene._activate()
 
 	return scene
+
+
+
+
+
+
+
+
+
+func _on_cutscene_finished() -> void:
+
+	var world_scene = get_scene(WorldScene)
+
+	world_scene.load_location(active_cutscene.paused_location_id)
+
+	active_cutscene = null

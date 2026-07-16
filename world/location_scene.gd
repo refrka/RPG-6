@@ -12,6 +12,11 @@ class_name LocationScene extends GameScene
 @export var transition_root: Node2D
 
 
+
+@export var enter_condition_command_set: ConditionCommandSet
+
+
+
 var data: LocationData
 
 
@@ -37,6 +42,20 @@ func _enter() -> void:
 
 	_initialize_features()
 
+	if enter_condition_command_set:
+
+		print("run it")
+		
+		if enter_condition_command_set.condition_set and !enter_condition_command_set.condition_set.evaluate():
+
+			pass
+
+		else:
+
+			print("execute")
+			
+			enter_condition_command_set.command_set.execute()
+
 
 
 
@@ -56,7 +75,6 @@ func _initialize_characters() -> void:
 
 
 
-
 func _initialize_features() -> void:
 
 	for zone in transition_root.get_children():
@@ -66,11 +84,31 @@ func _initialize_features() -> void:
 
 
 
+
+
+
+
+
+
 func spawn_entity(entity_node: EntityNode, spawn_id: StringName) -> void:
 
 	_add_entity_node(entity_node)
 
 	entity_node.global_position = get_spawn_position(spawn_id)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -89,6 +127,7 @@ func get_spawn_point(spawn_id: StringName) -> SpawnPoint:
 
 
 
+
 func get_spawn_position(spawn_id: StringName) -> Vector2:
 
 	var spawn_point = get_spawn_point(spawn_id)
@@ -99,6 +138,25 @@ func get_spawn_position(spawn_id: StringName) -> Vector2:
 
 
 
+
+
+func get_nearest_spawn_point(entity_node: EntityNode) -> SpawnPoint:
+
+	var nearest_distance:= INF
+
+	var nearest_spawn: SpawnPoint = null
+
+	for spawn_point in spawn_root.get_children():
+
+		var distance = entity_node.global_position.distance_to(spawn_point.global_position)
+
+		if !nearest_spawn or distance < nearest_distance:
+
+			nearest_distance = distance
+
+			nearest_spawn = spawn_point
+
+	return nearest_spawn
 
 
 

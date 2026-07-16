@@ -10,7 +10,9 @@ func _initialize() -> void:
 
 	sensor.setup()
 
-	sensor.body_entered.connect(_on_body_entered_sensor)
+	if !sensor.body_entered.is_connected(_on_body_entered_sensor):
+
+		sensor.body_entered.connect(_on_body_entered_sensor)
 
 
 

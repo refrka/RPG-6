@@ -16,7 +16,7 @@ var active_location: LocationScene
 
 func enter_location(location_id: StringName, spawn_id: StringName) -> LocationScene:
 
-	var location_scene = load_location(location_id)
+	var location_scene = get_location(location_id)
 
 	change_active_location(location_scene)
 
@@ -33,8 +33,26 @@ func enter_location(location_id: StringName, spawn_id: StringName) -> LocationSc
 
 
 
+func load_location(location_id: StringName) -> void:
 
-func load_location(location_id: StringName) -> LocationScene:
+	var location_scene = get_location(location_id)
+
+	if active_location:
+
+		active_location._deactivate()
+
+		remove_child(active_location)
+
+	add_child(location_scene)
+
+	location_scene._activate()
+	
+
+
+
+
+
+func get_location(location_id: StringName) -> LocationScene:
 
 	var location_scene = get_loaded_location(location_id)
 
@@ -43,6 +61,8 @@ func load_location(location_id: StringName) -> LocationScene:
 		return location_scene
 
 	location_scene = Scenes.get_location_scene(location_id)
+
+	loaded_locations.append(location_scene)
 
 	return location_scene
 
