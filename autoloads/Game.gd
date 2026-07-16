@@ -46,6 +46,8 @@ func start(save_id: StringName) -> void:
 
 	world_scene.enter_location(active_save_data.get_last_location_id(), active_save_data.get_last_spawn_id())
 
+	player._initialize(active_save_data.player_data)
+
 	player._activate()
 
 
@@ -67,6 +69,18 @@ func save() -> void:
 	Saves.save_game(active_save_data)
 
 
+
+
+
+
+
+
+
+func transition_to(location_id: StringName, spawn_id: StringName) -> void:
+
+	var world_scene = Scenes.get_scene(WorldScene)
+
+	world_scene.enter_location(location_id, spawn_id)
 
 
 
@@ -98,6 +112,11 @@ func get_player() -> PlayerNode:
 
 
 
+func get_save_data() -> SaveData:
+
+	return active_save_data
+
+
 
 func get_active_location() -> LocationScene:
 
@@ -116,3 +135,25 @@ func get_location_data(location_id: StringName) -> LocationData:
 			return location_data
 
 	return null
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _unhandled_input(event: InputEvent) -> void:
+
+	if event.is_action_pressed("quicksave") and is_active():
+
+		save()

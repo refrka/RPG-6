@@ -74,7 +74,7 @@ func get_location_scene(location_id: StringName) -> LocationScene:
 
 	var location_scene: LocationScene = get_scene(LocationScene)
 
-	if location_scene:
+	if location_scene and location_scene.location_id == location_id:
 
 		return location_scene
 

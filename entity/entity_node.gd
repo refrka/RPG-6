@@ -16,6 +16,14 @@ var data: EntityData
 
 @export var body_collision: CollisionShape2D
 
+@export var component_root: Node
+
+
+
+
+func _initialize(_entity_data: EntityData = null) -> void:
+
+	_setup()
 
 
 
@@ -32,16 +40,17 @@ func _setup() -> void:
 
 	initialized = true
 
+	for component in get_all_components():
+
+		component._setup(self)
 
 
 
 
-func _initialize(_entity_data: EntityData = null) -> void:
 
-	pass
+func _load_data(entity_data: EntityData) -> void:
 
-
-
+	data = entity_data
 
 
 
@@ -104,7 +113,21 @@ func get_display_name() -> String:
 
 
 
+func get_component(component_name: StringName) -> Component:
 
+	for component in get_all_components():
+
+		if component.get_component_name() == component_name:
+
+			return component
+
+	return null
+
+
+
+func get_all_components() -> Array:
+
+	return component_root.get_children()
 
 
 

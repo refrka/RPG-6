@@ -9,6 +9,8 @@ class_name LocationScene extends GameScene
 
 @export var object_root: Node2D
 
+@export var transition_root: Node2D
+
 
 var data: LocationData
 
@@ -31,6 +33,10 @@ func _enter() -> void:
 
 	_load_data(location_data)
 
+	_initialize_characters()
+
+	_initialize_features()
+
 
 
 
@@ -39,6 +45,23 @@ func _exit() -> void:
 	_deactivate()
 
 
+
+
+
+func _initialize_characters() -> void:
+
+	for character_node in character_root.get_children():
+
+		character_node._initialize()
+
+
+
+
+func _initialize_features() -> void:
+
+	for zone in transition_root.get_children():
+
+		zone._initialize()
 
 
 
@@ -93,7 +116,7 @@ func _add_entity_node(entity_node: EntityNode) -> void:
 
 		root = object_root
 
-	if entity_node.is_inside_tree():
+	if entity_node.get_parent() != null:
 
 		entity_node.reparent(root)
 		

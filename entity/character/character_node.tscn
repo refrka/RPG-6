@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" uid="uid://cw1qm7lli54r3" path="res://entity/character/character_node.gd" id="1_ioq1x"]
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=171203552 node_paths=PackedStringArray("body_sprite", "body_collision")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=171203552 node_paths=PackedStringArray("body_sprite", "body_collision", "component_root")]
 y_sort_enabled = true
 collision_mask = 257
 motion_mode = 1
 script = ExtResource("1_ioq1x")
 body_sprite = NodePath("VisualRoot/Sprite2D")
 body_collision = NodePath("CollisionShape2D")
+component_root = NodePath("ComponentRoot")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=613685707]
 y_sort_enabled = true
@@ -16,3 +17,5 @@ y_sort_enabled = true
 [node name="Sprite2D" type="Sprite2D" parent="VisualRoot" unique_id=2119401046]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139287733]
+
+[node name="ComponentRoot" type="Node" parent="." unique_id=168538887]

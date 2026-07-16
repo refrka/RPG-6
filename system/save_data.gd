@@ -2,6 +2,7 @@ class_name SaveData extends Resource
 
 
 
+
 var save_id: String
 
 var save_name: String
@@ -15,16 +16,28 @@ var entity_data_registry: Dictionary[StringName, EntityData]
 
 
 
+var player_data: PlayerData
+
+
+
+
+var current_location_id: StringName
+
+var current_spawn_id: StringName
+
+
+
+
 
 func get_last_location_id() -> StringName:
 
-	return last_dict["location_id"]
+	return last_dict["current_location_id"]
 
 
 
 func get_last_spawn_id() -> StringName:
 
-	return last_dict["spawn_id"]
+	return last_dict["current_spawn_id"]
 
 
 
@@ -70,6 +83,12 @@ func get_dictionary() -> Dictionary:
 
 	save_dict["save_name"] = save_name
 
+	save_dict["current_location_id"] = current_location_id
+
+	save_dict["current_spawn_id"] = current_spawn_id
+
+	save_dict["player_data"] = player_data.get_dictionary()
+
 	last_dict = save_dict
 
 	return save_dict
@@ -83,10 +102,16 @@ static func load_dictionary(save_dict: Dictionary) -> SaveData:
 
 	var save_data = SaveData.new()
 
+	save_data.last_dict = save_dict
+
 	save_data.save_id = save_dict["save_id"]
 
 	save_data.save_name = save_dict["save_name"]
 
-	save_data.last_dict = save_dict
+	save_data.current_location_id = save_dict["current_location_id"]
+
+	save_data.current_spawn_id = save_dict["current_spawn_id"]
+
+	save_data.player_data = PlayerData.load_dictionary(save_dict["player_data"])
 
 	return save_data

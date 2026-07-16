@@ -6,8 +6,10 @@ var data = {
 
 	"last_save_unix": 0.0,
 
-	"location_id": "forest_start",
+	"current_location_id": "forest_start",
 
-	"spawn_id": "start"
+	"current_spawn_id": "start",
+
+	"player_data": { }
 
 }

@@ -24,7 +24,7 @@ func enter_location(location_id: StringName, spawn_id: StringName) -> LocationSc
 
 	location_scene.spawn_entity(player, spawn_id)
 
-	Events.fire(PlayerEnteredLocationEvent, {"location_scene": location_scene})
+	Events.fire(PlayerEnteredLocationEvent, {"location_scene": location_scene, "spawn_id": spawn_id})
 
 	return location_scene
 
