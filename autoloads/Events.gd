@@ -50,10 +50,18 @@ func fire(event_script: Script, _data: Dictionary = {}) -> void:
 
 func call_subscriptions(event: Event) -> void:
 
-	if subscriptions.has(event.get_script()):
+	var script = event.get_script()
 
-		for callback in subscriptions[event.get_script()]:
+	if subscriptions.has(script):
+
+		var subs = subscriptions.duplicate()
+
+		for callback in subs[script]:
 
 			if callback.is_valid():
 
 				callback.call(event)
+				
+			else:
+
+				subscriptions[script].erase(callback)
