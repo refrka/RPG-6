@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://g3o0lv7ydx5o"]
 
-[node name="DialoguePanel" type="MarginContainer" unique_id=1566947642]
+[ext_resource type="PackedScene" uid="uid://ye34ny1vafn8" path="res://ui/input_mask.tscn" id="1_eb2dg"]
+[ext_resource type="Script" uid="uid://d060v1bx4aw1o" path="res://ui/dialogue_panel.gd" id="1_m0nle"]
+[ext_resource type="PackedScene" uid="uid://b0sh42au7pm8x" path="res://ui/dialogue_option_button.tscn" id="2_6hs1l"]
+
+[node name="DialoguePanel" type="MarginContainer" unique_id=1566947642 node_paths=PackedStringArray("dialogue_section", "option_section", "option_list", "dialogue_text_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10,6 +14,11 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
+script = ExtResource("1_m0nle")
+dialogue_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/DialogueSection")
+option_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/OptionSection")
+option_list = NodePath("PanelContainer/MarginContainer/VBoxContainer/OptionSection/VBoxContainer/MarginContainer/OptionList")
+dialogue_text_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/DialogueSection/DialogueTextLabel")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=87615225]
 custom_minimum_size = Vector2(650, 0)
@@ -27,6 +36,39 @@ theme_override_constants/margin_bottom = 8
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=652473040]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1587497798]
+[node name="DialogueSection" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1138495850]
 layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 15
+
+[node name="DialogueTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/DialogueSection" unique_id=1587497798]
+layout_mode = 2
+text = "Some dialogue text can go here. It needs to be a pretty long text to go to a second line."
 fit_content = true
+
+[node name="OptionSection" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=293117885]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/OptionSection" unique_id=336037230]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/OptionSection/VBoxContainer" unique_id=1031466876]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/OptionSection/VBoxContainer" unique_id=1024606013]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="OptionList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/OptionSection/VBoxContainer/MarginContainer" unique_id=854568560]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DialogueOptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/OptionSection/VBoxContainer/MarginContainer/OptionList" unique_id=145242980 instance=ExtResource("2_6hs1l")]
+layout_mode = 2
+
+[node name="InputMask" parent="PanelContainer" unique_id=327348836 instance=ExtResource("1_eb2dg")]
+layout_mode = 2

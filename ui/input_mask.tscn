@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://ye34ny1vafn8"]
 
+[ext_resource type="Script" uid="uid://bl3rdels4euad" path="res://ui/input_mask.gd" id="1_2knor"]
+
 [node name="InputMask" type="MarginContainer" unique_id=327348836]
+script = ExtResource("1_2knor")
