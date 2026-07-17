@@ -16,6 +16,9 @@ func _init() -> void:
 
 
 
+
+
+
 func _on_player_entered_location(event: Event) -> void:
 
 	var location_scene = event.data["location_scene"]

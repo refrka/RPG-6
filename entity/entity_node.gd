@@ -104,10 +104,6 @@ func get_display_name() -> String:
 
 	var display_name = def.display_name
 
-	if def.template:
-
-		display_name = def.template.display_name
-
 	return display_name
 
 

@@ -13,6 +13,12 @@ var player: PlayerNode
 
 
 
+func _ready() -> void:
+
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+
+
 
 
 func launch() -> void:
@@ -72,6 +78,17 @@ func save() -> void:
 
 
 
+func pause() -> void:
+
+	get_tree().paused = true
+
+
+
+
+func resume() -> void:
+
+	get_tree().paused = false
+
 
 
 
@@ -79,6 +96,8 @@ func save() -> void:
 func transition_to(location_id: StringName, spawn_id: StringName) -> void:
 
 	var world_scene = Scenes.get_scene(WorldScene)
+
+	print(location_id)
 
 	world_scene.enter_location(location_id, spawn_id)
 
@@ -94,7 +113,9 @@ func is_active() -> bool:
 
 
 
+func is_paused() -> bool:
 
+	return get_tree().paused
 
 
 

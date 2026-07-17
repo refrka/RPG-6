@@ -13,10 +13,10 @@ var active_cutscene: Cutscene
 
 
 
+
 func _ready() -> void:
 
-	pass
-
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 
 
@@ -170,5 +170,7 @@ func _on_cutscene_finished() -> void:
 	var world_scene = get_scene(WorldScene)
 
 	world_scene.load_location(active_cutscene.paused_location_id)
+
+	active_cutscene.finished.disconnect(_on_cutscene_finished)
 
 	active_cutscene = null

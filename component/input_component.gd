@@ -6,6 +6,8 @@ signal interact_pressed
 
 signal interact_released
 
+signal profile_pressed
+
 
 
 
@@ -53,6 +55,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("interact"):
 
 		interact_released.emit()
+
+	if event.is_action_pressed("profile"):
+
+		profile_pressed.emit()
 
 
 

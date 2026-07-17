@@ -10,6 +10,14 @@ var data = {
 
 	"current_spawn_id": "start",
 
-	"player_data": { }
+	"player_data": { },
+
+	"globals": {
+
+		"flags": { },
+
+		"vars": { },
+
+	 },
 
 }

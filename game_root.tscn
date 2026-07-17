@@ -3,11 +3,14 @@
 [ext_resource type="Script" uid="uid://b7nsmhi1rfvqf" path="res://game_root.gd" id="1_pjpa4"]
 [ext_resource type="PackedScene" uid="uid://cuulvxdb4v0i0" path="res://ui/main_menu.tscn" id="2_bxsma"]
 [ext_resource type="Script" uid="uid://dyq8vo5yjgj4q" path="res://world/world_scene.gd" id="2_lkrbl"]
+[ext_resource type="PackedScene" uid="uid://c5nb2o6fata6k" path="res://ui/game_menu.tscn" id="4_lkrbl"]
+[ext_resource type="PackedScene" uid="uid://bssqwliklxvwf" path="res://ui/profile.tscn" id="5_wd1uf"]
 
 [node name="GameRoot" type="Node" unique_id=828412104]
 script = ExtResource("1_pjpa4")
 
 [node name="WorldCanvas" type="CanvasLayer" parent="." unique_id=376096639 groups=["world_canvas"]]
+follow_viewport_enabled = true
 
 [node name="WorldScene" type="Node2D" parent="WorldCanvas" unique_id=1311272936]
 script = ExtResource("2_lkrbl")
@@ -16,3 +19,21 @@ script = ExtResource("2_lkrbl")
 
 [node name="MainMenu" parent="MainMenuCanvas" unique_id=809595668 instance=ExtResource("2_bxsma")]
 visible = false
+
+[node name="OverlayCanvas" type="CanvasLayer" parent="." unique_id=204278887]
+
+[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=900025043 groups=["overlay_root"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GameMenu" parent="OverlayCanvas/OverlayRoot" unique_id=71072975 instance=ExtResource("4_lkrbl")]
+visible = false
+layout_mode = 1
+
+[node name="Profile" parent="OverlayCanvas/OverlayRoot" unique_id=1618376331 instance=ExtResource("5_wd1uf")]
+layout_mode = 1

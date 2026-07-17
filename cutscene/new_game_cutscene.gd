@@ -11,10 +11,7 @@ func _start() -> void:
 
 	world_scene.load_location("forest_area_1")
 
-	print("loaded")
-
 	await Scenes.start_timer(3.0).timeout
 
-	print("awaited")
-
 	_end()
+

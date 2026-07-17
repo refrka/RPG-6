@@ -44,15 +44,13 @@ func _enter() -> void:
 
 	if enter_condition_command_set:
 
-		print("run it")
+		var passed = true
 		
 		if enter_condition_command_set.condition_set and !enter_condition_command_set.condition_set.evaluate():
 
-			pass
+			passed = false
 
-		else:
-
-			print("execute")
+		if passed:
 			
 			enter_condition_command_set.command_set.execute()
 

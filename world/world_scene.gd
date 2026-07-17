@@ -45,6 +45,8 @@ func load_location(location_id: StringName) -> void:
 
 	add_child(location_scene)
 
+	active_location = location_scene
+
 	location_scene._activate()
 	
 

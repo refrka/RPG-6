@@ -19,6 +19,8 @@ func _ready() -> void:
 
 	_load_current_saves()
 
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 
 
 

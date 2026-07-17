@@ -8,8 +8,6 @@ class_name StartCutscene extends Command
 
 func execute(_data: Dictionary = {}) -> bool:
 
-	print("start it")
-
 	Scenes.start_cutscene(cutscene)
 
 	return true

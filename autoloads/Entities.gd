@@ -16,6 +16,9 @@ func _ready() -> void:
 
 	_load_entity_defs()
 
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+
 
 
 

@@ -18,6 +18,7 @@ func _initialize(entity_data: EntityData = null) -> void:
 
 		data = PlayerData.new()
 
+	Events.fire(PlayerInitializedEvent)
 
 
 
@@ -30,6 +31,14 @@ func _setup() -> void:
 	Events.subscribe(PlayerEnteredLocationEvent, _on_player_entered_location)
 
 
+
+
+
+func get_display_name() -> String:
+
+	var save_data = Game.get_save_data()
+
+	return save_data.save_name
 
 
 

@@ -89,6 +89,8 @@ func get_dictionary() -> Dictionary:
 
 	save_dict["player_data"] = player_data.get_dictionary()
 
+	save_dict["globals"] = Globals.get_dictionary()
+
 	last_dict = save_dict
 
 	return save_dict
@@ -113,5 +115,7 @@ static func load_dictionary(save_dict: Dictionary) -> SaveData:
 	save_data.current_spawn_id = save_dict["current_spawn_id"]
 
 	save_data.player_data = PlayerData.load_dictionary(save_dict["player_data"])
+
+	Globals.load_dictionary(save_dict["globals"])
 
 	return save_data
