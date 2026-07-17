@@ -2,7 +2,7 @@ extends Node
 
 
 
-var flags: Dictionary[StringName, bool]
+var flags: Dictionary[StringName, int]
 
 var vars: Dictionary[StringName, Variant]
 
@@ -18,7 +18,7 @@ func _ready() -> void:
 
 func set_flag(flag: StringName, value: bool) -> void:
 
-	flags[flag] = value
+	flags[flag] = int(value)
 
 
 
@@ -36,7 +36,7 @@ func get_flag(flag: StringName) -> bool:
 
 	if flags.has(flag):
 
-		return flags[flag]
+		return bool(flags[flag])
 
 	return false
 
