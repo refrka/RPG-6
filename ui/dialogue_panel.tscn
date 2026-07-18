@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b0sh42au7pm8x" path="res://ui/dialogue_option_button.tscn" id="2_6hs1l"]
 
 [node name="DialoguePanel" type="MarginContainer" unique_id=1566947642 node_paths=PackedStringArray("dialogue_section", "option_section", "option_list", "input_mask", "dialogue_text_label")]
+process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,6 +21,7 @@ option_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/OptionSe
 option_list = NodePath("PanelContainer/MarginContainer/VBoxContainer/OptionSection/VBoxContainer/MarginContainer/OptionList")
 input_mask = NodePath("PanelContainer/InputMask")
 dialogue_text_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/DialogueSection/DialogueTextLabel")
+pause = true
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=87615225]
 custom_minimum_size = Vector2(650, 0)

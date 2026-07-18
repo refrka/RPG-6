@@ -107,7 +107,6 @@ func _try_interact(target_entity: EntityNode) -> void:
 
 
 
-
 func _on_interact_pressed() -> void:
 
 	var target = interact_sensor.get_nearest_body()

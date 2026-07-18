@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://djtlw2fsdooro" path="res://ui/profile.gd" id="1_qr3px"]
 
 [node name="Profile" type="MarginContainer" unique_id=1618376331 node_paths=PackedStringArray("player_name_label")]
+process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,6 +16,7 @@ theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("1_qr3px")
 player_name_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/PlayerNameLabel")
+pause = true
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1523451984]
 custom_minimum_size = Vector2(300, 0)

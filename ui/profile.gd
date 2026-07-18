@@ -33,6 +33,8 @@ func _on_player_initialized(_event: Event) -> void:
 
 
 
+
+
 func _on_profile_input_pressed() -> void:
 
 	if !active:
@@ -42,3 +44,4 @@ func _on_profile_input_pressed() -> void:
 	else:
 
 		UI.remove_overlay(self)
+

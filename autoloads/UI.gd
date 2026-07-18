@@ -65,15 +65,23 @@ func remove_overlay(overlay: Overlay = null) -> void:
 
 	overlay._deactivate()
 
+	print("overlay deactivated")
+
 	if active_overlays.has(overlay):
 
 		active_overlays.erase(overlay)
+
+		print("overlay erased")
 
 		if overlay.pause:
 
 			pause_overlays.erase(overlay)
 
+			print("pause erased")
+
 			if pause_overlays.is_empty() and Game.is_paused():
+
+				print("resumed")
 
 				Game.resume()
 

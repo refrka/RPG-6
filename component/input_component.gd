@@ -25,6 +25,12 @@ var movement_component: MovementComponent:
 
 
 
+func _ready() -> void:
+
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+
+
 
 
 func enable() -> void:
@@ -71,7 +77,6 @@ func _process(_delta: float) -> void:
 
 		return
 
-	
 
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 

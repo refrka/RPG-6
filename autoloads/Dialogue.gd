@@ -50,7 +50,7 @@ func start_dialogue(greeting: Greeting, root_nodes: Array[DialogueNode] = []) ->
 
 	dialogue_panel.set_options(current_options)
 
-	dialogue_panel._activate()
+	UI.add_overlay(dialogue_panel)
 
 
 
@@ -60,7 +60,7 @@ func start_dialogue(greeting: Greeting, root_nodes: Array[DialogueNode] = []) ->
 
 func load_dialogue_node(dialogue_node: DialogueNode) -> void:
 
-	dialogue_panel._activate()
+	UI.add_overlay(dialogue_panel)
 
 	line_index = 0
 
@@ -93,7 +93,7 @@ func load_dialogue_node(dialogue_node: DialogueNode) -> void:
 
 func load_dialogue_text(dialogue_text: DialogueText) -> void:
 
-	dialogue_panel._activate()
+	UI.add_overlay(dialogue_panel)
 
 	current_dialogue_text = dialogue_text
 
@@ -122,7 +122,13 @@ func update_dialogue_line() -> void:
 
 func get_greeting(entity_node: EntityNode, root_nodes: Array[DialogueNode] = []) -> Greeting:
 
-	return entity_node.get_def().dialogue_library.greetings.front()
+	var def = entity_node.get_def()
+
+	if def.dialogue_library:
+
+		return entity_node.get_def().dialogue_library.greetings.front()
+
+	return null
 
 
 
@@ -166,7 +172,7 @@ func _on_dialogue_advanced() -> void:
 
 		if current_options.is_empty():
 
-			dialogue_panel._deactivate()
+			UI.remove_overlay(dialogue_panel)
 
 			dialogue_finished.emit()
 
