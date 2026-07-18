@@ -19,6 +19,8 @@ class_name DialogueNode extends Resource
 
 @export var forced_greeting: Greeting
 
+@export var quest_id: StringName
+
 
 
 

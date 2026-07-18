@@ -23,7 +23,7 @@ visible = false
 
 [node name="OverlayCanvas" type="CanvasLayer" parent="." unique_id=204278887]
 
-[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=900025043 groups=["overlay_root"]]
+[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=900025043]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,13 +32,34 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="GameMenu" parent="OverlayCanvas/OverlayRoot" unique_id=71072975 instance=ExtResource("4_lkrbl")]
-visible = false
-layout_mode = 1
-
 [node name="Profile" parent="OverlayCanvas/OverlayRoot" unique_id=1618376331 instance=ExtResource("5_wd1uf")]
 visible = false
 layout_mode = 1
 
 [node name="DialoguePanel" parent="OverlayCanvas/OverlayRoot" unique_id=1566947642 instance=ExtResource("6_0o8ui")]
+visible = false
+layout_mode = 1
+
+[node name="NoticeRoot" type="Control" parent="OverlayCanvas" unique_id=779179635 groups=["notice_root"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="GameMenu" type="Control" parent="OverlayCanvas" unique_id=2040298179]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GameMenu" parent="OverlayCanvas/GameMenu" unique_id=71072975 instance=ExtResource("4_lkrbl")]
+visible = false
 layout_mode = 1

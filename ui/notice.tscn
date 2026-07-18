@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://04360d7dx6p5"]
+
+[ext_resource type="Script" uid="uid://c318xa0xf0os3" path="res://ui/notice.gd" id="1_qm5pf"]
+[ext_resource type="Script" uid="uid://bl3rdels4euad" path="res://ui/input_mask.gd" id="2_bej3f"]
+
+[sub_resource type="Animation" id="Animation_5dxgr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-96.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_bej3f"]
+resource_name = "hide"
+length = 0.09005064
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.000650942, 0.0592381),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_qm5pf"]
+resource_name = "show"
+length = 0.27232182
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15129256, 0.18324092, 0.26135713),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-96.0, 24.0, 20.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bej3f"]
+_data = {
+&"RESET": SubResource("Animation_5dxgr"),
+&"hide": SubResource("Animation_bej3f"),
+&"show": SubResource("Animation_qm5pf")
+}
+
+[node name="Notice" type="MarginContainer" unique_id=975608791 node_paths=PackedStringArray("title_label", "secondary_label", "animation_player", "input_mask")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -180.0
+offset_top = -96.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_qm5pf")
+title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleLabel")
+secondary_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/SeconaryLabel")
+animation_player = NodePath("AnimationPlayer")
+input_mask = NodePath("InputMask")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1484496043]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=866014160]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=540078390]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=502899274]
+layout_mode = 2
+text = "Notice text"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=933893538]
+layout_mode = 2
+
+[node name="SeconaryLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=635066230]
+layout_mode = 2
+text = "Notice description"
+
+[node name="InputMask" type="MarginContainer" parent="." unique_id=1901965941]
+layout_mode = 2
+script = ExtResource("2_bej3f")
+metadata/_custom_type_script = "uid://bl3rdels4euad"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1233544826]
+libraries/ = SubResource("AnimationLibrary_bej3f")

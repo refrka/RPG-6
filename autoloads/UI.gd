@@ -1,13 +1,20 @@
 extends Node
 
 
-var overlay_root: Control
+
+@onready var notice_scene:= preload("res://ui/notice.tscn")
+
+
+var notice_root: Control
 
 var overlay_registry: Dictionary[Script, Overlay]
 
 var active_overlays: Array[Overlay]
 
 var pause_overlays: Array[Overlay]
+
+var notice_queue: Array[Notice]
+
 
 
 
@@ -16,7 +23,7 @@ func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
-	overlay_root = get_tree().get_first_node_in_group("overlay_root")
+	notice_root = get_tree().get_first_node_in_group("notice_root")
 
 
 
@@ -56,7 +63,6 @@ func add_overlay(overlay: Overlay) -> void:
 
 
 
-
 func remove_overlay(overlay: Overlay = null) -> void:
 
 	if overlay == null:
@@ -65,25 +71,25 @@ func remove_overlay(overlay: Overlay = null) -> void:
 
 	overlay._deactivate()
 
-	print("overlay deactivated")
-
 	if active_overlays.has(overlay):
 
 		active_overlays.erase(overlay)
-
-		print("overlay erased")
 
 		if overlay.pause:
 
 			pause_overlays.erase(overlay)
 
-			print("pause erased")
-
 			if pause_overlays.is_empty() and Game.is_paused():
 
-				print("resumed")
-
 				Game.resume()
+
+		if overlay is Notice and !notice_queue.is_empty():
+
+			var notice = notice_queue.pop_front()
+
+			overlay_registry.erase(notice.get_script())
+
+			_add_notice(notice)
 
 		
 
@@ -109,6 +115,42 @@ func deactivate_overlays() -> void:
 		remove_overlay(overlay)
 
 
+
+
+
+
+
+
+
+func show_notice(title: String, secondary: String) -> void:
+
+	var notice = notice_scene.instantiate() as Notice
+
+	notice.set_notice_text(title, secondary)
+
+	_add_notice(notice)
+
+		
+
+
+
+
+
+
+
+func _add_notice(notice: Notice) -> void:
+
+	if get_overlay(Notice) == null:
+
+		notice_root.add_child(notice)
+
+		add_overlay(notice)
+		
+		notice._activate()
+
+	else:
+
+		notice_queue.append(notice)
 
 
 

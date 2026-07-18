@@ -56,6 +56,14 @@ func start(save_id: StringName) -> void:
 
 	player._activate()
 
+	UI.show_notice("shit", "fuck")
+
+	UI.show_notice("shit2", "fuckasdf")
+
+	UI.show_notice("shit3", "fucddk")
+
+	UI.show_notice("shit4", "0000 0 0 0 00 0 ")
+
 
 
 
@@ -101,8 +109,6 @@ func resume() -> void:
 func transition_to(location_id: StringName, spawn_id: StringName) -> void:
 
 	var world_scene = Scenes.get_scene(WorldScene)
-
-	print(location_id)
 
 	world_scene.enter_location(location_id, spawn_id)
 

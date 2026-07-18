@@ -13,6 +13,8 @@ var location_data_list: Array[LocationData]
 
 var entity_data_registry: Dictionary[StringName, EntityData]
 
+var quest_data_list: Array[QuestData]
+
 
 
 
