@@ -2,6 +2,8 @@ class_name PlayerNode extends CharacterNode
 
 
 
+@export var interact_sensor: Sensor
+
 
 
 
@@ -27,6 +29,12 @@ func _initialize(entity_data: EntityData = null) -> void:
 func _setup() -> void:
 
 	super()
+
+	interact_sensor.setup(self)
+
+	var input_component = get_component("input")
+
+	input_component.interact_pressed.connect(_on_interact_pressed)
 
 	Events.subscribe(PlayerEnteredLocationEvent, _on_player_entered_location)
 
@@ -80,3 +88,30 @@ func _update_current_location(location_id: StringName, spawn_id: StringName) -> 
 
 
 
+func _try_interact(target_entity: EntityNode) -> void:
+
+	var root_nodes = Dialogue.get_root_nodes(target_entity)
+
+	var greeting = Dialogue.get_greeting(target_entity, root_nodes)
+
+	if greeting:
+
+		Dialogue.start_dialogue(greeting, root_nodes)
+
+
+
+
+
+
+
+
+
+
+
+func _on_interact_pressed() -> void:
+
+	var target = interact_sensor.get_nearest_body()
+
+	if target:
+
+		_try_interact(target)

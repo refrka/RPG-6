@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://u2gj13bgr5dt" path="res://entity/character/character_node.tscn" id="1_ynuq4"]
 [ext_resource type="Resource" uid="uid://dtewowtdwd85g" path="res://player/player_def.tres" id="2_a3uy3"]
 [ext_resource type="Script" uid="uid://c4i3oc2bag4c7" path="res://player/player_node.gd" id="2_d0owe"]
+[ext_resource type="Script" uid="uid://yjjckc2cn4x5" path="res://system/sensor.gd" id="4_fpdhf"]
 [ext_resource type="Script" uid="uid://if5dgwp8fff8" path="res://component/input_component.gd" id="4_k12ae"]
 [ext_resource type="Script" uid="uid://3a8fxdd0k8my" path="res://component/movement_component.gd" id="5_fpdhf"]
 
@@ -13,10 +14,14 @@ size = Vector2(16, 16)
 radius = 3.0
 height = 16.0
 
-[node name="PlayerNode" unique_id=171203552 instance=ExtResource("1_ynuq4")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_aajxx"]
+radius = 16.0
+
+[node name="PlayerNode" unique_id=171203552 node_paths=PackedStringArray("interact_sensor") instance=ExtResource("1_ynuq4")]
 collision_layer = 5
 collision_mask = 257
 script = ExtResource("2_d0owe")
+interact_sensor = NodePath("InteractSensor")
 def = ExtResource("2_a3uy3")
 
 [node name="Sprite2D" parent="VisualRoot" parent_id_path=PackedInt32Array(613685707) index="0" unique_id=2119401046]
@@ -27,6 +32,16 @@ texture = SubResource("PlaceholderTexture2D_782li")
 position = Vector2(0, -3)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_782li")
+
+[node name="InteractSensor" type="Area2D" parent="." index="2" unique_id=1522388869]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("4_fpdhf")
+metadata/_custom_type_script = "uid://yjjckc2cn4x5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractSensor" index="0" unique_id=874100370]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_aajxx")
 
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(168538887) index="0" unique_id=389869887]
 script = ExtResource("4_k12ae")

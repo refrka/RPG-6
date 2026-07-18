@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://creqkht5bqi0n" path="res://item/item_data.gd" id="1_jnk4k"]
 [ext_resource type="Resource" uid="uid://c7x0yjba6idhu" path="res://item/equipment/accessory/silver_necklace_def.tres" id="2_egusr"]
 [ext_resource type="Script" uid="uid://djgmor2bxp5mu" path="res://item/inventory.gd" id="3_wajie"]
+[ext_resource type="Script" uid="uid://bowesfb3xk6j4" path="res://dialogue/dialogue_node.gd" id="4_vt2iq"]
+[ext_resource type="Script" uid="uid://dj3wc8hog8eu7" path="res://dialogue/greeting.gd" id="5_lvm7h"]
+[ext_resource type="Script" uid="uid://qyhkyiy46vw1" path="res://dialogue/dialogue_library.gd" id="6_j83uu"]
 
 [sub_resource type="Resource" id="Resource_dovli"]
 script = ExtResource("1_jnk4k")
@@ -15,6 +18,14 @@ metadata/_custom_type_script = "uid://creqkht5bqi0n"
 script = ExtResource("3_wajie")
 item_list = Array[ExtResource("1_jnk4k")]([SubResource("Resource_dovli")])
 
+[sub_resource type="Resource" id="Resource_0vw6r"]
+script = ExtResource("5_lvm7h")
+dialogue_lines = Array[String](["Aw, shit not another new guy."])
+
+[sub_resource type="Resource" id="Resource_fpdhf"]
+script = ExtResource("6_j83uu")
+greetings = Array[ExtResource("5_lvm7h")]([SubResource("Resource_0vw6r")])
+
 [resource]
 script = ExtResource("1_jailc")
 unique_id = &"mim"
@@ -22,4 +33,5 @@ entity_id = &"mim"
 display_name = &"Mim"
 scene_path = "res://entity/character/npc/mim/mim.tscn"
 default_inventory = SubResource("Resource_jailc")
+dialogue_library = SubResource("Resource_fpdhf")
 metadata/_custom_type_script = "uid://dg7ul3t3vj73g"

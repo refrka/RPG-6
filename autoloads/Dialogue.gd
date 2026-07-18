@@ -32,11 +32,28 @@ var line_index:= 0
 
 func _ready() -> void:
 
-	var panel = get_dialogue_panel()
+	dialogue_panel.dialogue_advanced.connect(_on_dialogue_advanced)
 
-	panel.dialogue_advanced.connect(_on_dialogue_advanced)
+	dialogue_panel.option_selected.connect(_on_option_selected)
 
-	panel.option_selected.connect(_on_option_selected)
+
+
+
+
+func start_dialogue(greeting: Greeting, root_nodes: Array[DialogueNode] = []) -> void:
+
+	line_index = 0
+
+	dialogue_panel.set_text(greeting.dialogue_lines.front())
+
+	current_options.assign(root_nodes)
+
+	dialogue_panel.set_options(current_options)
+
+	dialogue_panel._activate()
+
+
+
 
 
 
@@ -99,6 +116,29 @@ func update_dialogue_line() -> void:
 
 	dialogue_panel.set_text(line)
 
+
+
+
+
+func get_greeting(entity_node: EntityNode, root_nodes: Array[DialogueNode] = []) -> Greeting:
+
+	return entity_node.get_def().dialogue_library.greetings.front()
+
+
+
+
+
+func get_root_nodes(entity_node: EntityNode) -> Array[DialogueNode]:
+
+	var root_nodes: Array[DialogueNode] = []
+
+	var def = entity_node.get_def()
+
+	if def.dialogue_library:
+
+		root_nodes.append_array(def.dialogue_library.dialogue_nodes)
+
+	return root_nodes
 
 
 
