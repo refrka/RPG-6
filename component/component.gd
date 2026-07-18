@@ -25,9 +25,9 @@ func _setup(_entity: EntityNode) -> void:
 
 
 
-func get_component_name() -> StringName:
+func get_component_script() -> Script:
 
-	return name.trim_suffix("Component").to_snake_case()
+	return get_script()
 
 
 

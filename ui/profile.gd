@@ -11,7 +11,7 @@ func _ready() -> void:
 
 	var player = Game.get_player()
 
-	var input_component = player.get_component("input")
+	var input_component = player.get_component(InputComponent)
 
 	input_component.profile_pressed.connect(_on_profile_input_pressed)
 

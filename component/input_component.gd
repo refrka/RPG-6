@@ -18,7 +18,7 @@ var movement_component: MovementComponent:
 
 		if !movement_component:
 
-			movement_component = entity.get_component("movement")
+			movement_component = entity.get_component(MovementComponent)
 		
 		return movement_component
 

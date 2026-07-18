@@ -14,6 +14,8 @@ var data: EntityData
 @export var inventory: Inventory
 
 
+@export var state_machine: StateMachine
+
 @export var body_sprite: Sprite2D
 
 @export var body_collision: CollisionShape2D
@@ -45,6 +47,10 @@ func _setup() -> void:
 	for component in get_all_components():
 
 		component._setup(self)
+
+	if state_machine:
+
+		state_machine.setup(self)
 
 	if def.default_inventory:
 
@@ -115,11 +121,11 @@ func get_display_name() -> String:
 
 
 
-func get_component(component_name: StringName) -> Component:
+func get_component(component_script: Script) -> Component:
 
 	for component in get_all_components():
 
-		if component.get_component_name() == component_name:
+		if component.get_component_script() == component_script:
 
 			return component
 

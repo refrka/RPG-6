@@ -32,7 +32,7 @@ func _setup() -> void:
 
 	interact_sensor.setup(self)
 
-	var input_component = get_component("input")
+	var input_component = get_component(InputComponent)
 
 	input_component.interact_pressed.connect(_on_interact_pressed)
 
@@ -96,7 +96,11 @@ func _try_interact(target_entity: EntityNode) -> void:
 
 	if greeting:
 
+		Dialogue.dialogue_finished.connect(_on_dialogue_finished, CONNECT_ONE_SHOT)
+
 		Dialogue.start_dialogue(greeting, root_nodes)
+
+	state_machine.request_state(InteractingState)
 
 
 
@@ -109,8 +113,20 @@ func _try_interact(target_entity: EntityNode) -> void:
 
 func _on_interact_pressed() -> void:
 
+	if state_machine.get_current_state() is InteractingState:
+
+		return
+
 	var target = interact_sensor.get_nearest_body()
 
 	if target:
 
 		_try_interact(target)
+
+
+
+
+
+func _on_dialogue_finished() -> void:
+
+	state_machine.request_state(IdleState)
