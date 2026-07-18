@@ -11,6 +11,8 @@ var initialized:= false
 
 var data: EntityData
 
+@export var inventory: Inventory
+
 
 @export var body_sprite: Sprite2D
 
@@ -43,6 +45,10 @@ func _setup() -> void:
 	for component in get_all_components():
 
 		component._setup(self)
+
+	if def.default_inventory:
+
+		inventory = def.default_inventory.duplicate_deep()
 
 
 

@@ -122,7 +122,7 @@ func _on_dialogue_advanced() -> void:
 
 	line_index += 1
 
-	if line_index > current_dialogue_text.dialogue_lines.size() - 1:
+	if !current_dialogue_text or line_index > current_dialogue_text.dialogue_lines.size() - 1:
 
 		if current_options.is_empty():
 

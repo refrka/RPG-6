@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cnm8emu6r70fj"]
+
+[ext_resource type="Script" uid="uid://dwuk7f48tnidc" path="res://item/item_def.gd" id="1_c1y6r"]
+
+[resource]
+script = ExtResource("1_c1y6r")
+item_id = &"apple"
+metadata/_custom_type_script = "uid://dwuk7f48tnidc"

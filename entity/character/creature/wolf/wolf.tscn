@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dq83rrnhr5x30"]
+
+[ext_resource type="PackedScene" uid="uid://u2gj13bgr5dt" path="res://entity/character/character_node.tscn" id="1_xw4qa"]
+[ext_resource type="Resource" uid="uid://cglx1lj01t53t" path="res://entity/character/creature/wolf/wolf_def.tres" id="2_73qeu"]
+[ext_resource type="Texture2D" uid="uid://cgnftnjt41e47" path="res://entity/character/creature/wolf/wolf_sprite.png" id="3_73qeu"]
+[ext_resource type="Script" uid="uid://3a8fxdd0k8my" path="res://component/movement_component.gd" id="4_8yd50"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osb13"]
+size = Vector2(32, 8)
+
+[node name="Wolf" unique_id=171203552 instance=ExtResource("1_xw4qa")]
+def = ExtResource("2_73qeu")
+
+[node name="Sprite2D" parent="VisualRoot" parent_id_path=PackedInt32Array(613685707) index="0" unique_id=2119401046]
+position = Vector2(0, -16)
+texture = ExtResource("3_73qeu")
+hframes = 2
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=2139287733]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_osb13")
+
+[node name="MovementComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(168538887) index="0" unique_id=224665119]
+script = ExtResource("4_8yd50")
+metadata/_custom_type_script = "uid://3a8fxdd0k8my"
