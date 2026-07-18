@@ -11,6 +11,7 @@ class_name LocationScene extends GameScene
 
 @export var transition_root: Node2D
 
+@export var nav_region: NavigationRegion2D
 
 
 @export var enter_condition_command_set: ConditionCommandSet

@@ -94,7 +94,11 @@ func get_overlay(overlay_script: Script) -> Overlay:
 
 
 
+func deactivate_overlays() -> void:
 
+	for overlay in active_overlays:
+
+		remove_overlay(overlay)
 
 
 

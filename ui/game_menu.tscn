@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cx2jdnrrun6lg" path="res://ui/game_menu.gd" id="1_3ptas"]
 
-[node name="GameMenu" type="MarginContainer" unique_id=71072975]
+[node name="GameMenu" type="MarginContainer" unique_id=71072975 node_paths=PackedStringArray("exit_to_menu_button", "quit_to_desktop_button")]
 process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,6 +14,8 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("1_3ptas")
+exit_to_menu_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/ExitToMenuButton")
+quit_to_desktop_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/QuitToDesktopButton")
 pause = true
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=10984928]

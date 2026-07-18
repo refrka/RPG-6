@@ -62,6 +62,8 @@ func start(save_id: StringName) -> void:
 
 func end() -> void:
 
+	UI.deactivate_overlays()
+
 	active_save_data = null
 
 	Scenes.activate_scene(MainMenu)
@@ -81,6 +83,9 @@ func save() -> void:
 func pause() -> void:
 
 	get_tree().paused = true
+
+
+
 
 
 

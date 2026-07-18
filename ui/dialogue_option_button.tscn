@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://b0sh42au7pm8x"]
 
+[ext_resource type="Script" uid="uid://cfosou8en1p5r" path="res://ui/dialogue_option_button.gd" id="1_tldaj"]
+
 [node name="DialogueOptionButton" type="Button" unique_id=145242980]
 custom_minimum_size = Vector2(0, 35)
 text = "Dialogue option one"
+script = ExtResource("1_tldaj")
