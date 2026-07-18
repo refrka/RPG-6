@@ -40,7 +40,19 @@ var source_entity: EntityNode
 
 func set_state(new_state: QuestState) -> void:
 
+	var old_state = state
+
 	state = new_state
+
+	if (old_state == QuestState.UNKNOWN or old_state == QuestState.AVAILABLE) and new_state == QuestState.ACTIVE:
+
+		set_stage(0)
+
+		Events.fire(QuestStartedEvent, {"quest_data": self})
+
+	if new_state == QuestState.COMPLETE:
+
+		Events.fire(QuestCompletedEvent, {"quest_data": self})
 
 	state_changed.emit(self)
 
@@ -125,6 +137,8 @@ func get_state() -> QuestState:
 func is_quest_ready() -> bool:
 
 	if stage_index > get_def().stages.size() - 1:
+
+		print("quest is ready")
 
 		return true
 

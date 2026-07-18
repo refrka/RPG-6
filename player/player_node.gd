@@ -98,7 +98,7 @@ func _try_interact(target_entity: EntityNode) -> void:
 
 		Dialogue.dialogue_finished.connect(_on_dialogue_finished, CONNECT_ONE_SHOT)
 
-		Dialogue.start_dialogue(greeting, root_nodes)
+		Dialogue.start_dialogue(target_entity, greeting, root_nodes)
 
 	state_machine.request_state(InteractingState)
 

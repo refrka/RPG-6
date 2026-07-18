@@ -56,14 +56,6 @@ func start(save_id: StringName) -> void:
 
 	player._activate()
 
-	UI.show_notice("shit", "fuck")
-
-	UI.show_notice("shit2", "fuckasdf")
-
-	UI.show_notice("shit3", "fucddk")
-
-	UI.show_notice("shit4", "0000 0 0 0 00 0 ")
-
 
 
 

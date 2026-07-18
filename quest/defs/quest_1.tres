@@ -2,13 +2,59 @@
 
 [ext_resource type="Script" uid="uid://dx0orq5p72pjq" path="res://quest/quest_recipient.gd" id="1_1yyl5"]
 [ext_resource type="Script" uid="uid://djhtw6fmnofwp" path="res://quest/quest_def.gd" id="2_mt3kx"]
+[ext_resource type="Script" uid="uid://w1o4mg8kcfuw" path="res://command/command.gd" id="3_fsbdh"]
 [ext_resource type="Script" uid="uid://bowesfb3xk6j4" path="res://dialogue/dialogue_node.gd" id="3_mt3kx"]
 [ext_resource type="Script" uid="uid://dn2a5gjc2v21i" path="res://quest/quest_source.gd" id="3_t8qw7"]
 [ext_resource type="Script" uid="uid://bs8f7qvgtsaro" path="res://quest/quest_stage.gd" id="4_oeku4"]
+[ext_resource type="Script" uid="uid://bl3oagkvt5tiw" path="res://command/set_quest_state.gd" id="4_xpc7t"]
+[ext_resource type="Script" uid="uid://tkw03mauh5ei" path="res://command/command_set.gd" id="5_ngq7o"]
+[ext_resource type="Script" uid="uid://c11a7bbx5nxk" path="res://system/condition_command_set.gd" id="6_cp7nc"]
+
+[sub_resource type="Resource" id="Resource_ngq7o"]
+script = ExtResource("4_xpc7t")
+quest_id = &"quest_1"
+quest_state = 4
+
+[sub_resource type="Resource" id="Resource_xpc7t"]
+script = ExtResource("5_ngq7o")
+commands = Array[ExtResource("3_fsbdh")]([SubResource("Resource_ngq7o")])
+metadata/_custom_type_script = "uid://tkw03mauh5ei"
+
+[sub_resource type="Resource" id="Resource_fsbdh"]
+script = ExtResource("6_cp7nc")
+command_set = SubResource("Resource_xpc7t")
+metadata/_custom_type_script = "uid://c11a7bbx5nxk"
+
+[sub_resource type="Resource" id="Resource_cp7nc"]
+script = ExtResource("3_mt3kx")
+option_text = "turning ur shit in? damn son"
+enter_condition_command_set = SubResource("Resource_fsbdh")
+metadata/_custom_type_script = "uid://bowesfb3xk6j4"
+
+[sub_resource type="Resource" id="Resource_4yldl"]
+script = ExtResource("1_1yyl5")
+unique_id = &"mim"
+metadata/_custom_type_script = "uid://dx0orq5p72pjq"
+
+[sub_resource type="Resource" id="Resource_2kqnh"]
+script = ExtResource("4_xpc7t")
+quest_id = &"quest_1"
+quest_state = 2
+
+[sub_resource type="Resource" id="Resource_txq3f"]
+script = ExtResource("5_ngq7o")
+commands = Array[ExtResource("3_fsbdh")]([SubResource("Resource_2kqnh")])
+metadata/_custom_type_script = "uid://tkw03mauh5ei"
+
+[sub_resource type="Resource" id="Resource_782li"]
+script = ExtResource("6_cp7nc")
+command_set = SubResource("Resource_txq3f")
+metadata/_custom_type_script = "uid://c11a7bbx5nxk"
 
 [sub_resource type="Resource" id="Resource_upt0e"]
 script = ExtResource("3_mt3kx")
 option_text = "It's the source node!!! whoa"
+enter_condition_command_set = SubResource("Resource_782li")
 metadata/_custom_type_script = "uid://bowesfb3xk6j4"
 
 [sub_resource type="Resource" id="Resource_0vw6r"]
@@ -21,5 +67,7 @@ script = ExtResource("2_mt3kx")
 quest_id = &"quest_1"
 title = "Quest 1: The Questing"
 sources = Array[ExtResource("3_t8qw7")]([SubResource("Resource_0vw6r")])
+recipients = Array[ExtResource("1_1yyl5")]([SubResource("Resource_4yldl")])
 source_dialogue_node = SubResource("Resource_upt0e")
+recipient_dialogue_node = SubResource("Resource_cp7nc")
 metadata/_custom_type_script = "uid://djhtw6fmnofwp"

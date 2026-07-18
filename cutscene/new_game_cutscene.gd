@@ -19,7 +19,5 @@ func _start() -> void:
 
 	command.execute()
 
-	await Dialogue.dialogue_finished
-
 	_end()
 

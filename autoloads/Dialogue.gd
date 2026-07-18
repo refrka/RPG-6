@@ -40,13 +40,17 @@ func _ready() -> void:
 
 
 
-func start_dialogue(greeting: Greeting, root_nodes: Array[DialogueNode] = []) -> void:
+func start_dialogue(source_entity: EntityNode, greeting: Greeting, root_nodes: Array[DialogueNode] = []) -> void:
 
 	line_index = 0
 
 	dialogue_panel.set_text(greeting.dialogue_lines.front())
 
 	current_options.assign(root_nodes)
+
+	var quest_nodes = Quests.get_dialogue_nodes_for_entity(source_entity)
+
+	current_options.append_array(quest_nodes)
 
 	dialogue_panel.set_options(current_options)
 

@@ -16,7 +16,7 @@ func run(data: Dictionary = {}) -> void:
 
 	var passed = true
 
-	if !condition_set.evaluate(data):
+	if condition_set and !condition_set.evaluate(data):
 
 		passed = false
 

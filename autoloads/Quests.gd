@@ -18,6 +18,11 @@ func _ready() -> void:
 
 	Events.subscribe(QuestDialogueNodeEnteredEvent, _on_quest_dialogue_node_entered)
 
+	Events.subscribe(QuestStartedEvent, _on_quest_started)
+
+	Events.subscribe(QuestCompletedEvent, _on_quest_completed)
+
+
 
 
 
@@ -111,7 +116,9 @@ func get_dialogue_nodes_for_entity(entity_node: EntityNode) -> Array[DialogueNod
 
 		var quest_data = get_quest_data(def.quest_id)
 
-		if !quest_data or quest_data.get_state() == QuestData.QuestState.AVAILABLE:
+		print("quest data: ", quest_data)
+
+		if !quest_data or (quest_data.get_state() == QuestData.QuestState.AVAILABLE or quest_data.get_state() == QuestData.QuestState.UNKNOWN):
 
 			unevaluated_dialolgue_nodes.append(def.source_dialogue_node)
 
@@ -156,6 +163,10 @@ func set_quest_state(quest_id: StringName, state: QuestData.QuestState) -> Quest
 
 		quest_data.quest_id = quest_id
 
+		var save_data = Game.get_save_data()
+
+		save_data.quest_data_list.append(quest_data)
+
 	quest_data.set_state(state)
 
 	Events.fire(QuestStateChangedEvent, {"quest_data": quest_data})
@@ -179,6 +190,28 @@ func _on_quest_dialogue_node_entered(event: Event) -> void:
 		set_quest_state(dialogue_node.quest_id, QuestData.QuestState.AVAILABLE)
 
 
+
+
+
+
+
+func _on_quest_started(event: Event) -> void:
+
+	var quest_data = event.data["quest_data"]
+
+	var quest_def = get_quest_def(quest_data.quest_id)
+
+	UI.show_notice("Quest started", quest_def.title)
+
+
+
+func _on_quest_completed(event: Event) -> void:
+
+	var quest_data = event.data["quest_data"]
+
+	var quest_def = get_quest_def(quest_data.quest_id)
+
+	UI.show_notice("Quest completed!", quest_def.title)
 
 
 
