@@ -166,6 +166,12 @@ func get_root_nodes(entity_node: EntityNode) -> Array[DialogueNode]:
 
 		root_nodes.append_array(def.dialogue_library.get_root_dialogue_nodes())
 
+	var dialogue_component = entity_node.get_component(DialogueComponent)
+
+	if dialogue_component and dialogue_component.dialogue_library:
+
+		root_nodes.append(dialogue_component.dialogue_library.get_root_dialogue_nodes())
+
 	return root_nodes
 
 

@@ -52,7 +52,6 @@ func get_unique_def(unique_id: StringName) -> EntityDef:
 
 
 
-
 func create_node(entity_def: EntityDef) -> EntityNode:
 
 	var node_scene = load(entity_def.scene_path)

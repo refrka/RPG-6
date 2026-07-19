@@ -27,8 +27,6 @@ var data: LocationData
 
 
 
-
-
 func _enter() -> void:
 
 	_activate()
@@ -38,6 +36,8 @@ func _enter() -> void:
 	_load_data(location_data)
 
 	_initialize_characters()
+
+	_initialize_objects()
 
 	_initialize_features()
 
@@ -79,9 +79,39 @@ func _activate() -> void:
 
 func _initialize_characters() -> void:
 
-	for character_node in character_root.get_children():
+	for child in character_root.get_children():
 
-		character_node._initialize()
+		if child is CharacterNode:
+
+			var character_node = child as CharacterNode
+
+			character_node._initialize()
+
+		elif child is EntityMarker:
+
+			var entity_marker = child as EntityMarker
+
+			spawn_marker(entity_marker)
+
+
+
+
+func _initialize_objects() -> void:
+
+	for child in object_root.get_children():
+
+		if child is ObjectNode:
+
+			var object_node = child as ObjectNode
+
+			object_node._initialize()
+
+		elif child is EntityMarker:
+
+			var entity_marker = child as EntityMarker
+
+			spawn_marker(entity_marker)
+
 
 
 
@@ -111,7 +141,21 @@ func spawn_entity(entity_node: EntityNode, spawn_id: StringName) -> void:
 
 
 
+func spawn_marker(entity_marker: EntityMarker) -> void:
 
+	if entity_marker.spawn_condition_set and !entity_marker.spawn_condition_set.evaluate({"location_scene": self}):
+
+		return
+
+	var entity_node = entity_marker.get_entity_node()
+
+	if !entity_node:
+
+		return
+
+	_add_entity_node(entity_node)
+
+	entity_node.global_position = entity_marker.global_position
 
 
 

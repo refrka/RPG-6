@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://ct5ykmjrr3mei" path="res://component/navigation_component.gd" id="3_5yhso"]
 [ext_resource type="PackedScene" uid="uid://dn5teagpomvgt" path="res://entity/hitbox.tscn" id="3_8qvcu"]
 [ext_resource type="Script" uid="uid://bi8xvbsytvcmc" path="res://state/idle_state.gd" id="3_fekyf"]
+[ext_resource type="Script" uid="uid://cgyjrsg0fbkfr" path="res://component/life_component.gd" id="6_c4god"]
 
 [node name="CharacterNode" type="CharacterBody2D" unique_id=171203552 node_paths=PackedStringArray("nav_agent", "state_machine", "body_sprite", "body_collision", "component_root", "hurtbox")]
 y_sort_enabled = true
@@ -46,6 +47,9 @@ metadata/_custom_type_script = "uid://3a8fxdd0k8my"
 
 [node name="NavigationComponent" type="Node" parent="ComponentRoot" unique_id=1287368804]
 script = ExtResource("3_5yhso")
+
+[node name="LifeComponent" type="Node" parent="ComponentRoot" unique_id=443169688]
+script = ExtResource("6_c4god")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1643979302 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_l8yc8")
