@@ -1,4 +1,4 @@
-class_name QuestDialogueNodeEnteredEvent extends Event
+class_name QuestDialogueNodeEnteredEvent extends DialogueNodeEnteredEvent
 
 
 

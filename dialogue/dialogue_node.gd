@@ -28,6 +28,8 @@ func _enter() -> void:
 
 		enter_condition_command_set.run_set({"dialogue_node": self})
 
+	Events.fire(DialogueNodeEnteredEvent, {"dialogue_node": self})
+
 
 
 

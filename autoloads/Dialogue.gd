@@ -46,15 +46,25 @@ func start_dialogue(source_entity: EntityNode, greeting: Greeting, root_nodes: A
 
 	line_index = 0
 
-	dialogue_panel.set_text(greeting.dialogue_lines.front())
-
 	current_options.assign(root_nodes)
 
 	var quest_nodes = Quests.get_dialogue_nodes_for_entity(source_entity)
 
 	current_options.append_array(quest_nodes)
 
+	for option in current_options:
+
+		if option.forced_greeting:
+
+			greeting = option.forced_greeting
+
 	dialogue_panel.set_options(current_options)
+
+	dialogue_panel.set_text(greeting.dialogue_lines.front())
+
+	current_dialogue_text = greeting
+
+	current_dialogue_source = source_entity
 
 	UI.add_overlay(dialogue_panel)
 
@@ -132,6 +142,12 @@ func get_greeting(entity_node: EntityNode, root_nodes: Array[DialogueNode] = [])
 
 	if def.dialogue_library:
 
+		for node in root_nodes:
+
+			if node.forced_greeting:
+
+				return node.forced_greeting
+
 		return entity_node.get_def().dialogue_library.greetings.front()
 
 	return null
@@ -170,6 +186,22 @@ func get_dialogue_line(index: int) -> String:
 
 
 
+func _finish_dialogue() -> void:
+
+	current_dialogue_node = null
+
+	current_dialogue_source = null
+
+	current_dialogue_text = null
+
+	dialogue_finished.emit()
+
+
+
+
+
+
+
 func _on_dialogue_advanced() -> void:
 
 	line_index += 1
@@ -178,11 +210,11 @@ func _on_dialogue_advanced() -> void:
 
 		if current_options.is_empty():
 
-			current_dialogue_node._exit()
+			if current_dialogue_node:
+
+				current_dialogue_node._exit()
 
 			UI.remove_overlay(dialogue_panel)
-
-			dialogue_finished.emit()
 
 	else:
 
@@ -200,4 +232,4 @@ func _on_option_selected(dialogue_node: DialogueNode) -> void:
 
 func _on_dialogue_closed() -> void:
 
-	dialogue_finished.emit()
+	_finish_dialogue()

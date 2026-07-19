@@ -59,7 +59,3 @@ func add_objective_text(objective: QuestObjective) -> void:
 	label.text = text
 
 	objective_list.add_child(label)
-
-	if objective._is_complete():
-
-		UI.set_label_color(label, Color.SLATE_GRAY)

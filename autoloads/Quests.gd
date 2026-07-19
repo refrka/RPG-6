@@ -16,8 +16,6 @@ func _ready() -> void:
 
 	_load_quest_defs()
 
-	Events.subscribe(QuestDialogueNodeEnteredEvent, _on_quest_dialogue_node_entered)
-
 	Events.subscribe(QuestStartedEvent, _on_quest_started)
 
 	Events.subscribe(QuestCompletedEvent, _on_quest_completed)
@@ -130,7 +128,7 @@ func get_dialogue_nodes_for_entity(entity_node: EntityNode) -> Array[DialogueNod
 
 		if quest_data and quest_data.get_state() == QuestData.QuestState.READY:
 
-			def.recipient_dialogue_node.assigned_quest_id(def.quest_id)
+			def.recipient_dialogue_node.assign_quest_id(def.quest_id)
 
 			unevaluated_dialogue_nodes.append(def.recipient_dialogue_node)
 
@@ -171,19 +169,56 @@ func set_quest_state(quest_id: StringName, state: QuestData.QuestState) -> Quest
 
 	if !quest_data:
 
-		quest_data = QuestData.new()
-
-		quest_data.quest_id = quest_id
-
-		var save_data = Game.get_save_data()
-
-		save_data.quest_data_list.append(quest_data)
+		quest_data = _create_quest_data(quest_id)
 
 	quest_data.set_state(state)
 
 	Events.fire(QuestStateChangedEvent, {"quest_data": quest_data})
 
 	return quest_data
+
+
+
+
+
+func set_quest_stage(quest_id: StringName, stage: int) -> void:
+
+	var quest_data = get_quest_data(quest_id)
+
+	if quest_data:
+
+		quest_data.set_stage(stage)
+
+
+
+
+
+
+
+
+
+
+
+func _create_quest_data(quest_id: StringName) -> QuestData:
+	
+	var quest_data = QuestData.new()
+
+	quest_data.quest_id = quest_id
+
+	quest_data.state_changed.connect(_on_quest_state_changed)
+
+	quest_data.objective_completed.connect(_on_objective_completed)
+
+	quest_data.stage_completed.connect(_on_stage_completed)
+
+	var save_data = Game.get_save_data()
+
+	save_data.quest_data_list.append(quest_data)
+
+	return quest_data
+
+
+
 
 
 
@@ -204,9 +239,6 @@ func _on_quest_dialogue_node_entered(event: Event) -> void:
 
 
 
-
-
-
 func _on_quest_started(event: Event) -> void:
 
 	var quest_data = event.data["quest_data"]
@@ -217,6 +249,24 @@ func _on_quest_started(event: Event) -> void:
 
 
 
+func _on_quest_state_changed(quest_data: QuestData) -> void:
+
+	pass
+
+
+
+func _on_objective_completed(quest_data: QuestData, objective: QuestObjective) -> void:
+
+	pass
+
+
+
+func _on_stage_completed(quest_data: QuestData, stage: QuestStage) -> void:
+
+	pass
+
+
+
 func _on_quest_completed(event: Event) -> void:
 
 	var quest_data = event.data["quest_data"]
@@ -224,6 +274,9 @@ func _on_quest_completed(event: Event) -> void:
 	var quest_def = get_quest_def(quest_data.quest_id)
 
 	UI.show_notice("Quest completed!", quest_def.title)
+
+
+
 
 
 

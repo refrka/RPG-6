@@ -97,6 +97,10 @@ func get_stage_dialogue_nodes(entity_node: EntityNode = null) -> Array[DialogueN
 
 		dialogue_nodes.append_array(stage.get_dialogue_nodes(entity_node))
 
+	for dialogue_node in dialogue_nodes:
+
+		dialogue_node.assign_quest_id(quest_id)
+
 	return dialogue_nodes
 
 
@@ -140,8 +144,6 @@ func is_quest_ready() -> bool:
 
 	if stage_index > get_def().stages.size() - 1:
 
-		print("quest is ready")
-
 		return true
 
 	return false
@@ -152,9 +154,6 @@ func is_quest_ready() -> bool:
 func is_objective_complete(objective: QuestObjective) -> bool:
 
 	return completed_stage_objectives.has(objective)
-
-
-
 
 
 
@@ -179,6 +178,15 @@ func is_stage_complete() -> bool:
 func is_quest_complete() -> bool:
 
 	return state == QuestState.COMPLETE and stage_index == -1
+
+
+
+
+
+
+
+
+
 
 
 

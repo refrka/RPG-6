@@ -35,7 +35,7 @@ metadata/_custom_type_script = "uid://dw2j0vrofbsj8"
 [sub_resource type="Resource" id="Resource_d5m45"]
 script = ExtResource("5_jvrim")
 related_quest_id = &"learn_how_to_play"
-option_text = "this is an option for the quest you are on!"
+option_text = "this is an option for the quest you are on! (comes from my library)"
 show_condition_set = SubResource("Resource_4yldl")
 metadata/_custom_type_script = "uid://d3sp3ptd8v0x2"
 

@@ -26,6 +26,8 @@ func _enter() -> void:
 
 		enter_condition_command_set.run_set({"dialogue_node": self, "quest_def": related_quest_def})
 
+	Events.fire(DialogueNodeEnteredEvent, {"dialogue_node": self})
+
 
 
 
