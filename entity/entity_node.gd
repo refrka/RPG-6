@@ -22,6 +22,8 @@ var data: EntityData
 
 @export var component_root: Node
 
+@export var hurtbox: Hurtbox
+
 
 
 

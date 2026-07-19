@@ -1,13 +1,19 @@
 [gd_scene format=3 uid="uid://jyrgqo755dng"]
 
 [ext_resource type="Script" uid="uid://bie0q14dmunl5" path="res://entity/object/object_node.gd" id="1_iy5f5"]
+[ext_resource type="PackedScene" uid="uid://cr54vo7ko76gk" path="res://entity/hurtbox.tscn" id="2_3l14t"]
+[ext_resource type="Script" uid="uid://c0k20b8wr3ej6" path="res://state/state_machine.gd" id="3_ssrvi"]
+[ext_resource type="Script" uid="uid://bi8xvbsytvcmc" path="res://state/idle_state.gd" id="4_vfshi"]
 
-[node name="ObjectNode" type="StaticBody2D" unique_id=1772553420 node_paths=PackedStringArray("body_sprite", "body_collision")]
+[node name="ObjectNode" type="StaticBody2D" unique_id=1772553420 node_paths=PackedStringArray("state_machine", "body_sprite", "body_collision", "component_root", "hurtbox")]
 collision_layer = 2
 collision_mask = 259
 script = ExtResource("1_iy5f5")
+state_machine = NodePath("StateMachine")
 body_sprite = NodePath("VisualRoot/Sprite2D")
 body_collision = NodePath("CollisionShape2D")
+component_root = NodePath("ComponentRoot")
+hurtbox = NodePath("Hurtbox")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=694848386]
 y_sort_enabled = true
@@ -15,3 +21,16 @@ y_sort_enabled = true
 [node name="Sprite2D" type="Sprite2D" parent="VisualRoot" unique_id=982105107]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1639071665]
+
+[node name="Hurtbox" parent="." unique_id=1185727724 instance=ExtResource("2_3l14t")]
+
+[node name="ComponentRoot" type="Node" parent="." unique_id=737237173]
+
+[node name="StateMachine" type="Node" parent="." unique_id=894307430 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_ssrvi")
+initial_state = NodePath("IdleState")
+metadata/_custom_type_script = "uid://c0k20b8wr3ej6"
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=2131112703]
+script = ExtResource("4_vfshi")
+metadata/_custom_type_script = "uid://bi8xvbsytvcmc"
