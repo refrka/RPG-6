@@ -32,6 +32,8 @@ var line_index:= 0
 
 func _ready() -> void:
 
+	dialogue_panel.dialogue_closed.connect(_on_dialogue_closed)
+
 	dialogue_panel.dialogue_advanced.connect(_on_dialogue_advanced)
 
 	dialogue_panel.option_selected.connect(_on_option_selected)
@@ -146,7 +148,7 @@ func get_root_nodes(entity_node: EntityNode) -> Array[DialogueNode]:
 
 	if def.dialogue_library:
 
-		root_nodes.append_array(def.dialogue_library.dialogue_nodes)
+		root_nodes.append_array(def.dialogue_library.get_root_dialogue_nodes())
 
 	return root_nodes
 
@@ -192,3 +194,10 @@ func _on_dialogue_advanced() -> void:
 func _on_option_selected(dialogue_node: DialogueNode) -> void:
 
 	load_dialogue_node(dialogue_node)
+
+
+
+
+func _on_dialogue_closed() -> void:
+
+	dialogue_finished.emit()

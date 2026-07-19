@@ -3,6 +3,8 @@ class_name DialoguePanel extends Overlay
 
 signal dialogue_advanced
 
+signal dialogue_closed
+
 signal option_selected(dialogue_node: DialogueNode)
 
 
@@ -29,6 +31,15 @@ signal option_selected(dialogue_node: DialogueNode)
 func _ready() -> void:
 
 	input_mask.gui_input_received.connect(_on_gui_input_received)
+
+
+
+
+func _deactivate() -> void:
+
+	super()
+
+	dialogue_closed.emit()
 
 
 
@@ -75,6 +86,8 @@ func set_options(options: Array[DialogueNode] = []) -> void:
 func _add_option_button(option_button: DialogueOptionButton) -> void:
 
 	option_list.add_child(option_button)
+
+
 
 
 

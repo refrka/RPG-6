@@ -5,6 +5,8 @@ class_name QuestDialogueNode extends DialogueNode
 
 @export var related_quest_def: QuestDef
 
+@export var quest_entity: QuestEntity
+
 
 var assigned_quest_id: StringName
 
@@ -28,8 +30,6 @@ func _enter() -> void:
 
 
 func _exit() -> void:
-
-	print("exit the node")
 
 	if assigned_quest_id != &"":
 

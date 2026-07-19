@@ -102,6 +102,8 @@ func get_quests_for_recipient_entity(entity_node: EntityNode) -> Array[QuestDef]
 
 func get_dialogue_nodes_for_entity(entity_node: EntityNode) -> Array[DialogueNode]:
 
+	var entity_def = entity_node.get_def()
+
 	var unevaluated_dialogue_nodes: Array[DialogueNode] = []
 
 	var evaluated_dialolgue_nodes: Array[DialogueNode] = []
@@ -136,9 +138,17 @@ func get_dialogue_nodes_for_entity(entity_node: EntityNode) -> Array[DialogueNod
 
 	var save_data = Game.get_save_data()
 
+	var active_quest_ids: Array[StringName] = []
+
 	for quest_data in save_data.quest_data_list:
 
-		unevaluated_dialogue_nodes.append_array(quest_data.get_stage_dialogue_nodes())
+		active_quest_ids.append(quest_data.quest_id)
+
+		unevaluated_dialogue_nodes.append_array(quest_data.get_stage_dialogue_nodes(entity_node))
+
+	if entity_def.dialogue_library:
+
+		unevaluated_dialogue_nodes.append_array(entity_def.dialogue_library.get_quest_dialogue_nodes(active_quest_ids))
 
 	for dialogue_node in unevaluated_dialogue_nodes:
 

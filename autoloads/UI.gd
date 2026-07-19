@@ -69,6 +69,8 @@ func remove_overlay(overlay: Overlay = null) -> void:
 
 		overlay = active_overlays.back()
 
+	print("removing overlay: ", overlay)
+
 	overlay._deactivate()
 
 	if active_overlays.has(overlay):

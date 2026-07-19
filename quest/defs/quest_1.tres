@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cyyc2csiwp3dp" path="res://dialogue/dialogue_text.gd" id="8_cp7nc"]
 [ext_resource type="Script" uid="uid://d3sp3ptd8v0x2" path="res://dialogue/quest_dialogue_node.gd" id="8_ngq7o"]
 [ext_resource type="Script" uid="uid://m0kgv0xue6qn" path="res://quest/quest_objective.gd" id="10_xpc7t"]
+[ext_resource type="Script" uid="uid://cgcjyugbu840m" path="res://quest/quest_entity.gd" id="13_4yldl"]
 
 [sub_resource type="Resource" id="Resource_ngq7o"]
 script = ExtResource("4_xpc7t")
@@ -70,9 +71,21 @@ script = ExtResource("3_t8qw7")
 unique_id = &"mim"
 metadata/_custom_type_script = "uid://dn2a5gjc2v21i"
 
+[sub_resource type="Resource" id="Resource_a6gc6"]
+script = ExtResource("13_4yldl")
+entity_id = &"mim"
+metadata/_custom_type_script = "uid://cgcjyugbu840m"
+
+[sub_resource type="Resource" id="Resource_7j1o8"]
+script = ExtResource("8_ngq7o")
+quest_entity = SubResource("Resource_a6gc6")
+option_text = "quest dialogue related to the quest you are on (from the objective)"
+metadata/_custom_type_script = "uid://d3sp3ptd8v0x2"
+
 [sub_resource type="Resource" id="Resource_fkma1"]
 script = ExtResource("10_xpc7t")
 description = "The first objective"
+dialogue_nodes = Array[ExtResource("3_mt3kx")]([SubResource("Resource_7j1o8")])
 metadata/_custom_type_script = "uid://m0kgv0xue6qn"
 
 [sub_resource type="Resource" id="Resource_l05dg"]

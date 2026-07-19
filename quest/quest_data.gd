@@ -87,7 +87,7 @@ func set_stage(new_index: int) -> void:
 
 
 
-func get_stage_dialogue_nodes() -> Array[DialogueNode]:
+func get_stage_dialogue_nodes(entity_node: EntityNode = null) -> Array[DialogueNode]:
 
 	var dialogue_nodes: Array[DialogueNode] = []
 
@@ -95,7 +95,7 @@ func get_stage_dialogue_nodes() -> Array[DialogueNode]:
 
 	if stage:
 
-		dialogue_nodes.append_array(stage.get_dialogue_nodes())
+		dialogue_nodes.append_array(stage.get_dialogue_nodes(entity_node))
 
 	return dialogue_nodes
 

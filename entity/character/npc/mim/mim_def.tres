@@ -5,8 +5,12 @@
 [ext_resource type="Resource" uid="uid://c7x0yjba6idhu" path="res://item/equipment/accessory/silver_necklace_def.tres" id="2_egusr"]
 [ext_resource type="Script" uid="uid://djgmor2bxp5mu" path="res://item/inventory.gd" id="3_wajie"]
 [ext_resource type="Script" uid="uid://bowesfb3xk6j4" path="res://dialogue/dialogue_node.gd" id="4_vt2iq"]
+[ext_resource type="Script" uid="uid://d3sp3ptd8v0x2" path="res://dialogue/quest_dialogue_node.gd" id="5_jvrim"]
 [ext_resource type="Script" uid="uid://dj3wc8hog8eu7" path="res://dialogue/greeting.gd" id="5_lvm7h"]
+[ext_resource type="Script" uid="uid://2ujjpld4suyu" path="res://condition/condition.gd" id="6_crwam"]
 [ext_resource type="Script" uid="uid://qyhkyiy46vw1" path="res://dialogue/dialogue_library.gd" id="6_j83uu"]
+[ext_resource type="Script" uid="uid://cl5cj2yg0qyv" path="res://condition/is_quest_state.gd" id="7_crwam"]
+[ext_resource type="Script" uid="uid://dw2j0vrofbsj8" path="res://condition/condition_set.gd" id="7_d5m45"]
 
 [sub_resource type="Resource" id="Resource_dovli"]
 script = ExtResource("1_jnk4k")
@@ -18,6 +22,23 @@ metadata/_custom_type_script = "uid://creqkht5bqi0n"
 script = ExtResource("3_wajie")
 item_list = Array[ExtResource("1_jnk4k")]([SubResource("Resource_dovli")])
 
+[sub_resource type="Resource" id="Resource_cp7nc"]
+script = ExtResource("7_crwam")
+quest_id = &"learn_how_to_play"
+quest_state = 2
+
+[sub_resource type="Resource" id="Resource_4yldl"]
+script = ExtResource("7_d5m45")
+conditions = Array[ExtResource("6_crwam")]([SubResource("Resource_cp7nc")])
+metadata/_custom_type_script = "uid://dw2j0vrofbsj8"
+
+[sub_resource type="Resource" id="Resource_d5m45"]
+script = ExtResource("5_jvrim")
+related_quest_id = &"learn_how_to_play"
+option_text = "this is an option for the quest you are on!"
+show_condition_set = SubResource("Resource_4yldl")
+metadata/_custom_type_script = "uid://d3sp3ptd8v0x2"
+
 [sub_resource type="Resource" id="Resource_0vw6r"]
 script = ExtResource("5_lvm7h")
 dialogue_lines = Array[String](["Aw, shit not another new guy."])
@@ -25,6 +46,7 @@ dialogue_lines = Array[String](["Aw, shit not another new guy."])
 [sub_resource type="Resource" id="Resource_fpdhf"]
 script = ExtResource("6_j83uu")
 greetings = Array[ExtResource("5_lvm7h")]([SubResource("Resource_0vw6r")])
+dialogue_nodes = Array[ExtResource("4_vt2iq")]([SubResource("Resource_d5m45")])
 
 [resource]
 script = ExtResource("1_jailc")

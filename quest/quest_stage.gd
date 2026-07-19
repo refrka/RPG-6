@@ -30,13 +30,15 @@ func _initialize() -> void:
 
 
 
-func get_dialogue_nodes() -> Array[DialogueNode]:
+func get_dialogue_nodes(entity_node: EntityNode = null) -> Array[DialogueNode]:
 
 	var dialogue_nodes: Array[DialogueNode] = []
 
 	for objective in objectives:
 
-		dialogue_nodes.append_array(objective.dialogue_nodes)
+		var related_nodes = objective.dialogue_nodes.filter(func(node): return node.quest_entity.match(entity_node))
+
+		dialogue_nodes.append_array(related_nodes)
 
 	return dialogue_nodes
 
