@@ -54,8 +54,6 @@ func start(save_id: StringName) -> void:
 
 	player._initialize(active_save_data.player_data)
 
-	player._activate()
-
 
 
 

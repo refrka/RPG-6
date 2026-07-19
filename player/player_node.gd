@@ -25,6 +25,23 @@ func _initialize(entity_data: EntityData = null) -> void:
 
 
 
+func _deactivate() -> void:
+
+	super()
+
+	print("deacting")
+
+
+
+func _activate() -> void:
+
+	super()
+
+	print("acting")
+
+
+
+
 
 func _setup() -> void:
 

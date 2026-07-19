@@ -2,13 +2,16 @@
 
 [ext_resource type="Script" uid="uid://cw1qm7lli54r3" path="res://entity/character/character_node.gd" id="1_ioq1x"]
 [ext_resource type="Script" uid="uid://c0k20b8wr3ej6" path="res://state/state_machine.gd" id="2_l8yc8"]
+[ext_resource type="Script" uid="uid://3a8fxdd0k8my" path="res://component/movement_component.gd" id="2_nduuk"]
+[ext_resource type="Script" uid="uid://ct5ykmjrr3mei" path="res://component/navigation_component.gd" id="3_5yhso"]
 [ext_resource type="Script" uid="uid://bi8xvbsytvcmc" path="res://state/idle_state.gd" id="3_fekyf"]
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=171203552 node_paths=PackedStringArray("state_machine", "body_sprite", "body_collision", "component_root")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=171203552 node_paths=PackedStringArray("nav_agent", "state_machine", "body_sprite", "body_collision", "component_root")]
 y_sort_enabled = true
 collision_mask = 256
 motion_mode = 1
 script = ExtResource("1_ioq1x")
+nav_agent = NodePath("NavigationAgent2D")
 state_machine = NodePath("StateMachine")
 body_sprite = NodePath("VisualRoot/Sprite2D")
 body_collision = NodePath("CollisionShape2D")
@@ -21,7 +24,19 @@ y_sort_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139287733]
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=442724766]
+path_desired_distance = 8.0
+target_desired_distance = 8.0
+debug_enabled = true
+
 [node name="ComponentRoot" type="Node" parent="." unique_id=168538887]
+
+[node name="MovementComponent" type="Node" parent="ComponentRoot" unique_id=1922448818]
+script = ExtResource("2_nduuk")
+metadata/_custom_type_script = "uid://3a8fxdd0k8my"
+
+[node name="NavigationComponent" type="Node" parent="ComponentRoot" unique_id=1287368804]
+script = ExtResource("3_5yhso")
 
 [node name="StateMachine" type="Node" parent="." unique_id=1643979302 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_l8yc8")

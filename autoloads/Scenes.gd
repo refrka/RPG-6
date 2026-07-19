@@ -69,6 +69,8 @@ func start_cutscene(cutscene: Cutscene) -> void:
 
 	cutscene.paused_position = player.global_position
 
+	player._deactivate()
+
 	cutscene._start()
 
 
@@ -174,3 +176,7 @@ func _on_cutscene_finished() -> void:
 	active_cutscene.finished.disconnect(_on_cutscene_finished)
 
 	active_cutscene = null
+
+	var player = Game.get_player()
+
+	player._activate()

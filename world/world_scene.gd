@@ -33,7 +33,7 @@ func enter_location(location_id: StringName, spawn_id: StringName) -> LocationSc
 
 
 
-func load_location(location_id: StringName) -> void:
+func load_location(location_id: StringName) -> LocationScene:
 
 	var location_scene = get_location(location_id)
 
@@ -48,6 +48,8 @@ func load_location(location_id: StringName) -> void:
 	active_location = location_scene
 
 	location_scene._activate()
+
+	return location_scene
 	
 
 

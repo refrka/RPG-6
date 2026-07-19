@@ -29,8 +29,6 @@ var data: LocationData
 
 
 
-
-
 func _enter() -> void:
 
 	_activate()
@@ -47,13 +45,13 @@ func _enter() -> void:
 
 		var passed = true
 		
-		if enter_condition_command_set.condition_set and !enter_condition_command_set.condition_set.evaluate():
+		if enter_condition_command_set.condition_set and !enter_condition_command_set.condition_set.evaluate({"location_scene": self}):
 
 			passed = false
 
 		if passed:
 			
-			enter_condition_command_set.command_set.execute()
+			enter_condition_command_set.command_set.execute({"location_scene": self})
 
 
 
@@ -61,6 +59,19 @@ func _enter() -> void:
 func _exit() -> void:
 
 	_deactivate()
+
+
+
+
+func _activate() -> void:
+
+	print("activating location")
+
+	super()
+
+	# for character_node in character_root.get_children():
+
+	# 	character_node._setup()
 
 
 
