@@ -14,6 +14,10 @@ func execute(_data: Dictionary = {}) -> bool:
 
 		quest_id = _data["quest_id"]
 
+	if _data.has("quest_def"):
+
+		quest_id = _data["quest_def"].quest_id
+
 	if _data.has("quest_state"):
 
 		quest_state = _data["quest_state"]
@@ -21,3 +25,13 @@ func execute(_data: Dictionary = {}) -> bool:
 	Quests.set_quest_state(quest_id, quest_state)
 
 	return true
+
+
+
+
+
+static func run(_data: Dictionary) -> bool:
+
+	var command = SetQuestState.new()
+
+	return command.execute(_data)

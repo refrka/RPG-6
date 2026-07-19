@@ -102,7 +102,7 @@ func get_quests_for_recipient_entity(entity_node: EntityNode) -> Array[QuestDef]
 
 func get_dialogue_nodes_for_entity(entity_node: EntityNode) -> Array[DialogueNode]:
 
-	var unevaluated_dialolgue_nodes: Array[DialogueNode] = []
+	var unevaluated_dialogue_nodes: Array[DialogueNode] = []
 
 	var evaluated_dialolgue_nodes: Array[DialogueNode] = []
 
@@ -116,11 +116,11 @@ func get_dialogue_nodes_for_entity(entity_node: EntityNode) -> Array[DialogueNod
 
 		var quest_data = get_quest_data(def.quest_id)
 
-		print("quest data: ", quest_data)
-
 		if !quest_data or (quest_data.get_state() == QuestData.QuestState.AVAILABLE or quest_data.get_state() == QuestData.QuestState.UNKNOWN):
 
-			unevaluated_dialolgue_nodes.append(def.source_dialogue_node)
+			def.source_dialogue_node.assign_quest_id(def.quest_id)
+
+			unevaluated_dialogue_nodes.append(def.source_dialogue_node)
 
 	for def in recipient_quest_defs:
 
@@ -128,7 +128,9 @@ func get_dialogue_nodes_for_entity(entity_node: EntityNode) -> Array[DialogueNod
 
 		if quest_data and quest_data.get_state() == QuestData.QuestState.READY:
 
-			unevaluated_dialolgue_nodes.append(def.recipient_dialogue_node)
+			def.recipient_dialogue_node.assigned_quest_id(def.quest_id)
+
+			unevaluated_dialogue_nodes.append(def.recipient_dialogue_node)
 
 	# Check active quest data for objective-related nodes
 
@@ -136,9 +138,9 @@ func get_dialogue_nodes_for_entity(entity_node: EntityNode) -> Array[DialogueNod
 
 	for quest_data in save_data.quest_data_list:
 
-		unevaluated_dialolgue_nodes.append_array(quest_data.get_stage_dialogue_nodes())
+		unevaluated_dialogue_nodes.append_array(quest_data.get_stage_dialogue_nodes())
 
-	for dialogue_node in unevaluated_dialolgue_nodes:
+	for dialogue_node in unevaluated_dialogue_nodes:
 
 		if dialogue_node.show_condition_set and !dialogue_node.show_condition_set.evaluate({"dialogue_node": dialogue_node, "quest_entity": entity_node}):
 

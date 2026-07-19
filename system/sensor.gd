@@ -19,25 +19,11 @@ var entity: EntityNode
 
 
 
-
-
-
-
-
-
-
-
-
-
 func setup(_entity: EntityNode = null) -> void:
 
 	activate()
 
 	entity = _entity
-
-
-
-
 
 
 
@@ -53,7 +39,6 @@ func activate() -> void:
 	_connect_signals()
 
 
-	
 
 
 

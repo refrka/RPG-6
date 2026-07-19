@@ -19,8 +19,6 @@ class_name DialogueNode extends Resource
 
 @export var forced_greeting: Greeting
 
-@export var quest_id: StringName
-
 
 
 
@@ -28,7 +26,7 @@ func _enter() -> void:
 
 	if enter_condition_command_set:
 
-		enter_condition_command_set.run({"dialogue_node": self})
+		enter_condition_command_set.run_set({"dialogue_node": self})
 
 
 
@@ -39,4 +37,4 @@ func _exit() -> void:
 
 	if exit_condition_command_set:
 
-		exit_condition_command_set.run({"dialogue_node": self})
+		exit_condition_command_set.run_set({"dialogue_node": self})

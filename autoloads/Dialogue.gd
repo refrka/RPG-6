@@ -176,6 +176,8 @@ func _on_dialogue_advanced() -> void:
 
 		if current_options.is_empty():
 
+			current_dialogue_node._exit()
+
 			UI.remove_overlay(dialogue_panel)
 
 			dialogue_finished.emit()

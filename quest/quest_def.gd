@@ -26,9 +26,9 @@ enum QuestType {
 
 @export var stages: Array[QuestStage]
 
-@export var source_dialogue_node: DialogueNode
+@export var source_dialogue_node: QuestDialogueNode
 
-@export var recipient_dialogue_node: DialogueNode
+@export var recipient_dialogue_node: QuestDialogueNode 
 
 
 

@@ -1,10 +1,24 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://cglx1lj01t53t"]
 
+[ext_resource type="Script" uid="uid://bowesfb3xk6j4" path="res://dialogue/dialogue_node.gd" id="1_di7um"]
 [ext_resource type="Script" uid="uid://dg7ul3t3vj73g" path="res://entity/character/character_def.gd" id="1_dwess"]
+[ext_resource type="Script" uid="uid://dj3wc8hog8eu7" path="res://dialogue/greeting.gd" id="2_o2odi"]
+[ext_resource type="Script" uid="uid://qyhkyiy46vw1" path="res://dialogue/dialogue_library.gd" id="3_lod8w"]
+
+[sub_resource type="Resource" id="Resource_85afm"]
+script = ExtResource("2_o2odi")
+dialogue_lines = Array[String](["its a wolf"])
+metadata/_custom_type_script = "uid://dj3wc8hog8eu7"
+
+[sub_resource type="Resource" id="Resource_gh6tl"]
+script = ExtResource("3_lod8w")
+greetings = Array[ExtResource("2_o2odi")]([SubResource("Resource_85afm")])
+metadata/_custom_type_script = "uid://qyhkyiy46vw1"
 
 [resource]
 script = ExtResource("1_dwess")
 entity_id = &"wolf"
 display_name = &"Wolf"
 scene_path = "res://entity/character/creature/wolf/wolf.tscn"
+dialogue_library = SubResource("Resource_gh6tl")
 metadata/_custom_type_script = "uid://dg7ul3t3vj73g"

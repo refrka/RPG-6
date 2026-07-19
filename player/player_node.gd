@@ -34,7 +34,9 @@ func _setup() -> void:
 
 	var input_component = get_component(InputComponent)
 
-	input_component.interact_pressed.connect(_on_interact_pressed)
+	if !input_component.interact_pressed.is_connected(_on_interact_pressed):
+
+		input_component.interact_pressed.connect(_on_interact_pressed)
 
 	Events.subscribe(PlayerEnteredLocationEvent, _on_player_entered_location)
 

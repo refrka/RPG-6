@@ -52,6 +52,8 @@ func set_state(new_state: QuestState) -> void:
 
 	if new_state == QuestState.COMPLETE:
 
+		set_stage(-1)
+
 		Events.fire(QuestCompletedEvent, {"quest_data": self})
 
 	state_changed.emit(self)

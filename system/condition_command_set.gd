@@ -12,7 +12,7 @@ class_name ConditionCommandSet extends Resource
 
 
 
-func run(data: Dictionary = {}) -> void:
+func run_set(data: Dictionary = {}) -> void:
 
 	var passed = true
 

@@ -9,10 +9,12 @@
 [ext_resource type="Script" uid="uid://bl3oagkvt5tiw" path="res://command/set_quest_state.gd" id="4_xpc7t"]
 [ext_resource type="Script" uid="uid://tkw03mauh5ei" path="res://command/command_set.gd" id="5_ngq7o"]
 [ext_resource type="Script" uid="uid://c11a7bbx5nxk" path="res://system/condition_command_set.gd" id="6_cp7nc"]
+[ext_resource type="Script" uid="uid://cyyc2csiwp3dp" path="res://dialogue/dialogue_text.gd" id="8_cp7nc"]
+[ext_resource type="Script" uid="uid://d3sp3ptd8v0x2" path="res://dialogue/quest_dialogue_node.gd" id="8_ngq7o"]
+[ext_resource type="Script" uid="uid://m0kgv0xue6qn" path="res://quest/quest_objective.gd" id="10_xpc7t"]
 
 [sub_resource type="Resource" id="Resource_ngq7o"]
 script = ExtResource("4_xpc7t")
-quest_id = &"quest_1"
 quest_state = 4
 
 [sub_resource type="Resource" id="Resource_xpc7t"]
@@ -36,38 +38,60 @@ script = ExtResource("1_1yyl5")
 unique_id = &"mim"
 metadata/_custom_type_script = "uid://dx0orq5p72pjq"
 
-[sub_resource type="Resource" id="Resource_2kqnh"]
-script = ExtResource("4_xpc7t")
-quest_id = &"quest_1"
-quest_state = 2
+[sub_resource type="Resource" id="Resource_vlnen"]
+script = ExtResource("8_cp7nc")
+dialogue_lines = Array[String](["I sure can! Go ahead and click once on this panel.", "That's how you advance dialogue. See? I'm teaching you already!"])
+metadata/_custom_type_script = "uid://cyyc2csiwp3dp"
 
-[sub_resource type="Resource" id="Resource_txq3f"]
+[sub_resource type="Resource" id="Resource_8v02t"]
+script = ExtResource("4_xpc7t")
+quest_state = 2
+metadata/_custom_type_script = "uid://bl3oagkvt5tiw"
+
+[sub_resource type="Resource" id="Resource_t6h0n"]
 script = ExtResource("5_ngq7o")
-commands = Array[ExtResource("3_fsbdh")]([SubResource("Resource_2kqnh")])
+commands = Array[ExtResource("3_fsbdh")]([SubResource("Resource_8v02t")])
 metadata/_custom_type_script = "uid://tkw03mauh5ei"
 
-[sub_resource type="Resource" id="Resource_782li"]
+[sub_resource type="Resource" id="Resource_v5bma"]
 script = ExtResource("6_cp7nc")
-command_set = SubResource("Resource_txq3f")
+command_set = SubResource("Resource_t6h0n")
 metadata/_custom_type_script = "uid://c11a7bbx5nxk"
 
-[sub_resource type="Resource" id="Resource_upt0e"]
-script = ExtResource("3_mt3kx")
-option_text = "It's the source node!!! whoa"
-enter_condition_command_set = SubResource("Resource_782li")
-metadata/_custom_type_script = "uid://bowesfb3xk6j4"
+[sub_resource type="Resource" id="Resource_ul77m"]
+script = ExtResource("8_ngq7o")
+option_text = "Can you teach me to play the game?"
+dialogue_text = SubResource("Resource_vlnen")
+exit_condition_command_set = SubResource("Resource_v5bma")
+metadata/_custom_type_script = "uid://d3sp3ptd8v0x2"
 
 [sub_resource type="Resource" id="Resource_0vw6r"]
 script = ExtResource("3_t8qw7")
 unique_id = &"mim"
 metadata/_custom_type_script = "uid://dn2a5gjc2v21i"
 
+[sub_resource type="Resource" id="Resource_fkma1"]
+script = ExtResource("10_xpc7t")
+description = "The first objective"
+metadata/_custom_type_script = "uid://m0kgv0xue6qn"
+
+[sub_resource type="Resource" id="Resource_l05dg"]
+script = ExtResource("10_xpc7t")
+description = "Another obj"
+metadata/_custom_type_script = "uid://m0kgv0xue6qn"
+
+[sub_resource type="Resource" id="Resource_3460y"]
+script = ExtResource("4_oeku4")
+objectives = Array[ExtResource("10_xpc7t")]([SubResource("Resource_fkma1"), SubResource("Resource_l05dg")])
+metadata/_custom_type_script = "uid://bs8f7qvgtsaro"
+
 [resource]
 script = ExtResource("2_mt3kx")
-quest_id = &"quest_1"
+quest_id = &"learn_how_to_play"
 title = "Quest 1: The Questing"
 sources = Array[ExtResource("3_t8qw7")]([SubResource("Resource_0vw6r")])
 recipients = Array[ExtResource("1_1yyl5")]([SubResource("Resource_4yldl")])
-source_dialogue_node = SubResource("Resource_upt0e")
+stages = Array[ExtResource("4_oeku4")]([SubResource("Resource_3460y")])
+source_dialogue_node = SubResource("Resource_ul77m")
 recipient_dialogue_node = SubResource("Resource_cp7nc")
 metadata/_custom_type_script = "uid://djhtw6fmnofwp"

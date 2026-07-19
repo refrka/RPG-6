@@ -27,6 +27,9 @@ func _initialize() -> void:
 
 
 
+
+
+
 func get_dialogue_nodes() -> Array[DialogueNode]:
 
 	var dialogue_nodes: Array[DialogueNode] = []
@@ -36,6 +39,8 @@ func get_dialogue_nodes() -> Array[DialogueNode]:
 		dialogue_nodes.append_array(objective.dialogue_nodes)
 
 	return dialogue_nodes
+
+
 
 
 

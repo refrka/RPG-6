@@ -138,6 +138,17 @@ func show_notice(title: String, secondary: String) -> void:
 
 
 
+func set_label_color(label: Label, color: Color) -> void:
+
+	label.add_theme_color_override("font_color", color)
+
+
+
+
+
+
+
+
 func _add_notice(notice: Notice) -> void:
 
 	if get_overlay(Notice) == null:

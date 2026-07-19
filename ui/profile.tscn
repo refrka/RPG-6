@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://bssqwliklxvwf"]
 
 [ext_resource type="Script" uid="uid://djtlw2fsdooro" path="res://ui/profile.gd" id="1_qr3px"]
+[ext_resource type="Script" uid="uid://dalji3e3qivor" path="res://ui/profile_character_panel.gd" id="2_e1kcm"]
+[ext_resource type="Script" uid="uid://ctxvs68ps3wbj" path="res://ui/profile_inventory_panel.gd" id="3_6c1g0"]
+[ext_resource type="Script" uid="uid://cuf7uyoky73mx" path="res://ui/profile_quests_panel.gd" id="4_j70dw"]
+[ext_resource type="PackedScene" uid="uid://dfro6q1g8mgie" path="res://ui/profile_quest_list_button.tscn" id="5_6c1g0"]
 
-[node name="Profile" type="MarginContainer" unique_id=1618376331 node_paths=PackedStringArray("player_name_label")]
+[sub_resource type="ButtonGroup" id="ButtonGroup_qr3px"]
+
+[node name="Profile" type="MarginContainer" unique_id=1618376331 node_paths=PackedStringArray("player_name_label", "character_tab_button", "inventory_tab_button", "quests_tab_button", "character_panel", "inventory_panel", "quests_panel")]
 process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,42 +21,167 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("1_qr3px")
-player_name_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/PlayerNameLabel")
+player_name_label = NodePath("HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PlayerNameLabel")
+character_tab_button = NodePath("HBoxContainer/VBoxContainer/CharacterTabButton")
+inventory_tab_button = NodePath("HBoxContainer/VBoxContainer/InventoryTabButton")
+quests_tab_button = NodePath("HBoxContainer/VBoxContainer/QuestsTabButton")
+character_panel = NodePath("HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/CharacterPanel")
+inventory_panel = NodePath("HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel")
+quests_panel = NodePath("HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel")
 pause = true
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1523451984]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1789092570]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1366761229]
+layout_mode = 2
+
+[node name="CharacterTabButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1883136979]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qr3px")
+text = "Character"
+
+[node name="InventoryTabButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=2143607560]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qr3px")
+text = "Inventory"
+
+[node name="QuestsTabButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1447743519]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_qr3px")
+text = "Quests"
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=1523451984]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=936467296]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer" unique_id=936467296]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1421040858]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer" unique_id=1421040858]
 layout_mode = 2
 
-[node name="PlayerNameLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1952936777]
+[node name="PlayerNameLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1952936777]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Name"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=997072676]
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=997072676]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1097294313]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1336713622]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1000705573]
+[node name="CharacterPanel" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=204077518]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_e1kcm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/CharacterPanel" unique_id=1097294313]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/CharacterPanel/HBoxContainer" unique_id=1000705573]
 layout_mode = 2
 text = "Location:"
 
-[node name="LocationNameLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=742582615]
+[node name="LocationNameLabel" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/CharacterPanel/HBoxContainer" unique_id=742582615]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Location Name"
 horizontal_alignment = 2
+
+[node name="InventoryPanel" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=452235983]
+visible = false
+layout_mode = 2
+script = ExtResource("3_6c1g0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel" unique_id=1284201106]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer" unique_id=1047285136]
+layout_mode = 2
+text = "Inventory"
+horizontal_alignment = 1
+
+[node name="QuestsPanel" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=2012017183 node_paths=PackedStringArray("active_quest_list", "stage_info_list", "quest_list_panel", "quest_info_panel", "back_to_quest_list_button")]
+layout_mode = 2
+script = ExtResource("4_j70dw")
+active_quest_list = NodePath("QuestListPanel/VBoxContainer/ScrollContainer/ActiveQuestList")
+stage_info_list = NodePath("QuestInfoPanel/VBoxContainer/StageInfoList")
+quest_list_panel = NodePath("QuestListPanel")
+quest_info_panel = NodePath("QuestInfoPanel")
+back_to_quest_list_button = NodePath("QuestInfoPanel/VBoxContainer/BackToQuestListButton")
+
+[node name="QuestListPanel" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel" unique_id=358636109]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel/QuestListPanel" unique_id=1151768661]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel/QuestListPanel/VBoxContainer" unique_id=647742451]
+layout_mode = 2
+text = "Active Quests"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel/QuestListPanel/VBoxContainer" unique_id=2116331323]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ActiveQuestList" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel/QuestListPanel/VBoxContainer/ScrollContainer" unique_id=1941933060]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ProfileQuestListButton" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel/QuestListPanel/VBoxContainer/ScrollContainer/ActiveQuestList" unique_id=646155997 instance=ExtResource("5_6c1g0")]
+layout_mode = 2
+
+[node name="QuestInfoPanel" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel" unique_id=896173306]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel/QuestInfoPanel" unique_id=900650118]
+layout_mode = 2
+
+[node name="BackToQuestListButton" type="Button" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel/QuestInfoPanel/VBoxContainer" unique_id=2063150810]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "<  Back to Quest List"
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel/QuestInfoPanel/VBoxContainer" unique_id=1301550715]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel/QuestInfoPanel/VBoxContainer" unique_id=243067755]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label2" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel/QuestInfoPanel/VBoxContainer/MarginContainer" unique_id=808219831]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "The Quest Title"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel/QuestInfoPanel/VBoxContainer" unique_id=474463794]
+layout_mode = 2
+text = "Description of the quest"
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel/QuestInfoPanel/VBoxContainer" unique_id=1587897393]
+layout_mode = 2
+
+[node name="StageInfoList" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/QuestsPanel/QuestInfoPanel/VBoxContainer" unique_id=2024183813]
+layout_mode = 2
