@@ -8,6 +8,10 @@ signal interact_released
 
 signal profile_pressed
 
+signal weapon_attack_pressed
+
+signal weapon_attack_released
+
 
 
 
@@ -65,6 +69,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("profile"):
 
 		profile_pressed.emit()
+
+	if event.is_action_pressed("weapon_attack"):
+
+		weapon_attack_pressed.emit()
+
+	if event.is_action_released("weapon_attack"):
+
+		weapon_attack_released.emit()
 
 
 

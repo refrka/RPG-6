@@ -44,6 +44,16 @@ func absorb(item_data: ItemData) -> void:
 
 
 
+
+
+func get_def() -> ItemDef:
+
+	return def
+
+
+
+
+
 func is_empty() -> bool:
 
 	return def == null or count <= 0

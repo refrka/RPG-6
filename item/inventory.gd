@@ -9,8 +9,7 @@ signal item_count_changed(item_data: ItemData, amount: int, removed: bool)
 
 @export var item_list: Array[ItemData]
 
-
-
+@export var equipped_items: Dictionary[EquipmentDef.EquipmentType, EquipmentData]
 
 
 func add_item_data(item_data: ItemData) -> void:
@@ -75,6 +74,65 @@ func remove_item(item_def: ItemDef, count:= 1) -> void:
 
 
 
+
+func can_equip(equipment_data: EquipmentData) -> bool:
+
+	return true
+
+
+
+
+
+
+func equip_item_data(equipment_data: EquipmentData) -> void:
+
+	var equipment_def = equipment_data.get_def()
+
+	var equipment_type = equipment_def.equipment_type
+
+	if get_equipment_data(equipment_type) != null:
+
+		unequip_item_data(equipment_type)
+
+	equipped_items[equipment_type] = equipment_data
+
+	if has_item_data(equipment_data):
+
+		remove_item_data(equipment_data)
+
+
+
+
+
+func unequip_item_data(equipment_type: EquipmentDef.EquipmentType) -> bool:
+
+	var equipment_data = get_equipment_data(equipment_type)
+
+	if equipment_data == null:
+
+		return false
+
+	add_item_data(equipment_data)
+
+	equipped_items.erase(equipment_type)
+
+	return true
+
+
+
+
+
+
+func get_equipment_data(equipment_type: EquipmentDef.EquipmentType) -> EquipmentData:
+
+	if equipped_items.has(equipment_type):
+
+		return equipped_items[equipment_type]
+
+	return null
+
+
+
 func get_data_with_def(item_def: ItemDef) -> ItemData:
 
 	for item_data in item_list:
@@ -87,7 +145,9 @@ func get_data_with_def(item_def: ItemDef) -> ItemData:
 
 
 
+func has_item_data(item_data: ItemData) -> bool:
 
+	return item_list.has(item_data)
 
 
 
