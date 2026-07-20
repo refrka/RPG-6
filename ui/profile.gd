@@ -26,7 +26,9 @@ var current_panel: MarginContainer
 
 func _ready() -> void:
 
-	Events.subscribe(PlayerInitializedEvent, _on_player_initialized)
+	Events.subscribe(GameStartedEvent, _on_game_started)
+
+	Events.subscribe(GameEndedEvent, _on_game_ended)
 
 	var player = Game.get_player()
 
@@ -73,11 +75,21 @@ func _load_player_info() -> void:
 
 
 
+func _clear_player_info() -> void:
 
-func _on_player_initialized(_event: Event) -> void:
+	inventory_panel.clear_player_inventory()
+
+
+
+
+func _on_game_started(_event: Event) -> void:
 
 	_load_player_info()
 
+
+func _on_game_ended(_event: Event) -> void:
+
+	_clear_player_info()
 
 
 

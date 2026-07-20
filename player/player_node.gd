@@ -20,6 +20,8 @@ func _initialize(entity_data: EntityData = null) -> void:
 
 		data = PlayerData.new()
 
+	_activate()
+
 	Events.fire(PlayerInitializedEvent)
 
 
@@ -42,6 +44,8 @@ func _setup() -> void:
 		input_component.interact_pressed.connect(_on_interact_pressed)
 
 	Events.subscribe(PlayerEnteredLocationEvent, _on_player_entered_location)
+
+
 
 
 

@@ -34,6 +34,10 @@ var data: EntityData
 
 func _initialize(_entity_data: EntityData = null) -> void:
 
+	if inventory:
+
+		inventory.clear_inventory()
+
 	_setup()
 
 
@@ -70,6 +74,10 @@ func _setup() -> void:
 func _load_data(entity_data: EntityData) -> void:
 
 	data = entity_data
+
+	data.node = self
+
+	inventory.load_dictionary(data.last_dict["inventory"])
 
 
 

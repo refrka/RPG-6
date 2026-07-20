@@ -65,8 +65,6 @@ func _exit() -> void:
 
 func _activate() -> void:
 
-	print("activating location")
-
 	super()
 
 	# for character_node in character_root.get_children():

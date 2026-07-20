@@ -22,6 +22,12 @@ func load_player_inventory() -> void:
 
 
 
+func clear_player_inventory() -> void:
+
+	inventory_list.clear_inventory()
+
+
+
 
 func _on_discard_requested(item_data: ItemData, amount: int) -> void:
 

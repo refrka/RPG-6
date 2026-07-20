@@ -61,6 +61,8 @@ func save_game(save_data: SaveData) -> void:
 
 	save_dict["last_save_unix"] = Time.get_unix_time_from_system()
 
+	save_data.last_dict = save_dict
+
 	_write_save_dict(save_dict)
 
 
@@ -91,6 +93,8 @@ func load_save_data(save_id: String) -> SaveData:
 	file.close()
 
 	save_data = SaveData.load_dictionary(json.data)
+
+	save_data.last_dict = json.data
 	
 	return save_data
 

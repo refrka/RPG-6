@@ -39,6 +39,17 @@ func load_inventory(_inventory: Inventory) -> void:
 
 
 
+func clear_inventory() -> void:
+	
+	inventory.item_count_changed.disconnect(_on_item_count_changed)
+
+	inventory = null
+
+	_clear_item_list()
+
+
+
+
 func _update_item_list() -> void:
 
 	_clear_item_list()
@@ -79,11 +90,26 @@ func _add_item_row(item_data: ItemData) -> void:
 
 
 
+func _remove_item_row(row: InventoryItemRow) -> void:
+
+	var item_data = row.item_data
+
+	if item_data:
+
+		item_data.data_emptied.disconnect(_on_item_data_emptied)
+
+	row.queue_free()
+
+	item_row_registry.erase(item_data)
+
+
+
+
 func _clear_item_list() -> void:
 
 	for child in item_list.get_children():
 
-		child.queue_free()
+		_remove_item_row(child)
 
 
 
@@ -128,11 +154,9 @@ func _on_discard_count_submitted(amount: int, item_data: ItemData) -> void:
 
 
 
-func _on_item_data_emptied(item_data: ItemData, row: InventoryItemRow) -> void:
+func _on_item_data_emptied(_item_data: ItemData, row: InventoryItemRow) -> void:
 
-	row.queue_free()
-
-	item_row_registry.erase(item_data)
+	_remove_item_row(row)
 
 
 

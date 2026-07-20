@@ -91,3 +91,34 @@ static func create(_def: ItemDef, _count:= 1) -> ItemData:
 	item_data.set_data(_def, _count)
 
 	return item_data
+
+
+
+
+
+
+
+func get_dictionary() -> Dictionary:
+
+	var save_dict = {}
+
+	save_dict["item_id"] = def.item_id
+
+	save_dict["count"] = count
+
+	return save_dict
+
+
+
+
+static func load_dictionary(save_dict: Dictionary) -> ItemData:
+
+	var item_data = ItemData.new()
+
+	var item_def = Items.get_item_def(save_dict["item_id"])
+
+	item_data.def = item_def
+
+	item_data.count = int(save_dict["count"])
+
+	return item_data

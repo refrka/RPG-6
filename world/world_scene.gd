@@ -50,6 +50,25 @@ func load_location(location_id: StringName) -> LocationScene:
 	location_scene._activate()
 
 	return location_scene
+
+
+
+
+
+
+func unload_location() -> void:
+
+	if !active_location:
+
+		return
+
+	loaded_locations.erase(active_location)
+
+	active_location._exit()
+
+	active_location.queue_free()
+
+	active_location = null
 	
 
 

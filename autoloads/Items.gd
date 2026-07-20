@@ -44,7 +44,7 @@ func get_item_def(item_id: StringName) -> ItemDef:
 
 func _load_item_defs() -> void:
 
-	var sub_dirs = ["res://item/"]
+	var sub_dirs = ["res://item/", "res://equipment/"]
 
 	while !sub_dirs.is_empty():
 

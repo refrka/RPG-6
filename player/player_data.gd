@@ -41,6 +41,8 @@ func get_dictionary() -> Dictionary:
 
 	var save_dict = super()
 
+	save_dict["inventory"] = node.inventory.get_dictionary()
+
 	save_dict["discovered_locations"] = discovered_locations
 
 	return save_dict
@@ -59,5 +61,7 @@ static func load_dictionary(save_dict: Dictionary) -> EntityData:
 		return player_data
 
 	player_data.discovered_locations.assign(save_dict["discovered_locations"])
+
+	player_data.last_dict = save_dict
 
 	return player_data

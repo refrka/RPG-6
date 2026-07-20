@@ -54,17 +54,27 @@ func start(save_id: StringName) -> void:
 
 	player._initialize(active_save_data.player_data)
 
+	Events.fire(GameStartedEvent)
+
 
 
 
 
 func end() -> void:
 
+	hold_player_node()
+
 	UI.deactivate_overlays()
+
+	var world_scene = Scenes.get_scene(WorldScene)
+
+	world_scene.unload_location()
 
 	active_save_data = null
 
 	Scenes.activate_scene(MainMenu)
+
+	Events.fire(GameEndedEvent)
 
 
 
@@ -103,6 +113,14 @@ func transition_to(location_id: StringName, spawn_id: StringName) -> void:
 	world_scene.enter_location(location_id, spawn_id)
 
 
+
+
+
+func hold_player_node() -> void:
+
+	player.reparent(self)
+
+	player._deactivate()
 
 
 

@@ -26,6 +26,8 @@ func add_item_data(item_data: ItemData) -> void:
 
 		item_data.data_updated.connect(_on_data_updated)
 
+		print("add_item_data() emitting")
+
 		item_count_changed.emit(item_data, item_data.count, false)
 
 
@@ -46,17 +48,23 @@ func add_item(item_def: ItemDef, amount:= 1) -> ItemData:
 
 	var item_data = get_data_with_def(item_def)
 
+	print("def and data: ", item_def, "/", item_data)
+
 	if item_data:
 
 		var new_count = item_data.count + amount
 
 		item_data.set_data(item_def, new_count)
+
+		print("add_item() emitting")
+
+		item_count_changed.emit(item_data, amount, false)
 	
 	else:
 
 		item_data = ItemData.create(item_def, amount)
 
-	item_count_changed.emit(item_data, amount, false)
+		add_item_data(item_data)
 
 	return item_data
 
@@ -78,6 +86,15 @@ func remove_item(item_def: ItemDef, amount:= 1) -> ItemData:
 
 	return item_data
 
+
+
+
+
+func clear_inventory() -> void:
+
+	item_list.clear()
+
+	equipped_items.clear()
 
 
 
@@ -188,3 +205,48 @@ func _on_data_emptied(item_data: ItemData) -> void:
 func _on_data_updated(_item_data: ItemData) -> void:
 
 	inventory_updated.emit(self)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func get_dictionary() -> Dictionary:
+
+	var save_dict = {}
+
+	save_dict["item_list"] = []
+
+	for item_data in item_list:
+
+		save_dict["item_list"].append(item_data.get_dictionary())
+
+	return save_dict
+
+
+
+
+
+
+func load_dictionary(save_dict: Dictionary) -> void:
+
+	clear_inventory()
+
+	for dict in save_dict["item_list"]:
+
+		var item_data = ItemData.load_dictionary(dict)
+
+		item_data.data_emptied.connect(_on_data_emptied)
+
+		item_data.data_updated.connect(_on_data_updated)
+
+		item_list.append(item_data)
