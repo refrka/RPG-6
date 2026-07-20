@@ -15,9 +15,7 @@ func _start() -> void:
 
 	var location_scene = world_scene.load_location(location_id)
 
-	var entity_node = location_scene.character_root.find_child("Mim")
-
-	command.execute({"entity_node": entity_node, "target_pos": entity_node.global_position + Vector2(0, 100)})
+	UI.show_notice("shit", "")
 
 	await Scenes.start_timer(3.0).timeout
 

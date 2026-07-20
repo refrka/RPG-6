@@ -31,6 +31,16 @@ var current_spawn_id: StringName
 
 
 
+func _initialize() -> void:
+
+	print("init save data")
+
+	Globals.load_dictionary(last_dict["globals"])
+
+
+
+
+
 func get_last_location_id() -> StringName:
 
 	return last_dict["current_location_id"]
@@ -81,6 +91,8 @@ func get_dictionary() -> Dictionary:
 
 	var save_dict = load("res://system/save_template.gd").new().data
 
+	save_dict["globals"] = Globals.get_dictionary()
+
 	save_dict["save_id"] = save_id
 
 	save_dict["save_name"] = save_name
@@ -90,8 +102,6 @@ func get_dictionary() -> Dictionary:
 	save_dict["current_spawn_id"] = current_spawn_id
 
 	save_dict["player_data"] = player_data.get_dictionary()
-
-	save_dict["globals"] = Globals.get_dictionary()
 
 	last_dict = save_dict
 
@@ -117,7 +127,5 @@ static func load_dictionary(save_dict: Dictionary) -> SaveData:
 	save_data.current_spawn_id = save_dict["current_spawn_id"]
 
 	save_data.player_data = PlayerData.load_dictionary(save_dict["player_data"])
-
-	Globals.load_dictionary(save_dict["globals"])
 
 	return save_data

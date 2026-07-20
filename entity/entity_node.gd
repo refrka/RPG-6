@@ -71,13 +71,18 @@ func _setup() -> void:
 
 
 
+
+
+
 func _load_data(entity_data: EntityData) -> void:
 
 	data = entity_data
 
 	data.node = self
 
-	inventory.load_dictionary(data.last_dict["inventory"])
+	if !data.last_dict["inventory"].is_empty():
+
+		inventory.load_dictionary(data.last_dict["inventory"])
 
 
 
@@ -179,6 +184,10 @@ func is_unique() -> bool:
 
 func _activate() -> void:
 
+	if active:
+
+		return
+
 	active = true
 
 	show()
@@ -194,6 +203,10 @@ func _activate() -> void:
 
 
 func _deactivate() -> void:
+
+	if !active:
+
+		return
 
 	active = false
 

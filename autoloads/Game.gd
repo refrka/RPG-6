@@ -54,6 +54,8 @@ func start(save_id: StringName) -> void:
 
 	player._initialize(active_save_data.player_data)
 
+	active_save_data._initialize()
+
 	Events.fire(GameStartedEvent)
 
 

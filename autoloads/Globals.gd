@@ -14,6 +14,11 @@ func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
+	Events.subscribe(GameEndedEvent, _on_game_ended)
+
+
+
+
 
 
 func set_flag(flag: StringName, value: bool) -> void:
@@ -54,6 +59,13 @@ func get_var(var_name: StringName) -> Variant:
 
 
 
+func _on_game_ended(_event: Event) -> void:
+
+	print("game ended cleared")
+
+	flags = {}
+
+	vars = {}
 
 
 
@@ -73,6 +85,18 @@ func get_dictionary() -> Dictionary:
 
 func load_dictionary(save_dict: Dictionary) -> void:
 
+	print("load dictionary cleared")
+
+	flags = {}
+
+	vars = {}
+
 	flags.assign(save_dict["flags"])
 
 	vars.assign(save_dict["vars"])
+
+
+
+
+
+

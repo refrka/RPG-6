@@ -19,12 +19,28 @@ signal discard_requested(item_data: ItemData, amount: int)
 
 @onready var item_row_scene:= preload("res://ui/inventory_item_row.tscn")
 
+@onready var equipment_row_scene:= preload("res://ui/equipment_item_row.tscn")
+
+@onready var barter_row_scene:= preload("res://ui/barter_item_row.tscn")
+
+
+
 
 @export var item_list: VBoxContainer
+
+@export var filter_entry: LineEdit
 
 var inventory: Inventory
 
 var item_row_registry: Dictionary[ItemData, InventoryItemRow]
+
+
+
+
+
+func _ready() -> void:
+
+	filter_entry.text_changed.connect(_on_filter_text_changed)
 
 
 
@@ -42,12 +58,16 @@ func load_inventory(_inventory: Inventory) -> void:
 
 
 func clear_inventory() -> void:
+
+	_clear_item_list()
+
+	if !inventory: 
+		
+		return
 	
 	inventory.item_count_changed.disconnect(_on_item_count_changed)
 
 	inventory = null
-
-	_clear_item_list()
 
 
 
@@ -67,17 +87,23 @@ func _update_item_list() -> void:
 
 
 
-func _add_item_row(item_data: ItemData) -> void:
+func _add_item_row(item_data: ItemData) -> InventoryItemRow:
 
 	var row = item_row_scene.instantiate() as InventoryItemRow
 
-	row.equip_requested.connect(_on_equip_requested)
+	if row is EquipmentItemRow:
 
-	row.unequip_requested.connect(_on_unequip_requested)
+		row.equip_requested.connect(_on_equip_requested)
 
-	row.buy_requested.connect(_on_buy_requested)
+		row.unequip_requested.connect(_on_unequip_requested)
 
-	row.sell_requested.connect(_on_sell_requested)
+	if row is BarterItemRow:
+
+		row.buy_requested.connect(_on_buy_requested)
+
+		row.sell_requested.connect(_on_sell_requested)
+
+	row.info_requested.connect(_on_info_requested)
 
 	row.discard_requested.connect(_on_discard_requested)
 
@@ -89,6 +115,9 @@ func _add_item_row(item_data: ItemData) -> void:
 
 	item_row_registry[item_data] = row
 
+	return row
+
+	
 
 
 
@@ -112,6 +141,9 @@ func _clear_item_list() -> void:
 	for child in item_list.get_children():
 
 		_remove_item_row(child)
+
+
+
 
 
 
@@ -141,6 +173,12 @@ func _on_sell_requested(row: InventoryItemRow) -> void:
 
 
 
+func _on_info_requested(row: InventoryItemRow) -> void:
+
+	pass
+
+
+
 func _on_discard_requested(row: InventoryItemRow) -> void:
 
 	var count_selector = UI.show_count_selector(0, row.item_data.get_count())
@@ -162,8 +200,28 @@ func _on_item_data_emptied(_item_data: ItemData, row: InventoryItemRow) -> void:
 
 
 
+
+
 func _on_item_count_changed(item_data: ItemData, _amount: int, _removed: bool) -> void:
 
 	if !item_row_registry.has(item_data):
 
 		_add_item_row(item_data)
+
+
+
+
+
+func _on_filter_text_changed(text: String) -> void:
+
+	for item_data in item_row_registry:
+
+		var row = item_row_registry[item_data]
+
+		if item_data.get_display_name().to_lower().contains(text.to_lower()):
+
+			row.show()
+
+		else:
+
+			row.hide()

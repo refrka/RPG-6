@@ -41,7 +41,11 @@ func get_dictionary() -> Dictionary:
 
 	var save_dict = super()
 
-	save_dict["inventory"] = node.inventory.get_dictionary()
+	save_dict["inventory"] = {}
+
+	if node:
+
+		save_dict["inventory"] = node.inventory.get_dictionary()
 
 	save_dict["discovered_locations"] = discovered_locations
 

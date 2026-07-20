@@ -200,6 +200,9 @@ func _connect_weapon_attack_input() -> void:
 		input_component.weapon_attack_released.connect(_on_weapon_attack_input_released)
 
 
+		
+
+
 func _disconnect_weapon_attack_input() -> void:
 
 	if input_component:

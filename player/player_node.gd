@@ -20,6 +20,8 @@ func _initialize(entity_data: EntityData = null) -> void:
 
 		data = PlayerData.new()
 
+		data.node = self
+
 	_activate()
 
 	Events.fire(PlayerInitializedEvent)

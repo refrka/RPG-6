@@ -69,7 +69,7 @@ func start_cutscene(cutscene: Cutscene) -> void:
 
 	cutscene.paused_position = player.global_position
 
-	player._deactivate()
+	Game.hold_player_node()
 
 	cutscene._start()
 
@@ -96,6 +96,8 @@ func get_scene(scene_script: Script = null) -> GameScene:
 		return null
 
 	return scene_registry[scene_script]
+
+
 
 
 
@@ -171,12 +173,14 @@ func _on_cutscene_finished() -> void:
 
 	var world_scene = get_scene(WorldScene)
 
-	world_scene.load_location(active_cutscene.paused_location_id)
+	var location_scene = world_scene.load_location(active_cutscene.paused_location_id)
+
+	var player = Game.get_player()
+
+	location_scene.spawn_entity(player)
+
+	player.global_position = active_cutscene.paused_position
 
 	active_cutscene.finished.disconnect(_on_cutscene_finished)
 
 	active_cutscene = null
-
-	var player = Game.get_player()
-
-	player._activate()

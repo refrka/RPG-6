@@ -5,10 +5,11 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bxb1k"]
 
-[node name="InventoryList" type="MarginContainer" unique_id=1730336320 node_paths=PackedStringArray("item_list")]
+[node name="InventoryList" type="MarginContainer" unique_id=1730336320 node_paths=PackedStringArray("item_list", "filter_entry")]
 size_flags_vertical = 3
 script = ExtResource("1_ylmtr")
 item_list = NodePath("VBoxContainer/PanelContainer2/MarginContainer/ScrollContainer/ItemList")
+filter_entry = NodePath("VBoxContainer/HBoxContainer/LineEdit")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1808087671]
 layout_mode = 2

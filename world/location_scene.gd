@@ -128,11 +128,13 @@ func _initialize_features() -> void:
 
 
 
-func spawn_entity(entity_node: EntityNode, spawn_id: StringName) -> void:
+func spawn_entity(entity_node: EntityNode, spawn_id: StringName = &"") -> void:
 
 	_add_entity_node(entity_node)
 
-	entity_node.global_position = get_spawn_position(spawn_id)
+	if spawn_id != &"":
+
+		entity_node.global_position = get_spawn_position(spawn_id)
 
 
 

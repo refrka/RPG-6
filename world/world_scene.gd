@@ -18,11 +18,11 @@ func enter_location(location_id: StringName, spawn_id: StringName) -> LocationSc
 
 	var location_scene = get_location(location_id)
 
-	change_active_location(location_scene)
-
 	var player = Game.get_player()
 
 	location_scene.spawn_entity(player, spawn_id)
+
+	change_active_location(location_scene)
 
 	Events.fire(PlayerEnteredLocationEvent, {"location_scene": location_scene, "spawn_id": spawn_id})
 

@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dnioyds56osyb"]
+
+[ext_resource type="PackedScene" uid="uid://dm4i4p05ln46a" path="res://ui/inventory_item_row.tscn" id="1_5g7my"]
+[ext_resource type="Script" uid="uid://bprtlbm0pdjh6" path="res://ui/barter_item_row.gd" id="2_bhe32"]
+
+[node name="BarterItemRow" unique_id=1480078256 node_paths=PackedStringArray("buy_button", "sell_button") instance=ExtResource("1_5g7my")]
+script = ExtResource("2_bhe32")
+buy_button = NodePath("ButtonList/BuyButton")
+sell_button = NodePath("ButtonList/SellButton")
+
+[node name="BuyButton" type="Button" parent="ButtonList" parent_id_path=PackedInt32Array(1378587787) index="2" unique_id=1186188356]
+layout_mode = 2
+text = "Buy"
+
+[node name="SellButton" type="Button" parent="ButtonList" parent_id_path=PackedInt32Array(1378587787) index="3" unique_id=1665060743]
+layout_mode = 2
+text = "Sell"
