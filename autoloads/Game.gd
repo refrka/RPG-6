@@ -48,13 +48,13 @@ func start(save_id: StringName) -> void:
 
 	active_save_data = Saves.load_save_data(save_id)
 
-	var world_scene = Scenes.activate_scene(WorldScene)
-
-	world_scene.enter_location(active_save_data.get_last_location_id(), active_save_data.get_last_spawn_id())
-
 	player._initialize(active_save_data.player_data)
 
 	active_save_data._initialize()
+
+	var world_scene = Scenes.activate_scene(WorldScene)
+
+	world_scene.enter_location(active_save_data.get_last_location_id(), active_save_data.get_last_spawn_id())
 
 	Events.fire(GameStartedEvent)
 
@@ -63,6 +63,8 @@ func start(save_id: StringName) -> void:
 
 
 func end() -> void:
+
+	Events.fire(GameEndedEvent)
 
 	hold_player_node()
 
@@ -75,8 +77,6 @@ func end() -> void:
 	active_save_data = null
 
 	Scenes.activate_scene(MainMenu)
-
-	Events.fire(GameEndedEvent)
 
 
 

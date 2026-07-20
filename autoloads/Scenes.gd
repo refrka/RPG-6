@@ -184,3 +184,5 @@ func _on_cutscene_finished() -> void:
 	active_cutscene.finished.disconnect(_on_cutscene_finished)
 
 	active_cutscene = null
+
+	player._activate()
