@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ArmorDef" format=3 uid="uid://ce7jda76ogjpw"]
+
+[ext_resource type="Script" uid="uid://4ghihb3p247q" path="res://equipment/armor/armor_def.gd" id="1_rrreq"]
+
+[resource]
+script = ExtResource("1_rrreq")
+equipment_type = 1
+item_id = &"leather_armor"
+display_name = "leather_armor"
+metadata/_custom_type_script = "uid://dwuk7f48tnidc"

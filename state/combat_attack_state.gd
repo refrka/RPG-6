@@ -1,0 +1,1 @@
+class_name CombatAttackState extends CombatState

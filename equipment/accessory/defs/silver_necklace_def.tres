@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AccessoryDef" format=3 uid="uid://c7x0yjba6idhu"]
+
+[ext_resource type="Script" uid="uid://cj7u47jn7u7le" path="res://equipment/accessory/accessory_def.gd" id="1_ckot6"]
+
+[resource]
+script = ExtResource("1_ckot6")
+equipment_type = 2
+item_id = &"silver_necklace"
+display_name = "silver necklace"
+metadata/_custom_type_script = "uid://dwuk7f48tnidc"

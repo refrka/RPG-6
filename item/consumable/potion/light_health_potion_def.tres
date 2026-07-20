@@ -5,4 +5,6 @@
 [resource]
 script = ExtResource("1_ilapg")
 item_id = &"light_health_potion"
+display_name = "light health potion"
+max_stack = 5
 metadata/_custom_type_script = "uid://dwuk7f48tnidc"

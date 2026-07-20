@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dg7ul3t3vj73g" path="res://entity/character/character_def.gd" id="1_jailc"]
 [ext_resource type="Script" uid="uid://creqkht5bqi0n" path="res://item/item_data.gd" id="1_jnk4k"]
-[ext_resource type="Resource" uid="uid://c7x0yjba6idhu" path="res://item/equipment/accessory/silver_necklace_def.tres" id="2_egusr"]
+[ext_resource type="Resource" uid="uid://c7x0yjba6idhu" path="res://equipment/accessory/defs/silver_necklace_def.tres" id="2_egusr"]
 [ext_resource type="Script" uid="uid://djgmor2bxp5mu" path="res://item/inventory.gd" id="3_wajie"]
 [ext_resource type="Script" uid="uid://bowesfb3xk6j4" path="res://dialogue/dialogue_node.gd" id="4_vt2iq"]
 [ext_resource type="Script" uid="uid://d3sp3ptd8v0x2" path="res://dialogue/quest_dialogue_node.gd" id="5_jvrim"]

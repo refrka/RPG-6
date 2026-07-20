@@ -51,12 +51,13 @@ func _ready() -> void:
 
 
 
-
 func _activate() -> void:
 
 	super()
 
 	current_panel._activate()
+
+
 
 
 
@@ -67,6 +68,8 @@ func _load_player_info() -> void:
 	player_name_label.text = player.get_display_name()
 
 	quests_panel.show_quest_list()
+
+	inventory_panel.load_player_inventory()
 
 
 

@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://cr54vo7ko76gk" path="res://entity/hurtbox.tscn" id="2_3l14t"]
 [ext_resource type="Script" uid="uid://cgyjrsg0fbkfr" path="res://component/life_component.gd" id="3_3h0si"]
 [ext_resource type="Script" uid="uid://c0k20b8wr3ej6" path="res://state/state_machine.gd" id="3_ssrvi"]
+[ext_resource type="Script" uid="uid://7nntd7c7ifji" path="res://component/animation_component.gd" id="4_ljcyf"]
 [ext_resource type="Script" uid="uid://bi8xvbsytvcmc" path="res://state/idle_state.gd" id="4_vfshi"]
 
-[node name="ObjectNode" type="StaticBody2D" unique_id=1772553420 node_paths=PackedStringArray("state_machine", "body_sprite", "body_collision", "component_root", "hurtbox")]
+[node name="ObjectNode" type="StaticBody2D" unique_id=1772553420 node_paths=PackedStringArray("state_machine", "body_sprite", "body_collision", "component_root", "hurtbox", "animation_player", "animation_tree")]
 collision_layer = 2
 collision_mask = 259
 script = ExtResource("1_iy5f5")
@@ -15,6 +16,8 @@ body_sprite = NodePath("VisualRoot/Sprite2D")
 body_collision = NodePath("CollisionShape2D")
 component_root = NodePath("ComponentRoot")
 hurtbox = NodePath("Hurtbox")
+animation_player = NodePath("AnimationPlayer")
+animation_tree = NodePath("AnimationTree")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=694848386]
 y_sort_enabled = true
@@ -30,6 +33,10 @@ y_sort_enabled = true
 [node name="LifeComponent" type="Node" parent="ComponentRoot" unique_id=1603938615]
 script = ExtResource("3_3h0si")
 
+[node name="AnimationComponent" type="Node" parent="ComponentRoot" unique_id=1324096472]
+script = ExtResource("4_ljcyf")
+metadata/_custom_type_script = "uid://7nntd7c7ifji"
+
 [node name="StateMachine" type="Node" parent="." unique_id=894307430 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_ssrvi")
 initial_state = NodePath("IdleState")
@@ -38,3 +45,9 @@ metadata/_custom_type_script = "uid://c0k20b8wr3ej6"
 [node name="IdleState" type="Node" parent="StateMachine" unique_id=2131112703]
 script = ExtResource("4_vfshi")
 metadata/_custom_type_script = "uid://bi8xvbsytvcmc"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2060442308]
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=195895159]
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")

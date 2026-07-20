@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WeaponDef" format=3 uid="uid://bvavpfy12qwa0"]
+
+[ext_resource type="Script" uid="uid://wv5geufdmeym" path="res://equipment/weapon/weapon_def.gd" id="1_wa4ed"]
+[ext_resource type="Script" uid="uid://b1hyl0jmr5dc5" path="res://combat/attack_entry.gd" id="1_yhnmh"]
+[ext_resource type="Script" uid="uid://1bx1vwj8myxj" path="res://combat/attack_config.gd" id="2_lnne5"]
+
+[sub_resource type="Resource" id="Resource_i1a4c"]
+script = ExtResource("1_yhnmh")
+damage_range = Vector2(30, 50)
+cooldown_duration = 0.2
+metadata/_custom_type_script = "uid://b1hyl0jmr5dc5"
+
+[sub_resource type="Resource" id="Resource_fpdhf"]
+script = ExtResource("2_lnne5")
+attack_set = Array[ExtResource("1_yhnmh")]([SubResource("Resource_i1a4c")])
+metadata/_custom_type_script = "uid://1bx1vwj8myxj"
+
+[resource]
+script = ExtResource("1_wa4ed")
+default_attack_config = SubResource("Resource_fpdhf")
+item_id = &"rusy_iron_sword"
+display_name = "rusty iron sword"
+metadata/_custom_type_script = "uid://dwuk7f48tnidc"

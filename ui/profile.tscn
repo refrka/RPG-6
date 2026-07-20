@@ -3,10 +3,30 @@
 [ext_resource type="Script" uid="uid://djtlw2fsdooro" path="res://ui/profile.gd" id="1_qr3px"]
 [ext_resource type="Script" uid="uid://dalji3e3qivor" path="res://ui/profile_character_panel.gd" id="2_e1kcm"]
 [ext_resource type="Script" uid="uid://ctxvs68ps3wbj" path="res://ui/profile_inventory_panel.gd" id="3_6c1g0"]
+[ext_resource type="PackedScene" uid="uid://dm4i4p05ln46a" path="res://ui/inventory_item_row.tscn" id="4_e74fe"]
 [ext_resource type="Script" uid="uid://cuf7uyoky73mx" path="res://ui/profile_quests_panel.gd" id="4_j70dw"]
 [ext_resource type="PackedScene" uid="uid://dfro6q1g8mgie" path="res://ui/profile_quest_list_button.tscn" id="5_6c1g0"]
+[ext_resource type="PackedScene" uid="uid://pn2eu8jqm3r1" path="res://ui/inventory_list.tscn" id="5_e74fe"]
+[ext_resource type="Script" uid="uid://btukf2r8w82tp" path="res://ui/equipment_item_row.gd" id="5_x5ogg"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_qr3px"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6c1g0"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.30588236, 0.30588236, 0.30588236, 0.5686275)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.10892356, 0.10892338, 0.10892346, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
 
 [node name="Profile" type="MarginContainer" unique_id=1618376331 node_paths=PackedStringArray("player_name_label", "character_tab_button", "inventory_tab_button", "quests_tab_button", "character_panel", "inventory_panel", "quests_panel")]
 process_mode = 2
@@ -59,7 +79,7 @@ button_group = SubResource("ButtonGroup_qr3px")
 text = "Quests"
 
 [node name="PanelContainer" type="PanelContainer" parent="HBoxContainer" unique_id=1523451984]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 
@@ -106,20 +126,94 @@ size_flags_horizontal = 3
 text = "Location Name"
 horizontal_alignment = 2
 
-[node name="InventoryPanel" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=452235983]
-visible = false
+[node name="InventoryPanel" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=452235983 node_paths=PackedStringArray("inventory_list")]
 layout_mode = 2
 script = ExtResource("3_6c1g0")
+inventory_list = NodePath("VBoxContainer/InventoryList")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel" unique_id=1284201106]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer" unique_id=1047285136]
 layout_mode = 2
+text = "Equipment"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer" unique_id=2110790369]
+layout_mode = 2
+size_flags_stretch_ratio = 0.4
+theme_override_styles/panel = SubResource("StyleBoxFlat_6c1g0")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer/PanelContainer" unique_id=19217768]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer/PanelContainer/MarginContainer" unique_id=1114157093]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=586543054]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=872113639]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Wpn:"
+
+[node name="Label2" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=2007950895]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Arm:"
+
+[node name="Label3" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2" unique_id=1378794945]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Acc:"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer" unique_id=132009168]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1756458508]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="WeaponItemRow" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer" unique_id=1480078256 instance=ExtResource("4_e74fe")]
+layout_mode = 2
+script = ExtResource("5_x5ogg")
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=2020992840]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ArmorItemRow" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer2" unique_id=1523941711 instance=ExtResource("4_e74fe")]
+layout_mode = 2
+script = ExtResource("5_x5ogg")
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1183280748]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="AccessoryItemRow" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer/MarginContainer3" unique_id=95521371 instance=ExtResource("4_e74fe")]
+layout_mode = 2
+script = ExtResource("5_x5ogg")
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer" unique_id=2098914753]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer" unique_id=79383576]
+layout_mode = 2
 text = "Inventory"
 horizontal_alignment = 1
 
+[node name="InventoryList" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/InventoryPanel/VBoxContainer" unique_id=1730336320 instance=ExtResource("5_e74fe")]
+layout_mode = 2
+
 [node name="QuestsPanel" type="MarginContainer" parent="HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=2012017183 node_paths=PackedStringArray("active_quest_list", "stage_info_list", "quest_list_panel", "quest_info_panel", "back_to_quest_list_button")]
+visible = false
 layout_mode = 2
 script = ExtResource("4_j70dw")
 active_quest_list = NodePath("QuestListPanel/VBoxContainer/ScrollContainer/ActiveQuestList")

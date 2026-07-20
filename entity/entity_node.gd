@@ -25,6 +25,11 @@ var data: EntityData
 @export var hurtbox: Hurtbox
 
 
+@export var animation_player: AnimationPlayer
+
+@export var animation_tree: AnimationTree
+
+
 
 
 func _initialize(_entity_data: EntityData = null) -> void:
@@ -172,6 +177,10 @@ func _activate() -> void:
 
 	body_collision.disabled = false
 
+	for component in get_all_components():
+
+		component._activate()
+
 
 
 
@@ -183,6 +192,10 @@ func _deactivate() -> void:
 	hide()
 
 	body_collision.disabled = true
+
+	for component in get_all_components():
+
+		component._deactivate()
 
 
 

@@ -31,6 +31,19 @@ func set_data(_def: ItemDef, _count:= 1) -> void:
 
 
 
+func remove_amount(amount: int) -> void:
+
+	count -= amount
+
+	data_updated.emit(self)
+
+	if is_empty():
+
+		data_emptied.emit(self)
+
+
+
+
 
 func absorb(item_data: ItemData) -> void:
 
@@ -44,11 +57,20 @@ func absorb(item_data: ItemData) -> void:
 
 
 
+func get_display_name() -> String:
+
+	return def.display_name
+
 
 
 func get_def() -> ItemDef:
 
 	return def
+
+
+func get_count() -> int:
+
+	return count
 
 
 

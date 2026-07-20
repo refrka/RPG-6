@@ -5,4 +5,6 @@
 [resource]
 script = ExtResource("1_c1y6r")
 item_id = &"apple"
+display_name = "apple"
+max_stack = 99
 metadata/_custom_type_script = "uid://dwuk7f48tnidc"

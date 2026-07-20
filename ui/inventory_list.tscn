@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://pn2eu8jqm3r1"]
+
+[ext_resource type="PackedScene" uid="uid://dm4i4p05ln46a" path="res://ui/inventory_item_row.tscn" id="1_bxb1k"]
+[ext_resource type="Script" uid="uid://bn8oh6quvbw5a" path="res://ui/inventory_list.gd" id="1_ylmtr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bxb1k"]
+
+[node name="InventoryList" type="MarginContainer" unique_id=1730336320 node_paths=PackedStringArray("item_list")]
+size_flags_vertical = 3
+script = ExtResource("1_ylmtr")
+item_list = NodePath("VBoxContainer/PanelContainer2/MarginContainer/ScrollContainer/ItemList")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1808087671]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1730010377]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1773914967]
+layout_mode = 2
+text = "Filter: "
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=408813083]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer" unique_id=360506789]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bxb1k")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer2" unique_id=1462104022]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer2/MarginContainer" unique_id=816752015]
+layout_mode = 2
+
+[node name="ItemList" type="VBoxContainer" parent="VBoxContainer/PanelContainer2/MarginContainer/ScrollContainer" unique_id=1768483474]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryItemRow" parent="VBoxContainer/PanelContainer2/MarginContainer/ScrollContainer/ItemList" unique_id=1480078256 instance=ExtResource("1_bxb1k")]
+layout_mode = 2

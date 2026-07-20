@@ -12,6 +12,10 @@ signal item_count_changed(item_data: ItemData, amount: int, removed: bool)
 @export var equipped_items: Dictionary[EquipmentDef.EquipmentType, EquipmentData]
 
 
+
+
+
+
 func add_item_data(item_data: ItemData) -> void:
 
 	if !item_list.has(item_data):
@@ -38,21 +42,21 @@ func remove_item_data(item_data: ItemData) -> void:
 
 
 
-func add_item(item_def: ItemDef, count:= 1) -> void:
+func add_item(item_def: ItemDef, amount:= 1) -> void:
 
 	var item_data = get_data_with_def(item_def)
 
 	if item_data:
 
-		var new_count = item_data.count + count
+		var new_count = item_data.count + amount
 
 		item_data.set_data(item_def, new_count)
 	
 	else:
 
-		item_data = ItemData.create(item_def, count)
+		item_data = ItemData.create(item_def, amount)
 
-	item_count_changed.emit(item_data, count, false)
+	item_count_changed.emit(item_data, amount, false)
 
 
 
@@ -148,6 +152,25 @@ func get_data_with_def(item_def: ItemDef) -> ItemData:
 func has_item_data(item_data: ItemData) -> bool:
 
 	return item_list.has(item_data)
+
+
+
+func is_item_data_equipped(item_data: ItemData) -> bool:
+
+	if not item_data is EquipmentData:
+
+		return false
+
+	var item_def = item_data.get_def()
+
+	var equipment_type = item_def.equipment_type
+
+	if get_equipment_data(equipment_type) == item_data:
+
+		return true
+
+	return false
+
 
 
 

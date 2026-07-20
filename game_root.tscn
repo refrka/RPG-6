@@ -23,7 +23,7 @@ visible = false
 
 [node name="OverlayCanvas" type="CanvasLayer" parent="." unique_id=204278887]
 
-[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=900025043]
+[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=900025043 groups=["overlay_root"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://b8vhu8qw0hixf"]
+
+[ext_resource type="Script" uid="uid://dc41dc5j4h5q1" path="res://ui/count_selector.gd" id="1_2gtsk"]
+
+[node name="CountSelector" type="MarginContainer" unique_id=1931859960 node_paths=PackedStringArray("current_amount_label", "min_amount_label", "max_amount_label", "count_slider", "submit_button")]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2gtsk")
+current_amount_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/CurrentAmountLabel")
+min_amount_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MinAmountLabel")
+max_amount_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MaxAmountLabel")
+count_slider = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CountSlider")
+submit_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/SubmitButton")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1271403687]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1978076499]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1897277601]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1249996943]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1984108962]
+layout_mode = 2
+text = "Select amount:"
+
+[node name="CurrentAmountLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=23823145]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1169807526]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=97161852]
+layout_mode = 2
+
+[node name="MinAmountLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1268313271]
+layout_mode = 2
+text = "0"
+
+[node name="CountSlider" type="HSlider" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1847966156]
+layout_mode = 2
+size_flags_horizontal = 3
+rounded = true
+
+[node name="MaxAmountLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=623377321]
+layout_mode = 2
+text = "50"
+
+[node name="SubmitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1610641836]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Submit"

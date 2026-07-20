@@ -4,6 +4,9 @@ extends Node
 
 @onready var notice_scene:= preload("res://ui/notice.tscn")
 
+@onready var count_selector_scene:= preload("res://ui/count_selector.tscn")
+
+var overlay_root: Control
 
 var notice_root: Control
 
@@ -23,7 +26,10 @@ func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
+	overlay_root = get_tree().get_first_node_in_group("overlay_root")
+
 	notice_root = get_tree().get_first_node_in_group("notice_root")
+
 
 
 
@@ -68,8 +74,6 @@ func remove_overlay(overlay: Overlay = null) -> void:
 	if overlay == null:
 
 		overlay = active_overlays.back()
-
-	print("removing overlay: ", overlay)
 
 	overlay._deactivate()
 
@@ -135,6 +139,19 @@ func show_notice(title: String, secondary: String) -> void:
 		
 
 
+func show_count_selector(min_count: int, max_count: int) -> CountSelector:
+
+	var overlay = count_selector_scene.instantiate() as CountSelector
+
+	overlay.set_count(min_count, max_count)
+
+	overlay_root.add_child(overlay)
+
+	add_overlay(overlay)
+
+	return overlay
+
+	
 
 
 
@@ -164,6 +181,7 @@ func _add_notice(notice: Notice) -> void:
 	else:
 
 		notice_queue.append(notice)
+
 
 
 

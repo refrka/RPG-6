@@ -1,6 +1,30 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://dtewowtdwd85g"]
 
+[ext_resource type="Script" uid="uid://c0nluvwuebw73" path="res://equipment/equipment_data.gd" id="1_3jfkr"]
 [ext_resource type="Script" uid="uid://dg7ul3t3vj73g" path="res://entity/character/character_def.gd" id="1_cujn1"]
+[ext_resource type="Script" uid="uid://creqkht5bqi0n" path="res://item/item_data.gd" id="2_ajxwt"]
+[ext_resource type="Resource" uid="uid://bvavpfy12qwa0" path="res://equipment/weapon/defs/rusty_iron_sword_def.tres" id="2_k6jhg"]
+[ext_resource type="Resource" uid="uid://bcwgsd18maldn" path="res://item/material/wood_def.tres" id="3_k6jhg"]
+[ext_resource type="Script" uid="uid://c8p1gvntta6e7" path="res://player/player_inventory.gd" id="4_ss7w3"]
+
+[sub_resource type="Resource" id="Resource_lnne5"]
+script = ExtResource("1_3jfkr")
+def = ExtResource("2_k6jhg")
+count = 1
+metadata/_custom_type_script = "uid://c0nluvwuebw73"
+
+[sub_resource type="Resource" id="Resource_lqxwy"]
+script = ExtResource("2_ajxwt")
+def = ExtResource("3_k6jhg")
+count = 50
+metadata/_custom_type_script = "uid://creqkht5bqi0n"
+
+[sub_resource type="Resource" id="Resource_xqugd"]
+script = ExtResource("4_ss7w3")
+item_list = Array[ExtResource("2_ajxwt")]([SubResource("Resource_lqxwy")])
+equipped_items = Dictionary[int, ExtResource("1_3jfkr")]({
+0: SubResource("Resource_lnne5")
+})
 
 [resource]
 script = ExtResource("1_cujn1")
@@ -9,4 +33,5 @@ unique_id = &"player"
 entity_id = &"player"
 display_name = &"Player"
 scene_path = "res://player/player_node.tscn"
+default_inventory = SubResource("Resource_xqugd")
 metadata/_custom_type_script = "uid://dg7ul3t3vj73g"

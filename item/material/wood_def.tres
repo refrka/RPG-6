@@ -5,4 +5,6 @@
 [resource]
 script = ExtResource("1_ay3pl")
 item_id = &"wood"
+display_name = "wood"
+max_stack = 99
 metadata/_custom_type_script = "uid://dwuk7f48tnidc"
