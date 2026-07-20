@@ -17,6 +17,4 @@ func _on_dialogue_node_entered(event: Event) -> void:
 
 	if event.data["dialogue_node"] == target_dialogue_node:
 
-		print("completed?")
-
 		completed.emit(self)

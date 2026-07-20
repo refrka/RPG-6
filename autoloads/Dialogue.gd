@@ -126,6 +126,10 @@ func update_dialogue_line() -> void:
 
 	if !current_dialogue_text or current_dialogue_text.dialogue_lines.size() - 1 < line_index:
 
+		if current_dialogue_source:
+
+			dialogue_panel.set_text("[%s is silent]" % current_dialogue_source.get_display_name())
+
 		return
 
 	var line = get_dialogue_line(line_index)

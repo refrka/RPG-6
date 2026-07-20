@@ -10,9 +10,8 @@ content_margin_bottom = 0.0
 bg_color = Color(0.15480001, 0.15774001, 0.18, 1)
 corner_detail = 5
 
-[node name="DebugPanel" type="MarginContainer" unique_id=960697004 node_paths=PackedStringArray("item_id_entry", "add_to_player_inventory_button")]
+[node name="DebugPanel" type="MarginContainer" unique_id=960697004 node_paths=PackedStringArray("item_id_entry", "add_to_player_inventory_button", "remove_from_player_inventory_button")]
 process_mode = 3
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,9 +21,10 @@ mouse_filter = 2
 script = ExtResource("1_tx07p")
 item_id_entry = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ItemIDEntry")
 add_to_player_inventory_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/AddToPlayerInventoryButton")
+remove_from_player_inventory_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/RemoveFromPlayerInventoryButton")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1649959119]
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vga5e")
@@ -54,6 +54,7 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1480756401]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="ItemIDEntry" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1990836250]
 custom_minimum_size = Vector2(0, 30)
@@ -64,3 +65,12 @@ placeholder_text = "item_id"
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Add to Player Inventory"
+
+[node name="RemoveFromPlayerInventoryButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1657608039]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Remove from Player Inventory"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1177307258]
+layout_mode = 2
+size_flags_horizontal = 3

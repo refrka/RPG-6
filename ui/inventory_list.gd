@@ -28,6 +28,8 @@ var item_row_registry: Dictionary[ItemData, InventoryItemRow]
 
 
 
+
+
 func load_inventory(_inventory: Inventory) -> void:
 
 	inventory = _inventory

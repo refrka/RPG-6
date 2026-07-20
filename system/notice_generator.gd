@@ -20,17 +20,21 @@ static func event_to_notice(event: Event) -> Notice:
 
 			var item_data = event.data["item_data"]
 
+			var amount = event.data["amount"]
+
 			title = "Item(s) obtained"
 
-			secondary = "%s x%s" % [item_data.get_display_name(), item_data.get_count()]
+			secondary = "%s x%s" % [item_data.get_display_name(), amount]
 
 		ItemsRemovedFromInventoryEvent:
 
 			var item_data = event.data["item_data"]
 
+			var amount = event.data["amount"]
+
 			title = "Item(s) removed"
 
-			secondary = "%s x%s" % [item_data.get_display_name(), item_data.get_count()]
+			secondary = "%s x%s" % [item_data.get_display_name(), amount]
 
 		QuestStartedEvent:
 

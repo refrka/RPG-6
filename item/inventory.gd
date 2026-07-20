@@ -26,8 +26,6 @@ func add_item_data(item_data: ItemData) -> void:
 
 		item_data.data_updated.connect(_on_data_updated)
 
-		print("add_item_data() emitting")
-
 		item_count_changed.emit(item_data, item_data.count, false)
 
 
@@ -46,17 +44,13 @@ func remove_item_data(item_data: ItemData) -> void:
 
 func add_item(item_def: ItemDef, amount:= 1) -> ItemData:
 
-	var item_data = get_data_with_def(item_def)
-
-	print("def and data: ", item_def, "/", item_data)
+	var item_data = get_item_data_from_def(item_def)
 
 	if item_data:
 
 		var new_count = item_data.count + amount
 
 		item_data.set_data(item_def, new_count)
-
-		print("add_item() emitting")
 
 		item_count_changed.emit(item_data, amount, false)
 	
@@ -74,7 +68,7 @@ func add_item(item_def: ItemDef, amount:= 1) -> ItemData:
 
 func remove_item(item_def: ItemDef, amount:= 1) -> ItemData:
 
-	var item_data = get_data_with_def(item_def)
+	var item_data = get_item_data_from_def(item_def)
 
 	if item_data:
 
@@ -148,6 +142,8 @@ func unequip_item_data(equipment_type: EquipmentDef.EquipmentType) -> bool:
 
 
 
+
+
 func get_equipment_data(equipment_type: EquipmentDef.EquipmentType) -> EquipmentData:
 
 	if equipped_items.has(equipment_type):
@@ -158,7 +154,7 @@ func get_equipment_data(equipment_type: EquipmentDef.EquipmentType) -> Equipment
 
 
 
-func get_data_with_def(item_def: ItemDef) -> ItemData:
+func get_item_data_from_def(item_def: ItemDef) -> ItemData:
 
 	for item_data in item_list:
 
@@ -170,9 +166,36 @@ func get_data_with_def(item_def: ItemDef) -> ItemData:
 
 
 
+
+
+
+
+
+
+func has_item(item_def: ItemDef, count:= -1) -> bool:
+
+	for item_data in item_list:
+
+		if item_data.get_def() == item_def:
+
+			if count == -1:
+
+				return true
+
+			elif item_data.get_count() >= count:
+
+				return true
+
+	return false
+
+
+
+
 func has_item_data(item_data: ItemData) -> bool:
 
 	return item_list.has(item_data)
+
+
 
 
 
@@ -191,6 +214,15 @@ func is_item_data_equipped(item_data: ItemData) -> bool:
 		return true
 
 	return false
+
+
+
+
+
+
+
+
+
 
 
 
