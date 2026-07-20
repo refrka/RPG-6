@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://c6xaw3jbjmh3g"]
+
+[ext_resource type="Script" uid="uid://dnuwy2q5de5qc" path="res://ui/debug_panel.gd" id="1_tx07p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vga5e"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.15480001, 0.15774001, 0.18, 1)
+corner_detail = 5
+
+[node name="DebugPanel" type="MarginContainer" unique_id=960697004 node_paths=PackedStringArray("item_id_entry", "add_to_player_inventory_button")]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_tx07p")
+item_id_entry = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/ItemIDEntry")
+add_to_player_inventory_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/AddToPlayerInventoryButton")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1649959119]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vga5e")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=386509625]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=345611859]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1414020873]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Debug Panel"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1207336574]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=942789360]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1480756401]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="ItemIDEntry" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1990836250]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+placeholder_text = "item_id"
+
+[node name="AddToPlayerInventoryButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=2083512089]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Add to Player Inventory"

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c5nb2o6fata6k" path="res://ui/game_menu.tscn" id="4_lkrbl"]
 [ext_resource type="PackedScene" uid="uid://bssqwliklxvwf" path="res://ui/profile.tscn" id="5_wd1uf"]
 [ext_resource type="PackedScene" uid="uid://g3o0lv7ydx5o" path="res://ui/dialogue_panel.tscn" id="6_0o8ui"]
+[ext_resource type="PackedScene" uid="uid://c6xaw3jbjmh3g" path="res://ui/debug_panel.tscn" id="6_8gxew"]
 
 [node name="GameRoot" type="Node" unique_id=828412104]
 script = ExtResource("1_pjpa4")
@@ -62,4 +63,18 @@ mouse_filter = 2
 
 [node name="GameMenu" parent="OverlayCanvas/GameMenu" unique_id=71072975 instance=ExtResource("4_lkrbl")]
 visible = false
+layout_mode = 1
+
+[node name="DebugCanvas" type="CanvasLayer" parent="." unique_id=1481157554]
+
+[node name="DebugRoot" type="Control" parent="DebugCanvas" unique_id=367720131]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DebugPanel" parent="DebugCanvas/DebugRoot" unique_id=960697004 instance=ExtResource("6_8gxew")]
 layout_mode = 1

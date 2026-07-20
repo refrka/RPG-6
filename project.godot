@@ -27,6 +27,8 @@ Globals="*uid://fvdu7lc4urdl"
 Dialogue="*uid://c3x3sqn0ut1cy"
 Items="*uid://soqbj8oc3jb3"
 Quests="*uid://2nwbb6oaex1k"
+Debug="*uid://xa16liimi8ud"
+Notices="*uid://0p7m1b30vpbu"
 
 [display]
 

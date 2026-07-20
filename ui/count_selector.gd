@@ -19,6 +19,8 @@ signal count_submitted(count: float)
 
 func _ready() -> void:
 
+	gui_input.connect(_on_gui_input)
+
 	submit_button.pressed.connect(_on_submit_pressed)
 
 	count_slider.value_changed.connect(_on_count_changed)
@@ -52,3 +54,10 @@ func _on_count_changed(value: float) -> void:
 	current_amount_label.text = str(value)
 
 
+
+
+func _on_gui_input(event: InputEvent) -> void:
+
+	if event is InputEventMouseButton and event.is_pressed():
+
+		UI.remove_overlay(self)

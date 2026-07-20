@@ -42,7 +42,7 @@ func remove_item_data(item_data: ItemData) -> void:
 
 
 
-func add_item(item_def: ItemDef, amount:= 1) -> void:
+func add_item(item_def: ItemDef, amount:= 1) -> ItemData:
 
 	var item_data = get_data_with_def(item_def)
 
@@ -58,21 +58,25 @@ func add_item(item_def: ItemDef, amount:= 1) -> void:
 
 	item_count_changed.emit(item_data, amount, false)
 
+	return item_data
 
 
 
 
-func remove_item(item_def: ItemDef, count:= 1) -> void:
+
+func remove_item(item_def: ItemDef, amount:= 1) -> ItemData:
 
 	var item_data = get_data_with_def(item_def)
 
 	if item_data:
 
-		var new_count = item_data.count - count
+		var new_count = item_data.count - amount
 
 		item_data.set_data(item_def, new_count)
 
-		item_count_changed.emit(item_data, count, true)
+		item_count_changed.emit(item_data, amount, true)
+
+	return item_data
 
 
 

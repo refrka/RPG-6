@@ -98,6 +98,11 @@ func get_quests_for_recipient_entity(entity_node: EntityNode) -> Array[QuestDef]
 
 
 
+
+
+
+
+
 func get_dialogue_nodes_for_entity(entity_node: EntityNode) -> Array[DialogueNode]:
 
 	var entity_def = entity_node.get_def()
@@ -157,6 +162,11 @@ func get_dialogue_nodes_for_entity(entity_node: EntityNode) -> Array[DialogueNod
 		evaluated_dialolgue_nodes.append(dialogue_node)
 
 	return evaluated_dialolgue_nodes
+
+
+
+
+
 
 
 
@@ -241,12 +251,7 @@ func _on_quest_dialogue_node_entered(event: Event) -> void:
 
 func _on_quest_started(event: Event) -> void:
 
-	var quest_data = event.data["quest_data"]
-
-	var quest_def = get_quest_def(quest_data.quest_id)
-
-	UI.show_notice("Quest started", quest_def.title)
-
+	pass
 
 
 func _on_quest_state_changed(quest_data: QuestData) -> void:
@@ -269,11 +274,7 @@ func _on_stage_completed(quest_data: QuestData, stage: QuestStage) -> void:
 
 func _on_quest_completed(event: Event) -> void:
 
-	var quest_data = event.data["quest_data"]
-
-	var quest_def = get_quest_def(quest_data.quest_id)
-
-	UI.show_notice("Quest completed!", quest_def.title)
+	pass
 
 
 

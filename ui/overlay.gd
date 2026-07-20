@@ -36,6 +36,20 @@ func _exit_tree() -> void:
 
 
 
+func toggle() -> void:
+
+	if active:
+
+		_deactivate()
+
+	else:
+
+		_activate()
+
+
+
+
+
 
 func _activate() -> void:
 

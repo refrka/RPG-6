@@ -128,13 +128,15 @@ func deactivate_overlays() -> void:
 
 
 
-func show_notice(title: String, secondary: String) -> void:
+func show_notice(title: String, secondary: String) -> Notice:
 
 	var notice = notice_scene.instantiate() as Notice
 
 	notice.set_notice_text(title, secondary)
 
 	_add_notice(notice)
+
+	return notice
 
 		
 

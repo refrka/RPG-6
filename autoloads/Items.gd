@@ -24,11 +24,16 @@ func _ready() -> void:
 
 
 
+
+
+
 func get_item_def(item_id: StringName) -> ItemDef:
 
-	assert(def_registry.has(item_id), "Invalid item_id: %s" % item_id)
+	if def_registry.has(item_id):
 
-	return def_registry[item_id]
+		return def_registry[item_id]
+
+	return null
 
 
 

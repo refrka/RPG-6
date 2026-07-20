@@ -16,6 +16,10 @@ max_amount_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxCo
 count_slider = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CountSlider")
 submit_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/SubmitButton")
 
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=974275154]
+layout_mode = 2
+mouse_filter = 2
+
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1271403687]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
