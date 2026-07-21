@@ -38,6 +38,8 @@ func restart() -> void:
 
 func start(save_id: StringName) -> void:
 
+	Events.fire(GameStartingEvent)
+
 	var save_data = Saves.load_save_data(save_id)
 
 	if !save_data:
@@ -50,17 +52,42 @@ func start(save_id: StringName) -> void:
 
 	_load_game(save_data)
 
+	Events.fire(GameStartedEvent)
+
+
 
 
 func end() -> void:
 
+	Events.fire(GameEndingEvent)
+
 	_unload_game()
+
+	Events.fire(GameEndedEvent)
+
 
 
 
 func save() -> void:
 
 	Saves.save_game(active_save_data)
+
+
+
+
+func pause() -> void:
+
+	get_tree().paused = true
+
+
+
+
+func resume() -> void:
+
+	get_tree().pasued = false
+
+
+
 
 
 
@@ -83,14 +110,14 @@ func is_active() -> bool:
 
 func _load_game(save_data: SaveData) -> void:
 
-	pass
+	active_save_data = save_data
 
 
 
 
 func _unload_game() -> void:
 
-	pass
+	active_save_data = null
 
 
 

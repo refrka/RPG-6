@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://del1wjxmxn4ya"]
+
+[ext_resource type="Script" uid="uid://br1lhgpwbexd0" path="res://ui/debug_shit_panel.gd" id="1_aqy7u"]
+
+[node name="DebugShitPanel" type="MarginContainer" unique_id=2112953381 node_paths=PackedStringArray("button_1")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_aqy7u")
+button_1 = NodePath("VBoxContainer/Button1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1285490285]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Button1" type="Button" parent="VBoxContainer" unique_id=250669]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Button 1"

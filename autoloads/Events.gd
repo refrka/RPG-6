@@ -11,6 +11,8 @@ var subscriptions: Dictionary[Script, Array]
 
 func _ready() -> void:
 
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	subscribe(GameEndingEvent, _on_game_ending)
 
 
@@ -63,6 +65,8 @@ func call_subscriptions(event: Event) -> void:
 
 			if callback.is_valid():
 
+				print("callback object: ", callback.get_object())
+
 				callback.call(event)
 
 
@@ -72,10 +76,10 @@ func call_subscriptions(event: Event) -> void:
 
 
 
-func _on_game_ending() -> void:
+func _on_game_ending(event: Event) -> void:
 
 	for script in subscriptions:
 
-		if script.get_base_script() == GameEvent:
+		if script.get_base_script() != SystemEvent:
 
 			subscriptions.erase(script)
