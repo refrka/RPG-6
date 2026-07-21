@@ -19,7 +19,7 @@ class_name EntityNode extends PhysicsBody2D
 
 
 
-
+var active:= false
 
 var initialized:= false
 
@@ -39,6 +39,12 @@ func _initialize() -> bool:
 		return false
 
 	initialized = true
+
+	for component in get_all_components():
+
+		component._initialize(self)
+
+	_deactivate()
 
 	return true
 
@@ -80,6 +86,22 @@ func get_entity_data() -> EntityData:
 
 
 
+func get_entity_id() -> StringName:
+
+	var def = get_entity_def()
+
+	return def.entity_id
+
+
+
+func get_unique_id() -> StringName:
+
+	var def = get_entity_def()
+
+	return def.unique_id
+
+
+
 func get_display_name() -> String:
 
 	var display_name = "[MissingNo]"
@@ -107,3 +129,31 @@ func get_component(component_script: Script) -> Component:
 			return component
 
 	return null
+
+
+
+
+
+
+
+
+
+func _activate() -> void:
+
+	active = true
+
+	for component in get_all_components():
+
+		component._activate()
+
+
+
+
+
+func _deactivate() -> void:
+
+	active = false
+
+	for component in get_all_components():
+
+		component._deactivate()

@@ -20,3 +20,5 @@ y_sort_enabled = true
 
 [node name="ObjectRoot" type="Node2D" parent="YSortRoot" unique_id=1098893851]
 y_sort_enabled = true
+
+[node name="TransitionZoneRoot" type="Node2D" parent="." unique_id=1640348247]

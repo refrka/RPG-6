@@ -6,17 +6,23 @@ class_name Component extends Node
 
 var entity: EntityNode
 
+var initialized:= false
+
 var active:= false
 
 
 
 
 
-func _setup(_entity: EntityNode) -> void:
+func _initialize(_entity: EntityNode) -> void:
+
+	if initialized:
+
+		return
 
 	entity = _entity
 
-	_activate()
+	initialized = true
 
 
 
