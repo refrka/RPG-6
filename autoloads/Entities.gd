@@ -21,13 +21,49 @@ func _ready() -> void:
 
 
 
-func get_entity_def(entity_id: StringName) -> EntityDef:
+func get_entity_def_by_entity_id(entity_id: StringName) -> EntityDef:
 
 	if def_registry.has(entity_id):
 
 		return def_registry[entity_id]
 
 	return null
+
+
+
+func get_entity_def_by_unique_id(unique_id: StringName) -> EntityDef:
+
+	for entity_def in def_registry.values():
+
+		if entity_def.unique_id == unique_id:
+
+			return entity_def
+
+	return null
+
+
+
+func get_player_node() -> PlayerNode:
+
+	return load("res://player/player.tscn").instantiate()
+
+
+
+
+
+
+
+
+func create_entity_node(entity_def: EntityDef) -> EntityNode:
+
+	if entity_def.scene_path != "":
+
+		return load(entity_def.scene_path).instantiate()
+
+	return null
+
+
+
 
 
 

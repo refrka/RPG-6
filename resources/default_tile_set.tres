@@ -1,0 +1,17 @@
+[gd_resource type="TileSet" format=3 uid="uid://coacxlv4bip5b"]
+
+[ext_resource type="Texture2D" uid="uid://df0bixdafh7r4" path="res://world/locations/forest/forest_tile_sheet.png" id="1_jj86q"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nm55r"]
+texture = ExtResource("1_jj86q")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:2/0 = 0
+0:3/0 = 0
+0:4/0 = 0
+
+[resource]
+physics_layer_0/collision_layer = 256
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_nm55r")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://bevlnbvr4lrxs"]
+
+[ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="1_yhcot"]
+
+[resource]
+script = ExtResource("1_yhcot")
+unique_id = &"ap"
+entity_id = &"ap"
+display_name = "Ap"
+scene_path = "res://entity/character/npc/ap/ap.tscn"
+metadata/_custom_type_script = "uid://dhjomb443iolq"

@@ -25,3 +25,29 @@ func match(entity_node: EntityNode) -> bool:
 		return true
 
 	return false
+
+
+
+
+
+
+func get_reference_def() -> EntityDef:
+
+	if !entity_def:
+
+		if unique_id != &"":
+
+			entity_def = Entities.get_entity_def_by_unique_id(unique_id)
+
+		elif entity_id != &"":
+
+			entity_def = Entities.get_entity_def_by_entity_id(entity_id)
+
+	return entity_def
+
+
+
+
+func get_reference_node() -> EntityNode:
+
+	return Entities.create_entity_node(get_reference_def())

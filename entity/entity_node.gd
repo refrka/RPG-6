@@ -30,8 +30,6 @@ var initialized:= false
 
 
 
-
-
 func _initialize() -> bool:
 
 	if initialized:
@@ -64,7 +62,9 @@ func _load(_entity_data: EntityData = null) -> bool:
 
 
 
+func reposition(new_position: Vector2) -> void:
 
+	global_position = new_position
 
 
 

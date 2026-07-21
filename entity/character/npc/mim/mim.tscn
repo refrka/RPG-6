@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://22sg8linww6k"]
+
+[ext_resource type="PackedScene" uid="uid://u2gj13bgr5dt" path="res://entity/character/character_node.tscn" id="1_ms3ll"]
+[ext_resource type="Resource" uid="uid://p2elbn88fe3" path="res://entity/character/npc/mim/mim_def.tres" id="2_gnloq"]
+[ext_resource type="Texture2D" uid="uid://crn23ligqfkql" path="res://entity/character/npc/mim/mim_sprite.png" id="2_o88vc"]
+
+[node name="Mim" unique_id=639653512 instance=ExtResource("1_ms3ll")]
+entity_def = ExtResource("2_gnloq")
+
+[node name="BodySprite" parent="VisualRoot" parent_id_path=PackedInt32Array(93121259) index="0" unique_id=1905262643]
+position = Vector2(0, -16)
+texture = ExtResource("2_o88vc")

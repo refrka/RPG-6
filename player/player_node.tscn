@@ -2,6 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://u2gj13bgr5dt" path="res://entity/character/character_node.tscn" id="1_ynuq4"]
 [ext_resource type="Script" uid="uid://c4i3oc2bag4c7" path="res://player/player_node.gd" id="2_a3uy3"]
+[ext_resource type="Texture2D" uid="uid://c8iavtaycsjop" path="res://player/player_sprite.png" id="3_d0owe"]
+[ext_resource type="Script" uid="uid://d2ryfou7hnwl3" path="res://component/input_component.gd" id="4_k12ae"]
+[ext_resource type="Script" uid="uid://vq7ef14ysbcp" path="res://component/movement_component.gd" id="5_fpdhf"]
 
 [node name="PlayerNode" unique_id=639653512 instance=ExtResource("1_ynuq4")]
+position = Vector2(0, -18)
 script = ExtResource("2_a3uy3")
+
+[node name="BodySprite" parent="VisualRoot" parent_id_path=PackedInt32Array(93121259) index="0" unique_id=1905262643]
+texture = ExtResource("3_d0owe")
+
+[node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="0" unique_id=293576925]
+script = ExtResource("4_k12ae")
+metadata/_custom_type_script = "uid://d2ryfou7hnwl3"
+
+[node name="MovementComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="1" unique_id=339763098]
+script = ExtResource("5_fpdhf")

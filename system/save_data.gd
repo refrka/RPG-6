@@ -6,6 +6,8 @@ var save_id: String
 
 var save_name: String
 
+var last_dict: Dictionary
+
 
 
 
@@ -32,5 +34,7 @@ static func load_dictionary(save_dict: Dictionary) -> SaveData:
 	save_data.save_id = save_dict["save_id"]
 
 	save_data.save_name = save_dict["save_name"]
+
+	save_data.last_dict = save_dict
 
 	return save_data

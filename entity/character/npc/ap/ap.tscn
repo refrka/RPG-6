@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bvginpldqpj70"]
+
+[ext_resource type="PackedScene" uid="uid://u2gj13bgr5dt" path="res://entity/character/character_node.tscn" id="1_sq3cn"]
+[ext_resource type="Texture2D" uid="uid://dpdljxgpv44r" path="res://entity/character/npc/ap/ap_sprite.png" id="2_7q4k1"]
+[ext_resource type="Resource" uid="uid://bevlnbvr4lrxs" path="res://entity/character/npc/ap/ap_def.tres" id="2_fmiem"]
+
+[node name="Ap" unique_id=639653512 instance=ExtResource("1_sq3cn")]
+position = Vector2(3, -24)
+entity_def = ExtResource("2_fmiem")
+
+[node name="BodySprite" parent="VisualRoot" parent_id_path=PackedInt32Array(93121259) index="0" unique_id=1905262643]
+texture = ExtResource("2_7q4k1")

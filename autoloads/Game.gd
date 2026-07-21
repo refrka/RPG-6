@@ -14,7 +14,7 @@ var game_state: GameState
 
 var active_save_data: SaveData
 
-
+var player: PlayerNode
 
 
 
@@ -114,6 +114,19 @@ func resume() -> void:
 
 
 
+func get_player() -> PlayerNode:
+
+	if !player:
+
+		player = Entities.get_player_node()
+
+		add_child(player)
+
+		player._initialize()
+
+	return player
+
+
 
 
 
@@ -127,11 +140,23 @@ func is_active() -> bool:
 
 
 
-
-
 func _load_game(save_data: SaveData) -> void:
 
 	active_save_data = save_data
+
+	if active_save_data.last_dict["saved_location_id"] == "":
+
+		# FIRST-TIME LOAD FOR THIS SAVE
+
+		pass
+
+	# Load location
+
+	# Load player (data)
+
+	# Spawn player
+
+	# Start game
 
 
 
