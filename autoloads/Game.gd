@@ -173,6 +173,8 @@ func _load_game(save_data: SaveData) -> void:
 
 		location_id = "forest_start"
 
+		@warning_ignore("confusable_local_declaration")
+
 		var cutscene = Scenes.run_cutscene(NewGameCutscene)
 
 		await cutscene.cutscene_ended
@@ -180,10 +182,18 @@ func _load_game(save_data: SaveData) -> void:
 		pass
 
 	var world_scene = Scenes.get_world_scene()
-
-	print("asking world scene to activate: ", location_id)
 	
 	world_scene.activate_location(location_id)
+
+	await get_timer(3.0).timeout
+
+	var cutscene = Scenes.run_cutscene(NewGameCutscene)
+
+	await cutscene.cutscene_ended
+
+	await get_timer(3.0).timeout
+
+	cutscene = Scenes.run_cutscene(NewGameCutscene)
 
 	# Load location
 

@@ -16,31 +16,35 @@ var paused_location: Location
 
 func run_cutscene_script(cutscene_script: CutsceneScript, data: Dictionary) -> void:
 
-	var world_scene = Scenes.get_world_scene()
-	
-	var current_location = world_scene.get_active_location()
-
-	if current_location:
-
-		print("current_location: ", current_location)
-
-		world_scene.pause_location(current_location)
-
-		paused_location = current_location
-
 	active_cutscene_script = cutscene_script
-
-	active_cutscene_script._initialize()
 
 	active_cutscene_script.cutscene_ended.connect(_on_cutscene_ended)
 
 	cutscene_data = data
+
+	# Location handling
+
+	var world_scene = Scenes.get_world_scene()
+
+	var current_location = world_scene.get_active_location()
+
+	if current_location:
+
+		world_scene.pause_location(current_location)
+
+		paused_location = current_location
 
 	cutscene_location = Scenes.get_location(active_cutscene_script.location_id)
 
 	add_child(cutscene_location)
 
 	cutscene_location._initialize()
+
+	active_cutscene_script.cutscene_location = cutscene_location
+
+	#	
+
+	active_cutscene_script._initialize()
 
 	active_cutscene_script._start()
 

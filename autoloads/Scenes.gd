@@ -117,8 +117,6 @@ func get_cutscene() -> Cutscene:
 
 func run_cutscene(cutscene_script_name: Script, data:= {}) -> Cutscene:
 
-	print("running cutscene")
-
 	var cutscene = Scenes.activate_scene(Cutscene)
 
 	cutscene.run_cutscene_script(cutscene_script_name.new(), data)

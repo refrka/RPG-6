@@ -7,6 +7,7 @@ signal cutscene_ended
 @export var location_id: StringName
 
 
+var cutscene_location: Location
 
 
 
