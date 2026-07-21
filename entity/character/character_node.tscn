@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://7nntd7c7ifji" path="res://component/animation_component.gd" id="8_nbb1o"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://60pldhvbeoeg" path="res://resources/default_entity_animation_tree.tres" id="11_x4f7f"]
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=171203552 node_paths=PackedStringArray("nav_agent", "state_machine", "body_sprite", "body_collision", "component_root", "hurtbox", "animation_player", "animation_tree")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=171203552 node_paths=PackedStringArray("nav_agent", "state_machine", "body_sprite", "body_collision", "component_root", "hurtbox", "hitbox", "animation_player", "animation_tree")]
 y_sort_enabled = true
 collision_mask = 256
 motion_mode = 1
@@ -23,6 +23,7 @@ body_sprite = NodePath("VisualRoot/Sprite2D")
 body_collision = NodePath("CollisionShape2D")
 component_root = NodePath("ComponentRoot")
 hurtbox = NodePath("Hurtbox")
+hitbox = NodePath("CombatRoot/Hitbox")
 animation_player = NodePath("AnimationPlayer")
 animation_tree = NodePath("AnimationTree")
 

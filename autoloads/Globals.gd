@@ -61,8 +61,6 @@ func get_var(var_name: StringName) -> Variant:
 
 func _on_game_ended(_event: Event) -> void:
 
-	print("game ended cleared")
-
 	flags = {}
 
 	vars = {}
@@ -84,8 +82,6 @@ func get_dictionary() -> Dictionary:
 
 
 func load_dictionary(save_dict: Dictionary) -> void:
-
-	print("load dictionary cleared")
 
 	flags = {}
 

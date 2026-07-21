@@ -24,6 +24,8 @@ var data: EntityData
 
 @export var hurtbox: Hurtbox
 
+@export var hitbox: Hitbox
+
 
 @export var animation_player: AnimationPlayer
 
@@ -33,10 +35,6 @@ var data: EntityData
 
 
 func _initialize(_entity_data: EntityData = null) -> void:
-
-	if inventory:
-
-		inventory.clear_inventory()
 
 	_setup()
 
@@ -54,6 +52,10 @@ func _setup() -> void:
 		return
 
 	initialized = true
+	
+	if def.default_inventory:
+
+		inventory = def.default_inventory.duplicate_deep()
 
 	for component in get_all_components():
 
@@ -63,9 +65,15 @@ func _setup() -> void:
 
 		state_machine.setup(self)
 
-	if def.default_inventory:
+	if hurtbox:
 
-		inventory = def.default_inventory.duplicate_deep()
+		hurtbox.setup(self)
+
+	if hitbox:
+
+		hitbox.setup(self)
+
+	
 
 
 
@@ -84,6 +92,21 @@ func _load_data(entity_data: EntityData) -> void:
 
 		inventory.load_dictionary(data.last_dict["inventory"])
 
+		var combat_component = get_component(CombatComponent)
+
+		if combat_component:
+
+			var weapon_data = inventory.get_equipment_data(EquipmentDef.EquipmentType.WEAPON)
+
+			if weapon_data:
+
+				combat_component.set_attack_config(weapon_data.default_attack_config)
+
+			else:
+
+				combat_component.set_attack_config(null)
+
+			
 
 
 
@@ -182,6 +205,11 @@ func is_unique() -> bool:
 
 
 
+
+
+
+
+
 func _activate() -> void:
 
 	if active:
@@ -197,6 +225,16 @@ func _activate() -> void:
 	for component in get_all_components():
 
 		component._activate()
+
+	if hurtbox:
+
+		hurtbox.activate()
+
+	if hitbox:
+
+		hitbox.activate()
+
+
 
 
 
@@ -218,6 +256,10 @@ func _deactivate() -> void:
 
 		component._deactivate()
 
+	if hurtbox:
 
+		hurtbox.deactivate()
 
+	if hitbox:
 
+		hitbox.deactivate()

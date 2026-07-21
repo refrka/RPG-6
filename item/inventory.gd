@@ -4,7 +4,11 @@ class_name Inventory extends Resource
 
 signal inventory_updated(inventory: Inventory)
 
+signal equipment_updated(equipment_type: EquipmentDef.EquipmentType, item_data: ItemData)
+
 signal item_count_changed(item_data: ItemData, amount: int, removed: bool)
+
+
 
 
 @export var item_list: Array[ItemData]
@@ -119,6 +123,8 @@ func equip_item_data(equipment_data: EquipmentData) -> void:
 
 		remove_item_data(equipment_data)
 
+	equipment_updated.emit(equipment_type, equipment_data)
+
 
 
 
@@ -134,6 +140,8 @@ func unequip_item_data(equipment_type: EquipmentDef.EquipmentType) -> bool:
 	add_item_data(equipment_data)
 
 	equipped_items.erase(equipment_type)
+
+	equipment_updated.emit(equipment_type, null)
 
 	return true
 

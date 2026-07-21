@@ -68,6 +68,10 @@ func end() -> void:
 
 	hold_player_node()
 
+	player.inventory.clear_inventory()
+
+	player.initialized = false
+
 	UI.deactivate_overlays()
 
 	var world_scene = Scenes.get_scene(WorldScene)

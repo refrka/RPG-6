@@ -5,11 +5,18 @@
 [ext_resource type="Script" uid="uid://creqkht5bqi0n" path="res://item/item_data.gd" id="2_ajxwt"]
 [ext_resource type="Resource" uid="uid://bvavpfy12qwa0" path="res://equipment/weapon/defs/rusty_iron_sword_def.tres" id="2_k6jhg"]
 [ext_resource type="Resource" uid="uid://bcwgsd18maldn" path="res://item/material/wood_def.tres" id="3_k6jhg"]
+[ext_resource type="Resource" uid="uid://ce7jda76ogjpw" path="res://equipment/armor/defs/leather_armor_def.tres" id="3_ss7w3"]
 [ext_resource type="Script" uid="uid://c8p1gvntta6e7" path="res://player/player_inventory.gd" id="4_ss7w3"]
 
-[sub_resource type="Resource" id="Resource_lnne5"]
+[sub_resource type="Resource" id="Resource_xhyqs"]
 script = ExtResource("1_3jfkr")
 def = ExtResource("2_k6jhg")
+count = 1
+metadata/_custom_type_script = "uid://c0nluvwuebw73"
+
+[sub_resource type="Resource" id="Resource_x4f7f"]
+script = ExtResource("1_3jfkr")
+def = ExtResource("3_ss7w3")
 count = 1
 metadata/_custom_type_script = "uid://c0nluvwuebw73"
 
@@ -23,7 +30,8 @@ metadata/_custom_type_script = "uid://creqkht5bqi0n"
 script = ExtResource("4_ss7w3")
 item_list = Array[ExtResource("2_ajxwt")]([SubResource("Resource_lqxwy")])
 equipped_items = Dictionary[int, ExtResource("1_3jfkr")]({
-0: SubResource("Resource_lnne5")
+0: SubResource("Resource_xhyqs"),
+1: SubResource("Resource_x4f7f")
 })
 
 [resource]

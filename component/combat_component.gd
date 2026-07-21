@@ -31,6 +31,9 @@ var buffered_attack:= false
 
 
 
+
+
+
 func _setup(_entity: EntityNode) -> void:
 
 	super(_entity)
@@ -39,9 +42,26 @@ func _setup(_entity: EntityNode) -> void:
 
 	animation_component = entity.get_component(AnimationComponent)
 
+	if entity.inventory:
+
+		entity.inventory.equipment_updated.connect(_on_equipment_updated)
+
+		var weapon_data = entity.inventory.get_equipment_data(EquipmentDef.EquipmentType.WEAPON)
+
+		if weapon_data:
+
+			var item_def = weapon_data.get_def()
+
+			set_attack_config(item_def.default_attack_config)
 
 
 
+
+
+
+func set_attack_config(attack_config: AttackConfig) -> void:
+
+	current_attack_config = attack_config
 
 
 
@@ -200,7 +220,7 @@ func _connect_weapon_attack_input() -> void:
 		input_component.weapon_attack_released.connect(_on_weapon_attack_input_released)
 
 
-		
+
 
 
 func _disconnect_weapon_attack_input() -> void:
@@ -229,3 +249,24 @@ func _on_weapon_attack_input_pressed() -> void:
 func _on_weapon_attack_input_released() -> void:
 
 	pass
+
+
+
+
+
+
+func _on_equipment_updated(equipment_type: EquipmentDef.EquipmentType, item_data: ItemData) -> void:
+
+	match equipment_type:
+
+		EquipmentDef.EquipmentType.WEAPON:
+
+			if item_data != null:
+
+				var item_def = item_data.get_def()
+
+				set_attack_config(item_def.default_attack_config)
+
+			else:
+
+				set_attack_config(null)

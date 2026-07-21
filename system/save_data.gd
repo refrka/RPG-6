@@ -33,8 +33,6 @@ var current_spawn_id: StringName
 
 func _initialize() -> void:
 
-	print("init save data")
-
 	Globals.load_dictionary(last_dict["globals"])
 
 

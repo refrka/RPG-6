@@ -7,6 +7,12 @@
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_782li"]
 size = Vector2(14, 6)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_782li"]
+size = Vector2(14, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqugd"]
+size = Vector2(14, 6)
+
 [node name="Signpost" unique_id=1772553420 instance=ExtResource("1_hehqs")]
 def = ExtResource("2_b0tpl")
 
@@ -14,5 +20,15 @@ def = ExtResource("2_b0tpl")
 position = Vector2(0, -3)
 texture = SubResource("PlaceholderTexture2D_782li")
 
+[node name="CollisionShape2D" parent="." index="1" unique_id=1639071665]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_782li")
+
+[node name="CollisionShape2D" parent="Hurtbox" parent_id_path=PackedInt32Array(1185727724) index="0" unique_id=2021515768]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_xqugd")
+
 [node name="DialogueComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(737237173) index="1" unique_id=2023989650]
 script = ExtResource("3_xqugd")
+
+[editable path="Hurtbox"]
