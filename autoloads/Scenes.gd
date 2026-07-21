@@ -21,8 +21,6 @@ func _ready() -> void:
 
 
 
-## Top-level Scene Methods
-
 
 func register_scene(scene: GameScene) -> void:
 
@@ -36,27 +34,6 @@ func register_scene(scene: GameScene) -> void:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Private
 
 func _load_scene(scene_script: Script) -> GameScene:
 

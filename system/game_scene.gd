@@ -11,6 +11,15 @@ func _ready() -> void:
 
 
 
+
+
+
+
+
+
+
+
+
 func _activate() -> void:
 
 	show()

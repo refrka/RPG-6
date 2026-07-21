@@ -2,15 +2,17 @@
 
 [ext_resource type="Script" uid="uid://b7nsmhi1rfvqf" path="res://game_root.gd" id="1_pjpa4"]
 [ext_resource type="PackedScene" uid="uid://cuulvxdb4v0i0" path="res://ui/main_menu.tscn" id="2_bxsma"]
-[ext_resource type="Script" uid="uid://dkbobrufmi74y" path="res://ui/main_menu.gd" id="3_lkrbl"]
+[ext_resource type="Script" uid="uid://dyq8vo5yjgj4q" path="res://world/world_scene.gd" id="2_lkrbl"]
 
 [node name="GameRoot" type="Node" unique_id=828412104]
 script = ExtResource("1_pjpa4")
 
 [node name="WorldCanvas" type="CanvasLayer" parent="." unique_id=376096639 groups=["world_canvas"]]
 
+[node name="WorldScene" type="Node2D" parent="WorldCanvas" unique_id=1815389893]
+script = ExtResource("2_lkrbl")
+
 [node name="MainMenuCanvas" type="CanvasLayer" parent="." unique_id=1269583312 groups=["main_menu_canvas"]]
 
 [node name="MainMenu" parent="MainMenuCanvas" unique_id=809595668 instance=ExtResource("2_bxsma")]
 visible = false
-script = ExtResource("3_lkrbl")
