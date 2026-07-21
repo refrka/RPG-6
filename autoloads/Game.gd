@@ -26,13 +26,34 @@ var active_save_data: SaveData
 
 func launch() -> void:
 
-	pass
+	Scenes._load_scene(MainMenu)
 
 
 
 func restart() -> void:
 
 	pass
+
+
+
+
+
+
+
+# Game start steps:
+
+# - Fetch save_dict and load values into SaveData
+
+#	> Fill PlayerData with saved/default values
+
+#	> Initialize PlayerNode and load it with PlayerData
+
+# - Load the location
+
+#	> Initialize and activate entities, spawn player
+
+
+
 
 
 
