@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dq83rrnhr5x30"]
+
+[ext_resource type="PackedScene" uid="uid://u2gj13bgr5dt" path="res://entity/character/character_node.tscn" id="1_vflfw"]
+[ext_resource type="Resource" uid="uid://cglx1lj01t53t" path="res://entity/character/creature/wolf/wolf_def.tres" id="2_xw4qa"]
+[ext_resource type="Texture2D" uid="uid://b8tcekbpgmqq5" path="res://entity/character/creature/wolf/wolf_sprite.png" id="3_73qeu"]
+
+[node name="Wolf" unique_id=639653512 instance=ExtResource("1_vflfw")]
+entity_def = ExtResource("2_xw4qa")
+
+[node name="BodySprite" parent="VisualRoot" parent_id_path=PackedInt32Array(93121259) index="0" unique_id=1905262643]
+position = Vector2(0, -16)
+texture = ExtResource("3_73qeu")
+hframes = 2

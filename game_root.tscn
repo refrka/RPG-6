@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b7nsmhi1rfvqf" path="res://game_root.gd" id="1_pjpa4"]
 [ext_resource type="PackedScene" uid="uid://cuulvxdb4v0i0" path="res://ui/main_menu.tscn" id="2_bxsma"]
 [ext_resource type="Script" uid="uid://dyq8vo5yjgj4q" path="res://world/world_scene.gd" id="2_lkrbl"]
+[ext_resource type="Script" uid="uid://cs6810sk4vb03" path="res://cutscene/cutscene.gd" id="3_wd1uf"]
 [ext_resource type="PackedScene" uid="uid://del1wjxmxn4ya" path="res://ui/debug_shit_panel.tscn" id="4_wd1uf"]
 
 [node name="GameRoot" type="Node" unique_id=828412104]
@@ -12,6 +13,9 @@ script = ExtResource("1_pjpa4")
 
 [node name="WorldScene" type="Node2D" parent="WorldCanvas" unique_id=1815389893]
 script = ExtResource("2_lkrbl")
+
+[node name="Cutscene" type="Node2D" parent="WorldCanvas" unique_id=1915224143]
+script = ExtResource("3_wd1uf")
 
 [node name="MainMenuCanvas" type="CanvasLayer" parent="." unique_id=1269583312 groups=["main_menu_canvas"]]
 

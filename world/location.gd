@@ -31,6 +31,8 @@ var active:= false
 
 var initialized:= false
 
+var cutscene_mode:= false
+
 
 
 
@@ -121,6 +123,34 @@ func initialize_characters() -> void:
 	for character_node in object_root.get_children():
 
 		character_node._initialize()
+
+
+
+
+
+
+
+
+
+
+
+
+
+func enter_cutscene_mode() -> void:
+
+	cutscene_mode = true
+
+
+
+
+func exit_cutscene_mode() -> void:
+
+	cutscene_mode = false
+
+
+
+
+
 
 
 

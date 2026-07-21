@@ -2,10 +2,16 @@ extends Node
 
 
 
+signal cutscene_ended(cutscene: Cutscene)
+
+
+
 
 var scene_registry:= {}
 
 var active_scene: GameScene
+
+var active_cutscene: Cutscene
 
 var location_paths: Array[String]
 
@@ -24,11 +30,11 @@ func _ready() -> void:
 
 
 
-func activate_scene(scene_script: Script) -> void:
+func activate_scene(scene_script: Script) -> GameScene:
 
 	if !scene_registry.has(scene_script):
 
-		return
+		return null
 
 	var new_scene = scene_registry[scene_script]
 
@@ -41,6 +47,9 @@ func activate_scene(scene_script: Script) -> void:
 		else:
 
 			scene._deactivate()
+
+	return new_scene
+
 
 
 
@@ -99,6 +108,31 @@ func get_world_scene() -> WorldScene:
 
 
 
+func get_cutscene() -> Cutscene:
+
+	return scene_registry[Cutscene]
+
+
+
+
+func run_cutscene(cutscene_script_name: Script, data:= {}) -> Cutscene:
+
+	print("running cutscene")
+
+	var cutscene = Scenes.activate_scene(Cutscene)
+
+	cutscene.run_cutscene_script(cutscene_script_name.new(), data)
+
+	return cutscene
+
+
+
+
+
+
+
+
+
 
 func _load_scene(scene_script: Script) -> GameScene:
 
@@ -141,3 +175,22 @@ func _load_locations() -> void:
 			elif dir.ends_with("/"):
 
 				sub_dirs.append(path)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _on_cutscene_ended(cutscene: Cutscene) -> void:
+
+	cutscene_ended.emit(cutscene)

@@ -9,6 +9,8 @@ class_name WorldScene extends GameScene
 
 var active_location: Location
 
+var loaded_locations: Array[Location]
+
 var paused_locations: Array[Location]
 
 
@@ -21,8 +23,31 @@ var paused_locations: Array[Location]
 
 
 
+func load_location(location_id: StringName) -> Location:
+
+	var new_location = Scenes.get_location(location_id)
+
+	new_location._initialize()
+
+	new_location._deactivate()
+
+	loaded_locations.append(new_location)
+
+	return new_location
 
 
+
+
+
+func unload_location(location: Location) -> void:
+
+	location._deactivate()
+
+	loaded_locations.erase(location)
+
+	if location.is_paused():
+
+		paused_locations.erase(location)
 
 
 
@@ -43,7 +68,7 @@ func activate_location(location_id: StringName, pause_current:= false) -> Locati
 
 		remove_child(active_location)
 
-	var new_location = Scenes.get_location(location_id)
+	var new_location = load_location(location_id)
 
 	add_child(new_location)
 
@@ -67,14 +92,24 @@ func pause_location(location: Location) -> void:
 
 	paused_locations.append(location)
 
+	if location == active_location:
+
+		remove_child(location)
+
+		active_location = null
 
 
 
-func unpause_location(location: Location) -> void:
+
+func unpause_location(location: Location, activate:= false) -> void:
 
 	location.resume()
 
 	paused_locations.erase(location)
+
+	if activate:
+
+		activate_location(location.location_id)
 
 
 
@@ -89,6 +124,12 @@ func get_active_location() -> Location:
 
 
 
+func get_loaded_locations() -> Array[Location]:
+
+	return loaded_locations
+
+
+
 func get_paused_locations() -> Array[Location]:
 
 	return paused_locations
@@ -97,7 +138,11 @@ func get_paused_locations() -> Array[Location]:
 
 func get_all_locations() -> Array[Location]:
 
-	var all_locations: Array[Location] = paused_locations
+	var all_locations: Array[Location] = []
+
+	all_locations.append_array(loaded_locations)
+
+	all_locations.append_array(paused_locations)
 
 	if active_location:
 

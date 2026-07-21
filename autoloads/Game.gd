@@ -114,11 +114,9 @@ func resume() -> void:
 
 
 
-func load_saved_location(location_id: StringName, new_game: bool) -> void:
+func load_saved_location(location_id: StringName) -> void:
 
 	var location = Scenes.load_location(location_id)
-
-	location._initialize()
 
 
 
@@ -136,6 +134,16 @@ func get_player() -> PlayerNode:
 		player._initialize()
 
 	return player
+
+
+
+
+
+func get_timer(duration: float) -> SceneTreeTimer:
+
+	var timer = get_tree().create_timer(duration)
+
+	return timer
 
 
 
@@ -161,17 +169,21 @@ func _load_game(save_data: SaveData) -> void:
 
 	var location_id = active_save_data.last_dict["saved_location_id"]
 
-	var new_game:= false
-
 	if location_id == "":
 
 		location_id = "forest_start"
 
-		new_game = true
+		var cutscene = Scenes.run_cutscene(NewGameCutscene)
+
+		await cutscene.cutscene_ended
 
 		pass
 
-	load_saved_location(location_id, new_game)
+	var world_scene = Scenes.get_world_scene()
+
+	print("asking world scene to activate: ", location_id)
+	
+	world_scene.activate_location(location_id)
 
 	# Load location
 

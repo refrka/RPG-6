@@ -52,6 +52,14 @@ func get_player_node() -> PlayerNode:
 
 
 
+func find_entity_node_from_reference(reference_entity: ReferenceEntity) -> EntityNode:
+
+	var entity_node: EntityNode = null
+
+	return entity_node
+
+
+
 
 
 func create_entity_node(entity_def: EntityDef) -> EntityNode:
