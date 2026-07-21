@@ -4,7 +4,7 @@ class_name NewGameCutscene extends CutsceneScript
 
 func _initialize() -> void:
 
-	location_id = "forest_area_1"
+	location_id = "forest_start"
 
 
 

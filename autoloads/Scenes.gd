@@ -84,6 +84,18 @@ func get_location(location_id: StringName) -> Location:
 
 			return location
 
+	return get_location_scene(location_id)
+
+
+
+
+
+func get_location_scene(location_id: StringName) -> Location:
+
+	if location_id == &"":
+
+		return null
+	
 	var file_name = "%s.scn" % location_id
 
 	for path in location_paths:
@@ -93,6 +105,8 @@ func get_location(location_id: StringName) -> Location:
 			return load(path).instantiate() as Location
 
 	return null
+
+
 
 
 

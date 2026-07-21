@@ -22,6 +22,8 @@ func run_cutscene_script(cutscene_script: CutsceneScript, data: Dictionary) -> v
 
 	cutscene_data = data
 
+	active_cutscene_script._initialize()
+
 	# Location handling
 
 	var world_scene = Scenes.get_world_scene()
@@ -34,17 +36,17 @@ func run_cutscene_script(cutscene_script: CutsceneScript, data: Dictionary) -> v
 
 		paused_location = current_location
 
-	cutscene_location = Scenes.get_location(active_cutscene_script.location_id)
+	print("cutscene location: ", active_cutscene_script.location_id)
 
-	add_child(cutscene_location)
+	cutscene_location = Scenes.get_location_scene(active_cutscene_script.location_id)
 
 	cutscene_location._initialize()
+
+	add_child(cutscene_location)
 
 	active_cutscene_script.cutscene_location = cutscene_location
 
 	#	
-
-	active_cutscene_script._initialize()
 
 	active_cutscene_script._start()
 

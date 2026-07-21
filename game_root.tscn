@@ -23,6 +23,16 @@ script = ExtResource("3_wd1uf")
 visible = false
 mouse_filter = 2
 
+[node name="OverlayCanvas" type="CanvasLayer" parent="." unique_id=902617722]
+
+[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=210114002]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="DebugCanvas" type="CanvasLayer" parent="." unique_id=53035952]
 
 [node name="DebugRoot" type="Node" parent="DebugCanvas" unique_id=1958139742]
