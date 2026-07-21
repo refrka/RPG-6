@@ -40,7 +40,7 @@ func create_save(save_name: String) -> void:
 
 	save_dict["save_id"] = _generate_save_id()
 
-	var save_data = SaveData.load_dictionary(save_dict)
+	var save_data = SaveData.create(save_dict)
 
 	save_game(save_data)
 
@@ -88,7 +88,7 @@ func load_save_data(save_id: String) -> SaveData:
 
 	file.close()
 
-	save_data = SaveData.load_dictionary(json.data)
+	save_data = SaveData.create(json.data)
 	
 	return save_data
 
@@ -143,7 +143,7 @@ func _load_current_saves() -> void:
 
 			save_file.close()
 
-			var save_data = SaveData.load_dictionary(json.data)
+			var save_data = SaveData.create(json.data)
 
 			current_saves.append(save_data)
 

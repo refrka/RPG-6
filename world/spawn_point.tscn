@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c3ypj3tn1jihy"]
+
+[ext_resource type="Script" uid="uid://nye27ur2bqkx" path="res://world/spawn_point.gd" id="1_87j4v"]
+
+[node name="SpawnPoint" type="Marker2D" unique_id=345753277]
+rotation = 0.7853982
+gizmo_extents = 16.0
+script = ExtResource("1_87j4v")

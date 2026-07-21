@@ -1,17 +1,21 @@
 [gd_scene format=3 uid="uid://buwsrfnyqrb1v"]
 
 [ext_resource type="Script" uid="uid://bxgd1muguuhcl" path="res://world/location.gd" id="1_vy4ij"]
+[ext_resource type="TileSet" uid="uid://coacxlv4bip5b" path="res://resources/default_tile_set.tres" id="2_p32gx"]
 
-[node name="Location" type="Node2D" unique_id=1312436202 node_paths=PackedStringArray("character_root", "object_root", "marker_root")]
+[node name="Location" type="Node2D" unique_id=1312436202 node_paths=PackedStringArray("character_root", "object_root", "marker_root", "transition_root", "spawn_point_root")]
 script = ExtResource("1_vy4ij")
 character_root = NodePath("YSortRoot/CharacterRoot")
 object_root = NodePath("YSortRoot/ObjectRoot")
 marker_root = NodePath("MarkerRoot")
+transition_root = NodePath("TransitionZoneRoot")
+spawn_point_root = NodePath("SpawnPointRoot")
 metadata/_custom_type_script = "uid://bxgd1muguuhcl"
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=762825252]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="NavigationRegion2D" unique_id=687600933]
+tile_set = ExtResource("2_p32gx")
 
 [node name="YSortRoot" type="Node2D" parent="." unique_id=143465717]
 y_sort_enabled = true
@@ -27,3 +31,8 @@ y_sort_enabled = true
 [node name="SpawnPointRoot" type="Node2D" parent="." unique_id=502659264]
 
 [node name="MarkerRoot" type="Node2D" parent="." unique_id=438897521]
+
+[node name="CameraMarker1" type="Marker2D" parent="." unique_id=736159155]
+position = Vector2(0, 1)
+
+[node name="CameraMarker2" type="Marker2D" parent="." unique_id=705557935]

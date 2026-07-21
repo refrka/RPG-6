@@ -11,6 +11,8 @@ var location_paths: Array[String]
 
 
 
+
+
 func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -21,9 +23,44 @@ func _ready() -> void:
 
 
 
+
+func activate_scene(scene_script: Script) -> void:
+
+	if !scene_registry.has(scene_script):
+
+		return
+
+	var new_scene = scene_registry[scene_script]
+
+	for scene in scene_registry.values():
+
+		if scene == new_scene:
+
+			scene._activate()
+
+		else:
+
+			scene._deactivate()
+
+
+
+
+func load_location(location_id: StringName) -> Location:
+
+	var world_scene = get_world_scene()
+
+	var location = world_scene.activate_location(location_id)
+
+	return location
+
+
+
+
+
 func register_scene(scene: GameScene) -> void:
 
 	scene_registry[scene.get_script()] = scene
+
 
 
 

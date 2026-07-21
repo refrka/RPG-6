@@ -15,11 +15,30 @@ class_name Location extends Node2D
 
 @export var marker_root: Node2D
 
+@export var transition_root: Node2D
 
+@export var spawn_point_root: Node2D
+
+
+@export var camera_limit_top_left: Marker2D
+
+@export var camera_limit_bottom_right: Marker2D
+
+
+
+
+var active:= false
 
 var initialized:= false
 
 
+
+
+var character_list: Array[CharacterNode]
+
+var object_list: Array[ObjectNode]
+
+var feature_list: Array[Feature]
 
 
 
@@ -60,21 +79,6 @@ func _initialize() -> bool:
 
 
 
-func pause() -> void:
-
-	process_mode = Node.PROCESS_MODE_DISABLED
-
-
-
-
-
-func resume() -> void:
-
-	process_mode = Node.PROCESS_MODE_INHERIT
-
-
-
-
 
 
 
@@ -87,9 +91,13 @@ func spawn_marked_entities() -> void:
 
 	for entity_marker in marker_root.get_children():
 
+		if entity_marker.spawn_condition_set and !entity_marker.spawn_condition_set.evaluate({"location": self}):
+
+			continue
+
 		var entity_node = entity_marker.reference_entity.get_reference_node()
 
-		_add_entity_to_root(entity_node)
+		_add_entity(entity_node)
 
 		entity_node.reposition(entity_marker.global_position)
 
@@ -122,10 +130,109 @@ func initialize_characters() -> void:
 
 
 
+func has_entity_node(entity_node: EntityNode) -> bool:
+
+	if entity_node is ObjectNode:
+
+		return object_list.has(entity_node)
+
+	elif entity_node is CharacterNode:
+
+		return character_list.has(entity_node)
+
+	return false
 
 
 
-func _add_entity_to_root(entity_node: EntityNode) -> void:
+
+
+func get_spawn_point(spawn_id: StringName) -> SpawnPoint:
+
+	for spawn_point in spawn_point_root.get_children():
+
+		if spawn_point.spawn_id == spawn_id:
+
+			return spawn_point
+
+	for transition_zone in transition_root.get_children():
+
+		if transition_zone.get_spawn_point_id() == spawn_id:
+
+			return transition_zone.get_spawn_point()
+
+	return null
+
+
+
+
+
+
+
+
+func is_paused() -> bool:
+
+	return process_mode == Node.PROCESS_MODE_DISABLED
+
+
+
+
+
+
+
+
+func pause() -> void:
+
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+
+
+
+
+func resume() -> void:
+
+	process_mode = Node.PROCESS_MODE_INHERIT
+
+
+
+
+
+
+
+
+
+
+func _enter() -> void:
+
+	pass
+
+
+
+
+
+func _exit() -> void:
+
+	pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _add_entity(entity_node: EntityNode) -> void:
+
+	if has_entity_node(entity_node):
+
+		return
 
 	if entity_node.is_inside_tree():
 
@@ -135,6 +242,76 @@ func _add_entity_to_root(entity_node: EntityNode) -> void:
 
 		object_root.add_child(entity_node)
 
+		object_list.append(entity_node)
+
 	elif entity_node is CharacterNode:
 
 		character_root.add_child(entity_node)
+
+		character_list.append(entity_node)
+
+
+
+
+func _remove_entity(entity_node: EntityNode) -> void:
+
+	if !has_entity_node(entity_node):
+
+		return
+
+	if entity_node is ObjectNode:
+
+		object_root.remove_child(entity_node)
+
+		object_list.erase(entity_node)
+
+	elif entity_node is CharacterNode:
+
+		character_root.remove_child(entity_node)
+
+		character_list.erase(entity_node)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _activate() -> void:
+
+	active = true
+
+	for object in object_list:
+
+		object._activate()
+
+	for character in character_list:
+
+		character._deactivate()
+
+
+
+func _deactivate() -> void:
+
+	active = false
+
+	for object in object_list:
+
+		object._deactivate()
+
+	for character in character_list:
+
+		character._deactivate()

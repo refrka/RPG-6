@@ -26,7 +26,7 @@ var player: PlayerNode
 
 func launch() -> void:
 
-	Scenes._load_scene(MainMenu)
+	Scenes.activate_scene(MainMenu)
 
 
 
@@ -71,6 +71,8 @@ func start(save_id: StringName) -> void:
 
 		end()
 
+	Scenes.activate_scene(WorldScene)
+
 	_load_game(save_data)
 
 	Events.fire(GameStartedEvent)
@@ -112,6 +114,15 @@ func resume() -> void:
 
 
 
+func load_saved_location(location_id: StringName, new_game: bool) -> void:
+
+	var location = Scenes.load_location(location_id)
+
+	location._initialize()
+
+
+
+
 
 
 func get_player() -> PlayerNode:
@@ -140,15 +151,27 @@ func is_active() -> bool:
 
 
 
+
+
+
+
 func _load_game(save_data: SaveData) -> void:
 
 	active_save_data = save_data
 
-	if active_save_data.last_dict["saved_location_id"] == "":
+	var location_id = active_save_data.last_dict["saved_location_id"]
 
-		# FIRST-TIME LOAD FOR THIS SAVE
+	var new_game:= false
+
+	if location_id == "":
+
+		location_id = "forest_start"
+
+		new_game = true
 
 		pass
+
+	load_saved_location(location_id, new_game)
 
 	# Load location
 
@@ -157,6 +180,20 @@ func _load_game(save_data: SaveData) -> void:
 	# Spawn player
 
 	# Start game
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

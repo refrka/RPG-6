@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://jyrgqo755dng"]
 
 [ext_resource type="Script" uid="uid://bie0q14dmunl5" path="res://entity/object/object_node.gd" id="1_iy5f5"]
+[ext_resource type="Script" uid="uid://bwv5f2vf38x7d" path="res://state/state_machine.gd" id="2_3l14t"]
+[ext_resource type="Script" uid="uid://bi8xvbsytvcmc" path="res://state/idle_state.gd" id="3_ssrvi"]
 
-[node name="ObjectNode" type="StaticBody2D" unique_id=188428736]
+[node name="ObjectNode" type="StaticBody2D" unique_id=188428736 node_paths=PackedStringArray("state_machine", "component_root")]
 y_sort_enabled = true
 script = ExtResource("1_iy5f5")
+state_machine = NodePath("StateMachine")
+component_root = NodePath("ComponentRoot")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=866277596]
 y_sort_enabled = true
@@ -12,3 +16,13 @@ y_sort_enabled = true
 [node name="BodySprite" type="Sprite2D" parent="VisualRoot" unique_id=1622163974]
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1548032054]
+
+[node name="StateMachine" type="Node" parent="." unique_id=1502813787 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_3l14t")
+initial_state = NodePath("IdleState")
+metadata/_custom_type_script = "uid://bwv5f2vf38x7d"
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=1041098712]
+script = ExtResource("3_ssrvi")
+
+[node name="ComponentRoot" type="Node" parent="." unique_id=1902725791]

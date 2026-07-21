@@ -3,6 +3,8 @@ class_name GameScene extends CanvasItem
 
 
 
+var active:= false
+
 
 func _ready() -> void:
 
@@ -22,11 +24,15 @@ func _ready() -> void:
 
 func _activate() -> void:
 
+	active = true
+
 	show()
 
 
 
 
 func _deactivate() -> void:
+
+	active = false
 
 	hide()

@@ -12,6 +12,9 @@ var last_dict: Dictionary
 
 
 
+
+
+
 func get_dictionary() -> Dictionary:
 
 	var save_dict = load("res://system/save_template.gd").new().data
@@ -20,6 +23,12 @@ func get_dictionary() -> Dictionary:
 
 	save_dict["save_name"] = save_name
 
+	# get_dicitonary() will call many other sources' get_dictionary() methods to collect all the data
+
+	# there must be a matching load_dictionary() counterpart called together (load_dictionary(), below)
+
+	# Each of these sources needs to sync with the game ending to clear their data cache
+
 	return save_dict
 
 
@@ -27,7 +36,19 @@ func get_dictionary() -> Dictionary:
 
 
 
-static func load_dictionary(save_dict: Dictionary) -> SaveData:
+func load_dictionary() -> void:
+
+	# Dispense data from last_dict into the game
+
+	pass
+
+
+
+
+
+
+
+static func create(save_dict: Dictionary) -> SaveData:
 
 	var save_data = SaveData.new()
 

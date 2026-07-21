@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bdht8145vlol0"]
+
+[ext_resource type="PackedScene" uid="uid://dq4k34gecktyh" path="res://feature/zone/zone.tscn" id="1_p67y6"]
+[ext_resource type="Script" uid="uid://uwcnwmacbcjt" path="res://feature/zone/transition_zone.gd" id="2_dbp4m"]
+[ext_resource type="Script" uid="uid://nye27ur2bqkx" path="res://world/spawn_point.gd" id="3_cepmr"]
+
+[node name="TransitionZone" unique_id=59404404 node_paths=PackedStringArray("spawn_point") instance=ExtResource("1_p67y6")]
+script = ExtResource("2_dbp4m")
+target_location_id = &""
+target_spawn_id = &""
+spawn_point = NodePath("SpawnPoint")
+
+[node name="SpawnPoint" type="Marker2D" parent="." index="1" unique_id=25665655]
+script = ExtResource("3_cepmr")
