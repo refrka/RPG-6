@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://u2gj13bgr5dt"]
 
 [ext_resource type="Script" uid="uid://cw1qm7lli54r3" path="res://entity/character/character_node.gd" id="1_ioq1x"]
+[ext_resource type="Script" uid="uid://bwv5f2vf38x7d" path="res://state/state_machine.gd" id="2_l8yc8"]
+[ext_resource type="Script" uid="uid://bi8xvbsytvcmc" path="res://state/idle_state.gd" id="3_fekyf"]
 
 [node name="CharacterNode" type="CharacterBody2D" unique_id=639653512]
 y_sort_enabled = true
@@ -12,3 +14,12 @@ y_sort_enabled = true
 [node name="BodySprite" type="Sprite2D" parent="VisualRoot" unique_id=1905262643]
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1462622998]
+
+[node name="StateMachine" type="Node" parent="." unique_id=2134553196]
+script = ExtResource("2_l8yc8")
+metadata/_custom_type_script = "uid://bwv5f2vf38x7d"
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=1405391652]
+script = ExtResource("3_fekyf")
+
+[node name="ComponentRoot" type="Node" parent="." unique_id=298047762]
