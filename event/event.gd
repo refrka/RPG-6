@@ -11,10 +11,6 @@ func fire(_data: Dictionary) -> void:
 
 	data = _data
 
-	if _get_notice_primary_text() != "":
-
-		show_notice()
-
 
 
 func show_notice() -> void:

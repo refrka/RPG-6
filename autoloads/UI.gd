@@ -1,6 +1,12 @@
 extends Node
 
 
+signal popup_boolean_completed(state: bool)
+
+
+@onready var popup_scene:= preload("res://ui/game_popup.tscn")
+
+
 
 var overlay_registry: Dictionary[Script, Overlay]
 
@@ -11,6 +17,8 @@ var pause_overlays: Array[Overlay]
 
 var notice_root: NoticeRoot
 
+var popup_root: Control
+
 
 
 func _ready() -> void:
@@ -18,6 +26,8 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	notice_root = get_tree().get_first_node_in_group("notice_root")
+
+	popup_root = get_tree().get_first_node_in_group("popup_root")
 
 
 
@@ -108,8 +118,7 @@ func deactivate_overlays() -> void:
 
 
 
-
-
+# Notices, Popups
 
 
 func show_notice(primary: String, secondary:= "") -> Notice:
@@ -120,8 +129,21 @@ func show_notice(primary: String, secondary:= "") -> Notice:
 
 
 
+func show_popup(mode: GamePopup.PopupMode, message: String, title:= "") -> void:
 
+	var popup = popup_scene.instantiate() as GamePopup
 
+	popup.set_mode(mode)
+
+	popup.set_text(message, title)
+
+	popup.popup_completed.connect(_on_popup_completed)
+
+	popup.boolean_completed.connect(_on_popup_boolean_completed)
+
+	popup_root.add_child(popup)
+
+	popup._activate()
 
 
 
@@ -152,3 +174,19 @@ func _unhandled_input(event: InputEvent) -> void:
 			var overlay = get_overlay(GameMenu)
 
 			add_overlay(overlay)
+
+
+
+
+
+func _on_popup_completed(popup: GamePopup) -> void:
+
+	popup.queue_free()
+
+
+
+func _on_popup_boolean_completed(popup: GamePopup, state: bool) -> void:
+
+	popup.queue_free()
+
+	popup_boolean_completed.emit(state)

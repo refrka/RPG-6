@@ -31,8 +31,6 @@ var active:= false
 
 var initialized:= false
 
-var cutscene_mode:= false
-
 
 
 
@@ -109,6 +107,21 @@ func spawn_marked_entities() -> void:
 
 
 
+func spawn_entity_node(entity_node: EntityNode, spawn_id: StringName) -> void:
+
+	_add_entity(entity_node)
+
+	var spawn_point = get_spawn_point(spawn_id)
+
+	entity_node.reposition(spawn_point.global_position)
+
+	entity_node._initialize()
+
+	entity_node._activate()
+
+
+
+
 
 func initialize_objects() -> void:
 
@@ -136,16 +149,6 @@ func initialize_characters() -> void:
 
 
 
-func enter_cutscene_mode() -> void:
-
-	cutscene_mode = true
-
-
-
-
-func exit_cutscene_mode() -> void:
-
-	cutscene_mode = false
 
 
 
@@ -155,22 +158,6 @@ func exit_cutscene_mode() -> void:
 
 
 
-
-
-
-
-
-func has_entity_node(entity_node: EntityNode) -> bool:
-
-	if entity_node is ObjectNode:
-
-		return object_list.has(entity_node)
-
-	elif entity_node is CharacterNode:
-
-		return character_list.has(entity_node)
-
-	return false
 
 
 
@@ -199,6 +186,26 @@ func get_spawn_point(spawn_id: StringName) -> SpawnPoint:
 
 
 
+
+
+
+
+
+
+func has_entity_node(entity_node: EntityNode) -> bool:
+
+	if entity_node is ObjectNode:
+
+		return object_list.has(entity_node)
+
+	elif entity_node is CharacterNode:
+
+		return character_list.has(entity_node)
+
+	return false
+
+
+
 func is_paused() -> bool:
 
 	return process_mode == Node.PROCESS_MODE_DISABLED
@@ -210,11 +217,13 @@ func is_paused() -> bool:
 
 
 
+
+
+
+
 func pause() -> void:
 
 	process_mode = Node.PROCESS_MODE_DISABLED
-
-
 
 
 
@@ -234,9 +243,6 @@ func resume() -> void:
 func _enter() -> void:
 
 	pass
-
-
-
 
 
 func _exit() -> void:

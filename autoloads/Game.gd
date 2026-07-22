@@ -20,8 +20,13 @@ var player: PlayerNode
 
 
 
+func _ready() -> void:
 
-## Top-level Methods
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
+
+
+
 
 
 func launch() -> void:
@@ -169,9 +174,13 @@ func _load_game(save_data: SaveData) -> void:
 
 	var location_id = active_save_data.last_dict["saved_location_id"]
 
+	var spawn_id = active_save_data.last_dict["saved_spawn_id"]
+
 	if location_id == "":
 
 		location_id = "forest_start"
+
+		spawn_id = "start"
 
 		@warning_ignore("confusable_local_declaration")
 
@@ -183,11 +192,9 @@ func _load_game(save_data: SaveData) -> void:
 
 	var world_scene = Scenes.get_world_scene()
 	
-	world_scene.activate_location(location_id)
+	var location = world_scene.activate_location(location_id)
 
-	UI.show_notice("poop", "shit")
-
-	UI.show_notice("uhhhh")
+	location.spawn_entity_node(get_player(), spawn_id)	
 
 	# Load location
 

@@ -15,6 +15,8 @@ var current_saves: Array[SaveData]
 
 func _ready() -> void:
 
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	_validate_path(SAVE_ROOT)
 
 	_load_current_saves()

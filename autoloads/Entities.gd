@@ -45,7 +45,7 @@ func get_entity_def_by_unique_id(unique_id: StringName) -> EntityDef:
 
 func get_player_node() -> PlayerNode:
 
-	return load("res://player/player.tscn").instantiate()
+	return load("res://player/player_node.tscn").instantiate()
 
 
 

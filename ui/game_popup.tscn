@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dies1xqtiqnrk" path="res://ui/game_popup.gd" id="1_u2m6l"]
 
-[node name="GamePopup" type="MarginContainer" unique_id=2066384248 node_paths=PackedStringArray("title_label", "message_label", "button_section", "continue_button")]
+[node name="GamePopup" type="MarginContainer" unique_id=2066384248 node_paths=PackedStringArray("title_label", "title_section", "message_label", "continue_button", "no_button", "yes_button", "boolean_section", "cancel_button", "confirm_button", "confirm_section")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10,9 +10,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u2m6l")
 title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleSection/TitleLabel")
+title_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleSection")
 message_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/MessageLabel")
-button_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ButtonSection")
-continue_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ButtonSection/ContinueButton")
+continue_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ContinueButton")
+no_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/BooleanSection/NoButton")
+yes_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/BooleanSection/YesButton")
+boolean_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/BooleanSection")
+cancel_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ConfirmSection/CancelButton")
+confirm_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ConfirmSection/ConfirmButton")
+confirm_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ConfirmSection")
 pause = true
 
 [node name="PanelContainer2" type="PanelContainer" parent="." unique_id=597242600]
@@ -63,11 +69,40 @@ layout_mode = 2
 [node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=704823804]
 layout_mode = 2
 
-[node name="ButtonSection" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2" unique_id=981783935]
-layout_mode = 2
-alignment = 2
-
-[node name="ContinueButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ButtonSection" unique_id=531544930]
+[node name="ContinueButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2" unique_id=531544930]
+visible = false
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
+size_flags_horizontal = 8
 text = "Continue"
+
+[node name="BooleanSection" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2" unique_id=1384967658]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="NoButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/BooleanSection" unique_id=1946602963]
+custom_minimum_size = Vector2(75, 30)
+layout_mode = 2
+text = "No"
+
+[node name="YesButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/BooleanSection" unique_id=1440365710]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+text = "Yes"
+
+[node name="ConfirmSection" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2" unique_id=1341713329]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ConfirmSection" unique_id=1870199998]
+custom_minimum_size = Vector2(75, 30)
+layout_mode = 2
+text = "Cancel"
+
+[node name="ConfirmButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ConfirmSection" unique_id=696072665]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+text = "Confirm"

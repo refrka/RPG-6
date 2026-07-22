@@ -9,6 +9,9 @@ var debug_shit_panel: DebugShitPanel
 
 
 
+func _ready() -> void:
+
+	process_mode = Node.PROCESS_MODE_ALWAYS
 
 
 
