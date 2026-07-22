@@ -10,3 +10,30 @@ var data: Dictionary = {}
 func fire(_data: Dictionary) -> void:
 
 	data = _data
+
+	if _get_notice_primary_text() != "":
+
+		show_notice()
+
+
+
+func show_notice() -> void:
+
+	UI.show_notice(_get_notice_primary_text(), _get_notice_secondary_text())
+
+
+
+
+func _get_notice_primary_text() -> String:
+
+	return ""
+
+
+func _get_notice_secondary_text() -> String:
+
+	return ""
+
+
+func _get_popup_message_text() -> String:
+
+	return ""

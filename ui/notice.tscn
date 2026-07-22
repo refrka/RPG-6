@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://04360d7dx6p5"]
 
 [ext_resource type="Script" uid="uid://dnbc4g1glpour" path="res://ui/notice.gd" id="1_qm5pf"]
+[ext_resource type="Script" uid="uid://d1tjqor82d8o0" path="res://ui/input_mask.gd" id="2_bej3f"]
 
 [sub_resource type="Animation" id="Animation_qm5pf"]
 length = 0.001
@@ -68,12 +69,13 @@ _data = {
 &"show": SubResource("Animation_l7cq4")
 }
 
-[node name="Notice" type="MarginContainer" unique_id=998601271 node_paths=PackedStringArray("primary_label", "secondary_label", "secondary_label_section", "animation_player")]
+[node name="Notice" type="MarginContainer" unique_id=998601271 node_paths=PackedStringArray("primary_label", "secondary_label", "secondary_label_section", "animation_player", "input_mask")]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -170.0
+offset_left = -151.0
 offset_top = -88.0
+offset_bottom = -26.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
@@ -86,6 +88,7 @@ primary_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/PrimaryLa
 secondary_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/NoticeSecondarySection/SeconaryLabel")
 secondary_label_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/NoticeSecondarySection")
 animation_player = NodePath("AnimationPlayer")
+input_mask = NodePath("PanelContainer/InputMask")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=150923480]
 layout_mode = 2
@@ -117,6 +120,10 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7982593, 0.7982595, 0.7982593, 1)
 text = "Notice Secondary"
+
+[node name="InputMask" type="MarginContainer" parent="PanelContainer" unique_id=1847610036]
+layout_mode = 2
+script = ExtResource("2_bej3f")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1208306701]
 libraries/ = SubResource("AnimationLibrary_8cq1f")
