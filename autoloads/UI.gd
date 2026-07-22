@@ -2,9 +2,6 @@ extends Node
 
 
 
-
-
-
 var overlay_registry: Dictionary[Script, Overlay]
 
 var active_overlays: Array[Overlay]
@@ -12,10 +9,15 @@ var active_overlays: Array[Overlay]
 var pause_overlays: Array[Overlay]
 
 
+var notice_root: NoticeRoot
+
+
 
 func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
+
+	notice_root = get_tree().get_first_node_in_group("notice_root")
 
 
 
@@ -110,6 +112,28 @@ func deactivate_overlays() -> void:
 
 
 
+func show_notice(primary: String, secondary:= "") -> Notice:
+
+	var notice = notice_root.add_notice(primary, secondary)
+
+	return notice
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 func _unhandled_input(event: InputEvent) -> void:
 
@@ -126,5 +150,5 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 
 			var overlay = get_overlay(GameMenu)
-			
+
 			add_overlay(overlay)

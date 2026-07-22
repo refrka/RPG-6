@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://cinmfk47pd0f8"]
+
+[ext_resource type="Script" uid="uid://dies1xqtiqnrk" path="res://ui/game_popup.gd" id="1_u2m6l"]
+
+[node name="GamePopup" type="MarginContainer" unique_id=2066384248 node_paths=PackedStringArray("title_label", "message_label", "button_section", "continue_button")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u2m6l")
+title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/TitleSection/TitleLabel")
+message_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer/MessageLabel")
+button_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ButtonSection")
+continue_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ButtonSection/ContinueButton")
+pause = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=597242600]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=772790988]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1455731174]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1445821854]
+layout_mode = 2
+
+[node name="TitleSection" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1157180567]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/TitleSection" unique_id=1162727139]
+layout_mode = 2
+text = "> Title"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/TitleSection" unique_id=1054031708]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=172446355]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="MessageLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=1067957479]
+layout_mode = 2
+text = "Popup message"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1414563524]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=704823804]
+layout_mode = 2
+
+[node name="ButtonSection" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2" unique_id=981783935]
+layout_mode = 2
+alignment = 2
+
+[node name="ContinueButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/ButtonSection" unique_id=531544930]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "Continue"

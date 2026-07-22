@@ -5,11 +5,12 @@
 [ext_resource type="Script" uid="uid://dyq8vo5yjgj4q" path="res://world/world_scene.gd" id="2_lkrbl"]
 [ext_resource type="Script" uid="uid://cs6810sk4vb03" path="res://cutscene/cutscene.gd" id="3_wd1uf"]
 [ext_resource type="PackedScene" uid="uid://del1wjxmxn4ya" path="res://ui/debug_shit_panel.tscn" id="4_wd1uf"]
+[ext_resource type="Script" uid="uid://ih4d6s0nfolt" path="res://ui/notice_root.gd" id="5_8gxew"]
 
 [node name="GameRoot" type="Node" unique_id=828412104]
 script = ExtResource("1_pjpa4")
 
-[node name="WorldCanvas" type="CanvasLayer" parent="." unique_id=376096639 groups=["world_canvas"]]
+[node name="WorldCanvas" type="CanvasLayer" parent="." unique_id=376096639]
 
 [node name="WorldScene" type="Node2D" parent="WorldCanvas" unique_id=1815389893]
 script = ExtResource("2_lkrbl")
@@ -17,13 +18,23 @@ script = ExtResource("2_lkrbl")
 [node name="Cutscene" type="Node2D" parent="WorldCanvas" unique_id=1915224143]
 script = ExtResource("3_wd1uf")
 
-[node name="MainMenuCanvas" type="CanvasLayer" parent="." unique_id=1269583312 groups=["main_menu_canvas"]]
+[node name="MainMenuCanvas" type="CanvasLayer" parent="." unique_id=1269583312]
 
 [node name="MainMenu" parent="MainMenuCanvas" unique_id=809595668 instance=ExtResource("2_bxsma")]
 visible = false
 mouse_filter = 2
 
 [node name="OverlayCanvas" type="CanvasLayer" parent="." unique_id=902617722]
+
+[node name="NoticeRoot" type="Control" parent="OverlayCanvas" unique_id=604764562 groups=["notice_root"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_8gxew")
 
 [node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=210114002]
 layout_mode = 3
@@ -32,6 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="DebugCanvas" type="CanvasLayer" parent="." unique_id=53035952]
 
@@ -47,6 +59,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="DebugShitPanel" parent="DebugCanvas/DebugRoot/DebugControlRoot" unique_id=2112953381 instance=ExtResource("4_wd1uf")]
+visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0

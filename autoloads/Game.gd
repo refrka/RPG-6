@@ -185,15 +185,9 @@ func _load_game(save_data: SaveData) -> void:
 	
 	world_scene.activate_location(location_id)
 
-	await get_timer(3.0).timeout
+	UI.show_notice("poop", "shit")
 
-	var cutscene = Scenes.run_cutscene(NewGameCutscene)
-
-	await cutscene.cutscene_ended
-
-	await get_timer(3.0).timeout
-
-	cutscene = Scenes.run_cutscene(NewGameCutscene)
+	UI.show_notice("uhhhh")
 
 	# Load location
 

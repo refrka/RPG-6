@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://04360d7dx6p5"]
+
+[ext_resource type="Script" uid="uid://dnbc4g1glpour" path="res://ui/notice.gd" id="1_qm5pf"]
+
+[sub_resource type="Animation" id="Animation_qm5pf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-88.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_bej3f"]
+resource_name = "hide"
+length = 0.15814047
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0007355071, 0.12209912),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_l7cq4"]
+resource_name = "show"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12215246, 0.14188842, 0.1670528, 0.24488899),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-88.0, 12.0, 16.0, 12.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8cq1f"]
+_data = {
+&"RESET": SubResource("Animation_qm5pf"),
+&"hide": SubResource("Animation_bej3f"),
+&"show": SubResource("Animation_l7cq4")
+}
+
+[node name="Notice" type="MarginContainer" unique_id=998601271 node_paths=PackedStringArray("primary_label", "secondary_label", "secondary_label_section", "animation_player")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
+offset_top = -88.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_qm5pf")
+primary_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/PrimaryLabel")
+secondary_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/NoticeSecondarySection/SeconaryLabel")
+secondary_label_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/NoticeSecondarySection")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=150923480]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=572998710]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1877306367]
+layout_mode = 2
+
+[node name="PrimaryLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1713498056]
+layout_mode = 2
+text = "Notice Primary"
+
+[node name="NoticeSecondarySection" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2121987687]
+visible = false
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/NoticeSecondarySection" unique_id=913913601]
+layout_mode = 2
+
+[node name="SeconaryLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/NoticeSecondarySection" unique_id=564871174]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7982593, 0.7982595, 0.7982593, 1)
+text = "Notice Secondary"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1208306701]
+libraries/ = SubResource("AnimationLibrary_8cq1f")
