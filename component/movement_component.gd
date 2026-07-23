@@ -8,12 +8,23 @@ signal move_stopped
 
 
 
+var move_speed_override:= -1.0
+
 var move_dir: Vector2
 
 var current_velocity: Vector2
 
 
 var can_move:= true
+
+
+
+
+
+func _initialize(_entity: EntityNode) -> void:
+
+	super(_entity)
+
 
 
 
@@ -35,6 +46,17 @@ func disable() -> void:
 func set_move_dir(dir: Vector2) -> void:
 
 	move_dir = dir
+
+
+
+func set_move_speed_override(override: float) -> void:
+
+	move_speed_override = override
+
+
+func remove_move_speed_override() -> void:
+
+	move_speed_override = -1.0
 
 
 
@@ -83,7 +105,13 @@ func _process(_delta: float) -> void:
 
 	else:
 
-		move_velocity = move_velocity.move_toward(move_dir * entity.get_entity_def().move_speed, 1200)
+		var move_speed = entity.get_entity_def().move_speed
+
+		if move_speed_override > 0.0:
+
+			move_speed = move_speed_override
+
+		move_velocity = move_velocity.move_toward(move_dir * move_speed, 1200)
 
 	if can_move:
 

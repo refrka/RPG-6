@@ -65,8 +65,6 @@ func call_subscriptions(event: Event) -> void:
 
 			if callback.is_valid():
 
-				print("callback object: ", callback.get_object())
-
 				callback.call(event)
 
 

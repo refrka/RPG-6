@@ -16,6 +16,8 @@ class_name EntityNode extends PhysicsBody2D
 
 @export var component_root: Node
 
+@export var nav_agent: NavigationAgent2D
+
 
 
 

@@ -15,6 +15,8 @@ func fire(_data: Dictionary) -> void:
 
 func show_notice() -> void:
 
+	print("show a notice")
+
 	UI.show_notice(_get_notice_primary_text(), _get_notice_secondary_text())
 
 

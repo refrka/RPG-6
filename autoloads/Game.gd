@@ -64,8 +64,6 @@ func restart() -> void:
 
 func start(save_id: StringName) -> void:
 
-	Events.fire(GameStartingEvent)
-
 	var save_data = Saves.load_save_data(save_id)
 
 	if !save_data:
@@ -75,6 +73,10 @@ func start(save_id: StringName) -> void:
 	if is_active():
 
 		end()
+
+	Events.fire(GameStartingEvent)
+
+	game_state = GameState.ACTIVE
 
 	Scenes.activate_scene(WorldScene)
 
@@ -91,6 +93,8 @@ func end() -> void:
 
 	_unload_game()
 
+	game_state = GameState.MAIN_MENU
+
 	Events.fire(GameEndedEvent)
 
 
@@ -99,6 +103,10 @@ func end() -> void:
 func save() -> void:
 
 	Saves.save_game(active_save_data)
+
+	print("fire")
+
+	Events.fire(GameSavedEvent)
 
 
 
@@ -194,7 +202,7 @@ func _load_game(save_data: SaveData) -> void:
 	
 	var location = world_scene.activate_location(location_id)
 
-	location.spawn_entity_node(get_player(), spawn_id)	
+	location.spawn_entity_node(get_player(), spawn_id)
 
 	# Load location
 
@@ -235,3 +243,10 @@ func _unload_game() -> void:
 
 
 
+func _unhandled_input(event: InputEvent) -> void:
+
+	if event.is_action_pressed("quicksave"):
+
+		if is_active():
+
+			save()

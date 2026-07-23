@@ -1,6 +1,19 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://p2elbn88fe3"]
 
 [ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="1_jailc"]
+[ext_resource type="Script" uid="uid://blpal0bvr8gox" path="res://behavior/behavior.gd" id="1_jnk4k"]
+[ext_resource type="Script" uid="uid://5usslouxxk5f" path="res://behavior/behaviors/wander_behavior.gd" id="2_egusr"]
+[ext_resource type="Script" uid="uid://cb1nu8gaq2eae" path="res://behavior/behavior_profile.gd" id="3_wajie"]
+
+[sub_resource type="Resource" id="Resource_egusr"]
+script = ExtResource("2_egusr")
+wander_range = Vector2(150, 200)
+metadata/_custom_type_script = "uid://5usslouxxk5f"
+
+[sub_resource type="Resource" id="Resource_jnk4k"]
+script = ExtResource("3_wajie")
+behaviors = Array[ExtResource("1_jnk4k")]([SubResource("Resource_egusr")])
+metadata/_custom_type_script = "uid://cb1nu8gaq2eae"
 
 [resource]
 script = ExtResource("1_jailc")
@@ -8,4 +21,5 @@ unique_id = &"mim"
 entity_id = &"mim"
 display_name = "Mim"
 scene_path = "res://entity/character/npc/mim/mim.tscn"
+behavior_profile = SubResource("Resource_jnk4k")
 metadata/_custom_type_script = "uid://d2ougu0lbgskp"

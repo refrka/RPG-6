@@ -36,8 +36,6 @@ func run_cutscene_script(cutscene_script: CutsceneScript, data: Dictionary) -> v
 
 		paused_location = current_location
 
-	print("cutscene location: ", active_cutscene_script.location_id)
-
 	cutscene_location = Scenes.get_location_scene(active_cutscene_script.location_id)
 
 	cutscene_location._initialize()
@@ -68,8 +66,6 @@ func _on_cutscene_ended() -> void:
 	var world_scene = Scenes.activate_scene(WorldScene)
 
 	if paused_location:
-
-		print("unpause and activate")
 
 		world_scene.unpause_location(paused_location, true)
 

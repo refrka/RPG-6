@@ -10,3 +10,5 @@ class_name EntityDef extends Resource
 @export var display_name: String
 
 @export var scene_path: String
+
+@export var behavior_profile: BehaviorProfile

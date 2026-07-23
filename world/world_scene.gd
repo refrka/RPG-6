@@ -52,6 +52,7 @@ func unload_location(location: Location) -> void:
 
 
 
+
 func activate_location(location_id: StringName, pause_current:= false) -> Location:
 
 	if !active:

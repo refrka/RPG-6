@@ -103,6 +103,8 @@ func spawn_marked_entities() -> void:
 
 		entity_node._initialize()
 
+		entity_node._activate()
+
 
 
 
@@ -336,7 +338,7 @@ func _activate() -> void:
 
 	for character in character_list:
 
-		character._deactivate()
+		character._activate()
 
 
 
