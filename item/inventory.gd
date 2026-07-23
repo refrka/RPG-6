@@ -17,6 +17,12 @@ signal item_data_removed(item_data: ItemData)
 
 
 
+func _initialize() -> void:
+
+	for item_data in item_list:
+
+		_connect_item_data(item_data)
+
 
 
 
@@ -50,18 +56,35 @@ func remove_data(old_item_data: ItemData) -> void:
 
 
 
-func add_items(item_def: ItemDef, count:= 1) -> void:
+func add_items(item_def: ItemDef, amount:= 1) -> void:
 
 	var item_data = get_item_data_with_def(item_def)
 
 	if !item_data:
 
-		item_data = Items.create_item_data(item_def, count)
+		item_data = ItemData.new()
 
-	_add_item_data(item_data)
+		_connect_item_data(item_data)
+
+		item_data.set_data(item_def, amount)
+
+		_add_item_data(item_data)
+
+	else:
+
+		item_data.add_amount(amount)
+	
 
 
+func remove_items(item_def: ItemDef, amount:= 1) -> void:
 
+	var item_data = get_item_data_with_def(item_def)
+
+	if !item_data:
+
+		return
+
+	item_data.remove_amount(amount)
 
 
 
@@ -91,13 +114,8 @@ func _add_item_data(item_data: ItemData) -> void:
 
 	item_list.append(item_data)
 
-	item_data.data_updated.connect(_on_item_data_updated)
-
-	item_data.count_updated.connect(_on_item_data_count_updated)
-
-	item_data.data_emptied.connect(_on_item_data_emptied)
-
 	item_data_added.emit(item_data)
+
 
 
 
@@ -109,6 +127,24 @@ func _remove_item_data(item_data: ItemData) -> void:
 
 
 
+
+func _connect_item_data(item_data: ItemData) -> void:
+
+	item_data.data_updated.connect(_on_item_data_updated)
+
+	item_data.count_updated.connect(_on_item_data_count_updated)
+
+	item_data.data_emptied.connect(_on_item_data_emptied)
+
+
+
+func _disconnect_item_data(item_data: ItemData) -> void:
+
+	item_data.data_updated.disconnect(_on_item_data_updated)
+
+	item_data.count_updated.disconnect(_on_item_data_count_updated)
+
+	item_data.data_emptied.disconnect(_on_item_data_emptied)
 
 
 
@@ -127,5 +163,7 @@ func _on_item_data_count_updated(item_data: ItemData, _amount: int, _added: bool
 func _on_item_data_emptied(item_data: ItemData) -> void:
 
 	item_data_updated.emit(item_data)
+
+	_disconnect_item_data(item_data)
 
 	_remove_item_data(item_data)

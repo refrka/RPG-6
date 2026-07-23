@@ -7,15 +7,19 @@ var data: Dictionary = {}
 
 
 
-func fire(_data: Dictionary) -> void:
+func fire(_data: Dictionary, with_notice:= false) -> void:
 
 	data = _data
+
+	print("firing ", self.get_script())
+
+	if with_notice:
+
+		show_notice()
 
 
 
 func show_notice() -> void:
-
-	print("show a notice")
 
 	UI.show_notice(_get_notice_primary_text(), _get_notice_secondary_text())
 

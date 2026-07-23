@@ -4,9 +4,9 @@ class_name GameSavedEvent extends Event
 
 
 
-func fire(_data: Dictionary) -> void:
+func fire(_data: Dictionary, with_notice:= false) -> void:
 
-	super(_data)
+	super(_data, with_notice)
 
 	show_notice()
 

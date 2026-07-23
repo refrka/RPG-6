@@ -24,9 +24,15 @@ func set_data(_item_def: ItemDef, _count:= 1) -> void:
 
 	item_def = _item_def
 
+	var amount = _count - count
+
+	var added = amount > 0
+
 	count = _count
 
 	data_updated.emit(self)
+
+	count_updated.emit(self, amount, added)
 
 
 
@@ -79,4 +85,8 @@ func merge(item_data: ItemData) -> void:
 		return
 
 	var new_count = count + item_data.get_count()
+
+	count = new_count
+
+	data_updated.emit(self)
 

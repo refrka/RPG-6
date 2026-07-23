@@ -45,11 +45,11 @@ func unsubscribe(event_script: Script, callback: Callable) -> void:
 
 
 
-func fire(event_script: Script, _data: Dictionary = {}) -> void:
+func fire(event_script: Script, _data: Dictionary = {}, with_notice:= false) -> void:
 
 	var event = event_script.new()
 
-	event.fire(_data)
+	event.fire(_data, with_notice)
 
 	call_subscriptions(event)
 

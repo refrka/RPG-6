@@ -1,11 +1,11 @@
-class_name PlayerAddedItemsEvent extends GameEvent
+class_name PlayerRemovedItemsEvent extends GameEvent
 
 
 
 
 func _get_notice_primary_text() -> String:
 
-	return "Item(s) added"
+	return "Item(s) removed"
 
 
 

@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://del1wjxmxn4ya"]
 
 [ext_resource type="Script" uid="uid://br1lhgpwbexd0" path="res://ui/debug_shit_panel.gd" id="1_aqy7u"]
+[ext_resource type="Script" uid="uid://dk2cxqko4w3x8" path="res://ui/item_def_list.gd" id="2_duhep"]
 
-[node name="DebugShitPanel" type="MarginContainer" unique_id=2112953381 node_paths=PackedStringArray("button_1")]
+[node name="DebugShitPanel" type="MarginContainer" unique_id=2112953381 node_paths=PackedStringArray("item_def_list", "item_count_entry", "add_item_button", "remove_item_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,13 +14,45 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("1_aqy7u")
-button_1 = NodePath("VBoxContainer/Button1")
+item_def_list = NodePath("VBoxContainer/HBoxContainer/ItemDefList")
+item_count_entry = NodePath("VBoxContainer/HBoxContainer/ItemCountEntry")
+add_item_button = NodePath("VBoxContainer/HBoxContainer2/AddItemButton")
+remove_item_button = NodePath("VBoxContainer/HBoxContainer2/RemoveItemButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1285490285]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Button1" type="Button" parent="VBoxContainer" unique_id=250669]
-custom_minimum_size = Vector2(100, 30)
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=764884491]
 layout_mode = 2
-text = "Button 1"
+
+[node name="ItemDefList" type="OptionButton" parent="VBoxContainer/HBoxContainer" unique_id=572008785]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_duhep")
+metadata/_custom_type_script = "uid://dk2cxqko4w3x8"
+
+[node name="ItemCountEntry" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=1165992530]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/minimum_character_width = 4
+placeholder_text = "0"
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=986540702]
+layout_mode = 2
+
+[node name="AddItemButton" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=250669]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Add"
+
+[node name="RemoveItemButton" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=88326241]
+custom_minimum_size = Vector2(100, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Remove"

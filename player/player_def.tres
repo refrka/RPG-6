@@ -4,13 +4,8 @@
 [ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="1_cujn1"]
 [ext_resource type="Script" uid="uid://da7sqm771dt7o" path="res://player/player_inventory.gd" id="2_y8wuh"]
 
-[sub_resource type="Resource" id="Resource_2b45f"]
-script = ExtResource("1_8fxaj")
-metadata/_custom_type_script = "uid://buyl122k0580n"
-
 [sub_resource type="Resource" id="Resource_cujn1"]
 script = ExtResource("2_y8wuh")
-item_list = Array[ExtResource("1_8fxaj")]([SubResource("Resource_2b45f")])
 
 [resource]
 script = ExtResource("1_cujn1")
