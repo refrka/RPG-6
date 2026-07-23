@@ -39,7 +39,13 @@ func load_location(location_id: StringName) -> Location:
 
 
 
-func unload_location(location: Location) -> void:
+func unload_location(location: Location = null) -> void:
+
+	if !location:
+
+		location = active_location
+
+		active_location = null
 
 	location._deactivate()
 
@@ -48,6 +54,8 @@ func unload_location(location: Location) -> void:
 	if location.is_paused():
 
 		paused_locations.erase(location)
+
+	location.queue_free()
 
 
 

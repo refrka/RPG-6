@@ -1,6 +1,16 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://dtewowtdwd85g"]
 
+[ext_resource type="Script" uid="uid://buyl122k0580n" path="res://item/item_data.gd" id="1_8fxaj"]
 [ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="1_cujn1"]
+[ext_resource type="Script" uid="uid://da7sqm771dt7o" path="res://player/player_inventory.gd" id="2_y8wuh"]
+
+[sub_resource type="Resource" id="Resource_2b45f"]
+script = ExtResource("1_8fxaj")
+metadata/_custom_type_script = "uid://buyl122k0580n"
+
+[sub_resource type="Resource" id="Resource_cujn1"]
+script = ExtResource("2_y8wuh")
+item_list = Array[ExtResource("1_8fxaj")]([SubResource("Resource_2b45f")])
 
 [resource]
 script = ExtResource("1_cujn1")
@@ -9,4 +19,5 @@ unique_id = &"player"
 entity_id = &"player"
 display_name = "Player"
 scene_path = "res://player/player_node.tscn"
+default_inventory = SubResource("Resource_cujn1")
 metadata/_custom_type_script = "uid://d2ougu0lbgskp"

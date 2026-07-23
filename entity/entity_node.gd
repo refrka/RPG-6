@@ -27,6 +27,8 @@ var initialized:= false
 
 
 
+var inventory:= Inventory.new()
+
 
 
 
@@ -44,6 +46,10 @@ func _initialize() -> bool:
 
 		component._initialize(self)
 
+	if entity_def.default_inventory:
+
+		inventory = entity_def.default_inventory
+
 	_deactivate()
 
 	return true
@@ -55,8 +61,6 @@ func _initialize() -> bool:
 func _load(_entity_data: EntityData = null) -> bool:
 
 	return true
-
-
 
 
 

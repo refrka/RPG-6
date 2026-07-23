@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://dm4i4p05ln46a"]
+
+[ext_resource type="Script" uid="uid://cdwwv7g7vt5o3" path="res://ui/inventory_item_row.gd" id="1_navj7"]
+[ext_resource type="Texture2D" uid="uid://dpdljxgpv44r" path="res://entity/character/npc/ap/ap_sprite.png" id="1_vm1f7"]
+[ext_resource type="Script" uid="uid://d1tjqor82d8o0" path="res://ui/input_mask.gd" id="2_navj7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_navj7"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87prl"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.14, 0.14, 0.14, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u2so8"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="InventoryItemRow" type="PanelContainer" unique_id=538571362 node_paths=PackedStringArray("item_name_label", "button_list", "input_mask")]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+mouse_filter = 2
+script = ExtResource("1_navj7")
+item_name_label = NodePath("MarginContainer/HBoxContainer/Label")
+button_list = NodePath("MarginContainer/HBoxContainer/MarginContainer/ButtonList")
+input_mask = NodePath("InputMask")
+default_stylebox = SubResource("StyleBoxFlat_navj7")
+hover_stylebox = SubResource("StyleBoxFlat_87prl")
+selected_stylebox = SubResource("StyleBoxFlat_u2so8")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1066527159]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=127420870]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=569367206]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_vm1f7")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=171376095]
+layout_mode = 2
+text = "Item Name"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=105135602]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="ButtonList" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer" unique_id=1810895790]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="InputMask" type="MarginContainer" parent="." unique_id=588333215]
+layout_mode = 2
+script = ExtResource("2_navj7")

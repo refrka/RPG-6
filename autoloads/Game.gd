@@ -93,6 +93,10 @@ func end() -> void:
 
 	_unload_game()
 
+	UI.deactivate_overlays()
+
+	Scenes.activate_scene(MainMenu)
+
 	game_state = GameState.MAIN_MENU
 
 	Events.fire(GameEndedEvent)
@@ -120,7 +124,7 @@ func pause() -> void:
 
 func resume() -> void:
 
-	get_tree().pasued = false
+	get_tree().paused = false
 
 
 
@@ -132,6 +136,15 @@ func load_saved_location(location_id: StringName) -> void:
 	var location = Scenes.load_location(location_id)
 
 
+
+
+func hold_player_node() -> void:
+
+	player.reparent(self)
+
+	player._deactivate()
+
+	player.hide()
 
 
 
@@ -168,7 +181,9 @@ func is_active() -> bool:
 
 
 
+func is_paused() -> bool:
 
+	return get_tree().paused
 
 
 
@@ -189,12 +204,6 @@ func _load_game(save_data: SaveData) -> void:
 		location_id = "forest_start"
 
 		spawn_id = "start"
-
-		@warning_ignore("confusable_local_declaration")
-
-		var cutscene = Scenes.run_cutscene(NewGameCutscene)
-
-		await cutscene.cutscene_ended
 
 		pass
 
@@ -221,17 +230,15 @@ func _load_game(save_data: SaveData) -> void:
 
 
 
-
-
-
-
-
-
-
-
 func _unload_game() -> void:
 
 	active_save_data = null
+
+	hold_player_node()
+
+	var world_scene = Scenes.get_world_scene()
+
+	world_scene.unload_location()
 
 
 

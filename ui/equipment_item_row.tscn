@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cyvoddq0k5iya"]
+
+[ext_resource type="PackedScene" uid="uid://dm4i4p05ln46a" path="res://ui/inventory_item_row.tscn" id="1_hs2xn"]
+[ext_resource type="Script" uid="uid://cekrf2vt3fret" path="res://ui/equipment_item_row.gd" id="2_pp1ms"]
+
+[node name="EquipmentItemRow" unique_id=538571362 instance=ExtResource("1_hs2xn")]
+script = ExtResource("2_pp1ms")

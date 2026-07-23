@@ -121,6 +121,8 @@ func spawn_entity_node(entity_node: EntityNode, spawn_id: StringName) -> void:
 
 	entity_node._activate()
 
+	entity_node.show()
+
 
 
 
