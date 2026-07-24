@@ -23,6 +23,8 @@ func get_dictionary() -> Dictionary:
 
 	save_dict["save_name"] = save_name
 
+	save_dict["player"] = Game.get_player()._get_dictionary()
+
 	# get_dicitonary() will call many other sources' get_dictionary() methods to collect all the data
 
 	# there must be a matching load_dictionary() counterpart called together (load_dictionary(), below)

@@ -167,3 +167,37 @@ func _on_item_data_emptied(item_data: ItemData) -> void:
 	_disconnect_item_data(item_data)
 
 	_remove_item_data(item_data)
+
+
+
+
+
+
+
+
+
+func get_dictionary() -> Dictionary:
+
+	var save_dict = {}
+
+	save_dict["item_list"] = []
+
+	for item_data in item_list:
+
+		save_dict["item_list"].append(item_data.get_dictionary())
+
+	return save_dict
+
+
+
+
+
+func load_dictionary(save_dict: Dictionary) -> void:
+
+	for dict in save_dict["item_list"]:
+
+		var item_data = ItemData.load_dictionary(dict)
+
+		_connect_item_data(item_data)
+
+		item_list.append(item_data)

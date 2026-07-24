@@ -146,6 +146,10 @@ func get_component(component_script: Script) -> Component:
 
 
 
+
+
+
+
 func _activate() -> void:
 
 	active = true
@@ -165,3 +169,26 @@ func _deactivate() -> void:
 	for component in get_all_components():
 
 		component._deactivate()
+
+
+
+
+
+
+func _get_dictionary() -> Dictionary:
+
+	var save_dict = {}
+
+	save_dict["inventory"] = inventory.get_dictionary()
+
+	return save_dict
+
+
+
+
+
+func _load_dictionary(save_dict: Dictionary) -> void:
+
+	if save_dict.has("inventory"):
+
+		inventory.load_dictionary(save_dict["inventory"])

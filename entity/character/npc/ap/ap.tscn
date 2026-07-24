@@ -4,9 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://dpdljxgpv44r" path="res://entity/character/npc/ap/ap_sprite.png" id="2_7q4k1"]
 [ext_resource type="Resource" uid="uid://bevlnbvr4lrxs" path="res://entity/character/npc/ap/ap_def.tres" id="2_fmiem"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gnloq"]
+radius = 5.0
+height = 16.0
+
 [node name="Ap" unique_id=639653512 instance=ExtResource("1_sq3cn")]
-position = Vector2(3, -24)
 entity_def = ExtResource("2_fmiem")
 
 [node name="BodySprite" parent="VisualRoot" parent_id_path=PackedInt32Array(93121259) index="0" unique_id=1905262643]
+position = Vector2(3, -24)
 texture = ExtResource("2_7q4k1")
+
+[node name="BodyCollision" parent="." index="1" unique_id=1462622998]
+position = Vector2(-0.5, -5)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_gnloq")
+
+[node name="InteractableComponent" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="3" unique_id=2007762201]
+duration = 5.0

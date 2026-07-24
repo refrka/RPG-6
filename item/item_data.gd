@@ -90,3 +90,35 @@ func merge(item_data: ItemData) -> void:
 
 	data_updated.emit(self)
 
+
+
+
+
+
+func get_dictionary() -> Dictionary:
+
+	var save_dict = {}
+
+	save_dict["item_id"] = item_def.item_id
+
+	save_dict["count"] = count
+
+	return save_dict
+
+
+
+
+
+static func load_dictionary(save_dict: Dictionary) -> ItemData:
+
+	var item_data = ItemData.new()
+
+	var _item_def = Items.get_item_def(save_dict["item_id"])
+
+	var _count = int(save_dict["count"])
+
+	item_data.item_def = _item_def
+
+	item_data.count = _count
+
+	return item_data

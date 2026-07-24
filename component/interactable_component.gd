@@ -24,13 +24,11 @@ class_name InteractableComponent extends Component
 
 
 
-func _interact() -> bool:
+func _interact() -> void:
 
 	for conditional_command_set in interaction_conditionals:
 
 		conditional_command_set.execute_commands({"entity_node": entity})
-
-	return true
 
 
 

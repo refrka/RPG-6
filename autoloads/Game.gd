@@ -207,11 +207,15 @@ func _load_game(save_data: SaveData) -> void:
 
 		pass
 
+	player = get_player()
+
+	player._load_dictionary(active_save_data.last_dict["player"])
+
 	var world_scene = Scenes.get_world_scene()
 	
 	var location = world_scene.activate_location(location_id)
 
-	location.spawn_entity_node(get_player(), spawn_id)
+	location.spawn_entity_node(player, spawn_id)
 
 	# Load location
 

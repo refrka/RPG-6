@@ -6,7 +6,7 @@ var data = {
 
 	"last_save_unix": 0.0,
 
-	"player_data": { },
+	"player": { },
 
 	"saved_location_id": "",
 

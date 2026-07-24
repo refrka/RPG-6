@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c8hh2ld1sj1o5"]
+
+[node name="ProfilePanel" type="MarginContainer" unique_id=1854928978]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

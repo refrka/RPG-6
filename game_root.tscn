@@ -6,7 +6,9 @@
 [ext_resource type="Script" uid="uid://cs6810sk4vb03" path="res://cutscene/cutscene.gd" id="3_wd1uf"]
 [ext_resource type="PackedScene" uid="uid://del1wjxmxn4ya" path="res://ui/debug_shit_panel.tscn" id="4_wd1uf"]
 [ext_resource type="Script" uid="uid://ih4d6s0nfolt" path="res://ui/notice_root.gd" id="5_8gxew"]
+[ext_resource type="PackedScene" uid="uid://c8hh2ld1sj1o5" path="res://ui/profile_panel.tscn" id="6_6t5o2"]
 [ext_resource type="PackedScene" uid="uid://c5nb2o6fata6k" path="res://ui/game_menu.tscn" id="6_8gxew"]
+[ext_resource type="PackedScene" uid="uid://g3o0lv7ydx5o" path="res://ui/dialogue_panel.tscn" id="6_ledqy"]
 
 [node name="GameRoot" type="Node" unique_id=828412104]
 script = ExtResource("1_pjpa4")
@@ -46,6 +48,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="ProfilePanel" parent="OverlayCanvas/OverlayRoot" unique_id=1854928978 instance=ExtResource("6_6t5o2")]
+layout_mode = 0
+
+[node name="DialoguePanel" parent="OverlayCanvas/OverlayRoot" unique_id=1873824031 instance=ExtResource("6_ledqy")]
+layout_mode = 0
+anchors_preset = 0
+
 [node name="PopupRoot" type="Control" parent="OverlayCanvas" unique_id=813551230 groups=["popup_root"]]
 layout_mode = 3
 anchors_preset = 15
@@ -67,6 +76,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="GameMenu" parent="GameMenuCanvas/Control" unique_id=630146995 instance=ExtResource("6_8gxew")]
+visible = false
 layout_mode = 1
 pause = true
 

@@ -4,8 +4,9 @@
 [ext_resource type="Resource" uid="uid://p2elbn88fe3" path="res://entity/character/npc/mim/mim_def.tres" id="2_gnloq"]
 [ext_resource type="Texture2D" uid="uid://crn23ligqfkql" path="res://entity/character/npc/mim/mim_sprite.png" id="2_o88vc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8ujo"]
-size = Vector2(26, 11)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fmiem"]
+radius = 4.0
+height = 26.0
 
 [node name="Mim" unique_id=639653512 instance=ExtResource("1_ms3ll")]
 entity_def = ExtResource("2_gnloq")
@@ -15,5 +16,6 @@ position = Vector2(0, -16)
 texture = ExtResource("2_o88vc")
 
 [node name="BodyCollision" parent="." index="1" unique_id=1462622998]
-position = Vector2(0, -5.5)
-shape = SubResource("RectangleShape2D_f8ujo")
+position = Vector2(0, -4)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_fmiem")

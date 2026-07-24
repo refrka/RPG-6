@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://vq7ef14ysbcp" path="res://component/movement_component.gd" id="4_ft58q"]
 [ext_resource type="Script" uid="uid://pkhxci2wpdl2" path="res://component/behavior_component.gd" id="5_nduuk"]
 [ext_resource type="Script" uid="uid://bf3fs8njbpjbb" path="res://component/navigation_component.gd" id="6_5yhso"]
+[ext_resource type="Script" uid="uid://dl0uj3rt7fj45" path="res://component/interactable_component.gd" id="7_8qvcu"]
 
 [node name="CharacterNode" type="CharacterBody2D" unique_id=639653512 node_paths=PackedStringArray("state_machine", "component_root", "nav_agent")]
 y_sort_enabled = true
@@ -47,3 +48,7 @@ script = ExtResource("4_ft58q")
 [node name="NavigationComponent" type="Node" parent="ComponentRoot" unique_id=721801256]
 script = ExtResource("6_5yhso")
 metadata/_custom_type_script = "uid://bf3fs8njbpjbb"
+
+[node name="InteractableComponent" type="Node" parent="ComponentRoot" unique_id=2007762201]
+script = ExtResource("7_8qvcu")
+metadata/_custom_type_script = "uid://dl0uj3rt7fj45"
