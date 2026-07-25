@@ -58,17 +58,25 @@ func _start_wander() -> void:
 
 	idle_timer = 0.0
 
-	var x_range = Vector2(-wander_range.x, wander_range.x)
-
-	var x_pos = randf_range(x_range.x, x_range.y)
-
-	var y_range = Vector2(-wander_range.y, wander_range.y)
-
-	var y_pos = randf_range(y_range.x, y_range.y)
-
-	var target_pos = entity.global_position + Vector2(x_pos, y_pos)
+	var target_pos:= Vector2(INF, INF)
 
 	navigation_component.set_target_pos(target_pos)
+
+	while !entity.nav_agent.is_target_reachable():
+
+		var x_range = Vector2(-wander_range.x, wander_range.x)
+
+		var x_pos = randf_range(x_range.x, x_range.y)
+
+		var y_range = Vector2(-wander_range.y, wander_range.y)
+
+		var y_pos = randf_range(y_range.x, y_range.y)
+
+		target_pos = entity.global_position + Vector2(x_pos, y_pos)
+
+		navigation_component.set_target_pos(target_pos)
+
+		await Scenes.get_tree().process_frame
 
 	wander_target = entity.nav_agent.get_final_position()
 

@@ -7,6 +7,8 @@ class_name DialogueNode extends Resource
 
 @export var dialogue_text: DialogueText
 
+@export var forced_greeting: DialogueText
+
 @export var option_nodes: Array[DialogueNode]
 
 @export var show_condition_set: ConditionSet
@@ -16,6 +18,9 @@ class_name DialogueNode extends Resource
 @export var enter_conditional: ConditionalCommandSet
 
 @export var exit_conditional: ConditionalCommandSet
+
+
+
 
 
 

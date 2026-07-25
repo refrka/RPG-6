@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://de4vlylb66gui" path="res://ui/dialogue_panel.gd" id="1_eb2dg"]
 [ext_resource type="Script" uid="uid://d1tjqor82d8o0" path="res://ui/input_mask.gd" id="2_m0nle"]
+[ext_resource type="PackedScene" uid="uid://b0sh42au7pm8x" path="res://ui/dialogue_option_button.tscn" id="3_6hs1l"]
 
 [node name="DialoguePanel" type="MarginContainer" unique_id=1873824031 node_paths=PackedStringArray("source_section", "dialogue_section", "response_section", "source_name_label", "dialogue_text_label", "option_list", "close_button", "next_arrow", "input_mask")]
 anchors_preset = 15
@@ -124,7 +125,5 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 
-[node name="DialogueOptionButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ResponseSection/VBoxContainer/MarginContainer/OptionList" unique_id=436732806]
-custom_minimum_size = Vector2(0, 35)
+[node name="DialogueOptionButton" parent="PanelContainer/MarginContainer/VBoxContainer/ResponseSection/VBoxContainer/MarginContainer/OptionList" unique_id=1029519437 instance=ExtResource("3_6hs1l")]
 layout_mode = 2
-text = "Dialogue Option"

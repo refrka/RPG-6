@@ -1,24 +1,87 @@
 [gd_resource type="Resource" script_class="QuestDef" format=3 uid="uid://bxdqfcnlih8dx"]
 
 [ext_resource type="Script" uid="uid://1r4mo0y16wii" path="res://quest/quest_def.gd" id="1_4w6ow"]
+[ext_resource type="Script" uid="uid://dxhoiocbj8lkc" path="res://dialogue/greeting.gd" id="2_2crd8"]
+[ext_resource type="Script" uid="uid://cx53ispevo7qo" path="res://dialogue/dialogue_text.gd" id="2_5n4ib"]
+[ext_resource type="Script" uid="uid://bkrnyugdunr74" path="res://dialogue/dialogue_node.gd" id="2_bc6j6"]
 [ext_resource type="Script" uid="uid://btjgttvqng6jt" path="res://quest/quest_stage.gd" id="2_bx7u3"]
+[ext_resource type="Script" uid="uid://5dqsbln5otb0" path="res://quest/quest_entity.gd" id="3_2crd8"]
+[ext_resource type="Script" uid="uid://8dctrkr4tont" path="res://command/command.gd" id="3_aatn7"]
 [ext_resource type="Script" uid="uid://cdp33gtgt4jpi" path="res://quest/quest_objective.gd" id="3_bx7u3"]
+[ext_resource type="Script" uid="uid://cd0f2ychmbq0q" path="res://dialogue/quest_dialogue_node.gd" id="4_5n4ib"]
+[ext_resource type="Script" uid="uid://ck2xh3er21qsw" path="res://command/command_set.gd" id="4_e0tf5"]
+[ext_resource type="Script" uid="uid://bu6pjc3dajq25" path="res://command/set_quest_stage_command.gd" id="4_qasdj"]
+[ext_resource type="Script" uid="uid://o3ja5up848kc" path="res://command/conditional_command_set.gd" id="5_qasdj"]
+[ext_resource type="Script" uid="uid://nmihopaj7e7c" path="res://condition/condition.gd" id="11_y3wyl"]
+[ext_resource type="Script" uid="uid://dvgickpwtv0kq" path="res://condition/is_quest_stage_condition.gd" id="12_bgrhr"]
+[ext_resource type="Script" uid="uid://dorjapef0fhm1" path="res://condition/condition_set.gd" id="12_ou5qu"]
+[ext_resource type="Script" uid="uid://8fs4d75525vy" path="res://quest/objectives/start_dialogue_objective.gd" id="16_bgrhr"]
 
-[sub_resource type="Resource" id="Resource_eif16"]
-script = ExtResource("3_bx7u3")
-title = "Talk to someone"
-description = "Start dialogue with an NPC."
-metadata/_custom_type_script = "uid://cdp33gtgt4jpi"
+[sub_resource type="Resource" id="Resource_2crd8"]
+script = ExtResource("2_5n4ib")
+lines = Array[String](["I sure can!"])
+metadata/_custom_type_script = "uid://cx53ispevo7qo"
+
+[sub_resource type="Resource" id="Resource_4wwtl"]
+script = ExtResource("4_qasdj")
+quest_id = &"new_game_quest"
+metadata/_custom_type_script = "uid://bu6pjc3dajq25"
+
+[sub_resource type="Resource" id="Resource_hnhw1"]
+script = ExtResource("4_e0tf5")
+commands = Array[ExtResource("3_aatn7")]([SubResource("Resource_4wwtl")])
+metadata/_custom_type_script = "uid://ck2xh3er21qsw"
+
+[sub_resource type="Resource" id="Resource_m7y18"]
+script = ExtResource("5_qasdj")
+command_set = SubResource("Resource_hnhw1")
+metadata/_custom_type_script = "uid://o3ja5up848kc"
+
+[sub_resource type="Resource" id="Resource_y3wyl"]
+script = ExtResource("2_2crd8")
+lines = Array[String](["Oh, you're the new guy?"])
+metadata/_custom_type_script = "uid://dxhoiocbj8lkc"
 
 [sub_resource type="Resource" id="Resource_b4gh8"]
+script = ExtResource("3_2crd8")
+unique_id = &"ap"
+metadata/_custom_type_script = "uid://5dqsbln5otb0"
+
+[sub_resource type="Resource" id="Resource_mhqhx"]
+script = ExtResource("12_bgrhr")
+quest_id = &"new_game_quest"
+stage_index = -1
+
+[sub_resource type="Resource" id="Resource_bgrhr"]
+script = ExtResource("12_ou5qu")
+conditions = Array[ExtResource("11_y3wyl")]([SubResource("Resource_mhqhx")])
+metadata/_custom_type_script = "uid://dorjapef0fhm1"
+
+[sub_resource type="Resource" id="Resource_bx7u3"]
+script = ExtResource("4_5n4ib")
+quest_entity = SubResource("Resource_b4gh8")
+option_text = "Can you teach me how to play the game?"
+dialogue_text = SubResource("Resource_2crd8")
+forced_greeting = SubResource("Resource_y3wyl")
+show_condition_set = SubResource("Resource_bgrhr")
+enter_conditional = SubResource("Resource_m7y18")
+
+[sub_resource type="Resource" id="Resource_ou5qu"]
+script = ExtResource("16_bgrhr")
+title = "Talk to someone"
+description = "Start dialogue with an NPC"
+metadata/_custom_type_script = "uid://8fs4d75525vy"
+
+[sub_resource type="Resource" id="Resource_okwv0"]
 script = ExtResource("2_bx7u3")
-objectives = Array[ExtResource("3_bx7u3")]([SubResource("Resource_eif16")])
+objectives = Array[ExtResource("3_bx7u3")]([SubResource("Resource_ou5qu")])
 metadata/_custom_type_script = "uid://btjgttvqng6jt"
 
 [resource]
 script = ExtResource("1_4w6ow")
 quest_id = &"new_game_quest"
-stages = Array[ExtResource("2_bx7u3")]([SubResource("Resource_b4gh8")])
+stages = Array[ExtResource("2_bx7u3")]([SubResource("Resource_okwv0")])
 title = "Starting a new game"
 description = "Learn about the game!"
+source_dialogue_node = SubResource("Resource_bx7u3")
 metadata/_custom_type_script = "uid://1r4mo0y16wii"

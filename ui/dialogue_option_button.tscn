@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b0sh42au7pm8x"]
+
+[node name="DialogueOptionButton" type="Button" unique_id=1029519437]
+custom_minimum_size = Vector2(0, 35)
+text = "Dialogue Option"

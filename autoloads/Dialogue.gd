@@ -12,6 +12,7 @@ var greeting_pool: Array[Greeting]
 
 var current_source: EntityNode
 
+var current_dialogue_node: DialogueNode
 
 
 
@@ -22,6 +23,8 @@ func _ready() -> void:
 	dialogue_panel = UI.get_overlay(DialoguePanel)
 
 	dialogue_panel.panel_closed.connect(_on_dialogue_panel_closed)
+
+	dialogue_panel.option_selected.connect(_on_option_selected)
 
 
 
@@ -53,6 +56,24 @@ func end_dialogue() -> void:
 		dialogue_ended.emit()
 
 
+
+
+
+func show_dialogue_node(dialogue_node: DialogueNode, source: EntityNode = null) -> void:
+
+	if !source:
+
+		source = current_source
+
+	if current_dialogue_node:
+
+		current_dialogue_node.exit()
+
+	current_dialogue_node = dialogue_node
+
+	dialogue_panel.set_dialogue(source, current_dialogue_node.dialogue_text, current_dialogue_node.option_nodes)
+
+	current_dialogue_node.enter()
 
 
 
@@ -103,7 +124,21 @@ func get_dialogue_nodes(source: EntityNode) -> Array[DialogueNode]:
 
 	unevaluated_dialogue_nodes.append_array(_get_library_dialogue_nodes(source))
 
+	unevaluated_dialogue_nodes.append_array(Quests.get_quest_dialogue_nodes(source))
+
+	for dialogue_node in unevaluated_dialogue_nodes:
+
+		if !dialogue_node.show_condition_set:
+			
+			evaluated_dialogue_nodes.append(dialogue_node)
+
+		elif dialogue_node.show_condition_set.evaluate({"entity_node": source}):
+
+			evaluated_dialogue_nodes.append(dialogue_node)
+
 	return evaluated_dialogue_nodes
+
+
 
 
 
@@ -139,6 +174,13 @@ func _on_dialogue_panel_closed() -> void:
 
 
 
+func _on_option_selected(dialogue_node: DialogueNode) -> void:
+
+	show_dialogue_node(dialogue_node)
+
+
+
+
 
 func _load_greeting_pool() -> void:
 
@@ -151,3 +193,7 @@ func _load_greeting_pool() -> void:
 		var greeting = load(path) as Greeting
 
 		greeting_pool.append(greeting)
+
+
+
+

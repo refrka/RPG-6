@@ -19,6 +19,9 @@ class_name Location extends Node2D
 
 @export var spawn_point_root: Node2D
 
+@export var nav_region: NavigationRegion2D
+
+
 
 @export var camera_limit_top_left: Marker2D
 

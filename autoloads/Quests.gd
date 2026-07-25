@@ -41,11 +41,14 @@ func get_quest_data(quest_def: QuestDef) -> QuestData:
 
 	var quest_id = quest_def.quest_id
 
-	if save_data.has(quest_id):
+	if save_data.quest_data_registry.has(quest_id):
 
-		return save_data[quest_id]
+		return save_data.quest_data_registry[quest_id]
 
-	return null
+	var quest_data = create_quest_data(quest_def)
+
+	return quest_data
+
 
 
 
@@ -60,12 +63,86 @@ func get_quest_def(quest_id: StringName) -> QuestDef:
 
 
 
+func get_quest_dialogue_nodes(target_entity: EntityNode) -> Array[QuestDialogueNode]:
+
+	var dialogue_nodes: Array[QuestDialogueNode] = []
+
+	var quest_defs = def_registry.values().duplicate()
+
+	var source_defs = quest_defs.filter(func(def): return _is_quest_source_entity(def, target_entity))
+
+	var recipient_defs = quest_defs.filter(func(def): return _is_quest_recipient_entity(def, target_entity))
+
+	for def in source_defs:
+
+		dialogue_nodes.append(def.source_dialogue_node)
+
+	for def in recipient_defs:
+
+		dialogue_nodes.append(def.recipient_dialogue_node)
+
+	return dialogue_nodes
+
+
+
+
+func get_quest_stage(quest_def: QuestDef) -> QuestStage:
+
+	var quest_data = get_quest_data(quest_def)
+
+	if quest_data:
+
+		return quest_data.get_stage()
+
+	return null
+
+
+
+
+func set_quest_stage(quest_def: QuestDef, stage_index: int) -> QuestData:
+
+	var quest_data = get_quest_data(quest_def)
+
+	if !quest_data:
+
+		quest_data = create_quest_data(quest_def)
+
+	quest_data.set_stage(stage_index)
+
+	return quest_data
+
+
+
+
+
+
+
+func _is_quest_source_entity(quest_def: QuestDef, target_entity: EntityNode) -> bool:
+
+	if !quest_def.source_dialogue_node:
+
+		return false
+
+	return quest_def.source_dialogue_node.quest_entity.match(target_entity)
+
+
+
+
+func _is_quest_recipient_entity(quest_def: QuestDef, target_entity: EntityNode) -> bool:
+
+	if !quest_def.recipient_dialogue_node:
+
+		return false
+
+	return quest_def.recipient_dialogue_node.quest_entity.match(target_entity)
+
+
 
 
 
 func _load_quest_defs() -> void:
 
-	var sub_dirs = ["res://ui/quest/defs/"]
+	var sub_dirs = ["res://quest/defs/"]
 
 	while !sub_dirs.is_empty():
 

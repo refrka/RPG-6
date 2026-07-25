@@ -10,3 +10,13 @@ class_name QuestDef extends Resource
 
 @export_multiline var description: String
 
+@export var source_dialogue_node: QuestDialogueNode
+
+@export var recipient_dialogue_node: QuestDialogueNode
+
+
+
+
+
+
+

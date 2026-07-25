@@ -6,9 +6,7 @@ var save_id: String
 
 var save_name: String
 
-
 var quest_data_registry: Dictionary[StringName, QuestData]
-
 
 var last_dict: Dictionary
 
@@ -36,6 +34,12 @@ func get_dictionary() -> Dictionary:
 
 	# Each of these sources needs to sync with the game ending to clear their data cache
 
+	save_dict["quest_data"] = []
+
+	for quest_data in quest_data_registry.values():
+
+		save_dict["quest_data"].append(quest_data.get_dictionary())
+
 	return save_dict
 
 
@@ -44,7 +48,11 @@ func get_dictionary() -> Dictionary:
 
 func load_dictionary() -> void:
 
-	# Dispense data from last_dict into the game
+	for dict in last_dict["quest_data"]:
+
+		var quest_data = QuestData.load_dictionary(dict)
+
+		quest_data_registry[quest_data.get_quest_id()] = quest_data
 
 	pass
 

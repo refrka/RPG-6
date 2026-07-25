@@ -33,9 +33,13 @@ func _initialize(_entity: EntityNode) -> void:
 
 func set_target_pos(new_pos: Vector2) -> void:
 
+	if target_pos == new_pos:
+
+		return
+
 	target_pos = new_pos
 
-	entity.nav_agent.target_position = target_pos
+	entity.nav_agent.set_target_position(target_pos)
 
 
 

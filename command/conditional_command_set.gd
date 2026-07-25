@@ -10,7 +10,7 @@ class_name ConditionalCommandSet extends Resource
 
 func execute_commands(data:= {}) -> bool:
 
-	if condition_set.evaluate(data):
+	if !condition_set or condition_set.evaluate(data):
 
 		command_set.execute(data)
 

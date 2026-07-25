@@ -18,3 +18,10 @@ signal objective_complete(objective: QuestObjective)
 func _initialize() -> void:
 
 	pass
+
+
+
+
+func _complete() -> void:
+
+	pass

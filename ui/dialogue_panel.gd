@@ -8,6 +8,8 @@ signal option_selected
 
 
 
+@onready var option_button_scene:= preload("res://ui/dialogue_option_button.tscn")
+
 
 
 @export var source_section: MarginContainer
@@ -58,6 +60,8 @@ func _ready() -> void:
 
 
 func set_dialogue(source: EntityNode, dialogue_text: DialogueText, options: Array[DialogueNode]) -> void:
+
+	line_index = -1
 
 	current_source = source
 
@@ -113,11 +117,13 @@ func _show_current_options() -> void:
 
 	for dialogue_node in current_options:
 
-		var button = Button.new()
+		var button = option_button_scene.instantiate()
 
 		button.text = dialogue_node.option_text
 
 		button.pressed.connect(_on_option_selected.bind(dialogue_node))
+
+		option_list.add_child(button)
 
 
 

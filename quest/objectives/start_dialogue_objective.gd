@@ -12,8 +12,14 @@ func _initialize() -> void:
 
 
 
+func _complete() -> void:
+
+	Events.unsubscribe(DialogueStartedEvent, _on_dialogue_started)
+
+
+
 func _on_dialogue_started(event: Event) -> void:
 
-	if target_quest_entity.match(event.data["source"]):
+	if !target_quest_entity or target_quest_entity.match(event.data["source"]):
 
 		objective_complete.emit(self)

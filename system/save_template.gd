@@ -17,6 +17,8 @@ var data = {
 		"flags": { },
 
 		"vars": { },
-	}
+	},
+
+	"quest_data": [ ],
 
 }

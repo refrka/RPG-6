@@ -200,6 +200,8 @@ func _load_game(save_data: SaveData) -> void:
 
 	active_save_data = save_data
 
+	active_save_data.load_dictionary()
+
 	var location_id = active_save_data.last_dict["saved_location_id"]
 
 	var spawn_id = active_save_data.last_dict["saved_spawn_id"]

@@ -1,7 +1,7 @@
 class_name DialogueText extends Resource
 
 
-@export var lines: Array[String]
+@export_multiline var lines: Array[String]
 
 
 
