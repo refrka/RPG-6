@@ -29,11 +29,15 @@ class_name DialogueNode extends Resource
 
 func enter() -> void:
 
-	enter_conditional.execute_commands()
+	if enter_conditional:
+
+		enter_conditional.execute_commands()
 
 
 
 
 func exit() -> void:
 
-	exit_conditional.execute_commands()
+	if exit_conditional:
+
+		exit_conditional.execute_commands()

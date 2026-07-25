@@ -71,6 +71,18 @@ func get_count() -> int:
 
 
 
+func get_display_name() -> String:
+
+	return item_def.display_name
+
+
+
+func get_item_id() -> StringName:
+
+	return item_def.item_id
+
+
+
 func is_empty() -> bool:
 
 	return count <= 0 or item_def == null

@@ -16,6 +16,8 @@ var hovered:= false
 
 func _ready() -> void:
 
+	process_mode = Node.PROCESS_MODE_ALWAYS
+
 	mouse_entered.connect(_on_mouse_entered)
 
 	mouse_exited.connect(_on_mouse_exited)
@@ -69,3 +71,4 @@ func _on_gui_input(event: InputEvent) -> void:
 	if active:
 
 		gui_input_received.emit(event)
+

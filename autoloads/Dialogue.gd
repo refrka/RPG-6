@@ -71,9 +71,15 @@ func show_dialogue_node(dialogue_node: DialogueNode, source: EntityNode = null) 
 
 	current_dialogue_node = dialogue_node
 
-	dialogue_panel.set_dialogue(source, current_dialogue_node.dialogue_text, current_dialogue_node.option_nodes)
+	var options: Array[DialogueNode] = current_dialogue_node.option_nodes
 
 	current_dialogue_node.enter()
+
+	if options.is_empty():
+
+		options = get_dialogue_nodes(source)
+
+	dialogue_panel.set_dialogue(source, current_dialogue_node.dialogue_text, options)
 
 
 

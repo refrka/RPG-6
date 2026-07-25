@@ -2,10 +2,25 @@
 
 [ext_resource type="Script" uid="uid://buyl122k0580n" path="res://item/item_data.gd" id="1_8fxaj"]
 [ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="1_cujn1"]
+[ext_resource type="Resource" uid="uid://cnm8emu6r70fj" path="res://item/consumable/food/apple_def.tres" id="2_3jfkr"]
 [ext_resource type="Script" uid="uid://da7sqm771dt7o" path="res://player/player_inventory.gd" id="2_y8wuh"]
+[ext_resource type="Resource" uid="uid://c6473c6c2pcdx" path="res://item/consumable/potion/light_health_potion_def.tres" id="3_3jfkr"]
+
+[sub_resource type="Resource" id="Resource_o2oj7"]
+script = ExtResource("1_8fxaj")
+item_def = ExtResource("2_3jfkr")
+count = 25
+metadata/_custom_type_script = "uid://buyl122k0580n"
+
+[sub_resource type="Resource" id="Resource_3ptas"]
+script = ExtResource("1_8fxaj")
+item_def = ExtResource("3_3jfkr")
+count = 5
+metadata/_custom_type_script = "uid://buyl122k0580n"
 
 [sub_resource type="Resource" id="Resource_cujn1"]
 script = ExtResource("2_y8wuh")
+item_list = Array[ExtResource("1_8fxaj")]([SubResource("Resource_o2oj7"), SubResource("Resource_3ptas")])
 
 [resource]
 script = ExtResource("1_cujn1")

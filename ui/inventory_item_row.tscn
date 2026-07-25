@@ -21,7 +21,12 @@ content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
-bg_color = Color(0.14, 0.14, 0.14, 0.6)
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.44545186, 0.44545197, 0.44545168, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -33,7 +38,12 @@ content_margin_left = 0.0
 content_margin_top = 0.0
 content_margin_right = 0.0
 content_margin_bottom = 0.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
+bg_color = Color(0.20547971, 0.20547971, 0.20547965, 0.6)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.44545186, 0.44545197, 0.44545168, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -48,7 +58,7 @@ grow_horizontal = 2
 mouse_filter = 2
 script = ExtResource("1_navj7")
 item_name_label = NodePath("MarginContainer/HBoxContainer/Label")
-button_list = NodePath("MarginContainer/HBoxContainer/MarginContainer/ButtonList")
+button_list = NodePath("InputMask/MarginContainer/ButtonList")
 input_mask = NodePath("InputMask")
 default_stylebox = SubResource("StyleBoxFlat_navj7")
 hover_stylebox = SubResource("StyleBoxFlat_87prl")
@@ -57,12 +67,13 @@ selected_stylebox = SubResource("StyleBoxFlat_u2so8")
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1066527159]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=127420870]
+custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 mouse_filter = 2
 
@@ -82,10 +93,24 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="ButtonList" type="HBoxContainer" parent="MarginContainer/HBoxContainer/MarginContainer" unique_id=1810895790]
-layout_mode = 2
-mouse_filter = 2
-
 [node name="InputMask" type="MarginContainer" parent="." unique_id=588333215]
 layout_mode = 2
 script = ExtResource("2_navj7")
+
+[node name="MarginContainer" type="MarginContainer" parent="InputMask" unique_id=474239946]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ButtonList" type="HBoxContainer" parent="InputMask/MarginContainer" unique_id=1810895790]
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="DiscardButton" type="Button" parent="InputMask/MarginContainer/ButtonList" unique_id=370883117]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 2
+mouse_filter = 1
+text = "Discard"

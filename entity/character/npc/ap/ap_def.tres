@@ -2,8 +2,20 @@
 
 [ext_resource type="Script" uid="uid://bkrnyugdunr74" path="res://dialogue/dialogue_node.gd" id="1_gi3sq"]
 [ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="1_yhcot"]
+[ext_resource type="Script" uid="uid://cx53ispevo7qo" path="res://dialogue/dialogue_text.gd" id="2_q015w"]
 [ext_resource type="Script" uid="uid://dxhoiocbj8lkc" path="res://dialogue/greeting.gd" id="2_ulm3m"]
 [ext_resource type="Script" uid="uid://bpekxy4h5arnf" path="res://dialogue/dialogue_library.gd" id="3_q015w"]
+
+[sub_resource type="Resource" id="Resource_tan87"]
+script = ExtResource("2_q015w")
+lines = Array[String](["a suh dude"])
+metadata/_custom_type_script = "uid://cx53ispevo7qo"
+
+[sub_resource type="Resource" id="Resource_p32gx"]
+script = ExtResource("1_gi3sq")
+option_text = "Sup"
+dialogue_text = SubResource("Resource_tan87")
+metadata/_custom_type_script = "uid://bkrnyugdunr74"
 
 [sub_resource type="Resource" id="Resource_6hs1l"]
 script = ExtResource("2_ulm3m")
@@ -13,6 +25,7 @@ metadata/_custom_type_script = "uid://dxhoiocbj8lkc"
 [sub_resource type="Resource" id="Resource_m0nle"]
 script = ExtResource("3_q015w")
 default_greetings = Array[ExtResource("2_ulm3m")]([SubResource("Resource_6hs1l")])
+default_dialogue_nodes = Array[ExtResource("1_gi3sq")]([SubResource("Resource_p32gx")])
 metadata/_custom_type_script = "uid://bpekxy4h5arnf"
 
 [resource]

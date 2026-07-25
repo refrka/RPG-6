@@ -198,6 +198,26 @@ func _unhandled_input(event: InputEvent) -> void:
 
 			add_overlay(overlay)
 
+	var game_menu = get_overlay(GameMenu)
+
+	if game_menu.active:
+
+		return
+
+	if event.is_action_pressed("profile"):
+
+		if Game.is_active():
+
+			var profile = get_overlay(ProfilePanel)
+
+			if !profile.active:
+
+				add_overlay(profile)
+
+			else:
+
+				remove_overlay(profile)
+
 
 
 

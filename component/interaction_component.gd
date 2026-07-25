@@ -51,8 +51,6 @@ func _try_interaction(_target_entity: EntityNode) -> void:
 
 	target_interactable_component = interactable_component
 
-	target_interactable_component.interaction_ended.connect(_on_interaction_ended, CONNECT_ONE_SHOT)
-
 	_start_interaction()
 
 
@@ -61,6 +59,8 @@ func _try_interaction(_target_entity: EntityNode) -> void:
 func _start_interaction() -> void:
 
 	if target_interactable_component._interact():
+
+		target_interactable_component.interaction_ended.connect(_on_interaction_ended, CONNECT_ONE_SHOT)
 
 		entity.state_machine.request_state(InteractingState)
 

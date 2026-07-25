@@ -13,6 +13,7 @@ script = ExtResource("1_3ptas")
 resume_button = NodePath("MarginContainer/VBoxContainer/ResumeButton")
 exit_to_menu_button = NodePath("MarginContainer/VBoxContainer/ExitToMenuButton")
 quit_to_desktop_button = NodePath("MarginContainer/VBoxContainer/QuitGameButton")
+pause = true
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=671091329]
 custom_minimum_size = Vector2(200, 0)

@@ -1,19 +1,65 @@
 [gd_scene format=3 uid="uid://xehidxldd314"]
 
+[ext_resource type="Script" uid="uid://dbua7bx61ywc6" path="res://ui/inventory_display.gd" id="1_8paga"]
 [ext_resource type="PackedScene" uid="uid://dm4i4p05ln46a" path="res://ui/inventory_item_row.tscn" id="1_w1nwo"]
 
-[node name="InventoryDisplay" type="MarginContainer" unique_id=620134775]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8paga"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w1nwo"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.44545186, 0.44545197, 0.44545168, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="InventoryDisplay" type="MarginContainer" unique_id=620134775 node_paths=PackedStringArray("item_list")]
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 350.0
 grow_vertical = 2
+script = ExtResource("1_8paga")
+item_list = NodePath("VBoxContainer/ScrollContainer/ItemList")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=278961446]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=1610247059]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1197489943]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1019716867]
+layout_mode = 2
+text = "Filter:"
+
+[node name="FilterEntry" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=1610247059]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_8paga")
+theme_override_styles/focus = SubResource("StyleBoxFlat_w1nwo")
+placeholder_text = "Item Name"
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1641646747]
 layout_mode = 2
@@ -22,10 +68,10 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=178557652]
+[node name="ItemList" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=178557652]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="InventoryItemRow" parent="VBoxContainer/ScrollContainer/VBoxContainer" unique_id=538571362 instance=ExtResource("1_w1nwo")]
+[node name="InventoryItemRow" parent="VBoxContainer/ScrollContainer/ItemList" unique_id=538571362 instance=ExtResource("1_w1nwo")]
 layout_mode = 2
