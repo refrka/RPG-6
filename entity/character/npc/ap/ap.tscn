@@ -19,6 +19,3 @@ texture = ExtResource("2_7q4k1")
 position = Vector2(-0.5, -5)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_gnloq")
-
-[node name="InteractableComponent" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="3" unique_id=2007762201]
-duration = 5.0

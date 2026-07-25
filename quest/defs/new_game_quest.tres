@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="QuestDef" format=3 uid="uid://bxdqfcnlih8dx"]
+
+[ext_resource type="Script" uid="uid://1r4mo0y16wii" path="res://quest/quest_def.gd" id="1_4w6ow"]
+[ext_resource type="Script" uid="uid://btjgttvqng6jt" path="res://quest/quest_stage.gd" id="2_bx7u3"]
+[ext_resource type="Script" uid="uid://cdp33gtgt4jpi" path="res://quest/quest_objective.gd" id="3_bx7u3"]
+
+[sub_resource type="Resource" id="Resource_eif16"]
+script = ExtResource("3_bx7u3")
+title = "Talk to someone"
+description = "Start dialogue with an NPC."
+metadata/_custom_type_script = "uid://cdp33gtgt4jpi"
+
+[sub_resource type="Resource" id="Resource_b4gh8"]
+script = ExtResource("2_bx7u3")
+objectives = Array[ExtResource("3_bx7u3")]([SubResource("Resource_eif16")])
+metadata/_custom_type_script = "uid://btjgttvqng6jt"
+
+[resource]
+script = ExtResource("1_4w6ow")
+quest_id = &"new_game_quest"
+stages = Array[ExtResource("2_bx7u3")]([SubResource("Resource_b4gh8")])
+title = "Starting a new game"
+description = "Learn about the game!"
+metadata/_custom_type_script = "uid://1r4mo0y16wii"

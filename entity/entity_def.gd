@@ -14,3 +14,5 @@ class_name EntityDef extends Resource
 @export var behavior_profile: BehaviorProfile
 
 @export var default_inventory: Inventory
+
+@export var dialogue_library: DialogueLibrary

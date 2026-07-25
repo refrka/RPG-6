@@ -129,7 +129,9 @@ func show_notice(primary: String, secondary:= "") -> Notice:
 
 
 
-func show_popup(mode: GamePopup.PopupMode, message: String, title:= "") -> void:
+
+
+func show_popup(mode: GamePopup.PopupMode, message: String, title:= "") -> GamePopup:
 
 	var popup = popup_scene.instantiate() as GamePopup
 
@@ -145,12 +147,31 @@ func show_popup(mode: GamePopup.PopupMode, message: String, title:= "") -> void:
 
 	popup._activate()
 
+	return popup
 
 
 
 
 
+func show_dialogue_panel(greeting: Greeting, options: Array[DialogueNode] = [], source: EntityNode = null) -> DialoguePanel:
 
+	var dialogue_panel = get_overlay(DialoguePanel) as DialoguePanel
+
+	dialogue_panel.set_dialogue(source, greeting, options)
+
+	add_overlay(dialogue_panel)
+
+	return dialogue_panel
+
+
+
+
+
+func close_dialogue_panel() -> void:
+
+	var overlay = get_overlay(DialoguePanel)
+
+	remove_overlay(overlay)
 
 
 

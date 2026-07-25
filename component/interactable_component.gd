@@ -2,12 +2,16 @@ class_name InteractableComponent extends Component
 
 
 
+signal interaction_ended
 
 
 
 @export var duration:= 0.0
 
 @export var interaction_conditionals: Array[ConditionalCommandSet]
+
+
+
 
 
 # Interaction examples:
@@ -24,19 +28,56 @@ class_name InteractableComponent extends Component
 
 
 
-func _interact() -> void:
+
+
+
+
+
+
+func _interact() -> bool:
 
 	for conditional_command_set in interaction_conditionals:
 
 		conditional_command_set.execute_commands({"entity_node": entity})
+
+	var dialogue_nodes = Dialogue.get_dialogue_nodes(entity)
+
+	var greeting = Dialogue.get_greeting(entity, dialogue_nodes)
+
+	if greeting or !dialogue_nodes.is_empty():
+
+		Dialogue.dialogue_ended.connect(_on_dialogue_ended, CONNECT_ONE_SHOT)
+
+		Dialogue.start_dialogue(greeting, dialogue_nodes, entity)
+
+		return true
+
+	return false
+
+
+
+
+func _end() -> void:
+
+	Dialogue.end_dialogue()
+
+
 
 
 
 
 func _can_interact() -> bool:
 
+
+
 	return true
 
 
 
 
+
+
+
+func _on_dialogue_ended() -> void:
+
+	interaction_ended.emit()

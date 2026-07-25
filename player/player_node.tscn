@@ -5,19 +5,19 @@
 [ext_resource type="Texture2D" uid="uid://c8iavtaycsjop" path="res://player/player_sprite.png" id="3_d0owe"]
 [ext_resource type="Resource" uid="uid://dtewowtdwd85g" path="res://player/player_def.tres" id="3_k12ae"]
 [ext_resource type="Script" uid="uid://d2ryfou7hnwl3" path="res://component/input_component.gd" id="4_k12ae"]
-[ext_resource type="Script" uid="uid://vc05juoxu8ho" path="res://player/entity_sensor.gd" id="5_fpdhf"]
+[ext_resource type="Script" uid="uid://dhhv20t77148x" path="res://system/sensor.gd" id="5_rppns"]
 [ext_resource type="Script" uid="uid://bcgv65yabwl21" path="res://state/interacting_state.gd" id="6_0vw6r"]
+[ext_resource type="Script" uid="uid://bj0gwmjascn1r" path="res://component/interaction_component.gd" id="8_rppns"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0vw6r"]
 radius = 6.0
 height = 20.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_aajxx"]
-radius = 37.01351
+[sub_resource type="CircleShape2D" id="CircleShape2D_bg5s2"]
+radius = 39.0
 
-[node name="PlayerNode" unique_id=639653512 node_paths=PackedStringArray("entity_sensor") instance=ExtResource("1_ynuq4")]
+[node name="PlayerNode" unique_id=639653512 instance=ExtResource("1_ynuq4")]
 script = ExtResource("2_a3uy3")
-entity_sensor = NodePath("EntitySensor")
 entity_def = ExtResource("3_k12ae")
 
 [node name="BodySprite" parent="VisualRoot" parent_id_path=PackedInt32Array(93121259) index="0" unique_id=1905262643]
@@ -29,13 +29,14 @@ position = Vector2(0, -6)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_0vw6r")
 
-[node name="EntitySensor" type="Area2D" parent="." index="3" unique_id=1378440499]
+[node name="InteractionSensor" type="Area2D" parent="." index="3" unique_id=537167540]
 position = Vector2(0, -16)
-script = ExtResource("5_fpdhf")
+script = ExtResource("5_rppns")
 metadata/_custom_type_script = "uid://dhhv20t77148x"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EntitySensor" index="0" unique_id=1185433011]
-shape = SubResource("CircleShape2D_aajxx")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionSensor" index="0" unique_id=970333882]
+shape = SubResource("CircleShape2D_bg5s2")
+debug_color = Color(0, 0.5950001, 0.7, 0.05882353)
 
 [node name="InteractingState" type="Node" parent="StateMachine" parent_id_path=PackedInt32Array(2134553196) index="1" unique_id=557809521]
 script = ExtResource("6_0vw6r")
@@ -43,3 +44,7 @@ script = ExtResource("6_0vw6r")
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="0" unique_id=293576925]
 script = ExtResource("4_k12ae")
 metadata/_custom_type_script = "uid://d2ryfou7hnwl3"
+
+[node name="InteractionComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="5" unique_id=1084643429 node_paths=PackedStringArray("sensor")]
+script = ExtResource("8_rppns")
+sensor = NodePath("../../InteractionSensor")

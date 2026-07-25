@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://g3o0lv7ydx5o"]
 
-[node name="DialoguePanel" type="MarginContainer" unique_id=1873824031]
+[ext_resource type="Script" uid="uid://de4vlylb66gui" path="res://ui/dialogue_panel.gd" id="1_eb2dg"]
+[ext_resource type="Script" uid="uid://d1tjqor82d8o0" path="res://ui/input_mask.gd" id="2_m0nle"]
+
+[node name="DialoguePanel" type="MarginContainer" unique_id=1873824031 node_paths=PackedStringArray("source_section", "dialogue_section", "response_section", "source_name_label", "dialogue_text_label", "option_list", "close_button", "next_arrow", "input_mask")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10,6 +13,16 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
+script = ExtResource("1_eb2dg")
+source_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/SourceSection")
+dialogue_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/DialogueSection")
+response_section = NodePath("PanelContainer/MarginContainer/VBoxContainer/ResponseSection")
+source_name_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/SourceSection/VBoxContainer/HBoxContainer/SourceNameLabel")
+dialogue_text_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/DialogueSection/MarginContainer/DialogueTextLabel")
+option_list = NodePath("PanelContainer/MarginContainer/VBoxContainer/ResponseSection/VBoxContainer/MarginContainer/OptionList")
+close_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/SourceSection/VBoxContainer/HBoxContainer/CloseButton")
+next_arrow = NodePath("PanelContainer/MarginContainer/VBoxContainer/DialogueSection/NextArrow")
+input_mask = NodePath("PanelContainer/InputMask")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=280382981]
 custom_minimum_size = Vector2(600, 0)
@@ -17,24 +30,35 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
+[node name="InputMask" type="MarginContainer" parent="PanelContainer" unique_id=1240317596]
+layout_mode = 2
+script = ExtResource("2_m0nle")
+metadata/_custom_type_script = "uid://d1tjqor82d8o0"
+
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1436173933]
 layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+mouse_filter = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=156516010]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="SourceSection" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1794742708]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/SourceSection" unique_id=587964740]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/SourceSection/VBoxContainer" unique_id=1462026109]
 layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/SourceSection/VBoxContainer/HBoxContainer" unique_id=178533635]
 layout_mode = 2
@@ -46,35 +70,61 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Source name"
 
+[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/SourceSection/VBoxContainer/HBoxContainer" unique_id=781749011]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "X"
+
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/SourceSection/VBoxContainer" unique_id=1130902218]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="DialogueSection" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=273941419]
 layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/DialogueSection" unique_id=1662204578]
+layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/DialogueSection" unique_id=1020535569]
+[node name="DialogueTextLabel" type="RichTextLabel" parent="PanelContainer/MarginContainer/VBoxContainer/DialogueSection/MarginContainer" unique_id=1020535569]
 layout_mode = 2
+mouse_filter = 2
 bbcode_enabled = true
 text = "Dialogue text. Something someone said or a description of the object or event."
 fit_content = true
 
+[node name="NextArrow" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/DialogueSection" unique_id=1493780564]
+layout_mode = 2
+size_flags_horizontal = 8
+text = ">"
+
 [node name="ResponseSection" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=98393778]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ResponseSection" unique_id=969974771]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/ResponseSection/VBoxContainer" unique_id=976151975]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="OptionList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ResponseSection/VBoxContainer" unique_id=1380919358]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ResponseSection/VBoxContainer" unique_id=1961028174]
 layout_mode = 2
+mouse_filter = 2
 
-[node name="DialogueOptionButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ResponseSection/VBoxContainer/OptionList" unique_id=436732806]
+[node name="OptionList" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/ResponseSection/VBoxContainer/MarginContainer" unique_id=1380919358]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DialogueOptionButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/ResponseSection/VBoxContainer/MarginContainer/OptionList" unique_id=436732806]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Dialogue Option"

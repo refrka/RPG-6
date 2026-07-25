@@ -1,0 +1,1 @@
+class_name DialogueEndedEvent extends GameEvent

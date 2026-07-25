@@ -1,4 +1,4 @@
-class_name GameSavedEvent extends Event
+class_name GameSavedEvent extends SystemEvent
 
 
 

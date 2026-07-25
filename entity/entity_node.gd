@@ -46,6 +46,10 @@ func _initialize() -> bool:
 
 		component._initialize(self)
 
+	if state_machine:
+
+		state_machine.setup(self)
+
 	if entity_def.default_inventory:
 
 		inventory = entity_def.default_inventory.duplicate()

@@ -11,6 +11,11 @@ var timer:= 0.0
 
 
 
+
+
+
+
+
 func setup(_entity: EntityNode = null) -> void:
 
 	super(_entity)
@@ -56,17 +61,7 @@ func try_end_interaction() -> void:
 
 func start_interaction(_target_entity: EntityNode) -> void:
 
-	target_entity = _target_entity
-
-	target_interactable_component = target_entity.get_component(InteractableComponent)
-
-	if target_interactable_component.duration > 0.0:
-
-		hold_interaction()
-
-	else:
-
-		execute_interaction()
+	pass
 
 
 
@@ -81,7 +76,9 @@ func execute_interaction() -> void:
 
 func end_interaction() -> void:
 
-	pass
+	target_interactable_component = null
+
+	entity.state_machine.request_state(IdleState)
 
 
 
