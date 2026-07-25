@@ -7,9 +7,15 @@ signal row_selected(row: InventoryItemRow)
 
 @export var item_name_label: Label
 
+@export var item_count_label: Label
+
 @export var button_list: HBoxContainer
 
 @export var input_mask: InputMask
+
+@export var info_section: MarginContainer
+
+@export var discard_button: Button
 
 
 
@@ -35,6 +41,11 @@ func _ready() -> void:
 
 	_connect_input_mask()
 
+	_hide_buttons()
+
+	info_section.hide()
+
+	discard_button.connect(_on_discard_pressed)
 
 
 
@@ -47,6 +58,18 @@ func load_item_data(_item_data: ItemData) -> void:
 
 	item_name_label.text = item_data.get_display_name()
 
+	var count = item_data.get_count()
+
+	if count > 1:
+
+		item_count_label.text = "(%s)" % item_data.get_count()
+
+	else:
+
+		item_count_label.text = ""
+
+
+
 
 
 
@@ -54,7 +77,10 @@ func select() -> void:
 
 	selected = true
 
+	info_section.show()
+
 	add_theme_stylebox_override("panel", selected_stylebox)
+
 
 
 
@@ -62,7 +88,11 @@ func deselect() -> void:
 
 	selected = false
 
+	info_section.hide()
+
 	add_theme_stylebox_override("panel", default_stylebox)
+
+	_hide_buttons()
 
 	if hovered:
 
@@ -74,6 +104,7 @@ func deselect() -> void:
 func _show_buttons() -> void:
 
 	button_list.show()
+
 
 
 func _hide_buttons() -> void:
@@ -134,6 +165,12 @@ func _on_gui_input_received(event: InputEvent) -> void:
 
 
 
+func _on_discard_pressed() -> void:
+
+	pass
+
+
+
 
 
 func _disable() -> void:
@@ -146,3 +183,8 @@ func _disable() -> void:
 func _enable() -> void:
 
 	pass
+
+
+
+
+

@@ -50,48 +50,87 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="InventoryItemRow" type="PanelContainer" unique_id=538571362 node_paths=PackedStringArray("item_name_label", "button_list", "input_mask")]
+[node name="InventoryItemRow" type="PanelContainer" unique_id=538571362 node_paths=PackedStringArray("item_name_label", "item_count_label", "button_list", "input_mask", "info_section", "discard_button")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 32.0
 grow_horizontal = 2
 mouse_filter = 2
 script = ExtResource("1_navj7")
-item_name_label = NodePath("MarginContainer/HBoxContainer/Label")
+item_name_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Label")
+item_count_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Label2")
 button_list = NodePath("InputMask/MarginContainer/ButtonList")
 input_mask = NodePath("InputMask")
+info_section = NodePath("MarginContainer/VBoxContainer/InfoSection")
+discard_button = NodePath("InputMask/MarginContainer/ButtonList/DiscardButton")
 default_stylebox = SubResource("StyleBoxFlat_navj7")
 hover_stylebox = SubResource("StyleBoxFlat_87prl")
 selected_stylebox = SubResource("StyleBoxFlat_u2so8")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1066527159]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1148010747]
 layout_mode = 2
-mouse_filter = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=127420870]
-custom_minimum_size = Vector2(0, 35)
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1834608456]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=1066527159]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=127420870]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=569367206]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=569367206]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("1_vm1f7")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=171376095]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=171376095]
 layout_mode = 2
 text = "Item Name"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=105135602]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=719408952]
+layout_mode = 2
+text = "(99)"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=105135602]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
+
+[node name="InfoSection" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=964145782]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoSection" unique_id=2104502323]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/InfoSection/VBoxContainer" unique_id=1650189710]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/InfoSection/VBoxContainer" unique_id=615694944]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/InfoSection/VBoxContainer/MarginContainer" unique_id=1497293966]
+layout_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer/InfoSection/VBoxContainer/MarginContainer/VBoxContainer" unique_id=486049104]
+layout_mode = 2
+text = "Description of this item."
 
 [node name="InputMask" type="MarginContainer" parent="." unique_id=588333215]
 layout_mode = 2
@@ -99,6 +138,7 @@ script = ExtResource("2_navj7")
 
 [node name="MarginContainer" type="MarginContainer" parent="InputMask" unique_id=474239946]
 layout_mode = 2
+size_flags_vertical = 0
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8

@@ -69,6 +69,8 @@ func _load_item_list() -> void:
 
 		row.row_selected.connect(_on_row_selected)
 
+		
+
 		item_row_registry[item_data] = row
 
 		item_list.add_child(row)
