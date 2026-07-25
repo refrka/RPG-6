@@ -72,8 +72,6 @@ func _start_wander() -> void:
 
 	wander_target = entity.nav_agent.get_final_position()
 
-	print(entity.nav_agent.is_target_reachable())
-
 
 
 

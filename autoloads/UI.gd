@@ -171,7 +171,9 @@ func close_dialogue_panel() -> void:
 
 	var overlay = get_overlay(DialoguePanel)
 
-	remove_overlay(overlay)
+	if active_overlays.has(overlay):
+
+		remove_overlay(overlay)
 
 
 

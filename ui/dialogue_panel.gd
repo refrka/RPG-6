@@ -178,7 +178,7 @@ func _deactivate() -> void:
 
 func _on_close_pressed() -> void:
 
-	Dialogue.end_dialogue()
+	_close_dialogue()
 
 
 

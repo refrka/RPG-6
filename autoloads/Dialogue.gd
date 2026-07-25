@@ -42,13 +42,15 @@ func start_dialogue(greeting: Greeting, options: Array[DialogueNode] = [], sourc
 
 func end_dialogue() -> void:
 
-	UI.close_dialogue_panel()
+	if current_source != null:
 
-	Events.fire(DialogueEndedEvent, {"source": current_source})
+		Events.fire(DialogueEndedEvent, {"source": current_source})
 
-	dialogue_ended.emit()
+		current_source = null
 
-	current_source = null
+		UI.close_dialogue_panel()
+
+		dialogue_ended.emit()
 
 
 

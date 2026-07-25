@@ -108,8 +108,6 @@ func save() -> void:
 
 	Saves.save_game(active_save_data)
 
-	print("fire")
-
 	Events.fire(GameSavedEvent)
 
 

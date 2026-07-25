@@ -18,8 +18,6 @@ func _initialize(_entity: EntityNode) -> void:
 
 	if initialized:
 
-		print("already initialized")
-
 		return
 
 	entity = _entity

@@ -80,6 +80,7 @@ func _cancel_interaction() -> void:
 
 
 
+
 func _end_interaction() -> void:
 
 	entity.state_machine.request_state(IdleState)

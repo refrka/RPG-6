@@ -10,8 +10,6 @@ var movement_component: MovementComponent
 
 func _setup(_entity: EntityNode) -> void:
 
-	print("setup interactings tate")
-
 	super(_entity)
 
 	movement_component = entity.get_component(MovementComponent)
