@@ -11,14 +11,15 @@ signal item_equipped(equipment_data: EquipmentData)
 
 signal item_unequipped(equipment_data: EquipmentData)
 
+signal gold_count_changed(amount: int, new_count: int, added: bool)
+
 
 
 @export var item_list: Array[ItemData]
 
-
 @export var equipment_slots: Dictionary[EquipmentDef.EquipmentType, EquipmentData]
 
-
+@export var gold_count: int
 
 
 
@@ -38,8 +39,8 @@ func _initialize() -> void:
 
 
 
-
-func add_data(new_item_data: ItemData) -> void:
+## If this method calls merge(), new_item_data is emptied and the method returns false
+func add_data(new_item_data: ItemData) -> bool:
 
 	var item_def = new_item_data.get_item_def()
 	
@@ -47,11 +48,17 @@ func add_data(new_item_data: ItemData) -> void:
 
 	if !item_data:
 
-		_add_item_data(item_data)
+		_connect_item_data(new_item_data)
+
+		_add_item_data(new_item_data)
+
+		return true
 
 	else:
 
 		item_data.merge(new_item_data)
+
+		return false
 
 
 
@@ -60,9 +67,17 @@ func remove_data(old_item_data: ItemData) -> void:
 
 	if !item_list.has(old_item_data):
 
-		return
+		var item_data = get_item_data_with_def(old_item_data.get_item_def())
 
-	_remove_item_data(old_item_data)
+		if item_data:
+
+			item_data.remove_amount(old_item_data.get_count())
+
+	else:
+
+		print("remove_data() _remove_item_data")
+
+		_remove_item_data(old_item_data)
 
 
 
@@ -95,9 +110,32 @@ func remove_items(item_def: ItemDef, amount:= 1) -> void:
 	if !item_data:
 
 		return
-
+	
 	item_data.remove_amount(amount)
 
+
+
+
+func add_gold(amount: int) -> void:
+
+	gold_count += amount
+
+	gold_count_changed.emit(amount, gold_count, true)
+
+
+
+
+func remove_gold(amount: int) -> void:
+
+	var removed = amount
+
+	if amount > gold_count:
+
+		removed = gold_count
+
+	gold_count = max(0, gold_count - amount)
+
+	gold_count_changed.emit(removed, gold_count, false)
 
 
 
@@ -138,6 +176,46 @@ func unequip_item_data(equipment_data: EquipmentData) -> void:
 
 
 
+func transfer_item_data_to(item_data: ItemData, inventory: Inventory, amount:= -1) -> void:
+
+	if amount == -1:
+
+		inventory.add_data(item_data)
+
+		remove_data(item_data)
+
+	else:
+
+		var transferred_data = Items.create_item_data(item_data.get_item_def(), amount)
+
+		inventory.add_data(transferred_data)
+
+		remove_items(item_data.get_item_def(), amount)
+
+
+
+
+
+
+func transfer_gold_to(amount: int, inventory: Inventory) -> void:
+
+	inventory.add_gold(amount)
+
+	remove_gold(amount)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 func get_item_data_with_def(item_def: ItemDef) -> ItemData:
 
 	for item_data in item_list:
@@ -150,12 +228,15 @@ func get_item_data_with_def(item_def: ItemDef) -> ItemData:
 
 
 
-
 func get_equipment(equipment_type: EquipmentDef.EquipmentType) -> EquipmentData:
 
 	return equipment_slots[equipment_type]
 
 
+
+func get_gold_count() -> int:
+
+	return gold_count
 
 
 
@@ -173,6 +254,14 @@ func is_item_data_equipped(equipment_data: EquipmentData) -> bool:
 
 
 
+
+
+
+
+
+
+
+
 func _add_item_data(item_data: ItemData) -> void:
 
 	item_list.append(item_data)
@@ -183,6 +272,8 @@ func _add_item_data(item_data: ItemData) -> void:
 
 
 func _remove_item_data(item_data: ItemData) -> void:
+
+	print("removing data from inventory: ", self)
 
 	item_list.erase(item_data)
 
@@ -225,6 +316,8 @@ func _on_item_data_count_updated(item_data: ItemData, _amount: int, _added: bool
 
 func _on_item_data_emptied(item_data: ItemData) -> void:
 
+	print("item data emptied in inventory: ", self)
+
 	if item_data is EquipmentData and is_item_data_equipped(item_data):
 
 		unequip_item_data(item_data)
@@ -232,6 +325,8 @@ func _on_item_data_emptied(item_data: ItemData) -> void:
 	item_data_updated.emit(item_data)
 
 	_disconnect_item_data(item_data)
+
+	print("_on_item_data_emptied() _remove_item_data()")
 
 	_remove_item_data(item_data)
 
@@ -252,6 +347,8 @@ func get_dictionary() -> Dictionary:
 	for item_data in item_list:
 
 		save_dict["item_list"].append(item_data.get_dictionary())
+
+	save_dict["gold_count"] = gold_count
 
 	return save_dict
 

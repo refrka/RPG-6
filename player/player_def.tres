@@ -29,6 +29,7 @@ metadata/_custom_type_script = "uid://c0nluvwuebw73"
 [sub_resource type="Resource" id="Resource_cujn1"]
 script = ExtResource("2_y8wuh")
 item_list = Array[ExtResource("1_8fxaj")]([SubResource("Resource_o2oj7"), SubResource("Resource_3ptas"), SubResource("Resource_ajxwt")])
+gold_count = 50
 
 [resource]
 script = ExtResource("1_cujn1")

@@ -64,6 +64,7 @@ func set_dialogue_text(dialogue_text: DialogueText) -> void:
 
 
 
+
 func _close() -> void:
 
 	clear()
@@ -73,14 +74,28 @@ func _close() -> void:
 
 
 
+func _activate() -> void:
+
+	super()
+
+	player_inventory_display.active = true
+
+	entity_inventory_display.active = true
+
+
+
+
 func _deactivate() -> void:
 
 	super()
 
+	player_inventory_display.active = false
+
+	entity_inventory_display.active = false
+
 	if target_entity:
 
 		_close()
-
 
 
 
@@ -92,7 +107,7 @@ func _on_close_pressed() -> void:
 
 func _on_sell_requested(item_data: ItemData) -> void:
 
-	var count_selector = UI.show_count_selector(0, item_data.get_count(), "Selling %s" % item_data.get_display_name())
+	var count_selector = UI.show_count_selector(0, item_data.get_count(), "Selling %s" % item_data.get_display_name(), false)
 
 	count_selector.count_submitted.connect(_on_sell_count_submitted.bind(item_data), CONNECT_ONE_SHOT)
 
@@ -100,7 +115,7 @@ func _on_sell_requested(item_data: ItemData) -> void:
 
 func _on_buy_requested(item_data: ItemData) -> void:
 
-	var count_selector = UI.show_count_selector(0, item_data.get_count(), "Buying %s" % item_data.get_display_name())
+	var count_selector = UI.show_count_selector(0, item_data.get_count(), "Buying %s" % item_data.get_display_name(), false)
 
 	count_selector.count_submitted.connect(_on_buy_count_submitted.bind(item_data), CONNECT_ONE_SHOT)
 
@@ -108,10 +123,23 @@ func _on_buy_requested(item_data: ItemData) -> void:
 
 func _on_sell_count_submitted(count: int, item_data: ItemData) -> void:
 
-	pass
+	var total_value = item_data.get_total_value(count)
+
+	var player = Game.get_player()
+
+	player.inventory.transfer_item_data_to(item_data, target_entity.inventory, count)
+
+	target_entity.inventory.transfer_gold_to(total_value, player.inventory)
+
 
 
 
 func _on_buy_count_submitted(count: int, item_data: ItemData) -> void:
 
-	pass
+	var total_value = item_data.get_total_value(count)
+
+	var player = Game.get_player()
+
+	target_entity.inventory.transfer_item_data_to(item_data, player.inventory, count)
+
+	player.inventory.transfer_gold_to(total_value, target_entity.inventory)

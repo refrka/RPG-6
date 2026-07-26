@@ -25,7 +25,11 @@ signal sell_requested
 
 @export var reset_button: Button
 
+@export var gold_count_label: Label
 
+
+
+var active:= false
 
 var inventory: Inventory
 
@@ -50,6 +54,8 @@ func _ready() -> void:
 
 func load_inventory(_inventory: Inventory) -> void:
 
+	print("loading inventory: ", _inventory)
+
 	inventory = _inventory
 
 	inventory.item_data_added.connect(_on_item_data_added)
@@ -60,7 +66,11 @@ func load_inventory(_inventory: Inventory) -> void:
 
 	inventory.item_unequipped.connect(_on_item_unequipped)
 
+	inventory.gold_count_changed.connect(_on_gold_count_changed)
+
 	_load_item_list()
+
+	_update_gold_count_label()
 
 
 
@@ -78,11 +88,22 @@ func clear() -> void:
 
 	inventory.item_unequipped.disconnect(_on_item_unequipped)
 
+	inventory.gold_count_changed.disconnect(_on_gold_count_changed)
+
 	inventory = null
 
 	item_row_registry.clear()
 
 	selected_row = null
+
+
+
+
+func refresh() -> void:
+
+	_load_item_list()
+
+	_update_gold_count_label()
 
 
 
@@ -124,6 +145,8 @@ func _load_item_list() -> void:
 	for item_data in items:
 
 		_add_item_row(item_data)
+
+	_sort_items_alphabetical()
 
 
 
@@ -171,6 +194,28 @@ func _add_item_row(item_data: ItemData) -> InventoryItemRow:
 	item_list.add_child(row)
 
 	return row
+
+
+
+
+func _remove_item_row(item_data: ItemData) -> void:
+
+	if !item_row_registry.has(item_data):
+
+		return
+
+	var row = item_row_registry[item_data]
+
+	row.queue_free()
+
+
+
+
+
+
+func _update_gold_count_label() -> void:
+
+	gold_count_label.text = str(inventory.get_gold_count())
 
 
 
@@ -252,6 +297,22 @@ func _sort_alphabetical(item_data_a: ItemData, item_data_b: ItemData) -> bool:
 
 
 
+func _sort_items_alphabetical() -> void:
+
+	var items = item_row_registry.keys().duplicate()
+
+	items.sort_custom(_sort_alphabetical)
+
+	for item_data in items:
+
+		var row = item_row_registry[item_data]
+
+		var index = items.find(item_data)
+
+		item_list.move_child(row, index)
+
+
+
 
 func _clear_item_list() -> void:
 
@@ -318,6 +379,10 @@ func _on_filter_text_changed(text: String) -> void:
 
 func _on_item_equipped(equipment_data: EquipmentData) -> void:
 
+	if !active:
+
+		return
+
 	if item_row_registry.has(equipment_data):
 
 		var row = item_row_registry[equipment_data]
@@ -327,6 +392,10 @@ func _on_item_equipped(equipment_data: EquipmentData) -> void:
 
 
 func _on_item_unequipped(equipment_data: EquipmentData) -> void:
+
+	if !active:
+
+		return
 
 	if item_row_registry.has(equipment_data):
 
@@ -338,23 +407,23 @@ func _on_item_unequipped(equipment_data: EquipmentData) -> void:
 
 func _on_item_data_added(item_data: ItemData) -> void:
 
-	var row = _add_item_row(item_data)
+	if !active: 
 
-	item_row_registry[item_data] = row
+		return
 
-	var items = item_row_registry.keys().duplicate()
+	_add_item_row(item_data)
 
-	items.sort_custom(_sort_alphabetical)
-
-	var index = items.find(item_data)
-
-	item_list.move_child(row, index)
-
-
+	_sort_items_alphabetical()
 
 
 
 func _on_item_data_removed(item_data: ItemData) -> void:
+
+	if !active: 
+
+		return
+
+	print("item data removed from inventory: ", inventory)
 
 	var row = item_row_registry[item_data]
 
@@ -384,3 +453,13 @@ func _on_buy_requested(row: BarterItemRow) -> void:
 func _on_sell_requested(row: BarterItemRow) -> void:
 
 	sell_requested.emit(row.item_data)
+
+
+
+func _on_gold_count_changed(_amount: int, _new_count: int, _added: bool) -> void:
+
+	if !active: 
+
+		return
+
+	_update_gold_count_label()

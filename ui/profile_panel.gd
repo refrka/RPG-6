@@ -75,6 +75,23 @@ func _get_equipment_slot(equipment_type: EquipmentDef.EquipmentType) -> ProfileE
 
 
 
+func _activate() -> void:
+
+	super()
+
+	inventory_display.active = true
+
+	inventory_display.refresh()
+
+
+
+func _deactivate() -> void:
+
+	inventory_display.active = false
+
+
+
+
 
 
 

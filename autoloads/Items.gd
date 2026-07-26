@@ -35,7 +35,7 @@ func get_item_def(item_id: StringName) -> ItemDef:
 
 
 
-func create_item_data(item_def: ItemDef) -> ItemData:
+func create_item_data(item_def: ItemDef, amount:= -1) -> ItemData:
 
 	var item_data: ItemData = null
 
@@ -46,6 +46,12 @@ func create_item_data(item_def: ItemDef) -> ItemData:
 	else:
 
 		item_data = ItemData.new()
+
+	item_data.item_def = item_def
+
+	if amount != -1:
+
+		item_data.count = amount
 
 	return item_data
 

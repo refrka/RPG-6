@@ -13,7 +13,7 @@
 script = ExtResource("2_egusr")
 wander_speed = 50.0
 wander_range = Vector2(150, 200)
-idle_duration_range = Vector2(0.2, 0.5)
+idle_duration_range = Vector2(3, 5)
 metadata/_custom_type_script = "uid://5usslouxxk5f"
 
 [sub_resource type="Resource" id="Resource_jnk4k"]
@@ -30,6 +30,7 @@ metadata/_custom_type_script = "uid://buyl122k0580n"
 [sub_resource type="Resource" id="Resource_qg0wm"]
 script = ExtResource("7_crwam")
 item_list = Array[ExtResource("5_j83uu")]([SubResource("Resource_j3hrn")])
+gold_count = 2000
 metadata/_custom_type_script = "uid://bilua2f5kf02o"
 
 [resource]

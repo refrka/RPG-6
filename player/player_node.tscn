@@ -16,6 +16,7 @@ height = 20.0
 radius = 39.0
 
 [node name="PlayerNode" unique_id=639653512 instance=ExtResource("1_ynuq4")]
+collision_layer = 4
 script = ExtResource("2_a3uy3")
 entity_def = ExtResource("3_k12ae")
 

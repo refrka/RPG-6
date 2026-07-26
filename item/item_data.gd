@@ -59,6 +59,15 @@ func remove_amount(amount: int) -> void:
 
 
 
+func get_total_value(amount:= -1) -> int:
+
+	if amount != -1:
+
+		return amount * item_def.gold_value
+
+	return count * item_def.gold_value
+
+
 
 
 func get_item_def() -> ItemDef:
@@ -109,9 +118,11 @@ func merge(item_data: ItemData) -> void:
 
 		return
 
-	var new_count = count + item_data.get_count()
+	var amount = item_data.get_count()
 
-	count = new_count
+	add_amount(amount)
+
+	item_data.remove_amount(amount)
 
 	data_updated.emit(self)
 
