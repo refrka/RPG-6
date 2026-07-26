@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bi8xvbsytvcmc" path="res://state/idle_state.gd" id="3_fekyf"]
 [ext_resource type="Script" uid="uid://bcgv65yabwl21" path="res://state/interacting_state.gd" id="4_c4god"]
 [ext_resource type="Script" uid="uid://vq7ef14ysbcp" path="res://component/movement_component.gd" id="4_ft58q"]
+[ext_resource type="Script" uid="uid://1lrvndsneh4q" path="res://state/debug_state.gd" id="5_c4god"]
 [ext_resource type="Script" uid="uid://pkhxci2wpdl2" path="res://component/behavior_component.gd" id="5_nduuk"]
 [ext_resource type="Script" uid="uid://bf3fs8njbpjbb" path="res://component/navigation_component.gd" id="6_5yhso"]
 
@@ -42,6 +43,9 @@ script = ExtResource("3_fekyf")
 [node name="InteractingState" type="Node" parent="StateMachine" unique_id=831312156]
 script = ExtResource("4_c4god")
 metadata/_custom_type_script = "uid://bcgv65yabwl21"
+
+[node name="DebugState" type="Node" parent="StateMachine" unique_id=250164032]
+script = ExtResource("5_c4god")
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=298047762]
 

@@ -71,9 +71,9 @@ func _initialize() -> bool:
 
 	initialized = true
 
-	spawn_marked_entities()
-
 	initialize_objects()
+
+	spawn_marked_entities()
 
 	return true
 
@@ -128,6 +128,10 @@ func spawn_entity_node(entity_node: EntityNode, spawn_id: StringName) -> void:
 
 	entity_node.show()
 
+	if entity_node is PlayerNode:
+
+		entity_node.active_spawn_point = spawn_point
+
 
 
 
@@ -138,6 +142,8 @@ func initialize_objects() -> void:
 
 		object_node._initialize()
 
+		object_node.authored = true
+
 
 
 func initialize_characters() -> void:
@@ -146,6 +152,7 @@ func initialize_characters() -> void:
 
 		character_node._initialize()
 
+		character_node.authored = true
 
 
 
@@ -167,6 +174,12 @@ func initialize_characters() -> void:
 
 
 
+
+
+
+func get_location_id() -> StringName:
+
+	return location_id
 
 
 

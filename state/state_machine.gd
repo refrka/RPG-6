@@ -47,6 +47,18 @@ func request_state(state_script: Script) -> void:
 
 
 
+func request_state_index(index: int) -> void:
+
+	var new_state = get_child_state(index)
+
+	if new_state:
+
+		_change_state(new_state)
+
+
+
+
+
 func get_current_state() -> State:
 
 	return current_state
@@ -65,7 +77,13 @@ func get_state(state_script: Script) -> State:
 
 
 
+func get_child_state(index: int) -> State:
 
+	if get_children().size() - 1 < index:
+
+		return null
+
+	return get_child(index)
 
 
 

@@ -200,21 +200,25 @@ func _load_game(save_data: SaveData) -> void:
 
 	active_save_data.load_dictionary()
 
-	var location_id = active_save_data.last_dict["saved_location_id"]
-
-	var spawn_id = active_save_data.last_dict["saved_spawn_id"]
-
-	if location_id == "":
-
-		location_id = "forest_start"
-
-		spawn_id = "start"
-
-		pass
-
 	player = get_player()
 
-	player._load_dictionary(active_save_data.last_dict["player"])
+	var location_id:= &""
+
+	var spawn_id:= &""
+
+	if active_save_data.last_dict["player"].is_empty():
+
+		location_id = &"forest_start"
+
+		spawn_id = &"start"
+
+	else:
+
+		player._load_dictionary(active_save_data.last_dict["player"])
+
+		location_id = active_save_data.last_dict["player"]["location_id"]
+
+		spawn_id = active_save_data.last_dict["player"]["spawn_id"]
 
 	var world_scene = Scenes.get_world_scene()
 	

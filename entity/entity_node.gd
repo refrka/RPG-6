@@ -5,8 +5,6 @@ class_name EntityNode extends PhysicsBody2D
 
 @export var entity_def: EntityDef
 
-@export var entity_data: EntityData
-
 
 
 
@@ -26,6 +24,8 @@ class_name EntityNode extends PhysicsBody2D
 var active:= false
 
 var initialized:= false
+
+var authored:= false
 
 
 
@@ -85,11 +85,6 @@ func get_entity_def() -> EntityDef:
 
 
 
-func get_entity_data() -> EntityData:
-
-	return entity_data
-
-
 
 func get_entity_id() -> StringName:
 
@@ -142,8 +137,7 @@ func get_component(component_script: Script) -> Component:
 	return null
 
 
-
-
+	
 
 
 func reset() -> void:
@@ -184,6 +178,10 @@ func _get_dictionary() -> Dictionary:
 
 	var save_dict = {}
 
+	save_dict["location_id"] = Scenes.get_location_scene().get_location_id()
+
+	save_dict["state"] = state_machine.current_state.get_index()
+
 	save_dict["inventory"] = inventory.get_dictionary()
 
 	return save_dict
@@ -197,3 +195,5 @@ func _load_dictionary(save_dict: Dictionary) -> void:
 	if save_dict.has("inventory"):
 
 		inventory.load_dictionary(save_dict["inventory"])
+
+	state_machine.request_state_index(int(save_dict["state"]))
