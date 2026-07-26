@@ -70,6 +70,7 @@ func _can_interact() -> bool:
 	return true
 
 
+
 func _can_end() -> bool:
 
 	var dialogue_panel = UI.get_overlay(DialoguePanel)
