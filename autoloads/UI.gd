@@ -6,6 +6,8 @@ signal popup_boolean_completed(state: bool)
 
 @onready var popup_scene:= preload("res://ui/game_popup.tscn")
 
+@onready var count_selector_scene:= preload("res://ui/count_selector.tscn")
+
 
 
 var overlay_registry: Dictionary[Script, Overlay]
@@ -14,6 +16,8 @@ var active_overlays: Array[Overlay]
 
 var pause_overlays: Array[Overlay]
 
+
+var overlay_root: Control
 
 var notice_root: NoticeRoot
 
@@ -24,6 +28,8 @@ var popup_root: Control
 func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
+
+	overlay_root = get_tree().get_first_node_in_group("overlay_root")
 
 	notice_root = get_tree().get_first_node_in_group("notice_root")
 
@@ -118,7 +124,7 @@ func deactivate_overlays() -> void:
 
 
 
-# Notices, Popups
+# Various overlays: Notices, Popups, Dialogue, CountSelector
 
 
 func show_notice(primary: String, secondary:= "") -> Notice:
@@ -174,6 +180,22 @@ func close_dialogue_panel() -> void:
 	if active_overlays.has(overlay):
 
 		remove_overlay(overlay)
+		
+		
+		
+		
+func show_count_selector(min_count: int, max_count: int, use_float:= true) -> CountSelector:
+
+	var overlay = count_selector_scene.instantiate() as CountSelector
+
+	overlay.set_count(min_count, max_count, use_float)
+
+	overlay_root.add_child(overlay)
+
+	add_overlay(overlay)
+
+	return overlay
+
 
 
 

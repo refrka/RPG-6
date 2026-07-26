@@ -12,6 +12,7 @@ signal item_data_removed(item_data: ItemData)
 @export var item_list: Array[ItemData]
 
 
+@export var equipped_items: Array
 
 
 

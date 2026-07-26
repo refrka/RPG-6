@@ -39,7 +39,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("5_8gxew")
 
-[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=210114002]
+[node name="OverlayRoot" type="Control" parent="OverlayCanvas" unique_id=210114002 groups=["overlay_root"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,7 +77,6 @@ mouse_filter = 2
 [node name="GameMenu" parent="GameMenuCanvas/Control" unique_id=630146995 instance=ExtResource("6_8gxew")]
 visible = false
 layout_mode = 1
-pause = true
 
 [node name="DebugCanvas" type="CanvasLayer" parent="." unique_id=53035952]
 

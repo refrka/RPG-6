@@ -108,7 +108,7 @@ func save() -> void:
 
 	Saves.save_game(active_save_data)
 
-	Events.fire(GameSavedEvent)
+	Events.fire(GameSavedEvent, {}, true)
 
 
 

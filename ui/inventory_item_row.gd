@@ -3,6 +3,8 @@ class_name InventoryItemRow extends PanelContainer
 
 signal row_selected(row: InventoryItemRow)
 
+signal discard_requested(row: InventoryItemRow)
+
 
 
 @export var item_name_label: Label
@@ -45,7 +47,7 @@ func _ready() -> void:
 
 	info_section.hide()
 
-	discard_button.connect(_on_discard_pressed)
+	discard_button.pressed.connect(_on_discard_pressed)
 
 
 
@@ -58,15 +60,9 @@ func load_item_data(_item_data: ItemData) -> void:
 
 	item_name_label.text = item_data.get_display_name()
 
-	var count = item_data.get_count()
+	_update_count_label()
 
-	if count > 1:
-
-		item_count_label.text = "(%s)" % item_data.get_count()
-
-	else:
-
-		item_count_label.text = ""
+	item_data.count_updated.connect(_on_count_updated)
 
 
 
@@ -98,6 +94,22 @@ func deselect() -> void:
 
 		_on_hover_state_changed(true)
 
+
+
+
+func _update_count_label() -> void:
+
+	var count = item_data.get_count()
+
+	if count > 1:
+
+		item_count_label.text = "(%s)" % item_data.get_count()
+
+	else:
+
+		item_count_label.text = ""
+
+	
 
 
 
@@ -164,10 +176,16 @@ func _on_gui_input_received(event: InputEvent) -> void:
 
 
 
+func _on_count_updated(_item_data: ItemData, _amount: int, _added: bool) -> void:
+
+	_update_count_label()
+
+
+
 
 func _on_discard_pressed() -> void:
 
-	pass
+	discard_requested.emit(self)
 
 
 

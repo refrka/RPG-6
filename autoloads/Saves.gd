@@ -44,8 +44,6 @@ func create_save(save_name: String) -> void:
 
 	var save_data = SaveData.create(save_dict)
 
-	save_game(save_data)
-
 	current_saves.append(save_data)
 
 	save_list_updated.emit()
