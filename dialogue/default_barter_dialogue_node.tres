@@ -1,9 +1,16 @@
 [gd_resource type="Resource" script_class="BarterDialogueNode" format=3 uid="uid://bmd7oh12e0rfe"]
 
 [ext_resource type="Script" uid="uid://bkrnyugdunr74" path="res://dialogue/dialogue_node.gd" id="1_hrlng"]
+[ext_resource type="Script" uid="uid://cx53ispevo7qo" path="res://dialogue/dialogue_text.gd" id="1_nlaqg"]
 [ext_resource type="Script" uid="uid://mynfdqbeglse" path="res://dialogue/barter_dialogue_node.gd" id="2_5lu4m"]
+
+[sub_resource type="Resource" id="Resource_jb55o"]
+script = ExtResource("1_nlaqg")
+lines = Array[String](["Wtf u want"])
+metadata/_custom_type_script = "uid://cx53ispevo7qo"
 
 [resource]
 script = ExtResource("2_5lu4m")
 option_text = "I'd like to trade a few things."
+dialogue_text = SubResource("Resource_jb55o")
 metadata/_custom_type_script = "uid://bkrnyugdunr74"

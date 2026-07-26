@@ -212,9 +212,9 @@ func _on_option_selected(dialogue_node: DialogueNode) -> void:
 
 
 
-func _on_barter_selected() -> void:
+func _on_barter_selected(barter_dialogue_node: BarterDialogueNode) -> void:
 
-	UI.show_barter_panel(current_source)
+	UI.show_barter_panel(current_source, barter_dialogue_node)
 
 
 

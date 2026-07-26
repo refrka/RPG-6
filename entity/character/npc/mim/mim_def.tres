@@ -4,6 +4,10 @@
 [ext_resource type="Script" uid="uid://blpal0bvr8gox" path="res://behavior/behavior.gd" id="1_jnk4k"]
 [ext_resource type="Script" uid="uid://5usslouxxk5f" path="res://behavior/behaviors/wander_behavior.gd" id="2_egusr"]
 [ext_resource type="Script" uid="uid://cb1nu8gaq2eae" path="res://behavior/behavior_profile.gd" id="3_wajie"]
+[ext_resource type="Script" uid="uid://c0nluvwuebw73" path="res://equipment/equipment_data.gd" id="4_lvm7h"]
+[ext_resource type="Script" uid="uid://buyl122k0580n" path="res://item/item_data.gd" id="5_j83uu"]
+[ext_resource type="Resource" uid="uid://c6473c6c2pcdx" path="res://item/consumable/potion/light_health_potion_def.tres" id="6_jvrim"]
+[ext_resource type="Script" uid="uid://bilua2f5kf02o" path="res://item/inventory.gd" id="7_crwam"]
 
 [sub_resource type="Resource" id="Resource_egusr"]
 script = ExtResource("2_egusr")
@@ -17,6 +21,17 @@ script = ExtResource("3_wajie")
 behaviors = Array[ExtResource("1_jnk4k")]([SubResource("Resource_egusr")])
 metadata/_custom_type_script = "uid://cb1nu8gaq2eae"
 
+[sub_resource type="Resource" id="Resource_j3hrn"]
+script = ExtResource("5_j83uu")
+item_def = ExtResource("6_jvrim")
+count = 5
+metadata/_custom_type_script = "uid://buyl122k0580n"
+
+[sub_resource type="Resource" id="Resource_qg0wm"]
+script = ExtResource("7_crwam")
+item_list = Array[ExtResource("5_j83uu")]([SubResource("Resource_j3hrn")])
+metadata/_custom_type_script = "uid://bilua2f5kf02o"
+
 [resource]
 script = ExtResource("1_jailc")
 unique_id = &"mim"
@@ -24,4 +39,5 @@ entity_id = &"mim"
 display_name = "Mim"
 scene_path = "res://entity/character/npc/mim/mim.tscn"
 behavior_profile = SubResource("Resource_jnk4k")
+default_inventory = SubResource("Resource_qg0wm")
 metadata/_custom_type_script = "uid://d2ougu0lbgskp"

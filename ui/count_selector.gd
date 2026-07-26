@@ -4,6 +4,10 @@ class_name CountSelector extends Overlay
 signal count_submitted(count: float)
 
 
+@export var title_label: Label
+
+@export var title_section: VBoxContainer
+
 @export var current_amount_label: Label
 
 @export var min_amount_label: Label
@@ -23,6 +27,8 @@ var min_count: float
 
 var max_count: float
 
+var title: String
+
 
 func _ready() -> void:
 
@@ -33,6 +39,22 @@ func _ready() -> void:
 	count_slider.value_changed.connect(_on_count_changed)
 
 	current_amount_label.text = "0"
+
+	if title == "":
+
+		title_section.hide()
+
+
+
+
+func set_title(_title: String) -> void:
+
+	title = _title
+
+	title_section.show()
+
+	title_label.text = title
+
 
 
 

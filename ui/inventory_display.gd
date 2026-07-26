@@ -1,6 +1,10 @@
 class_name InventoryDisplay extends MarginContainer
 
 
+signal buy_requested
+
+signal sell_requested
+
 
 
 @onready var inventory_item_row_scene:= preload("res://ui/inventory_item_row.tscn")
@@ -279,7 +283,7 @@ func _on_row_selected(row: InventoryItemRow) -> void:
 
 func _on_discard_requested(row: InventoryItemRow) -> void:
 
-	var count_selector = UI.show_count_selector(0, row.item_data.get_count(), false)
+	var count_selector = UI.show_count_selector(0, row.item_data.get_count(), "Discarding %s" % row.item_data.get_display_name(), false)
 
 	count_selector.count_submitted.connect(_on_discard_count_submitted.bind(row.item_data))
 
@@ -374,9 +378,9 @@ func _on_reset_pressed() -> void:
 
 func _on_buy_requested(row: BarterItemRow) -> void:
 
-	pass
+	buy_requested.emit(row.item_data)
 
 
 func _on_sell_requested(row: BarterItemRow) -> void:
 
-	pass
+	sell_requested.emit(row.item_data)

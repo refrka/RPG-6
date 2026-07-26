@@ -146,7 +146,6 @@ func show_notice(primary: String, secondary:= "") -> Notice:
 
 
 
-
 func show_popup(mode: GamePopup.PopupMode, message: String, title:= "") -> GamePopup:
 
 	var popup = popup_scene.instantiate() as GamePopup
@@ -168,7 +167,6 @@ func show_popup(mode: GamePopup.PopupMode, message: String, title:= "") -> GameP
 
 
 
-
 func show_dialogue_panel(greeting: Greeting, options: Array[DialogueNode] = [], source: EntityNode = null) -> DialoguePanel:
 
 	var dialogue_panel = get_overlay(DialoguePanel) as DialoguePanel
@@ -182,7 +180,7 @@ func show_dialogue_panel(greeting: Greeting, options: Array[DialogueNode] = [], 
 
 
 
-func show_barter_panel(target_entity: EntityNode) -> BarterPanel:
+func show_barter_panel(target_entity: EntityNode, barter_dialogue_node: BarterDialogueNode) -> BarterPanel:
 
 	var barter_panel = get_overlay(BarterPanel) as BarterPanel
 
@@ -190,7 +188,31 @@ func show_barter_panel(target_entity: EntityNode) -> BarterPanel:
 
 	add_overlay(barter_panel)
 
+	barter_panel.set_dialogue_text(barter_dialogue_node.dialogue_text)
+
 	return barter_panel
+		
+		
+		
+func show_count_selector(min_count: int, max_count: int, title:= "", use_float:= true) -> CountSelector:
+
+	var overlay = count_selector_scene.instantiate() as CountSelector
+
+	if title != "":
+
+		overlay.set_title(title)
+
+	overlay.set_count(min_count, max_count, use_float)
+
+	overlay_root.add_child(overlay)
+
+	add_overlay(overlay)
+
+	return overlay
+
+
+
+
 
 
 
@@ -206,6 +228,7 @@ func close_dialogue_panel() -> void:
 
 
 
+
 func close_barter_panel() -> void:
 
 	var overlay = get_overlay(BarterPanel)
@@ -213,22 +236,6 @@ func close_barter_panel() -> void:
 	if active_overlays.has(overlay):
 
 		remove_overlay(overlay)
-		
-		
-		
-		
-func show_count_selector(min_count: int, max_count: int, use_float:= true) -> CountSelector:
-
-	var overlay = count_selector_scene.instantiate() as CountSelector
-
-	overlay.set_count(min_count, max_count, use_float)
-
-	overlay_root.add_child(overlay)
-
-	add_overlay(overlay)
-
-	return overlay
-
 
 
 

@@ -15,7 +15,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="BarterPanel" type="MarginContainer" unique_id=2054198806 node_paths=PackedStringArray("barter_title_label", "close_button", "player_inventory_display", "entity_inventory_display")]
+[node name="BarterPanel" type="MarginContainer" unique_id=2054198806 node_paths=PackedStringArray("barter_title_label", "dialogue_text_label", "close_button", "player_inventory_display", "entity_inventory_display")]
 process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +26,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rrc1d")
 barter_title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/BarterTitleLabel")
+dialogue_text_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/DialogueTextLabel")
 close_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/CloseButton")
 player_inventory_display = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/PlayerInventoryDisplay")
 entity_inventory_display = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/EntityInventoryDisplay")

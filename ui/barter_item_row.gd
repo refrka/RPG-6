@@ -19,6 +19,8 @@ var is_player_side:= true
 
 func _ready() -> void:
 
+	super()
+
 	buy_button.pressed.connect(_on_buy_pressed)
 
 	sell_button.pressed.connect(_on_sell_pressed)

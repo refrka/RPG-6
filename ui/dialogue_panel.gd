@@ -156,7 +156,7 @@ func _on_option_selected(option: DialogueNode) -> void:
 
 	if option is BarterDialogueNode:
 
-		barter_selected.emit()
+		barter_selected.emit(option)
 
 	else:
 
