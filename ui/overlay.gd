@@ -1,6 +1,10 @@
 class_name Overlay extends Control
 
 
+@warning_ignore("unused_signal")
+
+signal close_requested
+
 
 @export var pause:= false
 
@@ -30,6 +34,10 @@ func _exit_tree() -> void:
 
 
 
+
+func _close() -> void:
+
+	pass
 
 
 

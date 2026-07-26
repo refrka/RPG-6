@@ -2,8 +2,6 @@ class_name DialoguePanel extends Overlay
 
 
 
-signal panel_closed
-
 signal option_selected
 
 
@@ -128,7 +126,7 @@ func _show_current_options() -> void:
 
 
 
-func _close_dialogue() -> void:
+func _close() -> void:
 
 	line_index = -1
 
@@ -137,8 +135,6 @@ func _close_dialogue() -> void:
 	current_source = null
 
 	current_options.clear()
-
-	panel_closed.emit()
 
 
 	
@@ -177,14 +173,14 @@ func _deactivate() -> void:
 
 	if current_source:
 
-		_close_dialogue()
+		_close()
 
 
 
 
 func _on_close_pressed() -> void:
 
-	_close_dialogue()
+	close_requested.emit()
 
 
 

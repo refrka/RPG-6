@@ -7,6 +7,12 @@ class_name InventoryDisplay extends MarginContainer
 
 @onready var equipment_item_row_scene:= preload("res://ui/equipment_item_row.tscn")
 
+@onready var barter_item_row_scene:= preload("res://ui/barter_item_row.tscn")
+
+
+@export var is_barter_inventory:= false
+
+@export var is_player_side:= true
 
 
 @export var item_list: VBoxContainer
@@ -87,6 +93,10 @@ func filter_equipment_type(equipment_type: EquipmentDef.EquipmentType) -> void:
 
 			row.hide()
 
+			if row == selected_row:
+
+				_deselect_row(row)
+
 
 
 
@@ -110,27 +120,39 @@ func _add_item_row(item_data: ItemData) -> InventoryItemRow:
 
 	var row: InventoryItemRow = null
 
-	match item_data.get_script():
+	if is_barter_inventory:
 
-		EquipmentData:
+		row = barter_item_row_scene.instantiate() as BarterItemRow
 
-			row = equipment_item_row_scene.instantiate() as EquipmentItemRow
+		row.buy_requested.connect(_on_buy_requested)
 
-			row.equip_requested.connect(_on_equip_requested)
+		row.sell_requested.connect(_on_sell_requested)
 
-			row.unequip_requested.connect(_on_unequip_requested)
+		row.set_barter_side(is_player_side)
 
-			row.set_equipped(inventory.is_item_data_equipped(item_data))
+	else:
 
-		_:
+		match item_data.get_script():
 
-			row = inventory_item_row_scene.instantiate() as InventoryItemRow
+			EquipmentData:
+
+				row = equipment_item_row_scene.instantiate() as EquipmentItemRow
+
+				row.equip_requested.connect(_on_equip_requested)
+
+				row.unequip_requested.connect(_on_unequip_requested)
+
+				row.set_equipped(inventory.is_item_data_equipped(item_data))
+
+			_:
+
+				row = inventory_item_row_scene.instantiate() as InventoryItemRow
+
+		row.discard_requested.connect(_on_discard_requested)
 
 	row.load_item_data(item_data)
 
 	row.row_selected.connect(_on_row_selected)
-
-	row.discard_requested.connect(_on_discard_requested)
 
 	item_row_registry[item_data] = row
 
@@ -194,6 +216,10 @@ func _filter_item_name(item_name: String) -> void:
 			else:
 
 				row.hide()
+
+				if row == selected_row:
+
+					_deselect_row(row)
 
 
 
@@ -331,3 +357,18 @@ func _on_reset_pressed() -> void:
 	filter_entry.clear()
 
 	_show_all_rows()
+
+	if selected_row:
+
+		_deselect_row(selected_row)
+
+
+
+func _on_buy_requested(row: BarterItemRow) -> void:
+
+	pass
+
+
+func _on_sell_requested(row: BarterItemRow) -> void:
+
+	pass

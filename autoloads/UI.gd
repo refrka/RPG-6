@@ -44,6 +44,8 @@ func register_overlay(overlay: Overlay) -> void:
 
 	overlay_registry[script] = overlay
 
+	overlay.close_requested.connect(_on_overlay_close_requested.bind(overlay))
+
 
 
 
@@ -172,6 +174,19 @@ func show_dialogue_panel(greeting: Greeting, options: Array[DialogueNode] = [], 
 
 
 
+func show_barter_panel(target_entity: EntityNode) -> BarterPanel:
+
+	var barter_panel = get_overlay(BarterPanel) as BarterPanel
+
+	barter_panel.load_barter_inventories(target_entity)
+
+	add_overlay(barter_panel)
+
+	return barter_panel
+
+
+
+
 
 func close_dialogue_panel() -> void:
 
@@ -255,3 +270,11 @@ func _on_popup_boolean_completed(popup: GamePopup, state: bool) -> void:
 	popup.queue_free()
 
 	popup_boolean_completed.emit(state)
+
+
+
+func _on_overlay_close_requested(overlay: Overlay) -> void:
+
+	overlay._close()
+
+	remove_overlay(overlay)

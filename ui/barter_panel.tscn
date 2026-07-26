@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://dttsvx1tlyvxa"]
+
+[ext_resource type="Script" uid="uid://jog3c0rggjrp" path="res://ui/barter_panel.gd" id="1_rrc1d"]
+[ext_resource type="PackedScene" uid="uid://xehidxldd314" path="res://ui/inventory_display.tscn" id="2_jb55o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrc1d"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.16, 0.16, 0.16, 0.76862746)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="BarterPanel" type="MarginContainer" unique_id=2054198806 node_paths=PackedStringArray("barter_title_label", "close_button", "player_inventory_display", "entity_inventory_display")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rrc1d")
+barter_title_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/BarterTitleLabel")
+close_button = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/CloseButton")
+player_inventory_display = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/PlayerInventoryDisplay")
+entity_inventory_display = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/EntityInventoryDisplay")
+pause = true
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1101724538]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rrc1d")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=702114471]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=715139663]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=245419873]
+layout_mode = 2
+
+[node name="BarterTitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1715203648]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Bartering with entity_name"
+
+[node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=754913449]
+custom_minimum_size = Vector2(70, 30)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Close"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1417640220]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=139810264]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1325385038]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2" unique_id=861648247]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=1958465795]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer" unique_id=562695548]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Your Inventory"
+horizontal_alignment = 1
+
+[node name="PlayerInventoryDisplay" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=620134775 instance=ExtResource("2_jb55o")]
+layout_mode = 2
+size_flags_vertical = 3
+is_barter_inventory = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1491434190]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=718133439]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=450601330]
+layout_mode = 2
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=783467854]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Their Inventory"
+horizontal_alignment = 1
+
+[node name="EntityInventoryDisplay" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1083932100 instance=ExtResource("2_jb55o")]
+layout_mode = 2
+size_flags_vertical = 3
+is_barter_inventory = true
+is_player_side = false

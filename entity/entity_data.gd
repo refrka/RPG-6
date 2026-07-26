@@ -11,3 +11,8 @@ class_name EntityData extends Resource
 func get_entity_def() -> EntityDef:
 
 	return entity_def
+
+
+
+
+

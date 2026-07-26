@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dnioyds56osyb"]
+
+[ext_resource type="PackedScene" uid="uid://dm4i4p05ln46a" path="res://ui/inventory_item_row.tscn" id="1_bhe32"]
+[ext_resource type="Script" uid="uid://bprtlbm0pdjh6" path="res://ui/barter_item_row.gd" id="2_w5vfy"]
+
+[node name="BarterItemRow" unique_id=538571362 node_paths=PackedStringArray("buy_button", "sell_button") instance=ExtResource("1_bhe32")]
+script = ExtResource("2_w5vfy")
+buy_button = NodePath("InputMask/MarginContainer/ButtonList/BuyButton")
+sell_button = NodePath("InputMask/MarginContainer/ButtonList/SellButton")
+
+[node name="BuyButton" type="Button" parent="InputMask/MarginContainer/ButtonList" parent_id_path=PackedInt32Array(1810895790) index="0" unique_id=1717437307]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+mouse_filter = 1
+text = "Buy"
+
+[node name="SellButton" type="Button" parent="InputMask/MarginContainer/ButtonList" parent_id_path=PackedInt32Array(1810895790) index="1" unique_id=1477923755]
+custom_minimum_size = Vector2(90, 30)
+layout_mode = 2
+mouse_filter = 1
+text = "Sell"
+
+[node name="DiscardButton" parent="InputMask/MarginContainer/ButtonList" parent_id_path=PackedInt32Array(1810895790) index="2" unique_id=370883117]
+visible = false

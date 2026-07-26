@@ -1,12 +1,14 @@
 class_name ProfilePanel extends Overlay
 
 
-signal equip_requested
-
-signal unequip_requested
 
 
 @export var inventory_display: InventoryDisplay
+
+@export var player_name_label: Label
+
+@export var close_button: Button
+
 
 
 @export var equipment_slots: Array[ProfileEquipmentSlot]
@@ -27,12 +29,16 @@ func _ready() -> void:
 
 		slot.unequip_requested.connect(_on_slot_unequip_requested)
 
+	close_button.pressed.connect(_on_close_pressed)
+
 
 
 
 func load_player() -> void:
 
 	var player = Game.get_player()
+
+	player_name_label.text = player.get_display_name()
 
 	inventory_display.load_inventory(player.inventory)
 
@@ -115,3 +121,9 @@ func _on_item_unequipped(equipment_data: EquipmentData) -> void:
 	var slot = _get_equipment_slot(equipment_type)
 
 	slot.clear()
+
+
+
+func _on_close_pressed() -> void:
+
+	close_requested.emit()

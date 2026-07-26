@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c8hh2ld1sj1o5" path="res://ui/profile_panel.tscn" id="6_6t5o2"]
 [ext_resource type="PackedScene" uid="uid://c5nb2o6fata6k" path="res://ui/game_menu.tscn" id="6_8gxew"]
 [ext_resource type="PackedScene" uid="uid://g3o0lv7ydx5o" path="res://ui/dialogue_panel.tscn" id="6_ledqy"]
+[ext_resource type="PackedScene" uid="uid://dttsvx1tlyvxa" path="res://ui/barter_panel.tscn" id="8_aiwur"]
 
 [node name="GameRoot" type="Node" unique_id=828412104]
 script = ExtResource("1_pjpa4")
@@ -49,9 +50,14 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="ProfilePanel" parent="OverlayCanvas/OverlayRoot" unique_id=1854928978 instance=ExtResource("6_6t5o2")]
+visible = false
 layout_mode = 1
 
 [node name="DialoguePanel" parent="OverlayCanvas/OverlayRoot" unique_id=1873824031 instance=ExtResource("6_ledqy")]
+visible = false
+layout_mode = 1
+
+[node name="BarterPanel" parent="OverlayCanvas/OverlayRoot" unique_id=2054198806 instance=ExtResource("8_aiwur")]
 layout_mode = 1
 
 [node name="PopupRoot" type="Control" parent="OverlayCanvas" unique_id=813551230 groups=["popup_root"]]

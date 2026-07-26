@@ -64,15 +64,6 @@ func _initialize() -> bool:
 
 
 
-func _load(_entity_data: EntityData = null) -> bool:
-
-	return true
-
-
-
-
-
-
 
 func reposition(new_position: Vector2) -> void:
 

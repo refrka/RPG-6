@@ -22,7 +22,7 @@ func _ready() -> void:
 
 	dialogue_panel = UI.get_overlay(DialoguePanel)
 
-	dialogue_panel.panel_closed.connect(_on_dialogue_panel_closed)
+	dialogue_panel.close_requested.connect(_on_dialogue_close_requested)
 
 	dialogue_panel.option_selected.connect(_on_option_selected)
 
@@ -173,7 +173,7 @@ func _get_quest_dialogue_nodes(source: EntityNode) -> Array[DialogueNode]:
 
 
 
-func _on_dialogue_panel_closed() -> void:
+func _on_dialogue_close_requested() -> void:
 
 	end_dialogue()
 

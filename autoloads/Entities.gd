@@ -73,6 +73,21 @@ func create_entity_node(entity_def: EntityDef) -> EntityNode:
 
 
 
+func create_entity_data(entity_def: EntityDef) -> EntityData:
+
+	var entity_data: EntityData = null
+
+	if entity_def is CharacterDef:
+
+		entity_data = CharacterData.new()
+
+	elif entity_def is ObjectDef:
+
+		entity_data = ObjectData.new()
+
+	entity_data.entity_def = entity_def
+
+	return entity_data
 
 
 
