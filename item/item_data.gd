@@ -59,10 +59,11 @@ func remove_amount(amount: int) -> void:
 
 
 
+
+
 func get_item_def() -> ItemDef:
 
 	return item_def
-
 
 
 func get_count() -> int:
@@ -70,16 +71,28 @@ func get_count() -> int:
 	return count
 
 
-
 func get_display_name() -> String:
+
+	if item_def.display_name == "":
+
+		return item_def.item_id.replace("_", " ")
 
 	return item_def.display_name
 
+
+func get_description() -> String:
+
+	return item_def.description
 
 
 func get_item_id() -> StringName:
 
 	return item_def.item_id
+
+
+
+
+
 
 
 

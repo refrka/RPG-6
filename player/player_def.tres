@@ -20,7 +20,7 @@ item_def = ExtResource("3_3jfkr")
 count = 5
 metadata/_custom_type_script = "uid://buyl122k0580n"
 
-[sub_resource type="Resource" id="Resource_navj7"]
+[sub_resource type="Resource" id="Resource_ajxwt"]
 script = ExtResource("5_ss7w3")
 item_def = ExtResource("4_k6jhg")
 count = 1
@@ -28,7 +28,7 @@ metadata/_custom_type_script = "uid://c0nluvwuebw73"
 
 [sub_resource type="Resource" id="Resource_cujn1"]
 script = ExtResource("2_y8wuh")
-item_list = Array[ExtResource("1_8fxaj")]([SubResource("Resource_o2oj7"), SubResource("Resource_3ptas"), SubResource("Resource_navj7")])
+item_list = Array[ExtResource("1_8fxaj")]([SubResource("Resource_o2oj7"), SubResource("Resource_3ptas"), SubResource("Resource_ajxwt")])
 
 [resource]
 script = ExtResource("1_cujn1")

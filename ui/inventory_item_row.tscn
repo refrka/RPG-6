@@ -50,7 +50,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="InventoryItemRow" type="PanelContainer" unique_id=538571362 node_paths=PackedStringArray("item_name_label", "item_count_label", "button_list", "input_mask", "info_section", "discard_button")]
+[node name="InventoryItemRow" type="PanelContainer" unique_id=538571362 node_paths=PackedStringArray("item_name_label", "description_label", "item_count_label", "button_list", "input_mask", "info_section", "discard_button")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 32.0
@@ -58,6 +58,7 @@ grow_horizontal = 2
 mouse_filter = 2
 script = ExtResource("1_navj7")
 item_name_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Label")
+description_label = NodePath("MarginContainer/VBoxContainer/InfoSection/VBoxContainer/MarginContainer/VBoxContainer/DescriptionLabel")
 item_count_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Label2")
 button_list = NodePath("InputMask/MarginContainer/ButtonList")
 input_mask = NodePath("InputMask")

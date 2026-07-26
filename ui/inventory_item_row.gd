@@ -9,6 +9,8 @@ signal discard_requested(row: InventoryItemRow)
 
 @export var item_name_label: Label
 
+@export var description_label: Label
+
 @export var item_count_label: Label
 
 @export var button_list: HBoxContainer
@@ -59,6 +61,8 @@ func load_item_data(_item_data: ItemData) -> void:
 	item_data = _item_data
 
 	item_name_label.text = item_data.get_display_name()
+
+	description_label.text = item_data.get_description()
 
 	_update_count_label()
 

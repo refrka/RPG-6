@@ -1,6 +1,8 @@
 class_name InventoryDisplay extends MarginContainer
 
 
+
+
 @onready var inventory_item_row_scene:= preload("res://ui/inventory_item_row.tscn")
 
 @onready var equipment_item_row_scene:= preload("res://ui/equipment_item_row.tscn")
@@ -36,6 +38,14 @@ func load_inventory(_inventory: Inventory) -> void:
 
 	inventory = _inventory
 
+	inventory.item_data_added.connect(_on_item_data_added)
+
+	inventory.item_data_removed.connect(_on_item_data_removed)
+
+	inventory.item_equipped.connect(_on_item_equipped)
+
+	inventory.item_unequipped.connect(_on_item_unequipped)
+
 	_load_item_list()
 
 
@@ -62,31 +72,46 @@ func _load_item_list() -> void:
 
 	var items = inventory.item_list.duplicate()
 
-	var row: InventoryItemRow = null
+	items.sort_custom(_sort_alphabetical)
 
 	for item_data in items:
 
-		match item_data.get_script():
-
-			EquipmentData:
-
-				row = equipment_item_row_scene.instantiate() as EquipmentItemRow
-
-			_:
-
-				row = inventory_item_row_scene.instantiate() as InventoryItemRow
-
-		row.load_item_data(item_data)
-
-		row.row_selected.connect(_on_row_selected)
-
-		row.discard_requested.connect(_on_discard_requested)
-
-		item_row_registry[item_data] = row
-
-		item_list.add_child(row)
+		_add_item_row(item_data)
 
 
+
+
+func _add_item_row(item_data: ItemData) -> InventoryItemRow:
+
+	var row: InventoryItemRow = null
+
+	match item_data.get_script():
+
+		EquipmentData:
+
+			row = equipment_item_row_scene.instantiate() as EquipmentItemRow
+
+			row.equip_requested.connect(_on_equip_requested)
+
+			row.unequip_requested.connect(_on_unequip_requested)
+
+			row.set_equipped(inventory.is_item_data_equipped(item_data))
+
+		_:
+
+			row = inventory_item_row_scene.instantiate() as InventoryItemRow
+
+	row.load_item_data(item_data)
+
+	row.row_selected.connect(_on_row_selected)
+
+	row.discard_requested.connect(_on_discard_requested)
+
+	item_row_registry[item_data] = row
+
+	item_list.add_child(row)
+
+	return row
 
 
 
@@ -145,6 +170,9 @@ func _filter_item_name(item_name: String) -> void:
 
 
 
+func _sort_alphabetical(item_data_a: ItemData, item_data_b: ItemData) -> bool:
+
+	return item_data_a.get_display_name().to_lower() < item_data_b.get_display_name().to_lower()
 
 
 
@@ -154,6 +182,19 @@ func _clear_item_list() -> void:
 	for row in item_list.get_children():
 
 		row.queue_free()
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -172,6 +213,19 @@ func _on_discard_requested(row: InventoryItemRow) -> void:
 
 
 
+func _on_equip_requested(row: EquipmentItemRow) -> void:
+
+	inventory.equip_item_data(row.item_data)
+
+
+
+func _on_unequip_requested(row: EquipmentItemRow) -> void:
+
+	inventory.unequip_item_data(row.item_data)
+
+
+
+
 
 func _on_discard_count_submitted(count: int, item_data: ItemData) -> void:
 
@@ -182,3 +236,52 @@ func _on_discard_count_submitted(count: int, item_data: ItemData) -> void:
 func _on_filter_text_changed(text: String) -> void:
 
 	_filter_item_name(text)
+
+
+
+
+func _on_item_equipped(equipment_data: EquipmentData) -> void:
+
+	if item_row_registry.has(equipment_data):
+
+		var row = item_row_registry[equipment_data]
+
+		row.set_equipped(true)
+
+
+
+func _on_item_unequipped(equipment_data: EquipmentData) -> void:
+
+	if item_row_registry.has(equipment_data):
+
+		var row = item_row_registry[equipment_data]
+
+		row.set_equipped(false)
+
+
+
+func _on_item_data_added(item_data: ItemData) -> void:
+
+	var row = _add_item_row(item_data)
+
+	item_row_registry[item_data] = row
+
+	var items = item_row_registry.keys().duplicate()
+
+	items.sort_custom(_sort_alphabetical)
+
+	var index = items.find(item_data)
+
+	item_list.move_child(row, index)
+
+
+
+
+
+func _on_item_data_removed(item_data: ItemData) -> void:
+
+	var row = item_row_registry[item_data]
+
+	row.queue_free()
+
+	item_row_registry.erase(item_data)

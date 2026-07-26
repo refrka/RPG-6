@@ -3,11 +3,19 @@
 [ext_resource type="PackedScene" uid="uid://dm4i4p05ln46a" path="res://ui/inventory_item_row.tscn" id="1_hs2xn"]
 [ext_resource type="Script" uid="uid://cekrf2vt3fret" path="res://ui/equipment_item_row.gd" id="2_pp1ms"]
 
-[node name="EquipmentItemRow" unique_id=538571362 instance=ExtResource("1_hs2xn")]
+[node name="EquipmentItemRow" unique_id=538571362 node_paths=PackedStringArray("equip_button", "unequip_button") instance=ExtResource("1_hs2xn")]
 script = ExtResource("2_pp1ms")
+equip_button = NodePath("InputMask/MarginContainer/ButtonList/EquipButton")
+unequip_button = NodePath("InputMask/MarginContainer/ButtonList/UnequipButton")
 
 [node name="EquipButton" type="Button" parent="InputMask/MarginContainer/ButtonList" parent_id_path=PackedInt32Array(1810895790) index="0" unique_id=1681367449]
 custom_minimum_size = Vector2(70, 30)
 layout_mode = 2
 mouse_filter = 1
 text = "Equip"
+
+[node name="UnequipButton" type="Button" parent="InputMask/MarginContainer/ButtonList" parent_id_path=PackedInt32Array(1810895790) index="1" unique_id=684979457]
+custom_minimum_size = Vector2(70, 30)
+layout_mode = 2
+mouse_filter = 1
+text = "Unequip"

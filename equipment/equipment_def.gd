@@ -14,4 +14,7 @@ enum EquipmentType {
 }
 
 
+@export var equipment_type: EquipmentType
+
+
 

@@ -5,16 +5,37 @@
 [ext_resource type="Script" uid="uid://cx53ispevo7qo" path="res://dialogue/dialogue_text.gd" id="2_q015w"]
 [ext_resource type="Script" uid="uid://dxhoiocbj8lkc" path="res://dialogue/greeting.gd" id="2_ulm3m"]
 [ext_resource type="Script" uid="uid://bpekxy4h5arnf" path="res://dialogue/dialogue_library.gd" id="3_q015w"]
+[ext_resource type="Script" uid="uid://8dctrkr4tont" path="res://command/command.gd" id="3_tp2fb"]
+[ext_resource type="Resource" uid="uid://bcwgsd18maldn" path="res://item/material/wood_def.tres" id="4_mtbw4"]
+[ext_resource type="Script" uid="uid://de81rpowjn4sl" path="res://command/add_items_to_player_inventory_command.gd" id="5_hgn0d"]
+[ext_resource type="Script" uid="uid://ck2xh3er21qsw" path="res://command/command_set.gd" id="6_0hqyi"]
+[ext_resource type="Script" uid="uid://o3ja5up848kc" path="res://command/conditional_command_set.gd" id="7_5jpms"]
 
 [sub_resource type="Resource" id="Resource_tan87"]
 script = ExtResource("2_q015w")
 lines = Array[String](["a suh dude"])
 metadata/_custom_type_script = "uid://cx53ispevo7qo"
 
+[sub_resource type="Resource" id="Resource_2co6o"]
+script = ExtResource("5_hgn0d")
+item_def = ExtResource("4_mtbw4")
+amount = 20
+
+[sub_resource type="Resource" id="Resource_a3l2y"]
+script = ExtResource("6_0hqyi")
+commands = Array[ExtResource("3_tp2fb")]([SubResource("Resource_2co6o")])
+metadata/_custom_type_script = "uid://ck2xh3er21qsw"
+
+[sub_resource type="Resource" id="Resource_rppns"]
+script = ExtResource("7_5jpms")
+command_set = SubResource("Resource_a3l2y")
+metadata/_custom_type_script = "uid://o3ja5up848kc"
+
 [sub_resource type="Resource" id="Resource_p32gx"]
 script = ExtResource("1_gi3sq")
 option_text = "Sup"
 dialogue_text = SubResource("Resource_tan87")
+enter_conditional = SubResource("Resource_rppns")
 metadata/_custom_type_script = "uid://bkrnyugdunr74"
 
 [sub_resource type="Resource" id="Resource_6hs1l"]

@@ -7,12 +7,16 @@ signal item_data_added(item_data: ItemData)
 
 signal item_data_removed(item_data: ItemData)
 
+signal item_equipped(equipment_data: EquipmentData)
+
+signal item_unequipped(equipment_data: EquipmentData)
+
 
 
 @export var item_list: Array[ItemData]
 
 
-@export var equipped_items: Array
+@export var equipment_slots: Dictionary[EquipmentDef.EquipmentType, EquipmentData]
 
 
 
@@ -23,6 +27,12 @@ func _initialize() -> void:
 	for item_data in item_list:
 
 		_connect_item_data(item_data)
+
+	equipment_slots[EquipmentDef.EquipmentType.WEAPON] = null
+
+	equipment_slots[EquipmentDef.EquipmentType.ARMOR] = null
+
+	equipment_slots[EquipmentDef.EquipmentType.ACCESSORY] = null
 
 
 
@@ -77,6 +87,7 @@ func add_items(item_def: ItemDef, amount:= 1) -> void:
 	
 
 
+
 func remove_items(item_def: ItemDef, amount:= 1) -> void:
 
 	var item_data = get_item_data_with_def(item_def)
@@ -90,6 +101,39 @@ func remove_items(item_def: ItemDef, amount:= 1) -> void:
 
 
 
+
+func equip_item_data(equipment_data: EquipmentData) -> void:
+
+	var equipment_type = equipment_data.get_equipment_type()
+
+	var equipped_data = get_equipment(equipment_type)
+
+	if equipped_data:
+
+		if equipped_data == equipment_data:
+
+			return
+
+		unequip_item_data(equipped_data)
+
+	equipment_slots[equipment_type] = equipment_data
+
+	item_equipped.emit(equipment_data)
+
+
+
+
+func unequip_item_data(equipment_data: EquipmentData) -> void:
+
+	var equipment_type = equipment_data.get_equipment_type()
+
+	var equipped_data = get_equipment(equipment_type)
+
+	if equipment_data == equipped_data:
+
+		equipment_slots[equipment_type] = null
+
+		item_unequipped.emit(equipment_data)
 
 
 
@@ -106,6 +150,24 @@ func get_item_data_with_def(item_def: ItemDef) -> ItemData:
 
 
 
+
+func get_equipment(equipment_type: EquipmentDef.EquipmentType) -> EquipmentData:
+
+	return equipment_slots[equipment_type]
+
+
+
+
+
+func is_item_data_equipped(equipment_data: EquipmentData) -> bool:
+
+	var equipment_type = equipment_data.get_equipment_type()
+
+	if get_equipment(equipment_type) == equipment_data:
+
+		return true
+
+	return false
 
 
 
