@@ -28,6 +28,8 @@ y_sort_enabled = true
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1161694570]
 path_desired_distance = 8.0
 target_desired_distance = 8.0
+avoidance_enabled = true
+debug_enabled = true
 
 [node name="StateMachine" type="Node" parent="." unique_id=2134553196 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_l8yc8")

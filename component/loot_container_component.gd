@@ -22,7 +22,7 @@ func _interact() -> bool:
 
 	entity.body_sprite.frame = 1
 
-	var loot = loot_table.get_loot(randf())
+	var loot = loot_table.get_loot()
 
 	var inventory_items = entity.inventory.item_list
 

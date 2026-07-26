@@ -8,13 +8,13 @@ class_name LootTable extends Resource
 
 
 
-func get_loot(roll: float) -> Dictionary[ItemDef, int]:
+func get_loot() -> Dictionary[ItemDef, int]:
 
 	var loot: Dictionary[ItemDef, int] = {}
 
 	for entry in entries:
 
-		var entry_loot = entry.get_loot(roll)
+		var entry_loot = entry.get_loot(randf())
 
 		for item_def in entry_loot:
 

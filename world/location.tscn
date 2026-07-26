@@ -21,10 +21,10 @@ tile_set = ExtResource("2_p32gx")
 [node name="YSortRoot" type="Node2D" parent="." unique_id=143465717]
 y_sort_enabled = true
 
-[node name="CharacterRoot" type="Node2D" parent="YSortRoot" unique_id=1096301681]
+[node name="CharacterRoot" type="Node2D" parent="YSortRoot" unique_id=1096301681 groups=["root_node"]]
 y_sort_enabled = true
 
-[node name="ObjectRoot" type="Node2D" parent="YSortRoot" unique_id=1098893851]
+[node name="ObjectRoot" type="Node2D" parent="YSortRoot" unique_id=1098893851 groups=["root_node"]]
 y_sort_enabled = true
 
 [node name="TransitionZoneRoot" type="Node2D" parent="." unique_id=1640348247]

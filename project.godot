@@ -35,6 +35,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
+[global_group]
+
+root_node=""
+
 [gui]
 
 theme/custom="uid://mcv076appql6"
