@@ -1,0 +1,1 @@
+class_name ItemsBoughtEvent extends GameEvent

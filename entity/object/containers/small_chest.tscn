@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dgfwfqpk5ibii"]
+
+[ext_resource type="PackedScene" uid="uid://jyrgqo755dng" path="res://entity/object/object_node.tscn" id="1_bottk"]
+[ext_resource type="Resource" uid="uid://dpsexyunl1ctj" path="res://entity/object/containers/small_chest_def.tres" id="2_3cadj"]
+[ext_resource type="Script" uid="uid://bby3wueu8yehd" path="res://component/loot_container_component.gd" id="2_w45xu"]
+[ext_resource type="Texture2D" uid="uid://chw48wepkv12p" path="res://entity/object/containers/small_chest_sprite.png" id="3_4o2gx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4o2gx"]
+size = Vector2(24, 8)
+
+[node name="SmallChest" unique_id=188428736 instance=ExtResource("1_bottk")]
+entity_def = ExtResource("2_3cadj")
+
+[node name="BodySprite" parent="VisualRoot" parent_id_path=PackedInt32Array(866277596) index="0" unique_id=1622163974]
+position = Vector2(0, -16)
+texture = ExtResource("3_4o2gx")
+hframes = 2
+
+[node name="BodyCollision" parent="." index="1" unique_id=1548032054]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_4o2gx")
+
+[node name="LootContainerComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1902725791) index="0" unique_id=1828522043]
+script = ExtResource("2_w45xu")

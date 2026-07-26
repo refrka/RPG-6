@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://u2gj13bgr5dt" path="res://entity/character/character_node.tscn" id="1_sq3cn"]
 [ext_resource type="Texture2D" uid="uid://dpdljxgpv44r" path="res://entity/character/npc/ap/ap_sprite.png" id="2_7q4k1"]
 [ext_resource type="Resource" uid="uid://bevlnbvr4lrxs" path="res://entity/character/npc/ap/ap_def.tres" id="2_fmiem"]
+[ext_resource type="Script" uid="uid://dl0uj3rt7fj45" path="res://component/interactable_component.gd" id="4_3b7s1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gnloq"]
 radius = 5.0
@@ -19,3 +20,7 @@ texture = ExtResource("2_7q4k1")
 position = Vector2(-0.5, -5)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_gnloq")
+
+[node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="3" unique_id=975199346]
+script = ExtResource("4_3b7s1")
+metadata/_custom_type_script = "uid://dl0uj3rt7fj45"

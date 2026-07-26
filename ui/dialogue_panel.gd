@@ -63,7 +63,7 @@ func set_dialogue(source: EntityNode, dialogue_text: DialogueText, options: Arra
 
 	line_index = -1
 
-	current_source = source
+	_set_source(source)
 
 	current_dialogue_text = dialogue_text
 
@@ -73,6 +73,16 @@ func set_dialogue(source: EntityNode, dialogue_text: DialogueText, options: Arra
 
 	_show_next_line()
 
+
+
+
+func _set_source(source: EntityNode) -> void:
+
+	if current_source != source:
+
+		current_source = source
+
+		source_name_label.text = current_source.get_display_name()
 
 
 

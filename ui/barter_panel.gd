@@ -34,6 +34,8 @@ func load_barter_inventories(_target_entity: EntityNode) -> void:
 
 	target_entity = _target_entity
 
+	barter_title_label.text = "Bartering with %s" % target_entity.get_display_name()
+
 	entity_inventory_display.load_inventory(target_entity.inventory)
 
 	var player = Game.get_player()
@@ -135,6 +137,10 @@ func _on_buy_requested(item_data: ItemData) -> void:
 
 
 
+
+
+
+
 func _on_sell_count_submitted(count: int, item_data: ItemData) -> void:
 
 	var total_value = item_data.get_total_value(count)
@@ -144,6 +150,8 @@ func _on_sell_count_submitted(count: int, item_data: ItemData) -> void:
 	player.inventory.transfer_item_data_to(item_data, target_entity.inventory, count)
 
 	target_entity.inventory.transfer_gold_to(total_value, player.inventory)
+
+	Events.fire(ItemsSoldEvent, {"item_def": item_data.get_item_def(), "amount": count, "value": total_value})
 
 
 
@@ -157,3 +165,5 @@ func _on_buy_count_submitted(count: int, item_data: ItemData) -> void:
 	target_entity.inventory.transfer_item_data_to(item_data, player.inventory, count)
 
 	player.inventory.transfer_gold_to(total_value, target_entity.inventory)
+
+	Events.fire(ItemsBoughtEvent, {"item_def": item_data.get_item_def(), "amount": count, "value": total_value})

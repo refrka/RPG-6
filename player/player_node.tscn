@@ -31,6 +31,8 @@ shape = SubResource("CapsuleShape2D_0vw6r")
 
 [node name="InteractionSensor" type="Area2D" parent="." index="3" unique_id=537167540]
 position = Vector2(0, -16)
+collision_layer = 0
+collision_mask = 3
 script = ExtResource("5_rppns")
 metadata/_custom_type_script = "uid://dhhv20t77148x"
 
@@ -42,6 +44,6 @@ debug_color = Color(0, 0.5950001, 0.7, 0.05882353)
 script = ExtResource("4_k12ae")
 metadata/_custom_type_script = "uid://d2ryfou7hnwl3"
 
-[node name="InteractionComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="5" unique_id=1084643429 node_paths=PackedStringArray("sensor")]
+[node name="InteractionComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="4" unique_id=1084643429 node_paths=PackedStringArray("sensor")]
 script = ExtResource("8_rppns")
 sensor = NodePath("../../InteractionSensor")

@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://p2elbn88fe3" path="res://entity/character/npc/mim/mim_def.tres" id="2_gnloq"]
 [ext_resource type="Texture2D" uid="uid://crn23ligqfkql" path="res://entity/character/npc/mim/mim_sprite.png" id="2_o88vc"]
 [ext_resource type="Script" uid="uid://xgierugyavfg" path="res://component/barter_component.gd" id="4_ut6t0"]
+[ext_resource type="Script" uid="uid://dl0uj3rt7fj45" path="res://component/interactable_component.gd" id="5_qxwvc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fmiem"]
 radius = 4.0
@@ -21,6 +22,10 @@ position = Vector2(0, -4)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_fmiem")
 
-[node name="BarterComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="4" unique_id=1148118195]
+[node name="BarterComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="3" unique_id=1148118195]
 script = ExtResource("4_ut6t0")
 metadata/_custom_type_script = "uid://xgierugyavfg"
+
+[node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="4" unique_id=840046828]
+script = ExtResource("5_qxwvc")
+metadata/_custom_type_script = "uid://dl0uj3rt7fj45"

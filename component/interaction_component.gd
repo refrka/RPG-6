@@ -114,7 +114,15 @@ func _on_interact_pressed() -> void:
 
 	if entity.state_machine.get_current_state() is InteractingState:
 
-		_end_interaction()
+		var barter_panel = UI.get_overlay(BarterPanel)
+
+		if barter_panel.active:
+
+			barter_panel._close()
+
+		else:
+
+			_end_interaction()
 
 	else:
 

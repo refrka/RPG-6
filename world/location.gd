@@ -73,6 +73,8 @@ func _initialize() -> bool:
 
 	spawn_marked_entities()
 
+	initialize_objects()
+
 	return true
 
 

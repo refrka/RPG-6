@@ -127,9 +127,15 @@ func get_component(component_script: Script) -> Component:
 
 	for component in get_all_components():
 
-		if component.get_component_script() == component_script:
+		var script = component.get_component_script()
 
-			return component
+		while script != null:
+
+			if script == component_script:
+
+				return component
+
+			script = script.get_base_script()
 
 	return null
 
