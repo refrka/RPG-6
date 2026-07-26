@@ -9,3 +9,10 @@ func get_display_name() -> String:
 	var save_data = Game.get_save_data()
 
 	return save_data.save_name
+
+
+
+
+func reset() -> void:
+
+	inventory.clear()

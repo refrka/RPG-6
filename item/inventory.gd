@@ -23,6 +23,8 @@ signal gold_count_changed(amount: int, new_count: int, added: bool)
 
 
 
+
+
 func _initialize() -> void:
 
 	for item_data in item_list:
@@ -34,6 +36,9 @@ func _initialize() -> void:
 	equipment_slots[EquipmentDef.EquipmentType.ARMOR] = null
 
 	equipment_slots[EquipmentDef.EquipmentType.ACCESSORY] = null
+
+
+
 
 
 
@@ -350,7 +355,13 @@ func get_dictionary() -> Dictionary:
 
 	for item_data in item_list:
 
-		save_dict["item_list"].append(item_data.get_dictionary())
+		var dict = item_data.get_dictionary()
+
+		if item_data is EquipmentData:
+
+			dict["equipped"] = is_item_data_equipped(item_data)
+
+		save_dict["item_list"].append(dict)
 
 	save_dict["gold_count"] = gold_count
 
@@ -362,7 +373,7 @@ func get_dictionary() -> Dictionary:
 
 func load_dictionary(save_dict: Dictionary) -> void:
 
-	clear()
+	item_list.clear()
 
 	for dict in save_dict["item_list"]:
 
@@ -371,5 +382,19 @@ func load_dictionary(save_dict: Dictionary) -> void:
 		_connect_item_data(item_data)
 
 		item_list.append(item_data)
+
+		if item_data is EquipmentData:
+
+			if dict["equipped"] == true:
+
+				print("its equipped")
+
+				var equipment_type = item_data.get_equipment_type()
+
+				equipment_slots[equipment_type] = item_data
+
+			else:
+
+				print("its not equpped")
 
 	gold_count = int(save_dict["gold_count"])

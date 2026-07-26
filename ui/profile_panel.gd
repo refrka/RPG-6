@@ -21,7 +21,7 @@ func _ready() -> void:
 
 	Events.subscribe(GameStartedEvent, _on_game_started)
 
-	Events.subscribe(GameEndedEvent, _on_game_ended)
+	Events.subscribe(GameEndingEvent, _on_game_ending)
 
 	for slot in equipment_slots:
 
@@ -46,10 +46,32 @@ func load_player() -> void:
 
 	player.inventory.item_unequipped.connect(_on_item_unequipped)
 
+	for equipment_type in player.inventory.equipment_slots:
+
+		var equipment_data = player.inventory.get_equipment(equipment_type)
+
+		if equipment_data:
+
+			_update_equipment_slot(equipment_type)
+
 
 
 
 func unload_player() -> void:
+
+	print("unloading player")
+
+	var player = Game.get_player()
+
+	player.inventory.item_equipped.disconnect(_on_item_equipped)
+
+	player.inventory.item_unequipped.disconnect(_on_item_unequipped)
+
+	for slot in equipment_slots:
+
+		print("clearing slot: ", slot)
+
+		slot.clear()
 
 	inventory_display.clear()
 
@@ -69,6 +91,19 @@ func _get_equipment_slot(equipment_type: EquipmentDef.EquipmentType) -> ProfileE
 			return slot
 
 	return null
+
+
+
+
+func _update_equipment_slot(equipment_type: EquipmentDef.EquipmentType) -> void:
+
+	var player = Game.get_player()
+
+	var equipment_data = player.inventory.get_equipment(equipment_type)
+
+	var slot = _get_equipment_slot(equipment_type)
+
+	slot.set_equipment(equipment_data)
 
 
 
@@ -103,7 +138,7 @@ func _on_game_started(_event: Event) -> void:
 
 
 
-func _on_game_ended(_event: Event) -> void:
+func _on_game_ending(_event: Event) -> void:
 
 	unload_player()
 
@@ -126,10 +161,8 @@ func _on_slot_unequip_requested(slot: ProfileEquipmentSlot) -> void:
 func _on_item_equipped(equipment_data: EquipmentData) -> void:
 
 	var equipment_type = equipment_data.get_equipment_type()
-
-	var slot = _get_equipment_slot(equipment_type)
-
-	slot.set_equipment(equipment_data)
+	
+	_update_equipment_slot(equipment_type)
 
 
 

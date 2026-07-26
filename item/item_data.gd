@@ -147,9 +147,9 @@ func get_dictionary() -> Dictionary:
 
 static func load_dictionary(save_dict: Dictionary) -> ItemData:
 
-	var item_data = ItemData.new()
-
 	var _item_def = Items.get_item_def(save_dict["item_id"])
+
+	var item_data = Items.create_item_data(_item_def)
 
 	var _count = int(save_dict["count"])
 

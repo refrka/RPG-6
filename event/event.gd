@@ -11,8 +11,6 @@ func fire(_data: Dictionary, with_notice:= false) -> void:
 
 	data = _data
 
-	print("firing ", self.get_script())
-
 	if with_notice:
 
 		show_notice()

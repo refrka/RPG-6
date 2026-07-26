@@ -138,7 +138,9 @@ func get_component(component_script: Script) -> Component:
 
 
 
+func reset() -> void:
 
+	pass
 
 
 

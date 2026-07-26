@@ -5,3 +5,5 @@
 [resource]
 script = ExtResource("1_wa4ed")
 item_id = &"rusty_iron_sword"
+display_name = "Rusty iron sword"
+gold_value = 15

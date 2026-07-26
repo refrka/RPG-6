@@ -52,6 +52,8 @@ func set_equipment(_equipment_data: EquipmentData) -> void:
 
 func clear() -> void:
 
+	equipment_data = null
+
 	equipment_texture.texture = null
 
 	equipment_name_label.text = ""
@@ -59,6 +61,8 @@ func clear() -> void:
 	unequip_button.hide()
 
 	equip_button.show()
+
+	print("slot cleared")
 
 
 

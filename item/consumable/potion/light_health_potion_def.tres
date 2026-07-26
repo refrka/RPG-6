@@ -7,4 +7,5 @@ script = ExtResource("1_ilapg")
 item_id = &"light_health_potion"
 display_name = "Light health potion"
 description = "A small vial of red liquid with healing properties."
+gold_value = 20
 metadata/_custom_type_script = "uid://dbw06dfsqcft0"

@@ -399,7 +399,9 @@ func _on_item_unequipped(equipment_data: EquipmentData) -> void:
 
 		var row = item_row_registry[equipment_data]
 
-		row.set_equipped(false)
+		if row is EquipmentItemRow:
+
+			row.set_equipped(false)
 
 
 

@@ -7,4 +7,5 @@ script = ExtResource("1_ay3pl")
 item_id = &"wood"
 display_name = "Wood"
 description = "A nice chunk of wood."
+gold_value = 2
 metadata/_custom_type_script = "uid://dbw06dfsqcft0"

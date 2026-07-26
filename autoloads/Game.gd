@@ -101,6 +101,8 @@ func end() -> void:
 
 	Events.fire(GameEndedEvent)
 
+	player.reset()
+
 
 
 
@@ -108,7 +110,7 @@ func save() -> void:
 
 	Saves.save_game(active_save_data)
 
-	Events.fire(GameSavedEvent, {}, true)
+	Events.fire(GameSavedEvent)
 
 
 
