@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://u2gj13bgr5dt" path="res://entity/character/character_node.tscn" id="1_ms3ll"]
 [ext_resource type="Resource" uid="uid://p2elbn88fe3" path="res://entity/character/npc/mim/mim_def.tres" id="2_gnloq"]
 [ext_resource type="Texture2D" uid="uid://crn23ligqfkql" path="res://entity/character/npc/mim/mim_sprite.png" id="2_o88vc"]
+[ext_resource type="Script" uid="uid://xgierugyavfg" path="res://component/barter_component.gd" id="4_ut6t0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fmiem"]
 radius = 4.0
@@ -19,3 +20,7 @@ texture = ExtResource("2_o88vc")
 position = Vector2(0, -4)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_fmiem")
+
+[node name="BarterComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="4" unique_id=1148118195]
+script = ExtResource("4_ut6t0")
+metadata/_custom_type_script = "uid://xgierugyavfg"

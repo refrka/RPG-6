@@ -10,8 +10,7 @@ signal interaction_ended
 
 @export var interaction_conditionals: Array[ConditionalCommandSet]
 
-
-
+@export var can_barter:= false
 
 
 # Interaction examples:
@@ -68,12 +67,18 @@ func _end() -> void:
 
 func _can_interact() -> bool:
 
-
-
 	return true
 
 
+func _can_end() -> bool:
 
+	var dialogue_panel = UI.get_overlay(DialoguePanel)
+
+	if dialogue_panel and dialogue_panel.is_awake():
+
+		return true
+
+	return false
 
 
 

@@ -83,9 +83,11 @@ func _cancel_interaction() -> void:
 
 func _end_interaction() -> void:
 
-	entity.state_machine.request_state(IdleState)
+	if target_interactable_component._can_end():
 
-	target_interactable_component._end()
+		entity.state_machine.request_state(IdleState)
+
+		target_interactable_component._end()
 
 
 
@@ -97,8 +99,6 @@ func _complete_interaction() -> void:
 	target_entity = null
 
 	target_interactable_component = null
-
-
 
 
 

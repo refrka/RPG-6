@@ -66,6 +66,14 @@ func clear() -> void:
 
 	_clear_item_list()
 
+	inventory.item_data_added.disconnect(_on_item_data_added)
+
+	inventory.item_data_removed.disconnect(_on_item_data_removed)
+
+	inventory.item_equipped.disconnect(_on_item_equipped)
+
+	inventory.item_unequipped.disconnect(_on_item_unequipped)
+
 	inventory = null
 
 	item_row_registry.clear()

@@ -6,7 +6,6 @@
 [ext_resource type="Resource" uid="uid://dtewowtdwd85g" path="res://player/player_def.tres" id="3_k12ae"]
 [ext_resource type="Script" uid="uid://d2ryfou7hnwl3" path="res://component/input_component.gd" id="4_k12ae"]
 [ext_resource type="Script" uid="uid://dhhv20t77148x" path="res://system/sensor.gd" id="5_rppns"]
-[ext_resource type="Script" uid="uid://bcgv65yabwl21" path="res://state/interacting_state.gd" id="6_0vw6r"]
 [ext_resource type="Script" uid="uid://bj0gwmjascn1r" path="res://component/interaction_component.gd" id="8_rppns"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0vw6r"]
@@ -37,9 +36,6 @@ metadata/_custom_type_script = "uid://dhhv20t77148x"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionSensor" index="0" unique_id=970333882]
 shape = SubResource("CircleShape2D_bg5s2")
 debug_color = Color(0, 0.5950001, 0.7, 0.05882353)
-
-[node name="InteractingState" type="Node" parent="StateMachine" parent_id_path=PackedInt32Array(2134553196) index="1" unique_id=557809521]
-script = ExtResource("6_0vw6r")
 
 [node name="InputComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="0" unique_id=293576925]
 script = ExtResource("4_k12ae")

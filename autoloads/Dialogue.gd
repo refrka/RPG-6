@@ -4,7 +4,12 @@ extends Node
 signal dialogue_ended
 
 
+@onready var default_barter_dialogue_node:= preload("res://dialogue/default_barter_dialogue_node.tres") as BarterDialogueNode
+
+
 var dialogue_panel: DialoguePanel
+
+var barter_panel: BarterPanel
 
 var greeting_pool: Array[Greeting]
 
@@ -16,15 +21,22 @@ var current_dialogue_node: DialogueNode
 
 
 
+
 func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 	dialogue_panel = UI.get_overlay(DialoguePanel)
 
+	barter_panel = UI.get_overlay(BarterPanel)
+
 	dialogue_panel.close_requested.connect(_on_dialogue_close_requested)
 
 	dialogue_panel.option_selected.connect(_on_option_selected)
+
+	dialogue_panel.barter_selected.connect(_on_barter_selected)
+
+	barter_panel.close_requested.connect(_on_barter_close_requested)
 
 
 
@@ -40,12 +52,16 @@ func start_dialogue(greeting: Greeting, options: Array[DialogueNode] = [], sourc
 
 	Events.fire(DialogueStartedEvent, {"source": current_source})
 
+	current_source.state_machine.request_state(InteractingState)
+
 
 
 
 func end_dialogue() -> void:
 
 	if current_source != null:
+
+		current_source.state_machine.request_state(IdleState)
 
 		Events.fire(DialogueEndedEvent, {"source": current_source})
 
@@ -54,7 +70,6 @@ func end_dialogue() -> void:
 		UI.close_dialogue_panel()
 
 		dialogue_ended.emit()
-
 
 
 
@@ -132,6 +147,12 @@ func get_dialogue_nodes(source: EntityNode) -> Array[DialogueNode]:
 
 	unevaluated_dialogue_nodes.append_array(Quests.get_quest_dialogue_nodes(source))
 
+	var barter_component = source.get_component(BarterComponent)
+
+	if barter_component:
+
+		unevaluated_dialogue_nodes.append(default_barter_dialogue_node)
+
 	for dialogue_node in unevaluated_dialogue_nodes:
 
 		if !dialogue_node.show_condition_set:
@@ -179,10 +200,21 @@ func _on_dialogue_close_requested() -> void:
 
 
 
+func _on_barter_close_requested() -> void:
+
+	UI.close_barter_panel()
+
+
 
 func _on_option_selected(dialogue_node: DialogueNode) -> void:
 
 	show_dialogue_node(dialogue_node)
+
+
+
+func _on_barter_selected() -> void:
+
+	UI.show_barter_panel(current_source)
 
 
 

@@ -16,6 +16,7 @@ corner_radius_bottom_left = 3
 corner_detail = 5
 
 [node name="BarterPanel" type="MarginContainer" unique_id=2054198806 node_paths=PackedStringArray("barter_title_label", "close_button", "player_inventory_display", "entity_inventory_display")]
+process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -52,10 +53,16 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Bartering with entity_name"
 
+[node name="DialogueTextLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=371753215]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Have a look at my wares."
+horizontal_alignment = 1
+
 [node name="CloseButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=754913449]
 custom_minimum_size = Vector2(70, 30)
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 8
 text = "Close"
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1417640220]

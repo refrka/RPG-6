@@ -40,6 +40,8 @@ func load_barter_inventories(_target_entity: EntityNode) -> void:
 
 func clear() -> void:
 
+	target_entity = null
+
 	player_inventory_display.clear()
 
 	entity_inventory_display.clear()
@@ -47,8 +49,26 @@ func clear() -> void:
 
 
 
+func _close() -> void:
+
+	clear()
+
+	close_requested.emit()
+
+
+
+
+func _deactivate() -> void:
+
+	super()
+
+	if target_entity:
+
+		_close()
+
+
 
 
 func _on_close_pressed() -> void:
 
-	close_requested.emit(self)
+	_close()

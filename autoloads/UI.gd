@@ -61,6 +61,10 @@ func unregister_overlay(overlay: Overlay) -> void:
 
 func add_overlay(overlay: Overlay) -> void:
 
+	if !active_overlays.is_empty():
+
+		active_overlays.back().sleep()
+
 	active_overlays.append(overlay)
 
 	overlay._activate()
@@ -87,6 +91,10 @@ func remove_overlay(overlay: Overlay = null) -> void:
 	if active_overlays.has(overlay):
 
 		active_overlays.erase(overlay)
+
+		if !active_overlays.is_empty():
+
+			active_overlays.back().wake()
 
 		if overlay.pause:
 
@@ -195,6 +203,16 @@ func close_dialogue_panel() -> void:
 	if active_overlays.has(overlay):
 
 		remove_overlay(overlay)
+
+
+
+func close_barter_panel() -> void:
+
+	var overlay = get_overlay(BarterPanel)
+
+	if active_overlays.has(overlay):
+
+		remove_overlay(overlay)
 		
 		
 		
@@ -212,6 +230,30 @@ func show_count_selector(min_count: int, max_count: int, use_float:= true) -> Co
 	return overlay
 
 
+
+
+
+
+
+
+
+func is_busy() -> bool:
+
+	if !active_overlays.is_empty():
+
+		return true
+
+	return false
+
+
+
+func is_overlay_primary(overlay: Overlay) -> bool:
+
+	if active_overlays.is_empty():
+
+		return false
+
+	return active_overlays.back() == overlay
 
 
 
@@ -274,7 +316,5 @@ func _on_popup_boolean_completed(popup: GamePopup, state: bool) -> void:
 
 
 func _on_overlay_close_requested(overlay: Overlay) -> void:
-
-	overlay._close()
 
 	remove_overlay(overlay)

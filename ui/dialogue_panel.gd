@@ -4,6 +4,8 @@ class_name DialoguePanel extends Overlay
 
 signal option_selected
 
+signal barter_selected
+
 
 
 @onready var option_button_scene:= preload("res://ui/dialogue_option_button.tscn")
@@ -136,6 +138,8 @@ func _close() -> void:
 
 	current_options.clear()
 
+	close_requested.emit()
+
 
 	
 
@@ -150,7 +154,13 @@ func _clear_options() -> void:
 
 func _on_option_selected(option: DialogueNode) -> void:
 
-	option_selected.emit(option)
+	if option is BarterDialogueNode:
+
+		barter_selected.emit()
+
+	else:
+
+		option_selected.emit(option)
 
 
 
@@ -180,7 +190,7 @@ func _deactivate() -> void:
 
 func _on_close_pressed() -> void:
 
-	close_requested.emit()
+	_close()
 
 
 

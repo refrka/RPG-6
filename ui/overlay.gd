@@ -10,8 +10,7 @@ signal close_requested
 
 var active:= false
 
-
-
+var is_sleeping:= false
 
 
 
@@ -54,6 +53,21 @@ func toggle() -> void:
 
 
 
+func sleep() -> void:
+
+	is_sleeping = true
+
+
+
+func wake() -> void:
+
+	is_sleeping = false
+
+
+
+func is_awake() -> bool:
+
+	return !is_sleeping
 
 
 
