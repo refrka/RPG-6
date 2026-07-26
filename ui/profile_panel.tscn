@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c8hh2ld1sj1o5"]
 
 [ext_resource type="Script" uid="uid://dlscvgd26yeyd" path="res://ui/profile_panel.gd" id="1_s1q0q"]
+[ext_resource type="PackedScene" uid="uid://c0yx4m4abt2ju" path="res://ui/profile_equipment_slot.tscn" id="2_52boq"]
 [ext_resource type="PackedScene" uid="uid://xehidxldd314" path="res://ui/inventory_display.tscn" id="2_o2oj7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o2oj7"]
@@ -15,7 +16,8 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="ProfilePanel" type="MarginContainer" unique_id=1854928978 node_paths=PackedStringArray("inventory_display")]
+[node name="ProfilePanel" type="MarginContainer" unique_id=1854928978 node_paths=PackedStringArray("inventory_display", "equipment_slots")]
+process_mode = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,6 +29,7 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 script = ExtResource("1_s1q0q")
 inventory_display = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/InventoryDisplay")
+equipment_slots = [NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/WeaponSlot"), NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/ArmorSlot"), NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/AccessorySlot"), NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/ToolSlot")]
 pause = true
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1051810101]
@@ -55,6 +58,49 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=154929327]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2" unique_id=2126694931]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer" unique_id=507073696]
+layout_mode = 2
+
+[node name="WeaponSlot" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=836562039 instance=ExtResource("2_52boq")]
+layout_mode = 2
+
+[node name="ArmorSlot" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=456912406 instance=ExtResource("2_52boq")]
+layout_mode = 2
+equipment_type = 1
+
+[node name="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/ArmorSlot/VBoxContainer" parent_id_path=PackedInt32Array(456912406, 1232268085) index="0" unique_id=1113984493]
+text = "Armor"
+
+[node name="EquipmentNameLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/ArmorSlot/VBoxContainer" parent_id_path=PackedInt32Array(456912406, 1232268085) index="3" unique_id=274323213]
+text = "Armor name"
+
+[node name="AccessorySlot" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=2135586207 instance=ExtResource("2_52boq")]
+layout_mode = 2
+equipment_type = 2
+
+[node name="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/AccessorySlot/VBoxContainer" parent_id_path=PackedInt32Array(2135586207, 1232268085) index="0" unique_id=1113984493]
+text = "Accessory"
+
+[node name="EquipmentNameLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/AccessorySlot/VBoxContainer" parent_id_path=PackedInt32Array(2135586207, 1232268085) index="3" unique_id=274323213]
+text = "Accessory name"
+
+[node name="ToolSlot" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer" unique_id=1731426888 instance=ExtResource("2_52boq")]
+layout_mode = 2
+equipment_type = 3
+
+[node name="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/ToolSlot/VBoxContainer" parent_id_path=PackedInt32Array(1731426888, 1232268085) index="0" unique_id=1113984493]
+text = "Tool"
+
+[node name="EquipmentNameLabel" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/ToolSlot/VBoxContainer" parent_id_path=PackedInt32Array(1731426888, 1232268085) index="3" unique_id=274323213]
+text = "Tool name"
+
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=790059966]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -62,6 +108,7 @@ size_flags_horizontal = 3
 [node name="InventoryDisplay" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=620134775 instance=ExtResource("2_o2oj7")]
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=154929327]
-layout_mode = 2
-size_flags_horizontal = 3
+[editable path="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/WeaponSlot"]
+[editable path="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/ArmorSlot"]
+[editable path="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/AccessorySlot"]
+[editable path="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/ToolSlot"]

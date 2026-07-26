@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://c0yx4m4abt2ju"]
+
+[ext_resource type="Script" uid="uid://yuwqghox1cjh" path="res://ui/profile_equipment_slot.gd" id="1_uh7u1"]
+
+[node name="ProfileEquipmentSlot" type="MarginContainer" unique_id=836562039 node_paths=PackedStringArray("equipment_name_label", "equipment_texture", "unequip_button", "equip_button")]
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("1_uh7u1")
+equipment_name_label = NodePath("VBoxContainer/EquipmentNameLabel")
+equipment_texture = NodePath("VBoxContainer/EquipmentTexture")
+unequip_button = NodePath("VBoxContainer/HBoxContainer/UnequipButton")
+equip_button = NodePath("VBoxContainer/HBoxContainer/EquipButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1232268085]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1113984493]
+layout_mode = 2
+text = "Weapon"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1651768458]
+layout_mode = 2
+
+[node name="EquipmentTexture" type="TextureRect" parent="VBoxContainer" unique_id=1933320390]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="EquipmentNameLabel" type="Label" parent="VBoxContainer" unique_id=274323213]
+layout_mode = 2
+text = "Weapon name"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=818785758]
+layout_mode = 2
+
+[node name="UnequipButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1877674563]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Unequip"
+
+[node name="EquipButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1896666982]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Equip"

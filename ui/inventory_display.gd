@@ -13,6 +13,8 @@ class_name InventoryDisplay extends MarginContainer
 
 @export var filter_entry: LineEdit
 
+@export var reset_button: Button
+
 
 
 var inventory: Inventory
@@ -29,6 +31,8 @@ var selected_row: InventoryItemRow
 func _ready() -> void:
 
 	filter_entry.text_changed.connect(_on_filter_text_changed)
+
+	reset_button.pressed.connect(_on_reset_pressed)
 
 
 
@@ -61,6 +65,27 @@ func clear() -> void:
 	item_row_registry.clear()
 
 	selected_row = null
+
+
+
+
+func filter_equipment_type(equipment_type: EquipmentDef.EquipmentType) -> void:
+
+	var items = inventory.item_list.duplicate()
+
+	items = items.filter(_filter_equipment_type.bind(equipment_type))
+
+	for item_data in item_row_registry:
+
+		var row = item_row_registry[item_data]
+
+		if items.has(item_data):
+
+			row.show()
+
+		else:
+
+			row.hide()
 
 
 
@@ -156,17 +181,30 @@ func _filter_item_name(item_name: String) -> void:
 
 	else:
 
+		item_name = item_name.strip_edges()
+
 		for item_data in item_row_registry:
 
 			var row = item_row_registry[item_data]
 
-			if item_data.get_display_name().contains(item_name):
+			if item_data.get_display_name().to_lower().contains(item_name.to_lower()):
 
 				row.show()
 
 			else:
 
 				row.hide()
+
+
+
+func _filter_equipment_type(item_data: ItemData, equipment_type: EquipmentDef.EquipmentType) -> bool:
+
+	if not item_data is EquipmentData:
+
+		return false
+
+	return item_data.get_equipment_type() == equipment_type
+
 
 
 
@@ -285,3 +323,11 @@ func _on_item_data_removed(item_data: ItemData) -> void:
 	row.queue_free()
 
 	item_row_registry.erase(item_data)
+
+
+
+func _on_reset_pressed() -> void:
+
+	filter_entry.clear()
+
+	_show_all_rows()

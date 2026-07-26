@@ -35,13 +35,17 @@ func get_item_def(item_id: StringName) -> ItemDef:
 
 
 
-func create_item_data(item_def: ItemDef, count:= 1) -> ItemData:
+func create_item_data(item_def: ItemDef) -> ItemData:
 
-	var item_data = ItemData.new()
+	var item_data: ItemData = null
 
-	item_data.item_def = item_def
+	if item_def is EquipmentDef:
 
-	item_data.count = count
+		item_data = EquipmentData.new()
+
+	else:
+
+		item_data = ItemData.new()
 
 	return item_data
 

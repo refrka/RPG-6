@@ -73,7 +73,7 @@ func add_items(item_def: ItemDef, amount:= 1) -> void:
 
 	if !item_data:
 
-		item_data = ItemData.new()
+		item_data = Items.create_item_data(item_def)
 
 		_connect_item_data(item_data)
 
@@ -224,6 +224,10 @@ func _on_item_data_count_updated(item_data: ItemData, _amount: int, _added: bool
 
 
 func _on_item_data_emptied(item_data: ItemData) -> void:
+
+	if item_data is EquipmentData and is_item_data_equipped(item_data):
+
+		unequip_item_data(item_data)
 
 	item_data_updated.emit(item_data)
 
