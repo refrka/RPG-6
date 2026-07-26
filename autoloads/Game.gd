@@ -93,10 +93,6 @@ func end() -> void:
 
 	_unload_game()
 
-	UI.deactivate_overlays()
-
-	Scenes.activate_scene(MainMenu)
-
 	game_state = GameState.MAIN_MENU
 
 	Events.fire(GameEndedEvent)

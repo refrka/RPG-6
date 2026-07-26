@@ -57,9 +57,14 @@ func _start_timer() -> void:
 	timer = 3.0
 
 
-func _stop_timer() -> void:
+func _pause_timer() -> void:
 
 	timer_active = false
+
+
+func _resume_timer() -> void:
+
+	timer_active = true
 
 
 
@@ -118,9 +123,9 @@ func _on_gui_input_received(event: InputEvent) -> void:
 
 func _on_mouse_entered() -> void:
 
-	_stop_timer()
+	_pause_timer()
 
 
 func _on_mouse_exited() -> void:
 
-	_start_timer()
+	_resume_timer()

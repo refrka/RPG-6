@@ -74,7 +74,7 @@ func call_subscriptions(event: Event) -> void:
 
 
 
-func _on_game_ending(event: Event) -> void:
+func _on_game_ending(_event: Event) -> void:
 
 	for script in subscriptions:
 

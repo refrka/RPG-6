@@ -31,6 +31,8 @@ func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
+	Events.subscribe(GameEndingEvent, _on_game_ending)
+
 	overlay_root = get_tree().get_first_node_in_group("overlay_root")
 
 	notice_root = get_tree().get_first_node_in_group("notice_root")
@@ -335,3 +337,11 @@ func _on_popup_boolean_completed(popup: GamePopup, state: bool) -> void:
 func _on_overlay_close_requested(overlay: Overlay) -> void:
 
 	remove_overlay(overlay)
+
+
+
+func _on_game_ending(_event: Event) -> void:
+
+	notice_root.clear()
+
+	deactivate_overlays()

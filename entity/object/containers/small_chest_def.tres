@@ -1,24 +1,10 @@
 [gd_resource type="Resource" script_class="ObjectDef" format=3 uid="uid://dpsexyunl1ctj"]
 
 [ext_resource type="Script" uid="uid://br6a7176gci6n" path="res://entity/object/object_def.gd" id="1_0kihj"]
-[ext_resource type="Script" uid="uid://bkrnyugdunr74" path="res://dialogue/dialogue_node.gd" id="1_lvbqk"]
-[ext_resource type="Script" uid="uid://dxhoiocbj8lkc" path="res://dialogue/greeting.gd" id="2_084u4"]
-[ext_resource type="Script" uid="uid://bpekxy4h5arnf" path="res://dialogue/dialogue_library.gd" id="3_66xnf"]
-
-[sub_resource type="Resource" id="Resource_ffqmr"]
-script = ExtResource("2_084u4")
-lines = Array[String](["its a small chest"])
-metadata/_custom_type_script = "uid://dxhoiocbj8lkc"
-
-[sub_resource type="Resource" id="Resource_hryru"]
-script = ExtResource("3_66xnf")
-default_greetings = Array[ExtResource("2_084u4")]([SubResource("Resource_ffqmr")])
-metadata/_custom_type_script = "uid://bpekxy4h5arnf"
 
 [resource]
 script = ExtResource("1_0kihj")
 entity_id = &"small_chest"
 display_name = "Small chest"
 scene_path = "res://entity/object/containers/small_chest.tscn"
-dialogue_library = SubResource("Resource_hryru")
 metadata/_custom_type_script = "uid://br6a7176gci6n"

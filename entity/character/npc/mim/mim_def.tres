@@ -12,7 +12,7 @@
 [sub_resource type="Resource" id="Resource_egusr"]
 script = ExtResource("2_egusr")
 wander_speed = 50.0
-wander_range = Vector2(150, 200)
+wander_range = Vector2(300, 400)
 idle_duration_range = Vector2(3, 5)
 metadata/_custom_type_script = "uid://5usslouxxk5f"
 

@@ -267,7 +267,9 @@ func is_item_data_equipped(equipment_data: EquipmentData) -> bool:
 
 
 
+func is_empty() -> bool:
 
+	return item_list.is_empty()
 
 
 

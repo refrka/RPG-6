@@ -26,4 +26,14 @@ func get_loot(roll: float) -> Dictionary[ItemDef, int]:
 
 			loot[item_def] += count
 
+		for item_def in entry.item_list:
+
+			var count = entry.item_list[item_def]
+
+			if !loot.has(item_def):
+
+				loot[item_def] = 0
+
+			loot[item_def] += count
+
 	return loot

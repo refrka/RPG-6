@@ -33,6 +33,17 @@ func add_notice(primary: String, secondary: String) -> Notice:
 
 
 
+func clear() -> void:
+
+	notice_queue.clear()
+
+	for child in get_children():
+
+		child.queue_free()
+
+
+
+
 func _show_notice(notice: Notice) -> void:
 
 	add_child(notice)

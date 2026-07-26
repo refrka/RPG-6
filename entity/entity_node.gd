@@ -12,6 +12,8 @@ class_name EntityNode extends PhysicsBody2D
 
 @export_group("Node References")
 
+@export var body_sprite: Sprite2D
+
 @export var state_machine: StateMachine
 
 @export var component_root: Node

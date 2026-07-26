@@ -23,6 +23,8 @@ func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
+	Events.subscribe(GameEndingEvent, _on_game_ending)
+
 	_load_locations()
 
 
@@ -206,3 +208,8 @@ func _load_locations() -> void:
 func _on_cutscene_ended(cutscene: Cutscene) -> void:
 
 	cutscene_ended.emit(cutscene)
+
+
+func _on_game_ending(_event: Event) -> void:
+
+	activate_scene(MainMenu)
