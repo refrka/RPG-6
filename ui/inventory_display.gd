@@ -54,8 +54,6 @@ func _ready() -> void:
 
 func load_inventory(_inventory: Inventory) -> void:
 
-	print("loading inventory: ", _inventory)
-
 	inventory = _inventory
 
 	inventory.item_data_added.connect(_on_item_data_added)
@@ -422,8 +420,6 @@ func _on_item_data_removed(item_data: ItemData) -> void:
 	if !active: 
 
 		return
-
-	print("item data removed from inventory: ", inventory)
 
 	var row = item_row_registry[item_data]
 

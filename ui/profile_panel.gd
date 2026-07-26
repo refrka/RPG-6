@@ -87,6 +87,8 @@ func _activate() -> void:
 
 func _deactivate() -> void:
 
+	super()
+
 	inventory_display.active = false
 
 

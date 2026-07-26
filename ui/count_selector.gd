@@ -111,7 +111,9 @@ func _update_selected_count_label() -> void:
 
 func _on_submit_pressed() -> void:
 
-	count_submitted.emit(count_slider.value)
+	if count_slider.value != 0:
+
+		count_submitted.emit(count_slider.value)
 
 	UI.remove_overlay(self)
 
