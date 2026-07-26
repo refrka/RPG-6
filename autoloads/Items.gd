@@ -33,6 +33,10 @@ func get_item_def(item_id: StringName) -> ItemDef:
 
 
 
+func get_max_value_count(gold_count: int, item_def: ItemDef) -> int:
+
+	return floor(float(gold_count) / float(item_def.gold_value))
+
 
 
 func create_item_data(item_def: ItemDef, amount:= -1) -> ItemData:
@@ -54,6 +58,9 @@ func create_item_data(item_def: ItemDef, amount:= -1) -> ItemData:
 		item_data.count = amount
 
 	return item_data
+
+
+
 
 
 

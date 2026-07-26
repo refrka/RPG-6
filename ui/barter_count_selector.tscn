@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://buowai1eba8tt"]
+
+[ext_resource type="PackedScene" uid="uid://b8vhu8qw0hixf" path="res://ui/count_selector.tscn" id="1_iuv7t"]
+[ext_resource type="Script" uid="uid://cc3pgylytqs5a" path="res://ui/barter_count_selector.gd" id="2_wgtdx"]
+
+[node name="BarterCountSelector" unique_id=1931859960 node_paths=PackedStringArray("total_value_label") instance=ExtResource("1_iuv7t")]
+script = ExtResource("2_wgtdx")
+total_value_label = NodePath("VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3/TotalValueLabel")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" parent_id_path=PackedInt32Array(301159176) index="1" unique_id=650735271]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3" index="0" unique_id=289607562]
+layout_mode = 2
+text = "Total value:"
+
+[node name="TotalValueLabel" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3" index="1" unique_id=1657682214]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0"

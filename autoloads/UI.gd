@@ -8,6 +8,8 @@ signal popup_boolean_completed(state: bool)
 
 @onready var count_selector_scene:= preload("res://ui/count_selector.tscn")
 
+@onready var barter_count_selector_scene:= preload("res://ui/barter_count_selector.tscn")
+
 
 
 var overlay_registry: Dictionary[Script, Overlay]
@@ -194,9 +196,17 @@ func show_barter_panel(target_entity: EntityNode, barter_dialogue_node: BarterDi
 		
 		
 		
-func show_count_selector(min_count: int, max_count: int, title:= "", use_float:= true) -> CountSelector:
+func show_count_selector(min_count: int, max_count: int, title:= "", use_float:= true, barter:= false) -> CountSelector:
 
-	var overlay = count_selector_scene.instantiate() as CountSelector
+	var overlay: CountSelector = null
+
+	if barter:
+
+		overlay = barter_count_selector_scene.instantiate() as BarterCountSelector
+
+	else:
+
+		overlay = count_selector_scene.instantiate() as CountSelector
 
 	if title != "":
 

@@ -88,7 +88,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1984108962]
 layout_mode = 2
-text = "Select amount:"
+text = "Selected amount:"
 
 [node name="CurrentAmountLabel" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=23823145]
 layout_mode = 2

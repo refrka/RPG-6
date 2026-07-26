@@ -65,6 +65,10 @@ func set_dialogue_text(dialogue_text: DialogueText) -> void:
 
 
 
+
+
+
+
 func _close() -> void:
 
 	clear()
@@ -107,7 +111,11 @@ func _on_close_pressed() -> void:
 
 func _on_sell_requested(item_data: ItemData) -> void:
 
-	var count_selector = UI.show_count_selector(0, item_data.get_count(), "Selling %s" % item_data.get_display_name(), false)
+	var max_count = min(item_data.get_count(), Items.get_max_value_count(target_entity.inventory.get_gold_count(), item_data.get_item_def()))
+
+	var count_selector = UI.show_count_selector(0, max_count, "Selling %s" % item_data.get_display_name(), false, true)
+
+	count_selector.item_def = item_data.get_item_def()
 
 	count_selector.count_submitted.connect(_on_sell_count_submitted.bind(item_data), CONNECT_ONE_SHOT)
 
@@ -115,7 +123,13 @@ func _on_sell_requested(item_data: ItemData) -> void:
 
 func _on_buy_requested(item_data: ItemData) -> void:
 
-	var count_selector = UI.show_count_selector(0, item_data.get_count(), "Buying %s" % item_data.get_display_name(), false)
+	var player = Game.get_player()
+
+	var max_count = min(item_data.get_count(), Items.get_max_value_count(player.inventory.get_gold_count(), item_data.get_item_def()))
+
+	var count_selector = UI.show_count_selector(0, max_count, "Buying %s" % item_data.get_display_name(), false, true)
+
+	count_selector.item_def = item_data.get_item_def()
 
 	count_selector.count_submitted.connect(_on_buy_count_submitted.bind(item_data), CONNECT_ONE_SHOT)
 
