@@ -68,6 +68,25 @@ func _initialize() -> bool:
 
 
 
+func use_item(item_data: ItemData) -> void:
+
+	print("using")
+
+	var item_def = item_data.get_item_def()
+
+	if item_def is ConsumableDef:
+
+		var effects_component = get_component(EffectsComponent)
+
+		for effect in item_def.effects_on_consume:
+
+			effects_component.add_effect(effect)
+	
+	item_data.remove_amount(1)
+
+
+
+
 
 func reposition(new_position: Vector2) -> void:
 
@@ -75,6 +94,10 @@ func reposition(new_position: Vector2) -> void:
 
 
 
+
+func reset() -> void:
+
+	pass
 
 
 
@@ -140,12 +163,6 @@ func get_component(component_script: Script) -> Component:
 
 
 	
-
-
-func reset() -> void:
-
-	pass
-
 
 
 

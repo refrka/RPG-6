@@ -1,10 +1,14 @@
 class_name HealthComponent extends Component
 
 
+
+
+
 signal health_restored(amount: float, new_health: float)
 
 signal health_reduced(amount: float, new_health: float)
 
+signal health_depleted
 
 
 
@@ -53,3 +57,11 @@ func reduce_health(amount: float) -> void:
 	current_health = new_health
 
 	health_reduced.emit(reduced_amount, current_health)
+
+	if current_health == 0.0:
+
+		health_depleted.emit()
+
+		if entity is PlayerNode:
+
+			Game.end()

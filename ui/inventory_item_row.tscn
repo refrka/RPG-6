@@ -50,7 +50,7 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[node name="InventoryItemRow" type="PanelContainer" unique_id=538571362 node_paths=PackedStringArray("item_name_label", "description_label", "item_count_label", "button_list", "input_mask", "info_section", "discard_button")]
+[node name="InventoryItemRow" type="PanelContainer" unique_id=538571362 node_paths=PackedStringArray("item_name_label", "description_label", "item_count_label", "button_list", "input_mask", "info_section", "use_button", "discard_button")]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 32.0
@@ -63,6 +63,7 @@ item_count_label = NodePath("MarginContainer/VBoxContainer/MarginContainer/HBoxC
 button_list = NodePath("InputMask/MarginContainer/ButtonList")
 input_mask = NodePath("InputMask")
 info_section = NodePath("MarginContainer/VBoxContainer/InfoSection")
+use_button = NodePath("InputMask/MarginContainer/ButtonList/UseButton")
 discard_button = NodePath("InputMask/MarginContainer/ButtonList/DiscardButton")
 default_stylebox = SubResource("StyleBoxFlat_navj7")
 hover_stylebox = SubResource("StyleBoxFlat_87prl")
@@ -149,6 +150,12 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 mouse_filter = 2
 alignment = 2
+
+[node name="UseButton" type="Button" parent="InputMask/MarginContainer/ButtonList" unique_id=1631669388]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+mouse_filter = 1
+text = "Use"
 
 [node name="DiscardButton" type="Button" parent="InputMask/MarginContainer/ButtonList" unique_id=370883117]
 custom_minimum_size = Vector2(80, 30)

@@ -183,6 +183,8 @@ func _add_item_row(item_data: ItemData) -> InventoryItemRow:
 
 		row.discard_requested.connect(_on_discard_requested)
 
+		row.use_requested.connect(_on_use_requested)
+
 	row.load_item_data(item_data)
 
 	row.row_selected.connect(_on_row_selected)
@@ -451,6 +453,16 @@ func _on_buy_requested(row: BarterItemRow) -> void:
 func _on_sell_requested(row: BarterItemRow) -> void:
 
 	sell_requested.emit(row.item_data)
+
+
+
+func _on_use_requested(row: InventoryItemRow) -> void:
+
+	var item_data = row.item_data
+
+	var player = Game.get_player()
+
+	player.use_item(item_data)
 
 
 

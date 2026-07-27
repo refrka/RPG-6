@@ -3,6 +3,8 @@ class_name InventoryItemRow extends PanelContainer
 
 signal row_selected(row: InventoryItemRow)
 
+signal use_requested(row: InventoryItemRow)
+
 signal discard_requested(row: InventoryItemRow)
 
 
@@ -18,6 +20,8 @@ signal discard_requested(row: InventoryItemRow)
 @export var input_mask: InputMask
 
 @export var info_section: MarginContainer
+
+@export var use_button: Button
 
 @export var discard_button: Button
 
@@ -48,6 +52,8 @@ func _ready() -> void:
 	_hide_buttons()
 
 	info_section.hide()
+
+	use_button.pressed.connect(_on_use_pressed)
 
 	discard_button.pressed.connect(_on_discard_pressed)
 
@@ -184,6 +190,11 @@ func _on_count_updated(_item_data: ItemData, _amount: int, _added: bool) -> void
 
 	_update_count_label()
 
+
+
+func _on_use_pressed() -> void:
+
+	use_requested.emit(self)
 
 
 

@@ -20,5 +20,8 @@ layout_mode = 2
 mouse_filter = 1
 text = "Sell"
 
-[node name="DiscardButton" parent="InputMask/MarginContainer/ButtonList" parent_id_path=PackedInt32Array(1810895790) index="2" unique_id=370883117]
+[node name="UseButton" parent="InputMask/MarginContainer/ButtonList" parent_id_path=PackedInt32Array(1810895790) index="2" unique_id=1631669388]
+visible = false
+
+[node name="DiscardButton" parent="InputMask/MarginContainer/ButtonList" parent_id_path=PackedInt32Array(1810895790) index="3" unique_id=370883117]
 visible = false

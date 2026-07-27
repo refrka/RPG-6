@@ -1,1 +1,3 @@
 class_name InstantEffect extends Effect
+
+
