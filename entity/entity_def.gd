@@ -16,3 +16,5 @@ class_name EntityDef extends Resource
 @export var default_inventory: Inventory
 
 @export var dialogue_library: DialogueLibrary
+
+@export var base_max_health:= 1.0

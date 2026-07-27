@@ -1,0 +1,55 @@
+class_name HealthComponent extends Component
+
+
+signal health_restored(amount: float, new_health: float)
+
+signal health_reduced(amount: float, new_health: float)
+
+
+
+
+var max_health: float
+
+var current_health: float
+
+
+
+
+
+
+func _initialize(_entity: EntityNode) -> void:
+
+	super(_entity)
+
+	var entity_def = entity.get_entity_def()
+
+	max_health = entity_def.base_max_health
+
+	current_health = max_health
+
+
+
+
+
+func restore_health(amount: float) -> void:
+
+	var new_health = min(max_health, current_health + amount)
+
+	var restored_amount = new_health - current_health
+
+	current_health = new_health
+
+	health_restored.emit(restored_amount, current_health)
+
+
+
+
+func reduce_health(amount: float) -> void:
+
+	var new_health = max(0, current_health - amount)
+
+	var reduced_amount = current_health - new_health
+
+	current_health = new_health
+
+	health_reduced.emit(reduced_amount, current_health)

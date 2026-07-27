@@ -1,9 +1,17 @@
 [gd_resource type="Resource" script_class="ConsumableDef" format=3 uid="uid://cnm8emu6r70fj"]
 
+[ext_resource type="Script" uid="uid://dsylpr3v2vcbb" path="res://effect/effect.gd" id="1_2374n"]
 [ext_resource type="Script" uid="uid://5fsmjdm1a5cm" path="res://item/consumable/consumable_def.gd" id="1_c1y6r"]
+[ext_resource type="Script" uid="uid://0giv2cg5fnqk" path="res://effect/instant_effects/restore_health_instant_effect.gd" id="2_vpk46"]
+
+[sub_resource type="Resource" id="Resource_4o2gx"]
+script = ExtResource("2_vpk46")
+value = 1.0
+metadata/_custom_type_script = "uid://0giv2cg5fnqk"
 
 [resource]
 script = ExtResource("1_c1y6r")
+effects_on_consume = Array[ExtResource("1_2374n")]([SubResource("Resource_4o2gx")])
 item_id = &"apple"
 display_name = "Apple"
 description = "A delicious red fruit."

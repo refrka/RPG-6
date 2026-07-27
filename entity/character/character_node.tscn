@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://pkhxci2wpdl2" path="res://component/behavior_component.gd" id="5_nduuk"]
 [ext_resource type="Script" uid="uid://bf3fs8njbpjbb" path="res://component/navigation_component.gd" id="6_5yhso"]
 [ext_resource type="Script" uid="uid://d3krim3ji2wmx" path="res://component/effects_component.gd" id="9_jub6e"]
+[ext_resource type="Script" uid="uid://bapxh7cmbif0o" path="res://component/health_component.gd" id="10_nbb1o"]
 
 [node name="CharacterNode" type="CharacterBody2D" unique_id=639653512 node_paths=PackedStringArray("body_sprite", "state_machine", "component_root", "nav_agent")]
 y_sort_enabled = true
@@ -64,3 +65,6 @@ metadata/_custom_type_script = "uid://bf3fs8njbpjbb"
 [node name="EffectsComponent" type="Node" parent="ComponentRoot" unique_id=759457280]
 script = ExtResource("9_jub6e")
 metadata/_custom_type_script = "uid://d3krim3ji2wmx"
+
+[node name="HealthComponent" type="Node" parent="ComponentRoot" unique_id=1426158292]
+script = ExtResource("10_nbb1o")

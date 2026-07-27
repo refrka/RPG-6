@@ -41,4 +41,5 @@ display_name = "Mim"
 scene_path = "res://entity/character/npc/mim/mim.tscn"
 behavior_profile = SubResource("Resource_jnk4k")
 default_inventory = SubResource("Resource_qg0wm")
+base_max_health = 5.0
 metadata/_custom_type_script = "uid://d2ougu0lbgskp"

@@ -35,4 +35,5 @@ entity_id = &"ap"
 display_name = "Ap"
 scene_path = "res://entity/character/npc/ap/ap.tscn"
 dialogue_library = SubResource("Resource_m0nle")
+base_max_health = 12.0
 metadata/_custom_type_script = "uid://dhjomb443iolq"

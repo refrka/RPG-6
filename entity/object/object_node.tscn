@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bwv5f2vf38x7d" path="res://state/state_machine.gd" id="2_3l14t"]
 [ext_resource type="Script" uid="uid://bi8xvbsytvcmc" path="res://state/idle_state.gd" id="3_ssrvi"]
 [ext_resource type="Script" uid="uid://d3krim3ji2wmx" path="res://component/effects_component.gd" id="4_vfshi"]
+[ext_resource type="Script" uid="uid://bapxh7cmbif0o" path="res://component/health_component.gd" id="5_3h0si"]
 
 [node name="ObjectNode" type="StaticBody2D" unique_id=188428736 node_paths=PackedStringArray("body_sprite", "state_machine", "component_root")]
 y_sort_enabled = true
@@ -34,3 +35,6 @@ script = ExtResource("3_ssrvi")
 [node name="EffectsComponent" type="Node" parent="ComponentRoot" unique_id=1576674032]
 script = ExtResource("4_vfshi")
 metadata/_custom_type_script = "uid://d3krim3ji2wmx"
+
+[node name="HealthComponent" type="Node" parent="ComponentRoot" unique_id=652945868]
+script = ExtResource("5_3h0si")

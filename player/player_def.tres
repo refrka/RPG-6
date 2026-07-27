@@ -39,4 +39,5 @@ entity_id = &"player"
 display_name = "Player"
 scene_path = "res://player/player_node.tscn"
 default_inventory = SubResource("Resource_cujn1")
+base_max_health = 20.0
 metadata/_custom_type_script = "uid://d2ougu0lbgskp"

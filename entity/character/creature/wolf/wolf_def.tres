@@ -7,4 +7,5 @@ script = ExtResource("1_dwess")
 entity_id = &"wolf"
 display_name = "Wolf"
 scene_path = "res://entity/character/creature/wolf/wolf.tscn"
+base_max_health = 6.0
 metadata/_custom_type_script = "uid://d2ougu0lbgskp"
