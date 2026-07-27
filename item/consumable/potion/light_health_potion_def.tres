@@ -1,9 +1,20 @@
 [gd_resource type="Resource" script_class="ConsumableDef" format=3 uid="uid://c6473c6c2pcdx"]
 
+[ext_resource type="Script" uid="uid://dsylpr3v2vcbb" path="res://effect/effect.gd" id="1_6ivlc"]
 [ext_resource type="Script" uid="uid://5fsmjdm1a5cm" path="res://item/consumable/consumable_def.gd" id="1_ilapg"]
+[ext_resource type="Script" uid="uid://dpqmce41jqewl" path="res://effect/duration_effects/restore_health_duration_effect.gd" id="2_plkm6"]
+
+[sub_resource type="Resource" id="Resource_bhe32"]
+script = ExtResource("2_plkm6")
+value = 0.5
+duration = 1.0
+tick_rate = 0.5
+effect_type = 1
+metadata/_custom_type_script = "uid://dpqmce41jqewl"
 
 [resource]
 script = ExtResource("1_ilapg")
+effects_on_consume = Array[ExtResource("1_6ivlc")]([SubResource("Resource_bhe32")])
 item_id = &"light_health_potion"
 display_name = "Light health potion"
 description = "A small vial of red liquid with healing properties."

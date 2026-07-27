@@ -87,8 +87,6 @@ func _unload() -> void:
 
 	for object_node in object_list:
 
-		print(i)
-
 		i += 1
 
 		var dict = object_node._get_dictionary()

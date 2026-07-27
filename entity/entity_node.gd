@@ -70,8 +70,6 @@ func _initialize() -> bool:
 
 func use_item(item_data: ItemData) -> void:
 
-	print("using")
-
 	var item_def = item_data.get_item_def()
 
 	if item_def is ConsumableDef:
@@ -162,6 +160,17 @@ func get_component(component_script: Script) -> Component:
 	return null
 
 
+
+func get_component_by_id(component_id: StringName) -> Component:
+
+	for component in get_all_components():
+
+		if component.get_component_id() == component_id:
+
+			return component
+
+	return null
+
 	
 
 
@@ -201,9 +210,17 @@ func _get_dictionary() -> Dictionary:
 
 	save_dict["location_id"] = Scenes.get_location_scene().get_location_id()
 
-	save_dict["state"] = state_machine.current_state.get_index()
-
 	save_dict["inventory"] = inventory.get_dictionary()
+
+	save_dict["components"] = { }
+
+	for component in get_all_components():
+
+		var dict = component._get_dictionary()
+
+		if !dict.is_empty():
+
+			save_dict["components"][component.get_component_id()] = dict
 
 	return save_dict
 
@@ -217,4 +234,11 @@ func _load_dictionary(save_dict: Dictionary) -> void:
 
 		inventory.load_dictionary(save_dict["inventory"])
 
-	state_machine.request_state_index(int(save_dict["state"]))
+	for component_id in save_dict["components"]:
+
+		var dict = save_dict["components"][component_id]
+
+		var component = get_component_by_id(component_id)
+
+		component._load_dictionary(dict)
+

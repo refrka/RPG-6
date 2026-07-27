@@ -389,14 +389,8 @@ func load_dictionary(save_dict: Dictionary) -> void:
 
 			if dict["equipped"] == true:
 
-				print("its equipped")
-
 				var equipment_type = item_data.get_equipment_type()
 
 				equipment_slots[equipment_type] = item_data
-
-			else:
-
-				print("its not equpped")
 
 	gold_count = int(save_dict["gold_count"])

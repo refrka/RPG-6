@@ -37,6 +37,9 @@ func get_component_script() -> Script:
 
 
 
+func get_component_id() -> StringName:
+
+	return name
 
 
 
@@ -51,3 +54,17 @@ func _activate() -> void:
 func _deactivate() -> void:
 
 	active = false
+
+
+
+
+
+func _get_dictionary() -> Dictionary:
+
+	return {}
+
+
+
+func _load_dictionary(_save_dict: Dictionary) -> void:
+
+	return

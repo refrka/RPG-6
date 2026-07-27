@@ -1,6 +1,8 @@
 class_name Effect extends Resource
 
 
+@warning_ignore("unused_signal")
+
 signal expired
 
 
@@ -20,6 +22,8 @@ enum EffectType {
 
 @export var effect_type: EffectType
 
+
+var active:= false
 
 var source_entity: EntityNode
 

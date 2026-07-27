@@ -58,8 +58,6 @@ func _try_interaction(_target_entity: EntityNode) -> void:
 
 func _start_interaction() -> void:
 
-	print("starting interact")
-
 	if target_interactable_component._interact():
 
 		target_interactable_component.interaction_ended.connect(_on_interaction_ended, CONNECT_ONE_SHOT)

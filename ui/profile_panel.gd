@@ -59,8 +59,6 @@ func load_player() -> void:
 
 func unload_player() -> void:
 
-	print("unloading player")
-
 	var player = Game.get_player()
 
 	player.inventory.item_equipped.disconnect(_on_item_equipped)
@@ -68,8 +66,6 @@ func unload_player() -> void:
 	player.inventory.item_unequipped.disconnect(_on_item_unequipped)
 
 	for slot in equipment_slots:
-
-		print("clearing slot: ", slot)
 
 		slot.clear()
 

@@ -45,6 +45,10 @@ func restore_health(amount: float) -> void:
 
 	health_restored.emit(restored_amount, current_health)
 
+	if entity is PlayerNode:
+
+		Events.fire(PlayerRestoredHealthEvent, {}, true)
+
 
 
 
@@ -65,3 +69,32 @@ func reduce_health(amount: float) -> void:
 		if entity is PlayerNode:
 
 			Game.end()
+
+
+
+
+
+
+
+
+
+
+func _get_dictionary() -> Dictionary:
+
+	var save_dict = {}
+
+	save_dict["current_health"] = current_health
+
+	save_dict["max_health"] = max_health
+
+	return save_dict
+
+
+
+
+
+func _load_dictionary(save_dict: Dictionary) -> void:
+
+	current_health = save_dict["current_health"]
+
+	max_health = save_dict["max_health"]

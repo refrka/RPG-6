@@ -62,8 +62,6 @@ func clear() -> void:
 
 	equip_button.show()
 
-	print("slot cleared")
-
 
 
 
