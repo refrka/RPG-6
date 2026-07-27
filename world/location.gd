@@ -23,6 +23,8 @@ class_name Location extends Node2D
 
 
 
+@export var camera_follow_player:= false
+
 @export var camera_limit_top_left: Marker2D
 
 @export var camera_limit_bottom_right: Marker2D
@@ -73,6 +75,8 @@ func _initialize() -> bool:
 
 	initialize_objects()
 
+	initialize_features()
+
 	spawn_marked_entities()
 
 	return true
@@ -83,11 +87,7 @@ func _initialize() -> bool:
 
 func _unload() -> void:
 
-	var i = 1
-
 	for object_node in object_list:
-
-		i += 1
 
 		var dict = object_node._get_dictionary()
 
@@ -144,6 +144,13 @@ func spawn_entity_node(entity_node: EntityNode, spawn_id: StringName) -> void:
 
 
 
+func remove_entity_node(entity_node: EntityNode) -> void:
+
+	_remove_entity(entity_node)
+
+
+
+
 
 func initialize_objects() -> void:
 
@@ -166,6 +173,14 @@ func initialize_characters() -> void:
 		character_node.authored = true
 
 		character_list.append(character_node)
+
+
+
+func initialize_features() -> void:
+
+	for transition_zone in transition_root.get_children():
+
+		transition_zone._initialize()
 
 
 
@@ -305,21 +320,31 @@ func _add_entity(entity_node: EntityNode) -> void:
 
 		return
 
-	if entity_node.is_inside_tree():
+	var root: Node2D = null
 
-		entity_node.get_parent().remove_child(entity_node)
+	var list = []
 
 	if entity_node is ObjectNode:
 
-		object_root.add_child(entity_node)
+		root = object_root
 
-		object_list.append(entity_node)
+		list = object_list
 
 	elif entity_node is CharacterNode:
 
-		character_root.add_child(entity_node)
+		root = character_root
 
-		character_list.append(entity_node)
+		list = character_list
+
+	var parent = entity_node.get_parent()
+
+	if parent != null:
+
+		parent.remove_child(entity_node)
+
+	root.add_child(entity_node)
+
+	list.append(entity_node)
 
 
 
@@ -373,6 +398,12 @@ func _activate() -> void:
 
 		character._activate()
 
+	for transition_zone in transition_root.get_children():
+
+		transition_zone._activate()
+
+
+
 
 
 func _deactivate() -> void:
@@ -386,3 +417,7 @@ func _deactivate() -> void:
 	for character in character_list:
 
 		character._deactivate()
+
+	for transition_zone in transition_root.get_children():
+
+		transition_zone._deactivate()

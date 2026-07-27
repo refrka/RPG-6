@@ -10,5 +10,8 @@ target_location_id = &""
 target_spawn_id = &""
 spawn_point = NodePath("SpawnPoint")
 
+[node name="Sensor" parent="." index="0" unique_id=538901362]
+collision_mask = 4
+
 [node name="SpawnPoint" type="Marker2D" parent="." index="1" unique_id=25665655]
 script = ExtResource("3_cepmr")

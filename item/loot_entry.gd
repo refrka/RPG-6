@@ -17,8 +17,6 @@ func get_loot(roll: float) -> Dictionary[ItemDef, int]:
 
 	for loot_set in loot_sets:
 
-		print("rolling loot set with roll: ", roll, " against chance: ", loot_set.chance)
-
 		if roll <= loot_set.chance:
 
 			for item_def in loot_set.item_list:

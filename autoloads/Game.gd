@@ -87,6 +87,7 @@ func start(save_id: StringName) -> void:
 
 
 
+
 func end() -> void:
 
 	Events.fire(GameEndingEvent)
@@ -125,11 +126,20 @@ func resume() -> void:
 
 
 
+func transition_to(location_id: StringName, spawn_id: StringName) -> void:
 
+	var world_scene = Scenes.get_world_scene()
 
-func load_saved_location(location_id: StringName) -> void:
+	world_scene.active_location.remove_entity_node(player)
 
 	var location = Scenes.load_location(location_id)
+
+	location.spawn_entity_node(player, spawn_id)
+
+	Events.fire(PlayerEnteredLocationEvent, {"location": location})
+
+
+
 
 
 
@@ -141,7 +151,6 @@ func hold_player_node() -> void:
 	player._deactivate()
 
 	player.hide()
-
 
 
 
@@ -159,12 +168,9 @@ func get_player() -> PlayerNode:
 
 
 
-
 func get_save_data() -> SaveData:
 
 	return active_save_data
-
-
 
 
 
@@ -173,6 +179,18 @@ func get_timer(duration: float) -> SceneTreeTimer:
 	var timer = get_tree().create_timer(duration)
 
 	return timer
+
+
+
+func get_camera() -> GameCamera:
+
+	return get_tree().get_first_node_in_group("game_camera")
+
+
+
+func get_game_root() -> Node:
+
+	return get_tree().get_first_node_in_group("game_root")
 
 
 
@@ -206,11 +224,15 @@ func _load_game(save_data: SaveData) -> void:
 
 	var spawn_id:= &""
 
+	var first_load:= false
+
 	if active_save_data.last_dict["player"].is_empty():
 
 		location_id = &"forest_start"
 
 		spawn_id = &"start"
+
+		first_load = true
 
 	else:
 
@@ -219,12 +241,14 @@ func _load_game(save_data: SaveData) -> void:
 		location_id = active_save_data.last_dict["player"]["location_id"]
 
 		spawn_id = active_save_data.last_dict["player"]["spawn_id"]
-
-	var world_scene = Scenes.get_world_scene()
 	
-	var location = world_scene.activate_location(location_id)
+	var location = Scenes.load_location(location_id)
 
 	location.spawn_entity_node(player, spawn_id)
+
+	if first_load:
+
+		Events.fire(PlayerEnteredLocationEvent, {"location": location})
 
 	# Load location
 

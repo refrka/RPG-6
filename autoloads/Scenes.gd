@@ -60,7 +60,7 @@ func load_location(location_id: StringName) -> Location:
 
 	var world_scene = get_world_scene()
 
-	var location = world_scene.activate_location(location_id)
+	var location = world_scene.activate_location(location_id, true)
 
 	return location
 

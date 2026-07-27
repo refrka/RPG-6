@@ -29,10 +29,8 @@ func get_spawn_point() -> SpawnPoint:
 
 func _on_body_entered_sensor(_body: PhysicsBody2D) -> void:
 
-	if !active:
+	if active:
 
-		return
-
-	# Transition logic
+		Game.transition_to.call_deferred(target_location_id, target_spawn_id)
 
 	_deactivate()

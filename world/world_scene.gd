@@ -81,6 +81,8 @@ func activate_location(location_id: StringName, pause_current:= false) -> Locati
 
 		remove_child(active_location)
 
+		active_location = null
+
 	var new_location = load_location(location_id)
 
 	add_child(new_location)
@@ -104,12 +106,6 @@ func pause_location(location: Location) -> void:
 	location.pause()
 
 	paused_locations.append(location)
-
-	if location == active_location:
-
-		remove_child(location)
-
-		active_location = null
 
 
 
