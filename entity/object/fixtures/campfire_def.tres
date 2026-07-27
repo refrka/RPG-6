@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ObjectDef" format=3 uid="uid://c5di2hhgtcgj0"]
+
+[ext_resource type="Script" uid="uid://br6a7176gci6n" path="res://entity/object/object_def.gd" id="1_bdtpc"]
+
+[resource]
+script = ExtResource("1_bdtpc")
+entity_id = &"campfire"
+display_name = "Campfire"
+scene_path = "res://entity/object/fixtures/campfire.tscn"
+metadata/_custom_type_script = "uid://br6a7176gci6n"
