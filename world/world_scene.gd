@@ -45,8 +45,6 @@ func unload_location(location: Location = null) -> void:
 
 		location = active_location
 
-		active_location = null
-
 	location._unload()
 
 	location._deactivate()
@@ -56,6 +54,10 @@ func unload_location(location: Location = null) -> void:
 	if location.is_paused():
 
 		paused_locations.erase(location)
+
+	if location == active_location:
+
+		active_location = null
 
 	location.queue_free()
 

@@ -32,3 +32,12 @@ func _get_dictionary() -> Dictionary:
 	save_dict["spawn_id"] = active_spawn_point.spawn_id
 
 	return save_dict
+
+
+
+
+func _load_dictionary(save_dict: Dictionary) -> void:
+
+	super(save_dict)
+
+	state_machine.request_state(IdleState)
