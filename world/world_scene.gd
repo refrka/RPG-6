@@ -47,6 +47,8 @@ func unload_location(location: Location = null) -> void:
 
 		active_location = null
 
+	location._unload()
+
 	location._deactivate()
 
 	loaded_locations.erase(location)

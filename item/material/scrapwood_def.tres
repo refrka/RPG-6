@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bhl8vnsm6ywc1"]
+
+[ext_resource type="Script" uid="uid://dbw06dfsqcft0" path="res://item/item_def.gd" id="1_kegi1"]
+
+[resource]
+script = ExtResource("1_kegi1")
+item_id = &"scrapwood"
+display_name = "Scrapwood"
+description = "Some useless scraps."
+metadata/_custom_type_script = "uid://dbw06dfsqcft0"

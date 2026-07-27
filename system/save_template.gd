@@ -21,4 +21,12 @@ var data = {
 
 	"quest_data": [ ],
 
+	"entity_dicts": {
+
+		"objects": [ ],
+
+		"characters": [ ],
+
+	}
+
 }

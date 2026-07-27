@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://b8mgfim7ywh8s"]
+
+[ext_resource type="Script" uid="uid://dbw06dfsqcft0" path="res://item/item_def.gd" id="1_um5gl"]
+
+[resource]
+script = ExtResource("1_um5gl")
+item_id = &"flint_shard"
+display_name = "Flint shard"
+description = "A chunk of hard stone with a long, sharp edge."
+metadata/_custom_type_script = "uid://dbw06dfsqcft0"

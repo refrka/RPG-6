@@ -81,8 +81,13 @@ func _initialize() -> bool:
 
 
 
+func _unload() -> void:
 
+	for object_node in object_list:
 
+		var dict = object_node._get_dictionary()
+
+		Entities.store_entity_dict(dict)
 
 
 
@@ -144,6 +149,8 @@ func initialize_objects() -> void:
 
 		object_node.authored = true
 
+		object_list.append(object_node)
+
 
 
 func initialize_characters() -> void:
@@ -153,6 +160,8 @@ func initialize_characters() -> void:
 		character_node._initialize()
 
 		character_node.authored = true
+
+		character_list.append(character_node)
 
 
 

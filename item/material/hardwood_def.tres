@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bcwgsd18maldn"]
+
+[ext_resource type="Script" uid="uid://dbw06dfsqcft0" path="res://item/item_def.gd" id="1_qfski"]
+
+[resource]
+script = ExtResource("1_qfski")
+item_id = &"hardwood"
+display_name = "Hardwood"
+description = "A tough, thick-grained wood."
+gold_value = 3
+metadata/_custom_type_script = "uid://dbw06dfsqcft0"

@@ -36,6 +36,8 @@ var inventory:= Inventory.new()
 
 
 
+
+
 func _initialize() -> bool:
 
 	if initialized:
@@ -177,6 +179,8 @@ func _deactivate() -> void:
 func _get_dictionary() -> Dictionary:
 
 	var save_dict = {}
+
+	save_dict["unique_id"] = get_unique_id()
 
 	save_dict["location_id"] = Scenes.get_location_scene().get_location_id()
 

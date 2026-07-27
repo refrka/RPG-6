@@ -5,6 +5,9 @@ extends Node
 var def_registry: Dictionary[StringName, EntityDef]
 
 
+## This array is a list of every entity's save_dict from _get_dictionary().
+## It must be tended to, so no duplicate dicts are stored
+var stored_entity_dicts: Array[Dictionary]
 
 
 
@@ -17,6 +20,39 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 
+
+
+
+
+func store_entity_dict(dict: Dictionary) -> void:
+
+	if dict.has("unique_id"):
+
+		var unique_dicts = get_stored_dicts_with("unique_id", dict["unique_id"])
+
+		if !unique_dicts.is_empty():
+
+			var current_dict = unique_dicts.pop_front()
+
+			stored_entity_dicts.erase(current_dict)
+
+	stored_entity_dicts.append(dict)
+
+
+
+
+
+func get_stored_dicts_with(property_name: String, value: Variant) -> Array[Dictionary]:
+
+	var stored_dicts: Array[Dictionary] = []
+
+	for dict in stored_entity_dicts:
+
+		if dict.has(property_name) and dict.get(property_name) == value:
+
+			stored_dicts.append(dict)
+
+	return stored_dicts
 
 
 

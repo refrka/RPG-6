@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://tow68sydh4ui"]
+
+[ext_resource type="Script" uid="uid://dbw06dfsqcft0" path="res://item/item_def.gd" id="1_58wsb"]
+
+[resource]
+script = ExtResource("1_58wsb")
+item_id = &"redwood"
+display_name = "Redwood"
+description = "A rare type of softwood"
+gold_value = 10
+metadata/_custom_type_script = "uid://dbw06dfsqcft0"
