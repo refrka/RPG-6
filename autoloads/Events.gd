@@ -59,13 +59,17 @@ func fire(event_script: Script, _data: Dictionary = {}, with_notice:= false) -> 
 
 func call_subscriptions(event: Event) -> void:
 
-	if subscriptions.has(event.get_script()):
+	var script = event.get_script()
 
-		for callback in subscriptions[event.get_script()]:
+	if subscriptions.has(script):
+
+		for callback in subscriptions[script]:
 
 			if callback.is_valid():
 
 				callback.call(event)
+
+
 
 
 
