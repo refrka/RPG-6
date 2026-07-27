@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://bxd1kbkgwlkwo"]
+
+[ext_resource type="Script" uid="uid://dbw06dfsqcft0" path="res://item/item_def.gd" id="1_ijh4r"]
+
+[resource]
+script = ExtResource("1_ijh4r")
+item_id = &"slug_slime"
+display_name = "Slug slime"
+description = "A gooey, sticky substance. How are you carrying this?"
+metadata/_custom_type_script = "uid://dbw06dfsqcft0"

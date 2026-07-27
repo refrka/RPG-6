@@ -66,3 +66,5 @@ func _process(delta: float) -> void:
 
 			expired.emit(self)
 
+			print("expired")
+

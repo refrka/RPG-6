@@ -45,6 +45,8 @@ func _remove_effect(effect: Effect) -> void:
 
 func _on_effect_expired(effect: Effect) -> void:
 
+	print("effect expired")
+
 	_remove_effect(effect)
 
 

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ConsumableDef" format=3 uid="uid://ce8t6vnaxuikv"]
+
+[ext_resource type="Script" uid="uid://dsylpr3v2vcbb" path="res://effect/effect.gd" id="1_f3gn7"]
+[ext_resource type="Script" uid="uid://5fsmjdm1a5cm" path="res://item/consumable/consumable_def.gd" id="2_l171m"]
+
+[resource]
+script = ExtResource("2_l171m")
+item_id = &"traitors_apple"
+display_name = "Traitor's apple"
+description = "Looks like a normal, safe apple."
+metadata/_custom_type_script = "uid://5fsmjdm1a5cm"

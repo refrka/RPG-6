@@ -8,6 +8,9 @@
 [ext_resource type="Script" uid="uid://buyl122k0580n" path="res://item/item_data.gd" id="5_j83uu"]
 [ext_resource type="Resource" uid="uid://c6473c6c2pcdx" path="res://item/consumable/potion/light_health_potion_def.tres" id="6_jvrim"]
 [ext_resource type="Script" uid="uid://bilua2f5kf02o" path="res://item/inventory.gd" id="7_crwam"]
+[ext_resource type="Script" uid="uid://bkrnyugdunr74" path="res://dialogue/dialogue_node.gd" id="8_crwam"]
+[ext_resource type="Script" uid="uid://dxhoiocbj8lkc" path="res://dialogue/greeting.gd" id="9_d5m45"]
+[ext_resource type="Script" uid="uid://bpekxy4h5arnf" path="res://dialogue/dialogue_library.gd" id="10_7j1o8"]
 
 [sub_resource type="Resource" id="Resource_egusr"]
 script = ExtResource("2_egusr")
@@ -33,6 +36,16 @@ item_list = Array[ExtResource("5_j83uu")]([SubResource("Resource_j3hrn")])
 gold_count = 2000
 metadata/_custom_type_script = "uid://bilua2f5kf02o"
 
+[sub_resource type="Resource" id="Resource_27mt8"]
+script = ExtResource("9_d5m45")
+lines = Array[String](["Oh hi mark"])
+metadata/_custom_type_script = "uid://dxhoiocbj8lkc"
+
+[sub_resource type="Resource" id="Resource_f8ujo"]
+script = ExtResource("10_7j1o8")
+default_greetings = Array[ExtResource("9_d5m45")]([SubResource("Resource_27mt8")])
+metadata/_custom_type_script = "uid://bpekxy4h5arnf"
+
 [resource]
 script = ExtResource("1_jailc")
 unique_id = &"mim"
@@ -41,5 +54,6 @@ display_name = "Mim"
 scene_path = "res://entity/character/npc/mim/mim.tscn"
 behavior_profile = SubResource("Resource_jnk4k")
 default_inventory = SubResource("Resource_qg0wm")
+dialogue_library = SubResource("Resource_f8ujo")
 base_max_health = 5.0
 metadata/_custom_type_script = "uid://d2ougu0lbgskp"

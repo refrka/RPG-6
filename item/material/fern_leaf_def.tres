@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cb6dyeoiwj851"]
+
+[ext_resource type="Script" uid="uid://dbw06dfsqcft0" path="res://item/item_def.gd" id="1_hku51"]
+
+[resource]
+script = ExtResource("1_hku51")
+item_id = &"fern_leaf"
+display_name = "Fern leaf"
+description = "A thin branch with long, narrow leaves in a fan shape."
+metadata/_custom_type_script = "uid://dbw06dfsqcft0"

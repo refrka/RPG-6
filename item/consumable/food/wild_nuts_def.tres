@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ConsumableDef" format=3 uid="uid://bwxv88yvtb5lk"]
+
+[ext_resource type="Script" uid="uid://dsylpr3v2vcbb" path="res://effect/effect.gd" id="1_gce0p"]
+[ext_resource type="Script" uid="uid://5fsmjdm1a5cm" path="res://item/consumable/consumable_def.gd" id="2_g2s5h"]
+
+[resource]
+script = ExtResource("2_g2s5h")
+item_id = &"wild_nuts"
+display_name = "Wild nuts"
+description = "A handful of assorted wild nuts, all safe and edible."
+gold_value = 3
+metadata/_custom_type_script = "uid://5fsmjdm1a5cm"

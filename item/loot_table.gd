@@ -14,7 +14,11 @@ func get_loot() -> Dictionary[ItemDef, int]:
 
 	for entry in entries:
 
+		print("looting entry")
+
 		var entry_loot = entry.get_loot(randf())
+
+		print("entry loot: ", entry_loot)
 
 		for item_def in entry_loot:
 

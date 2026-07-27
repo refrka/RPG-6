@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemDef" format=3 uid="uid://cb4dinwhqsq1e"]
+
+[ext_resource type="Script" uid="uid://dbw06dfsqcft0" path="res://item/item_def.gd" id="1_vm3cj"]
+
+[resource]
+script = ExtResource("1_vm3cj")
+item_id = &"slug_skin"
+display_name = "Slug skin"
+description = "The shed skin of a slug. "
+metadata/_custom_type_script = "uid://dbw06dfsqcft0"
