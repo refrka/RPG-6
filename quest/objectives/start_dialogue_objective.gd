@@ -20,6 +20,6 @@ func _complete() -> void:
 
 func _on_dialogue_started(event: Event) -> void:
 
-	if !target_quest_entity or target_quest_entity.match(event.data["source"]):
+	if !target_quest_entity or target_quest_entity.match(event.data["entity_node"]):
 
 		objective_complete.emit(self)

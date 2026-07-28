@@ -12,7 +12,7 @@ var data = {
 
 	"saved_spawn_id": "",
 
-	"global": {
+	"globals": {
 
 		"flags": { },
 

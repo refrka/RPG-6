@@ -13,6 +13,11 @@ func _initialize() -> void:
 
 
 
+func _complete() -> void:
+
+	Events.unsubscribe(LocationDiscoveredEvent, _on_location_discovered)
+
+
 
 func _is_complete() -> bool:
 

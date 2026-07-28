@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://nmihopaj7e7c" path="res://condition/condition.gd" id="11_y3wyl"]
 [ext_resource type="Script" uid="uid://dvgickpwtv0kq" path="res://condition/is_quest_stage_condition.gd" id="12_bgrhr"]
 [ext_resource type="Script" uid="uid://dorjapef0fhm1" path="res://condition/condition_set.gd" id="12_ou5qu"]
-[ext_resource type="Script" uid="uid://8fs4d75525vy" path="res://quest/objectives/start_dialogue_objective.gd" id="16_bgrhr"]
+[ext_resource type="Script" uid="uid://ctahtxnusppr3" path="res://quest/objectives/greet_character_objective.gd" id="16_bgrhr"]
 
 [sub_resource type="Resource" id="Resource_2crd8"]
 script = ExtResource("2_5n4ib")
@@ -66,15 +66,21 @@ forced_greeting = SubResource("Resource_y3wyl")
 show_condition_set = SubResource("Resource_bgrhr")
 enter_conditional = SubResource("Resource_m7y18")
 
-[sub_resource type="Resource" id="Resource_ou5qu"]
+[sub_resource type="Resource" id="Resource_27mt8"]
+script = ExtResource("3_2crd8")
+unique_id = &"mim"
+metadata/_custom_type_script = "uid://5dqsbln5otb0"
+
+[sub_resource type="Resource" id="Resource_f8ujo"]
 script = ExtResource("16_bgrhr")
-title = "Talk to someone"
-description = "Start dialogue with an NPC"
-metadata/_custom_type_script = "uid://8fs4d75525vy"
+target_quest_entity = SubResource("Resource_27mt8")
+title = "Greet Mim"
+description = "Go meet Mim!"
+metadata/_custom_type_script = "uid://ctahtxnusppr3"
 
 [sub_resource type="Resource" id="Resource_okwv0"]
 script = ExtResource("2_bx7u3")
-objectives = Array[ExtResource("3_bx7u3")]([SubResource("Resource_ou5qu")])
+objectives = Array[ExtResource("3_bx7u3")]([SubResource("Resource_f8ujo")])
 metadata/_custom_type_script = "uid://btjgttvqng6jt"
 
 [resource]

@@ -11,6 +11,7 @@ radius = 4.0
 height = 26.0
 
 [node name="Mim" unique_id=639653512 instance=ExtResource("1_ms3ll")]
+collision_mask = 263
 entity_def = ExtResource("2_gnloq")
 
 [node name="BodySprite" parent="VisualRoot" parent_id_path=PackedInt32Array(93121259) index="0" unique_id=1905262643]
@@ -21,6 +22,9 @@ texture = ExtResource("2_o88vc")
 position = Vector2(0, -4)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_fmiem")
+
+[node name="NavigationAgent2D" parent="." index="2" unique_id=1161694570]
+avoidance_mask = 7
 
 [node name="BarterComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="3" unique_id=1148118195]
 script = ExtResource("4_ut6t0")

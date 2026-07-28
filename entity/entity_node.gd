@@ -68,6 +68,11 @@ func _initialize() -> bool:
 
 
 
+
+
+
+
+
 func use_item(item_data: ItemData) -> void:
 
 	var item_def = item_data.get_item_def()
@@ -85,17 +90,20 @@ func use_item(item_data: ItemData) -> void:
 
 
 
-
 func reposition(new_position: Vector2) -> void:
 
 	global_position = new_position
 
 
 
-
 func reset() -> void:
 
 	pass
+
+
+
+
+
 
 
 
@@ -172,6 +180,23 @@ func get_component_by_id(component_id: StringName) -> Component:
 	return null
 
 	
+
+
+
+
+
+
+
+
+func is_unique() -> bool:
+
+	return entity_def.unique_id != &""
+
+
+
+
+
+
 
 
 

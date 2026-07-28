@@ -216,8 +216,6 @@ func _load_game(save_data: SaveData) -> void:
 
 	active_save_data = save_data
 
-	active_save_data.load_dictionary()
-
 	player = get_player()
 
 	var location_id:= &""
@@ -236,11 +234,15 @@ func _load_game(save_data: SaveData) -> void:
 
 	else:
 
+		Globals.load_dictionary(active_save_data.last_dict["globals"])
+
 		player._load_dictionary(active_save_data.last_dict["player"])
 
 		location_id = active_save_data.last_dict["player"]["location_id"]
 
 		spawn_id = active_save_data.last_dict["player"]["spawn_id"]
+
+	active_save_data.load_dictionary()
 	
 	var location = Scenes.load_location(location_id)
 

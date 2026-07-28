@@ -44,6 +44,8 @@ func get_dictionary() -> Dictionary:
 
 	save_dict["discovered_locations"] = discovered_locations
 
+	save_dict["globals"] = Globals.get_dictionary()
+
 	return save_dict
 
 

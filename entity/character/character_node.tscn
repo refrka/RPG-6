@@ -32,6 +32,7 @@ y_sort_enabled = true
 path_desired_distance = 8.0
 target_desired_distance = 8.0
 avoidance_enabled = true
+avoidance_mask = 7
 debug_enabled = true
 
 [node name="StateMachine" type="Node" parent="." unique_id=2134553196 node_paths=PackedStringArray("initial_state")]

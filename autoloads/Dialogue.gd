@@ -50,9 +50,21 @@ func start_dialogue(greeting: Greeting, options: Array[DialogueNode] = [], sourc
 
 	UI.show_dialogue_panel(greeting, options, source)
 
-	Events.fire(DialogueStartedEvent, {"source": current_source})
+	Events.fire(DialogueStartedEvent, {"entity_node": current_source})
 
 	current_source.state_machine.request_state(InteractingState)
+
+	if source.is_unique():
+
+		var greeted_characters = Globals.get_var("greeted_characters")
+
+		if !greeted_characters.has(source.get_unique_id()):
+
+			greeted_characters.append(source.get_unique_id())
+
+		Globals.set_var("greeted_characters", greeted_characters)
+
+		
 
 
 
@@ -63,7 +75,7 @@ func end_dialogue() -> void:
 
 		current_source.state_machine.request_state(IdleState)
 
-		Events.fire(DialogueEndedEvent, {"source": current_source})
+		Events.fire(DialogueEndedEvent, {"entity_node": current_source})
 
 		current_source = null
 

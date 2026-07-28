@@ -9,7 +9,13 @@ var default_flags: Dictionary[StringName, int] = {
 }
 
 
-var default_vars: Dictionary[StringName, Variant] = {  }
+var default_vars: Dictionary[StringName, Variant] = { 
+
+	"discovered_locations": [ ],
+
+	"greeted_characters": [ ],
+
+ }
 
 var flags: Dictionary[StringName, int]
 

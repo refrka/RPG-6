@@ -214,7 +214,7 @@ func _is_index_valid(index: int) -> bool:
 
 		return false
 
-	return quest_def.stages.size() - 1 >= index
+	return quest_def.stages.size() - 1 >= index and index != -1
 
 
 
