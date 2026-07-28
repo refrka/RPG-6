@@ -235,7 +235,19 @@ func get_spawn_point(spawn_id: StringName) -> SpawnPoint:
 
 
 
+func get_all_spawn_points() -> Array[SpawnPoint]:
 
+	var spawn_points: Array[SpawnPoint] = []
+
+	for spawn_point in spawn_point_root.get_children():
+
+		spawn_points.append(spawn_point)
+
+	for transition_zone in transition_root.get_children():
+
+		spawn_points.append(transition_zone.spawn_point)
+
+	return spawn_points
 
 
 

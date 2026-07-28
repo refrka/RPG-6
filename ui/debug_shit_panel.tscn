@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://br1lhgpwbexd0" path="res://ui/debug_shit_panel.gd" id="1_aqy7u"]
 [ext_resource type="Script" uid="uid://dk2cxqko4w3x8" path="res://ui/item_def_list.gd" id="2_duhep"]
 
-[node name="DebugShitPanel" type="MarginContainer" unique_id=2112953381 node_paths=PackedStringArray("item_def_list", "item_count_entry", "add_item_button", "remove_item_button")]
+[node name="DebugShitPanel" type="MarginContainer" unique_id=2112953381 node_paths=PackedStringArray("item_def_list", "item_count_entry", "add_item_button", "remove_item_button", "location_id_list", "spawn_id_list", "move_button")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,11 +18,18 @@ item_def_list = NodePath("VBoxContainer/HBoxContainer/ItemDefList")
 item_count_entry = NodePath("VBoxContainer/HBoxContainer/ItemCountEntry")
 add_item_button = NodePath("VBoxContainer/HBoxContainer2/AddItemButton")
 remove_item_button = NodePath("VBoxContainer/HBoxContainer2/RemoveItemButton")
+location_id_list = NodePath("VBoxContainer/LocationIDList")
+spawn_id_list = NodePath("VBoxContainer/HBoxContainer3/SpawnIDList")
+move_button = NodePath("VBoxContainer/HBoxContainer3/MoveButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1285490285]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 0
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1487498659]
+layout_mode = 2
+text = "Add to/remove from player inventory"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=764884491]
 layout_mode = 2
@@ -31,6 +38,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 size_flags_horizontal = 3
+search_bar_enabled = true
 script = ExtResource("2_duhep")
 metadata/_custom_type_script = "uid://dk2cxqko4w3x8"
 
@@ -56,3 +64,36 @@ custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Remove"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=866895047]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=795498322]
+layout_mode = 2
+text = "Move to location & spawn:"
+
+[node name="LocationIDList" type="OptionButton" parent="VBoxContainer" unique_id=1912020767]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+search_bar_enabled = true
+item_count = 3
+popup/item_0/text = "forest_start"
+popup/item_0/id = 0
+popup/item_1/text = "forest_area_1"
+popup/item_1/id = 1
+popup/item_2/text = "forest_area_2"
+popup/item_2/id = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=974870138]
+layout_mode = 2
+
+[node name="SpawnIDList" type="OptionButton" parent="VBoxContainer/HBoxContainer3" unique_id=1942578609]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MoveButton" type="Button" parent="VBoxContainer/HBoxContainer3" unique_id=1410890939]
+process_mode = 3
+custom_minimum_size = Vector2(60, 35)
+layout_mode = 2
+text = "Move"
