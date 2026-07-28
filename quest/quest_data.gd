@@ -101,11 +101,11 @@ func set_stage(index: int) -> void:
 
 		current_stage = quest_def.stages[stage_index]
 
-		current_stage.initialize()
-
 		current_stage.objective_completed.connect(_on_objective_completed)
 
 		current_stage.stage_completed.connect(_on_stage_completed)
+
+		current_stage.initialize()
 
 		stage_changed.emit(self)
 
@@ -132,6 +132,8 @@ func set_state(new_state: QuestState) -> void:
 			Events.fire(QuestStateChangedEvent, {"quest_data": self, "old_state": old_state}, true)
 
 		QuestState.COMPLETE:
+
+			completed_objectives.clear()
 
 			Events.fire(QuestStateChangedEvent, {"quest_data": self, "old_state": old_state}, true)
 
@@ -160,6 +162,8 @@ func complete_objective(objective: QuestObjective) -> void:
 
 
 func complete_stage() -> void:
+
+	print("complete_stage()")
 
 	var completed_index = stage_index
 
@@ -230,9 +234,9 @@ func _is_stage_complete(index:= -1) -> bool:
 
 	var complete = true
 
-	for objective in stage.objectives:
+	for i in range(stage.objectives.size()):
 
-		if !completed_objectives.has(objective):
+		if !completed_objectives.has(i):
 
 			complete = false
 
@@ -284,18 +288,6 @@ static func load_dictionary(save_dict: Dictionary) -> QuestData:
 
 	quest_data.state = save_dict["state"] as QuestState
 
-	quest_data.stage_index = int(save_dict["stage_index"])
-	
-	quest_data.current_stage = quest_data.get_stage()
-
-	if quest_data.current_stage:
-
-		quest_data.current_stage.initialize()
-
-		quest_data.current_stage.objective_completed.connect(quest_data._on_objective_completed)
-
-		quest_data.current_stage.stage_completed.connect(quest_data._on_stage_completed)
-
 	for _stage_index in save_dict["completed_objectives"]:
 
 		var objective_index_list = save_dict["completed_objectives"][_stage_index]
@@ -307,5 +299,25 @@ static func load_dictionary(save_dict: Dictionary) -> QuestData:
 			int_index_list.append(int(objective_index))
 
 		quest_data.completed_objectives[int(_stage_index)] = int_index_list
+
+	quest_data.stage_index = int(save_dict["stage_index"])
+	
+	quest_data.current_stage = quest_data.get_stage()
+
+	if quest_data.current_stage:
+
+		if quest_data.completed_objectives.has(quest_data.stage_index):
+
+			for objective_index in quest_data.completed_objectives[quest_data.stage_index]:
+
+				var objective = quest_data.current_stage.objectives[objective_index]
+
+				quest_data.current_stage.completed_objectives.append(objective)
+
+		quest_data.current_stage.objective_completed.connect(quest_data._on_objective_completed)
+
+		quest_data.current_stage.stage_completed.connect(quest_data._on_stage_completed)
+
+		quest_data.current_stage.initialize()
 
 	return quest_data

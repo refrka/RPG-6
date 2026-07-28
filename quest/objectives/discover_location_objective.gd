@@ -14,8 +14,23 @@ func _initialize() -> void:
 
 
 
+func _is_complete() -> bool:
+
+	var save_data = Game.get_save_data()
+
+	if save_data.discovered_locations.has(location_id):
+
+		return true
+
+	return false
+
+
+
+
 func _on_location_discovered(event: Event) -> void:
 
 	if location_id == event.data["location"].location_id:
 
 		objective_complete.emit(self)
+
+
