@@ -6,12 +6,13 @@
 [ext_resource type="Script" uid="uid://d3krim3ji2wmx" path="res://component/effects_component.gd" id="4_vfshi"]
 [ext_resource type="Script" uid="uid://bapxh7cmbif0o" path="res://component/health_component.gd" id="5_3h0si"]
 
-[node name="ObjectNode" type="StaticBody2D" unique_id=188428736 node_paths=PackedStringArray("body_sprite", "state_machine", "component_root")]
+[node name="ObjectNode" type="StaticBody2D" unique_id=188428736 node_paths=PackedStringArray("body_sprite", "body_collision", "state_machine", "component_root")]
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_iy5f5")
 body_sprite = NodePath("VisualRoot/BodySprite")
+body_collision = NodePath("BodyCollision")
 state_machine = NodePath("StateMachine")
 component_root = NodePath("ComponentRoot")
 

@@ -12,6 +12,8 @@ class_name EntityNode extends PhysicsBody2D
 
 @export var body_sprite: Sprite2D
 
+@export var body_collision: CollisionShape2D
+
 @export var state_machine: StateMachine
 
 @export var component_root: Node
@@ -210,6 +212,8 @@ func _activate() -> void:
 
 		component._activate()
 
+	body_collision.disabled = false
+
 
 
 
@@ -221,6 +225,8 @@ func _deactivate() -> void:
 	for component in get_all_components():
 
 		component._deactivate()
+
+	body_collision.disabled = true
 
 
 

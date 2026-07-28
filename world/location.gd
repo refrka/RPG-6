@@ -129,11 +129,13 @@ func spawn_marked_entities() -> void:
 
 func spawn_entity_node(entity_node: EntityNode, spawn_id: StringName) -> void:
 
-	_add_entity(entity_node)
-
 	var spawn_point = get_spawn_point(spawn_id)
 
+	assert(spawn_point != null, "Invalid spawn id: %s" % spawn_id)
+
 	entity_node.reposition(spawn_point.global_position)
+
+	_add_entity(entity_node)
 
 	entity_node._initialize()
 
@@ -352,16 +354,27 @@ func _add_entity(entity_node: EntityNode) -> void:
 
 		list = character_list
 
+	await Game.get_tree().process_frame
+
 	var parent = entity_node.get_parent()
 
 	if parent != null:
 
-		parent.remove_child(entity_node)
+		if parent == Game:
 
-	root.add_child(entity_node)
+			entity_node.reparent(root)
+
+		else:
+
+			parent.remove_child(entity_node)
+
+			root.add_child(entity_node)
+
+	else:
+
+		root.add_child(entity_node)
 
 	list.append(entity_node)
-
 
 
 
@@ -373,13 +386,17 @@ func _remove_entity(entity_node: EntityNode) -> void:
 
 	if entity_node is ObjectNode:
 
-		object_root.remove_child(entity_node)
+		if entity_node.get_parent() == object_root:
+
+			object_root.remove_child(entity_node)
 
 		object_list.erase(entity_node)
 
 	elif entity_node is CharacterNode:
 
-		character_root.remove_child(entity_node)
+		if entity_node.get_parent() == character_root:
+
+			character_root.remove_child(entity_node)
 
 		character_list.erase(entity_node)
 
@@ -419,6 +436,10 @@ func _activate() -> void:
 		transition_zone._activate()
 
 	nav_region.bake_navigation_polygon()
+
+	var camera = Game.get_camera()
+
+	camera.reset_on_location(self)
 
 
 

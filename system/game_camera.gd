@@ -5,6 +5,10 @@ class_name GameCamera extends Camera2D
 var following_player:= false
 
 
+var camera_limit_top_left: Marker2D
+
+var camera_limit_bottom_right: Marker2D
+
 
 func _ready() -> void:
 
@@ -15,11 +19,11 @@ func _ready() -> void:
 
 
 
-func set_camera_limits(marker_top_left: Marker2D, marker_bottom_right: Marker2D) -> void:
+func set_camera_limits() -> void:
 
-	var top_left_pos = marker_top_left.global_position
+	var top_left_pos = camera_limit_top_left.global_position
 
-	var bottom_right_pos = marker_bottom_right.global_position
+	var bottom_right_pos = camera_limit_bottom_right.global_position
 
 	limit_left = top_left_pos.x
 
@@ -35,6 +39,8 @@ func set_camera_limits(marker_top_left: Marker2D, marker_bottom_right: Marker2D)
 
 func follow_player() -> void:
 
+	anchor_mode = ANCHOR_MODE_DRAG_CENTER
+
 	following_player = true
 
 	var player = Game.get_player()
@@ -48,13 +54,31 @@ func follow_player() -> void:
 
 func unfollow_player() -> void:
 
+	anchor_mode = ANCHOR_MODE_FIXED_TOP_LEFT
+
 	following_player = false
 
 	var game_root = Game.get_game_root()
 
 	reparent(game_root)
 
-	global_position = Vector2.ZERO
+	global_position = camera_limit_top_left.global_position
+
+
+
+
+
+func reset_on_location(location: Location) -> void:
+
+	print("resetting on location")
+
+	camera_limit_top_left = location.camera_limit_top_left
+
+	camera_limit_bottom_right = location.camera_limit_bottom_right
+
+	anchor_mode = ANCHOR_MODE_FIXED_TOP_LEFT
+
+	global_position = camera_limit_top_left.global_position
 
 
 
@@ -64,13 +88,17 @@ func _on_player_entered_location(event: Event) -> void:
 
 	var location = event.data["location"]
 
+	camera_limit_top_left = location.camera_limit_top_left
+	
+	camera_limit_bottom_right = location.camera_limit_bottom_right
+
 	if location.camera_follow_player:
 
 		if !following_player:
 
 			follow_player()
 
-			set_camera_limits(location.camera_limit_top_left, location.camera_limit_bottom_right)
+			set_camera_limits()
 
 	else:
 

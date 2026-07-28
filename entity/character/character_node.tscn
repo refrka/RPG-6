@@ -11,12 +11,13 @@
 [ext_resource type="Script" uid="uid://d3krim3ji2wmx" path="res://component/effects_component.gd" id="9_jub6e"]
 [ext_resource type="Script" uid="uid://bapxh7cmbif0o" path="res://component/health_component.gd" id="10_nbb1o"]
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=639653512 node_paths=PackedStringArray("body_sprite", "state_machine", "component_root", "nav_agent")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=639653512 node_paths=PackedStringArray("body_sprite", "body_collision", "state_machine", "component_root", "nav_agent")]
 y_sort_enabled = true
 collision_mask = 259
 motion_mode = 1
 script = ExtResource("1_ioq1x")
 body_sprite = NodePath("VisualRoot/BodySprite")
+body_collision = NodePath("BodyCollision")
 state_machine = NodePath("StateMachine")
 component_root = NodePath("ComponentRoot")
 nav_agent = NodePath("NavigationAgent2D")

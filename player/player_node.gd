@@ -67,3 +67,5 @@ func _on_player_entered_location(event: Event) -> void:
 		save_data.discovered_locations.append(location_id)
 
 		Events.fire(LocationDiscoveredEvent, event.data)
+
+

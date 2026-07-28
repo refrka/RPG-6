@@ -128,6 +128,8 @@ func resume() -> void:
 
 func transition_to(location_id: StringName, spawn_id: StringName) -> void:
 
+	hold_player_node()
+
 	var world_scene = Scenes.get_world_scene()
 
 	world_scene.active_location.remove_entity_node(player)
