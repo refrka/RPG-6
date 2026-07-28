@@ -31,5 +31,5 @@ func execute(_data: Dictionary = {}) -> bool:
 		quest_def = Quests.get_quest_def(quest_id)
 
 	Quests.set_quest_stage(quest_def, stage_index)
-	
-	return true
+
+	return super()

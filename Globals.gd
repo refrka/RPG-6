@@ -99,9 +99,7 @@ func _reset_globals() -> void:
 
 func _on_game_ended(_event: Event) -> void:
 
-	flags = {}
-
-	vars = {}
+	_reset_globals()
 
 
 

@@ -12,6 +12,9 @@
 [ext_resource type="Script" uid="uid://ck2xh3er21qsw" path="res://command/command_set.gd" id="4_e0tf5"]
 [ext_resource type="Script" uid="uid://bu6pjc3dajq25" path="res://command/set_quest_stage_command.gd" id="4_qasdj"]
 [ext_resource type="Script" uid="uid://o3ja5up848kc" path="res://command/conditional_command_set.gd" id="5_qasdj"]
+[ext_resource type="Script" uid="uid://74h3cwa06x8h" path="res://command/end_dialogue_command.gd" id="7_okwv0"]
+[ext_resource type="Script" uid="uid://b1h4ca01qe0lw" path="res://command/move_to_position_command.gd" id="8_ncwlv"]
+[ext_resource type="Script" uid="uid://dhqjsemk7pnt1" path="res://command/exit_location_command.gd" id="9_ncwlv"]
 [ext_resource type="Script" uid="uid://nmihopaj7e7c" path="res://condition/condition.gd" id="11_y3wyl"]
 [ext_resource type="Script" uid="uid://dvgickpwtv0kq" path="res://condition/is_quest_stage_condition.gd" id="12_bgrhr"]
 [ext_resource type="Script" uid="uid://dorjapef0fhm1" path="res://condition/condition_set.gd" id="12_ou5qu"]
@@ -35,6 +38,29 @@ metadata/_custom_type_script = "uid://ck2xh3er21qsw"
 [sub_resource type="Resource" id="Resource_m7y18"]
 script = ExtResource("5_qasdj")
 command_set = SubResource("Resource_hnhw1")
+metadata/_custom_type_script = "uid://o3ja5up848kc"
+
+[sub_resource type="Resource" id="Resource_5w67w"]
+script = ExtResource("7_okwv0")
+metadata/_custom_type_script = "uid://74h3cwa06x8h"
+
+[sub_resource type="Resource" id="Resource_bg6ye"]
+script = ExtResource("8_ncwlv")
+target_pos = Vector2(1264, 112)
+metadata/_custom_type_script = "uid://b1h4ca01qe0lw"
+
+[sub_resource type="Resource" id="Resource_okwv0"]
+script = ExtResource("9_ncwlv")
+metadata/_custom_type_script = "uid://dhqjsemk7pnt1"
+
+[sub_resource type="Resource" id="Resource_3rqhx"]
+script = ExtResource("4_e0tf5")
+commands = Array[ExtResource("3_aatn7")]([SubResource("Resource_5w67w"), SubResource("Resource_bg6ye"), SubResource("Resource_okwv0")])
+metadata/_custom_type_script = "uid://ck2xh3er21qsw"
+
+[sub_resource type="Resource" id="Resource_n63o1"]
+script = ExtResource("5_qasdj")
+command_set = SubResource("Resource_3rqhx")
 metadata/_custom_type_script = "uid://o3ja5up848kc"
 
 [sub_resource type="Resource" id="Resource_y3wyl"]
@@ -65,28 +91,29 @@ dialogue_text = SubResource("Resource_2crd8")
 forced_greeting = SubResource("Resource_y3wyl")
 show_condition_set = SubResource("Resource_bgrhr")
 enter_conditional = SubResource("Resource_m7y18")
+exit_conditional = SubResource("Resource_n63o1")
 
 [sub_resource type="Resource" id="Resource_27mt8"]
 script = ExtResource("3_2crd8")
 unique_id = &"mim"
 metadata/_custom_type_script = "uid://5dqsbln5otb0"
 
-[sub_resource type="Resource" id="Resource_f8ujo"]
+[sub_resource type="Resource" id="Resource_dujw3"]
 script = ExtResource("16_bgrhr")
 target_quest_entity = SubResource("Resource_27mt8")
 title = "Greet Mim"
 description = "Go meet Mim!"
 metadata/_custom_type_script = "uid://ctahtxnusppr3"
 
-[sub_resource type="Resource" id="Resource_okwv0"]
+[sub_resource type="Resource" id="Resource_ncwlv"]
 script = ExtResource("2_bx7u3")
-objectives = Array[ExtResource("3_bx7u3")]([SubResource("Resource_f8ujo")])
+objectives = Array[ExtResource("3_bx7u3")]([SubResource("Resource_dujw3")])
 metadata/_custom_type_script = "uid://btjgttvqng6jt"
 
 [resource]
 script = ExtResource("1_4w6ow")
 quest_id = &"new_game_quest"
-stages = Array[ExtResource("2_bx7u3")]([SubResource("Resource_okwv0")])
+stages = Array[ExtResource("2_bx7u3")]([SubResource("Resource_ncwlv")])
 title = "Starting a new game"
 description = "Learn about the game!"
 source_dialogue_node = SubResource("Resource_bx7u3")

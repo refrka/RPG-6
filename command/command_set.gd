@@ -13,12 +13,14 @@ func execute(_data: Dictionary = {}) -> bool:
 
 	data = _data
 
-	var all_executed = true
-
 	for command in commands:
 
-		if !command.execute(data):
+		if command.execute(data):
 
-			all_executed = false
+			continue
 
-	return all_executed
+		else:
+
+			await command.executed
+
+	return true

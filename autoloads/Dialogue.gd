@@ -77,7 +77,15 @@ func end_dialogue() -> void:
 
 		Events.fire(DialogueEndedEvent, {"entity_node": current_source})
 
+		var dialogue_source = current_source
+
 		current_source = null
+
+		if current_dialogue_node:
+
+			current_dialogue_node.exit({"entity_node": dialogue_source})
+
+			current_dialogue_node = null
 
 		UI.close_dialogue_panel()
 
@@ -100,13 +108,11 @@ func show_dialogue_node(dialogue_node: DialogueNode, source: EntityNode = null) 
 
 	var options: Array[DialogueNode] = current_dialogue_node.option_nodes
 
-	current_dialogue_node.enter()
+	current_dialogue_node.enter({"entity_node": source})
 
 	if options.is_empty():
 
 		options = get_dialogue_nodes(source)
-
-	print("re loading with these nodes: ", options)
 
 	dialogue_panel.set_dialogue(source, current_dialogue_node.dialogue_text, options)
 

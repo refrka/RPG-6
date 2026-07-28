@@ -1,7 +1,9 @@
 class_name Location extends Node2D
 
 
+signal entity_added(entity_node: EntityNode)
 
+signal entity_removed(entity_node: EntityNode)
 
 
 @export var location_id: StringName
@@ -111,17 +113,7 @@ func spawn_marked_entities() -> void:
 
 			continue
 
-		var entity_node = entity_marker.get_entity_node()
-
-		_add_entity(entity_node)
-
-		entity_node.reposition(entity_marker.global_position)
-
-		entity_node._initialize()
-
-		entity_node._activate()
-
-		entity_marker.spawned_entity_node = entity_node
+		_spawn_marker(entity_marker)
 
 
 
@@ -185,6 +177,10 @@ func initialize_characters() -> void:
 
 
 func initialize_features() -> void:
+
+	for entity_marker in marker_root.get_children():
+
+		entity_marker.initialize(self)
 
 	for transition_zone in transition_root.get_children():
 
@@ -289,13 +285,24 @@ func resume() -> void:
 
 	for entity_marker in marker_root.get_children():
 
-		if entity_marker.spawned_entity_node != null:
+		var valid = true
+
+		if entity_marker.spawn_condition_set:
+
+			valid = entity_marker.spawn_condition_set.evaluate()
+
+		if !valid:
 
 			if entity_marker.spawn_condition_set and !entity_marker.spawn_condition_set.evaluate():
 
 				remove_entity_node(entity_marker.spawned_entity_node)
 
 				entity_marker.spawned_entity_node = null
+
+		elif !entity_marker.spawned_entity_node:
+
+			_spawn_marker(entity_marker)
+
 
 	process_mode = Node.PROCESS_MODE_INHERIT
 
@@ -325,6 +332,19 @@ func _exit() -> void:
 
 
 
+func _spawn_marker(entity_marker: EntityMarker) -> void:
+	
+	var entity_node = entity_marker.get_entity_node()
+
+	_add_entity(entity_node)
+
+	entity_node.reposition(entity_marker.global_position)
+
+	entity_node._initialize()
+
+	entity_node._activate()
+
+	entity_marker.spawned_entity_node = entity_node
 
 
 
@@ -376,6 +396,10 @@ func _add_entity(entity_node: EntityNode) -> void:
 
 	list.append(entity_node)
 
+	entity_added.emit(entity_node)
+
+
+
 
 
 func _remove_entity(entity_node: EntityNode) -> void:
@@ -399,6 +423,8 @@ func _remove_entity(entity_node: EntityNode) -> void:
 			character_root.remove_child(entity_node)
 
 		character_list.erase(entity_node)
+
+	entity_removed.emit(entity_node)
 
 
 

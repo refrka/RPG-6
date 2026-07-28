@@ -58,6 +58,8 @@ func halt() -> void:
 
 func _on_target_reached() -> void:
 
+	target_pos_reached.emit()
+
 	halt()
 
 

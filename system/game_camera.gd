@@ -70,8 +70,6 @@ func unfollow_player() -> void:
 
 func reset_on_location(location: Location) -> void:
 
-	print("resetting on location")
-
 	camera_limit_top_left = location.camera_limit_top_left
 
 	camera_limit_bottom_right = location.camera_limit_bottom_right

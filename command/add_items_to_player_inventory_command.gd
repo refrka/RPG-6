@@ -33,4 +33,4 @@ func execute(_data: Dictionary = {}) -> bool:
 
 	player.inventory.add_items(item_def, amount)
 
-	return true
+	return super()

@@ -58,6 +58,4 @@ func _on_objective_complete(objective: QuestObjective) -> void:
 
 	if stage_complete:
 
-		print("stage is complete")
-
 		stage_completed.emit()

@@ -163,8 +163,6 @@ func complete_objective(objective: QuestObjective) -> void:
 
 func complete_stage() -> void:
 
-	print("complete_stage()")
-
 	var completed_index = stage_index
 
 	var next_index = stage_index + 1

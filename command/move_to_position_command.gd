@@ -17,7 +17,9 @@ func execute(_data: Dictionary = {}) -> bool:
 
 	navigation_component.set_target_pos(target_pos)
 
-	return true
+	navigation_component.target_pos_reached.connect(_on_target_pos_reached, CONNECT_ONE_SHOT)
+
+	return false
 
 
 
@@ -27,3 +29,11 @@ static func run(_data: Dictionary) -> bool:
 	var command = MoveToPositionCommand.new()
 
 	return command.execute(_data)
+
+
+
+
+
+func _on_target_pos_reached() -> void:
+
+	executed.emit()

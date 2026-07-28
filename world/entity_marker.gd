@@ -15,6 +15,14 @@ var spawned_entity_node: EntityNode
 
 
 
+func initialize(location: Location) -> void:
+
+	location.entity_removed.connect(_on_entity_removed)
+
+
+
+
+
 func get_entity_node() -> EntityNode:
 
 	if reference_entity:
@@ -26,3 +34,12 @@ func get_entity_node() -> EntityNode:
 		return load(scene_path).instantiate()
 
 	return null
+
+
+
+
+func _on_entity_removed(entity_node: EntityNode) -> void:
+
+	if entity_node == spawned_entity_node:
+
+		spawned_entity_node = null

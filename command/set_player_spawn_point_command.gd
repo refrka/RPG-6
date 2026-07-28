@@ -21,7 +21,7 @@ func execute(_data: Dictionary = {}) -> bool:
 
 	Events.fire(PlayerSpawnPointSetEvent, {"spawn_point": spawn_point}, true)
 
-	return true
+	return super()
 
 
 
