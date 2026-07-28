@@ -8,6 +8,8 @@ var save_name: String
 
 var quest_data_registry: Dictionary[StringName, QuestData]
 
+var discovered_locations: Array[StringName]
+
 var last_dict: Dictionary
 
 
@@ -40,6 +42,8 @@ func get_dictionary() -> Dictionary:
 
 		save_dict["quest_data"].append(quest_data.get_dictionary())
 
+	save_dict["discovered_locations"] = discovered_locations
+
 	return save_dict
 
 
@@ -54,7 +58,7 @@ func load_dictionary() -> void:
 
 		quest_data_registry[quest_data.get_quest_id()] = quest_data
 
-	pass
+	discovered_locations.assign(last_dict["discovered_locations"])
 
 
 

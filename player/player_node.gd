@@ -8,6 +8,19 @@ var active_location: Location
 
 
 
+
+func _initialize() -> bool:
+
+	super()
+
+	Events.subscribe(PlayerEnteredLocationEvent, _on_player_entered_location)
+
+	return true
+
+
+
+
+
 func get_display_name() -> String:
 
 	var save_data = Game.get_save_data()
@@ -37,3 +50,20 @@ func _get_dictionary() -> Dictionary:
 	return save_dict
 
 
+
+
+
+
+
+
+func _on_player_entered_location(event: Event) -> void:
+
+	var location_id = event.data["location"].location_id
+
+	var save_data = Game.get_save_data()
+
+	if !save_data.discovered_locations.has(location_id):
+
+		save_data.discovered_locations.append(location_id)
+
+		Events.fire(LocationDiscoveredEvent, event.data)

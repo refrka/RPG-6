@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dsqgo7uu0rxh7"]
+
+[ext_resource type="PackedScene" uid="uid://jyrgqo755dng" path="res://entity/object/object_node.tscn" id="1_1xfyf"]
+[ext_resource type="Resource" uid="uid://cq1h842llqkum" path="res://entity/object/fixtures/sign_def.tres" id="2_w6vjt"]
+[ext_resource type="Texture2D" uid="uid://dojumh613stxw" path="res://entity/object/fixtures/sign_sprite.png" id="3_w6vjt"]
+[ext_resource type="Script" uid="uid://dl0uj3rt7fj45" path="res://component/interactable_component.gd" id="4_i4kyv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4kyv"]
+size = Vector2(22, 3)
+
+[node name="Sign" unique_id=188428736 instance=ExtResource("1_1xfyf")]
+entity_def = ExtResource("2_w6vjt")
+
+[node name="BodySprite" parent="VisualRoot" parent_id_path=PackedInt32Array(866277596) index="0" unique_id=1622163974]
+position = Vector2(0, -13)
+texture = ExtResource("3_w6vjt")
+
+[node name="BodyCollision" parent="." index="1" unique_id=1548032054]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_i4kyv")
+
+[node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1902725791) index="2" unique_id=1755402182]
+script = ExtResource("4_i4kyv")
+metadata/_custom_type_script = "uid://dl0uj3rt7fj45"

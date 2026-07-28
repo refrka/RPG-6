@@ -27,6 +27,8 @@ var data = {
 
 		"characters": [ ],
 
-	}
+	},
+
+	"discovered_locations": [ ]
 
 }

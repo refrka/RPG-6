@@ -111,7 +111,7 @@ func spawn_marked_entities() -> void:
 
 			continue
 
-		var entity_node = entity_marker.reference_entity.get_reference_node()
+		var entity_node = entity_marker.get_entity_node()
 
 		_add_entity(entity_node)
 
@@ -417,6 +417,8 @@ func _activate() -> void:
 	for transition_zone in transition_root.get_children():
 
 		transition_zone._activate()
+
+	nav_region.bake_navigation_polygon()
 
 
 

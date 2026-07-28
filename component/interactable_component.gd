@@ -10,6 +10,8 @@ signal interaction_ended
 
 @export var interaction_conditionals: Array[ConditionalCommandSet]
 
+@export var dialogue_library: DialogueLibrary
+
 @export var can_barter:= false
 
 

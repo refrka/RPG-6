@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dhvxpexff1ocp"]
+
+[ext_resource type="PackedScene" uid="uid://jyrgqo755dng" path="res://entity/object/object_node.tscn" id="1_yn1b2"]
+[ext_resource type="Texture2D" uid="uid://cdsvx0js0e2jc" path="res://entity/object/fixtures/job_board_sprite.png" id="2_6y32s"]
+[ext_resource type="Resource" uid="uid://beiil6bqr4kxc" path="res://entity/object/fixtures/job_board_def.tres" id="2_py2hx"]
+[ext_resource type="Script" uid="uid://dl0uj3rt7fj45" path="res://component/interactable_component.gd" id="4_py2hx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8ujo"]
+size = Vector2(50, 6)
+
+[node name="JobBoard" unique_id=188428736 instance=ExtResource("1_yn1b2")]
+position = Vector2(0, -24)
+entity_def = ExtResource("2_py2hx")
+
+[node name="BodySprite" parent="VisualRoot" parent_id_path=PackedInt32Array(866277596) index="0" unique_id=1622163974]
+texture = ExtResource("2_6y32s")
+
+[node name="BodyCollision" parent="." index="1" unique_id=1548032054]
+position = Vector2(0, 21)
+shape = SubResource("RectangleShape2D_f8ujo")
+
+[node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1902725791) index="2" unique_id=689355854]
+script = ExtResource("4_py2hx")
+metadata/_custom_type_script = "uid://dl0uj3rt7fj45"

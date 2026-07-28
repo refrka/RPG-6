@@ -16,7 +16,9 @@ func initialize() -> void:
 
 	for objective in objectives:
 
-		objective.objective_complete.connect(_on_objective_complete)
+		if !objective.objective_complete.is_connected(_on_objective_complete):
+
+			objective.objective_complete.connect(_on_objective_complete)
 
 		objective._initialize()
 
@@ -49,5 +51,7 @@ func _on_objective_complete(objective: QuestObjective) -> void:
 			stage_complete = false
 
 	if stage_complete:
+
+		print("stage_complete == true")
 
 		stage_completed.emit()

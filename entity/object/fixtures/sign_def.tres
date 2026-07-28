@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ObjectDef" format=3 uid="uid://cq1h842llqkum"]
+
+[ext_resource type="Script" uid="uid://br6a7176gci6n" path="res://entity/object/object_def.gd" id="1_0yitl"]
+
+[resource]
+script = ExtResource("1_0yitl")
+entity_id = &"sign"
+display_name = "Sign"
+scene_path = "res://entity/object/fixtures/sign.tscn"
+metadata/_custom_type_script = "uid://br6a7176gci6n"

@@ -94,6 +94,8 @@ func show_dialogue_node(dialogue_node: DialogueNode, source: EntityNode = null) 
 
 		options = get_dialogue_nodes(source)
 
+	print("re loading with these nodes: ", options)
+
 	dialogue_panel.set_dialogue(source, current_dialogue_node.dialogue_text, options)
 
 
@@ -104,6 +106,12 @@ func get_greeting(source: EntityNode, options: Array[DialogueNode]) -> Greeting:
 	var unevaluated_greetings = greeting_pool.duplicate()
 
 	var evaluated_greetings: Array[Greeting] = []
+
+	var interactable_component = source.get_component(InteractableComponent)
+
+	if interactable_component.dialogue_library:
+
+		unevaluated_greetings.append_array(interactable_component.dialogue_library.default_greetings)
 
 	var entity_def = source.get_entity_def()
 
@@ -175,20 +183,23 @@ func _get_library_dialogue_nodes(source: EntityNode) -> Array[DialogueNode]:
 
 	var entity_def = source.get_entity_def()
 
+	var dialogue_nodes: Array[DialogueNode] = []
+
 	if entity_def.dialogue_library:
 
-		return entity_def.dialogue_library.default_dialogue_nodes
+		dialogue_nodes.append_array(entity_def.dialogue_library.default_dialogue_nodes)
 
-	return []
+	var interactable_component = source.get_component(InteractableComponent)
+
+	if interactable_component.dialogue_library:
+
+		dialogue_nodes.append_array(interactable_component.dialogue_library.default_dialogue_nodes)
+
+	return dialogue_nodes
 
 
 
 
-
-
-func _get_quest_dialogue_nodes(source: EntityNode) -> Array[DialogueNode]:
-
-	return []
 
 
 

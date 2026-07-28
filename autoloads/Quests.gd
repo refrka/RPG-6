@@ -113,6 +113,8 @@ func get_quest_state(quest_def: QuestDef) -> QuestData.QuestState:
 
 func set_quest_stage(quest_def: QuestDef, stage_index: int) -> QuestData:
 
+	print("setting quest stage")
+
 	var quest_data = get_quest_data(quest_def)
 
 	if !quest_data:
@@ -132,6 +134,10 @@ func set_quest_stage(quest_def: QuestDef, stage_index: int) -> QuestData:
 func _is_quest_source_entity(quest_def: QuestDef, target_entity: EntityNode) -> bool:
 
 	if !quest_def.source_dialogue_node:
+
+		return false
+
+	if !quest_def.source_dialogue_node.quest_entity:
 
 		return false
 

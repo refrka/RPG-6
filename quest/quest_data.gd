@@ -232,7 +232,9 @@ func _is_stage_complete(index:= -1) -> bool:
 
 	for objective in stage.objectives:
 
-		pass
+		if !completed_objectives.has(objective):
+
+			complete = false
 
 	return complete
 
@@ -283,8 +285,16 @@ static func load_dictionary(save_dict: Dictionary) -> QuestData:
 	quest_data.state = save_dict["state"] as QuestState
 
 	quest_data.stage_index = int(save_dict["stage_index"])
-
+	
 	quest_data.current_stage = quest_data.get_stage()
+
+	if quest_data.current_stage:
+
+		quest_data.current_stage.initialize()
+
+		quest_data.current_stage.objective_completed.connect(quest_data._on_objective_completed)
+
+		quest_data.current_stage.stage_completed.connect(quest_data._on_stage_completed)
 
 	for _stage_index in save_dict["completed_objectives"]:
 
