@@ -91,6 +91,8 @@ func _unload() -> void:
 
 		var dict = object_node._get_dictionary()
 
+		dict["location_id"] = location_id
+
 		Entities.store_entity_dict(dict)
 
 
@@ -119,6 +121,8 @@ func spawn_marked_entities() -> void:
 
 		entity_node._activate()
 
+		entity_marker.spawned_entity_node = entity_node
+
 
 
 
@@ -138,6 +142,8 @@ func spawn_entity_node(entity_node: EntityNode, spawn_id: StringName) -> void:
 	entity_node.show()
 
 	if entity_node is PlayerNode:
+
+		entity_node.active_location = self
 
 		entity_node.active_spawn_point = spawn_point
 
@@ -278,6 +284,16 @@ func pause() -> void:
 
 
 func resume() -> void:
+
+	for entity_marker in marker_root.get_children():
+
+		if entity_marker.spawned_entity_node != null:
+
+			if entity_marker.spawn_condition_set and !entity_marker.spawn_condition_set.evaluate():
+
+				remove_entity_node(entity_marker.spawned_entity_node)
+
+				entity_marker.spawned_entity_node = null
 
 	process_mode = Node.PROCESS_MODE_INHERIT
 

@@ -21,6 +21,20 @@ var paused_locations: Array[Location]
 
 
 
+func clear() -> void:
+
+	for location in loaded_locations:
+
+		unload_location(location)
+
+	loaded_locations.clear()
+
+	paused_locations.clear()
+
+	active_location = null
+
+
+
 
 
 func load_location(location_id: StringName) -> Location:
@@ -75,11 +89,15 @@ func activate_location(location_id: StringName, pause_current:= false) -> Locati
 		
 		active_location._deactivate()
 
+		remove_child(active_location)
+
 		if pause_current:
 
 			pause_location(active_location)
 
-		remove_child(active_location)
+		else:
+
+			unload_location(active_location)
 
 		active_location = null
 
@@ -158,3 +176,9 @@ func get_all_locations() -> Array[Location]:
 		all_locations.append(active_location)
 
 	return all_locations
+
+
+
+
+
+

@@ -54,7 +54,7 @@ func _start_timer() -> void:
 
 	timer_active = true
 
-	timer = 3.0
+	timer = 1.5
 
 
 func _pause_timer() -> void:

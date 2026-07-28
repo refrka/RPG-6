@@ -18,6 +18,8 @@ func _ready() -> void:
 
 	super()
 
+	use_button.hide()
+
 	equip_button.pressed.connect(_on_equip_pressed)
 
 	unequip_button.pressed.connect(_on_unequip_pressed)

@@ -273,10 +273,6 @@ func _unload_game() -> void:
 
 	hold_player_node()
 
-	var world_scene = Scenes.get_world_scene()
-
-	world_scene.unload_location()
-
 
 
 

@@ -98,6 +98,18 @@ func get_quest_stage(quest_def: QuestDef) -> QuestStage:
 
 
 
+func get_quest_state(quest_def: QuestDef) -> QuestData.QuestState:
+
+	var quest_data = get_quest_data(quest_def)
+
+	if quest_data:
+
+		return quest_data.get_state()
+
+	return QuestData.QuestState.UNKNOWN
+
+
+
 
 func set_quest_stage(quest_def: QuestDef, stage_index: int) -> QuestData:
 

@@ -208,8 +208,6 @@ func _get_dictionary() -> Dictionary:
 
 	save_dict["unique_id"] = get_unique_id()
 
-	save_dict["location_id"] = Scenes.get_location_scene().get_location_id()
-
 	save_dict["inventory"] = inventory.get_dictionary()
 
 	save_dict["components"] = { }
