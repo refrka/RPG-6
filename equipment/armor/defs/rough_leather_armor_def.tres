@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ArmorDef" format=3 uid="uid://c2h0dwc3norho"]
+
+[ext_resource type="Script" uid="uid://4ghihb3p247q" path="res://equipment/armor/armor_def.gd" id="1_0gwl6"]
+
+[resource]
+script = ExtResource("1_0gwl6")
+equipment_type = 1
+item_id = &"rough_leather_armor"
+display_name = "Rough leather armor"
+description = "A set of leather clothing that provides a bit of protection."
+gold_value = 10
+metadata/_custom_type_script = "uid://4ghihb3p247q"

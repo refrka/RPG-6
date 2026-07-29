@@ -6,3 +6,9 @@ class_name CombatComponent extends Component
 
 
 
+
+
+
+
+
+

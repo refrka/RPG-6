@@ -1,8 +1,7 @@
 class_name PlayerNode extends CharacterNode
 
 
-
-var active_spawn_point: SpawnPoint
+var active_spawn_id: StringName
 
 var active_location: Location
 
@@ -43,7 +42,7 @@ func _get_dictionary() -> Dictionary:
 
 	var save_dict = super()
 
-	save_dict["spawn_id"] = active_spawn_point.spawn_id
+	save_dict["spawn_id"] = active_spawn_id
 
 	save_dict["location_id"] = active_location.location_id
 

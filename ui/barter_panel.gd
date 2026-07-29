@@ -88,6 +88,10 @@ func _activate() -> void:
 
 	entity_inventory_display.active = true
 
+	player_inventory_display.wake()
+
+	entity_inventory_display.wake()
+
 
 
 
@@ -98,6 +102,10 @@ func _deactivate() -> void:
 	player_inventory_display.active = false
 
 	entity_inventory_display.active = false
+
+	player_inventory_display.sleep()
+
+	entity_inventory_display.sleep()
 
 	if target_entity:
 

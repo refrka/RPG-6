@@ -25,7 +25,7 @@ func execute(_data: Dictionary = {}) -> bool:
 
 	var player = Game.get_player()
 
-	player.active_spawn_point = spawn_point
+	player.active_spawn_id = spawn_point.spawn_id
 
 	Events.fire(PlayerSpawnPointSetEvent, {"spawn_point": spawn_point}, true)
 

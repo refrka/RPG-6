@@ -8,10 +8,6 @@ var data = {
 
 	"player": { },
 
-	"saved_location_id": "",
-
-	"saved_spawn_id": "",
-
 	"globals": {
 
 		"flags": { },

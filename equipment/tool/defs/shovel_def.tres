@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ToolDef" format=3 uid="uid://c8f3jlyx7qpv2"]
+
+[ext_resource type="Script" uid="uid://cvay1ovphbk03" path="res://equipment/tool/tool_def.gd" id="1_1gflx"]
+
+[resource]
+script = ExtResource("1_1gflx")
+equipment_type = 3
+item_id = &"shovel"
+display_name = "Shovel"
+description = "A shovel. Good for scooping dir or whacking someone over the head."
+gold_value = 5

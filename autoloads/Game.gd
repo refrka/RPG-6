@@ -250,11 +250,9 @@ func _load_game(save_data: SaveData) -> void:
 
 	location.spawn_entity_node(player, spawn_id)
 
+	player.active_spawn_id = spawn_id
+
 	if first_load:
-
-		var spawn_point = location.get_spawn_point(spawn_id)
-
-		player.active_spawn_point = spawn_point
 
 		Events.fire(PlayerEnteredLocationEvent, {"location": location})
 

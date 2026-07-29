@@ -37,6 +37,8 @@ func _initialize() -> void:
 
 	equipment_slots[EquipmentDef.EquipmentType.ACCESSORY] = null
 
+	equipment_slots[EquipmentDef.EquipmentType.TOOL] = null
+
 
 
 

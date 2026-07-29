@@ -139,7 +139,7 @@ func _on_move_pressed() -> void:
 
 		player.reposition(spawn_point.global_position)
 
-		player.active_spawn_point = spawn_point
+		player.active_spawn_id = spawn_point.spawn_id
 
 	else:
 
