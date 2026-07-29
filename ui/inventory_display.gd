@@ -52,23 +52,17 @@ func _ready() -> void:
 
 
 
+
+
+
+
+
+
+
+
 func load_inventory(_inventory: Inventory) -> void:
 
 	inventory = _inventory
-
-	inventory.item_data_added.connect(_on_item_data_added)
-
-	inventory.item_data_removed.connect(_on_item_data_removed)
-
-	inventory.item_equipped.connect(_on_item_equipped)
-
-	inventory.item_unequipped.connect(_on_item_unequipped)
-
-	inventory.gold_count_changed.connect(_on_gold_count_changed)
-
-	_load_item_list()
-
-	_update_gold_count_label()
 
 
 
@@ -78,15 +72,7 @@ func clear() -> void:
 
 	_clear_item_list()
 
-	inventory.item_data_added.disconnect(_on_item_data_added)
-
-	inventory.item_data_removed.disconnect(_on_item_data_removed)
-
-	inventory.item_equipped.disconnect(_on_item_equipped)
-
-	inventory.item_unequipped.disconnect(_on_item_unequipped)
-
-	inventory.gold_count_changed.disconnect(_on_gold_count_changed)
+	_disconnect_inventory_signals()
 
 	inventory = null
 
@@ -102,6 +88,38 @@ func refresh() -> void:
 	_load_item_list()
 
 	_update_gold_count_label()
+
+
+
+
+
+
+
+func sleep() -> void:
+
+	_disconnect_inventory_signals()
+
+	for row in item_row_registry.values():
+
+		row.sleep()
+
+
+
+func wake() -> void:
+
+	print("waking")
+
+	_connect_inventory_signals()
+
+	for row in item_row_registry.values():
+
+		row.wake()
+
+	refresh()
+
+
+
+
 
 
 
@@ -127,6 +145,17 @@ func filter_equipment_type(equipment_type: EquipmentDef.EquipmentType) -> void:
 			if row == selected_row:
 
 				_deselect_row(row)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -327,6 +356,41 @@ func _clear_item_list() -> void:
 
 
 
+func _connect_inventory_signals() -> void:
+
+	print("connecting")
+
+	inventory.item_data_added.connect(_on_item_data_added)
+
+	inventory.item_data_removed.connect(_on_item_data_removed)
+
+	inventory.item_equipped.connect(_on_item_equipped)
+
+	inventory.item_unequipped.connect(_on_item_unequipped)
+
+	inventory.gold_count_changed.connect(_on_gold_count_changed)
+
+
+
+func _disconnect_inventory_signals() -> void:
+
+	if !inventory:
+
+		return
+
+	inventory.item_data_added.disconnect(_on_item_data_added)
+
+	inventory.item_data_removed.disconnect(_on_item_data_removed)
+
+	inventory.item_equipped.disconnect(_on_item_equipped)
+
+	inventory.item_unequipped.disconnect(_on_item_unequipped)
+
+	inventory.gold_count_changed.disconnect(_on_gold_count_changed)
+
+
+
+
 
 
 
@@ -408,6 +472,8 @@ func _on_item_unequipped(equipment_data: EquipmentData) -> void:
 
 
 func _on_item_data_added(item_data: ItemData) -> void:
+
+	print("menu heard item added")
 
 	if !active: 
 

@@ -112,7 +112,7 @@ func _activate() -> void:
 
 	inventory_display.active = true
 
-	inventory_display.refresh()
+	inventory_display.wake()
 
 
 
@@ -122,6 +122,7 @@ func _deactivate() -> void:
 
 	inventory_display.active = false
 
+	inventory_display.sleep()
 
 
 

@@ -107,6 +107,24 @@ func deselect() -> void:
 
 
 
+
+
+func sleep() -> void:
+
+	item_data.count_updated.disconnect(_on_count_updated)
+
+
+
+func wake() -> void:
+
+	item_data.count_updated.connect(_on_count_updated)
+
+
+
+
+
+
+
 func _update_count_label() -> void:
 
 	var count = item_data.get_count()
@@ -187,6 +205,8 @@ func _on_gui_input_received(event: InputEvent) -> void:
 
 
 func _on_count_updated(_item_data: ItemData, _amount: int, _added: bool) -> void:
+	
+	print("count update heard")
 
 	_update_count_label()
 
