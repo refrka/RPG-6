@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://bf3fs8njbpjbb" path="res://component/navigation_component.gd" id="6_5yhso"]
 [ext_resource type="Script" uid="uid://d3krim3ji2wmx" path="res://component/effects_component.gd" id="9_jub6e"]
 [ext_resource type="Script" uid="uid://bapxh7cmbif0o" path="res://component/health_component.gd" id="10_nbb1o"]
+[ext_resource type="Script" uid="uid://7nntd7c7ifji" path="res://component/animation_component.gd" id="11_hhc6v"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://qostx72136si" path="res://resources/default_character_animation_tree_root.tres" id="11_x4f7f"]
+[ext_resource type="Script" uid="uid://bdrtqkukxnryi" path="res://component/combat_component.gd" id="12_m6mxn"]
 
 [node name="CharacterNode" type="CharacterBody2D" unique_id=639653512 node_paths=PackedStringArray("body_sprite", "body_collision", "state_machine", "component_root", "nav_agent")]
 y_sort_enabled = true
@@ -27,7 +30,14 @@ y_sort_enabled = true
 
 [node name="BodySprite" type="Sprite2D" parent="VisualRoot" unique_id=1905262643]
 
+[node name="CombatSpriteRemote" type="RemoteTransform2D" parent="VisualRoot" unique_id=1284895721]
+remote_path = NodePath("../../CombatRoot/CombatSprite")
+
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1462622998]
+
+[node name="CombatRoot" type="Node2D" parent="." unique_id=1056235965]
+
+[node name="CombatSprite" type="Sprite2D" parent="CombatRoot" unique_id=870454535]
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1161694570]
 path_desired_distance = 8.0
@@ -70,3 +80,19 @@ metadata/_custom_type_script = "uid://d3krim3ji2wmx"
 
 [node name="HealthComponent" type="Node" parent="ComponentRoot" unique_id=1426158292]
 script = ExtResource("10_nbb1o")
+
+[node name="AnimationComponent" type="Node" parent="ComponentRoot" unique_id=1212962394 node_paths=PackedStringArray("anim_player", "anim_tree")]
+script = ExtResource("11_hhc6v")
+anim_player = NodePath("../../AnimationPlayer")
+anim_tree = NodePath("../../AnimationTree")
+metadata/_custom_type_script = "uid://7nntd7c7ifji"
+
+[node name="CombatComponent" type="Node" parent="ComponentRoot" unique_id=1499651281]
+script = ExtResource("12_m6mxn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=447569240]
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=953931177]
+tree_root = ExtResource("11_x4f7f")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")

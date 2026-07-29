@@ -29,6 +29,13 @@ position = Vector2(0, -6)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_0vw6r")
 
+[node name="CombatRoot" parent="." index="2" unique_id=1056235965]
+y_sort_enabled = true
+position = Vector2(0, -16)
+
+[node name="CombatSprite" parent="CombatRoot" index="0" unique_id=870454535]
+position = Vector2(0, 16)
+
 [node name="InteractionSensor" type="Area2D" parent="." index="3" unique_id=537167540]
 position = Vector2(0, -16)
 collision_layer = 0
