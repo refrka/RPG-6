@@ -58,13 +58,9 @@ func start_dialogue(greeting: Greeting, unevaluated_options: Array[DialogueNode]
 
 	if source.is_unique():
 
-		var greeted_characters = Globals.get_var("greeted_characters")
+		if !Globals.is_in_list("greeted_characters", source.get_unique_id()):
 
-		if !greeted_characters.has(source.get_unique_id()):
-
-			greeted_characters.append(source.get_unique_id())
-
-		Globals.set_var("greeted_characters", greeted_characters)
+			Globals.add_to_list("greeted_characters", source.get_unique_id())
 
 	Events.fire(DialogueStartedEvent, {"entity_node": current_source})
 		

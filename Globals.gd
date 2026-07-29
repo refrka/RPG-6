@@ -11,17 +11,25 @@ var default_flags: Dictionary[StringName, int] = {
 
 var default_vars: Dictionary[StringName, Variant] = { 
 
+
+}
+
+
+var default_lists: Dictionary[StringName, Array] = {
+
 	"discovered_locations": [ ],
 
 	"greeted_characters": [ ],
 
- }
+}
+
+
 
 var flags: Dictionary[StringName, int]
 
 var vars: Dictionary[StringName, Variant]
 
-
+var lists: Dictionary[StringName, Array]
 
 
 
@@ -60,6 +68,14 @@ func set_var(var_name: StringName, value: Variant) -> void:
 
 
 
+func add_to_list(list_name: StringName, value: Variant) -> void:
+
+	if !lists[list_name].has(value):
+
+		lists[list_name].append(value)
+
+
+
 func get_flag(flag: StringName) -> bool:
 
 	if flags.has(flag):
@@ -80,6 +96,9 @@ func get_var(var_name: StringName) -> Variant:
 
 
 
+func is_in_list(list_name: StringName, value: Variant) -> bool:
+
+	return lists[list_name].has(value)
 
 
 
@@ -90,6 +109,8 @@ func _reset_globals() -> void:
 	flags = default_flags.duplicate()
 
 	vars = default_vars.duplicate()
+
+	lists = default_lists.duplicate()
 
 
 
@@ -120,6 +141,8 @@ func get_dictionary() -> Dictionary:
 
 	save_dict["vars"] = vars
 
+	save_dict["lists"] = lists
+
 	return save_dict
 
 
@@ -131,9 +154,13 @@ func load_dictionary(save_dict: Dictionary) -> void:
 
 	vars = {}
 
+	lists = {}
+
 	flags.assign(save_dict["flags"])
 
 	vars.assign(save_dict["vars"])
+
+	lists.assign(save_dict["lists"])
 
 
 
