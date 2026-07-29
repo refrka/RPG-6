@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bwlpkk8f5ache"]
+
+[ext_resource type="PackedScene" uid="uid://df5i7bbjcn7yt" path="res://entity/object/fixtures/switch_object.tscn" id="1_tgjk0"]
+[ext_resource type="Resource" uid="uid://bpwqkuvg3n6i4" path="res://entity/object/fixtures/lever_def.tres" id="2_cbw5j"]
+[ext_resource type="Texture2D" uid="uid://d4a2yo7p6on7b" path="res://entity/object/fixtures/level_sprite.png" id="2_jd6u5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jd6u5"]
+size = Vector2(16, 3)
+
+[node name="Lever" unique_id=188428736 instance=ExtResource("1_tgjk0")]
+entity_def = ExtResource("2_cbw5j")
+
+[node name="BodySprite" parent="VisualRoot" parent_id_path=PackedInt32Array(866277596) index="0" unique_id=1622163974]
+position = Vector2(0, -8)
+texture = ExtResource("2_jd6u5")
+hframes = 2
+
+[node name="BodyCollision" parent="." index="1" unique_id=1548032054]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_jd6u5")

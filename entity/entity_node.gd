@@ -42,6 +42,8 @@ var inventory:= Inventory.new()
 
 func _initialize() -> bool:
 
+	assert(entity_def != null)
+
 	if initialized:
 
 		return false

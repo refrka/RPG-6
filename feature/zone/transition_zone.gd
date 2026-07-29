@@ -33,4 +33,4 @@ func _on_body_entered_sensor(_body: PhysicsBody2D) -> void:
 
 		Game.transition_to.call_deferred(target_location_id, target_spawn_id)
 
-	_deactivate()
+		_deactivate()

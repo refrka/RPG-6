@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ObjectDef" format=3 uid="uid://bpwqkuvg3n6i4"]
+
+[ext_resource type="Script" uid="uid://br6a7176gci6n" path="res://entity/object/object_def.gd" id="1_6ucux"]
+
+[resource]
+script = ExtResource("1_6ucux")
+entity_id = &"lever"
+display_name = "Lever"
+scene_path = "res://entity/object/fixtures/lever.tscn"
+metadata/_custom_type_script = "uid://br6a7176gci6n"

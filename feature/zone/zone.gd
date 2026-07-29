@@ -4,6 +4,10 @@ class_name Zone extends Feature
 @export var sensor: Sensor
 
 
+
+
+
+
 func _initialize() -> void:
 
 	super()

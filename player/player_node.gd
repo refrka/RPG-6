@@ -60,13 +60,9 @@ func _on_player_entered_location(event: Event) -> void:
 
 	var location_id = event.data["location"].location_id
 
-	var discovered_locations = Globals.get_var("discovered_locations")
+	if !Globals.is_in_list("discovered_locations", location_id):
 
-	if !discovered_locations.has(location_id):
-
-		discovered_locations.append(location_id)
-
-		Globals.set_var("discovered_locations", discovered_locations)
+		Globals.add_to_list("discovered_locations", location_id)
 
 		Events.fire(LocationDiscoveredEvent, event.data)
 

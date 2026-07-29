@@ -75,9 +75,9 @@ func _initialize() -> bool:
 
 	initialized = true
 
-	initialize_objects()
-
 	initialize_features()
+
+	initialize_objects()
 
 	spawn_marked_entities()
 
@@ -461,6 +461,10 @@ func _activate() -> void:
 
 	active = true
 
+	for transition_zone in transition_root.get_children():
+
+		transition_zone._activate()
+
 	for object in object_list:
 
 		object._activate()
@@ -468,10 +472,6 @@ func _activate() -> void:
 	for character in character_list:
 
 		character._activate()
-
-	for transition_zone in transition_root.get_children():
-
-		transition_zone._activate()
 
 	nav_region.bake_navigation_polygon()
 
