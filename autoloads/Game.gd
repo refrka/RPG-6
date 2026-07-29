@@ -196,6 +196,10 @@ func get_game_root() -> Node:
 
 
 
+func get_mouse_position() -> Vector2:
+
+	return Scenes.get_world_scene().get_global_mouse_position()
+
 
 
 func is_active() -> bool:

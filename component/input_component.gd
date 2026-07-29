@@ -70,6 +70,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		profile_pressed.emit()
 
+	if event.is_action_pressed("weapon_attack"):
+
+		weapon_attack_pressed.emit()
+
+	if event.is_action_released("weapon_attack"):
+
+		weapon_attack_released.emit()
+
 
 
 

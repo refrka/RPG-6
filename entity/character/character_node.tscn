@@ -87,8 +87,9 @@ anim_player = NodePath("../../AnimationPlayer")
 anim_tree = NodePath("../../AnimationTree")
 metadata/_custom_type_script = "uid://7nntd7c7ifji"
 
-[node name="CombatComponent" type="Node" parent="ComponentRoot" unique_id=1499651281]
+[node name="CombatComponent" type="Node" parent="ComponentRoot" unique_id=1499651281 node_paths=PackedStringArray("combat_root")]
 script = ExtResource("12_m6mxn")
+combat_root = NodePath("../../CombatRoot")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=447569240]
 

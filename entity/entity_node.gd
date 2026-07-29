@@ -50,6 +50,12 @@ func _initialize() -> bool:
 
 	initialized = true
 
+	if entity_def.default_inventory:
+
+		inventory = entity_def.default_inventory.duplicate()
+
+		inventory._initialize()
+
 	for component in get_all_components():
 
 		component._initialize(self)
@@ -57,12 +63,6 @@ func _initialize() -> bool:
 	if state_machine:
 
 		state_machine.setup(self)
-
-	if entity_def.default_inventory:
-
-		inventory = entity_def.default_inventory.duplicate()
-
-		inventory._initialize()
 
 	_deactivate()
 

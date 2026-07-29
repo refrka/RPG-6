@@ -173,6 +173,10 @@ func equip_item_data(equipment_data: EquipmentData) -> void:
 
 	equipment_slots[equipment_type] = equipment_data
 
+	var player = Game.get_player()
+
+	var combat_component = player.get_component(CombatComponent)
+
 	item_equipped.emit(equipment_data)
 
 
