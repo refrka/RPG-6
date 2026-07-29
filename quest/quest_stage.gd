@@ -31,6 +31,25 @@ func initialize() -> void:
 
 
 
+func get_dialogue_nodes(entity_node: EntityNode) -> Array[DialogueNode]:
+
+	var dialogue_nodes: Array[DialogueNode] = []
+
+	for objective in objectives:
+
+		if !completed_objectives.has(objective):
+
+			for dialogue_node in objective.dialogue_nodes:
+
+				if dialogue_node.quest_entity.match(entity_node):
+
+					dialogue_nodes.append_array(objective.dialogue_nodes)
+
+	return dialogue_nodes
+
+
+
+
 func get_objective_index(objective: QuestObjective) -> int:
 
 	if objectives.has(objective):

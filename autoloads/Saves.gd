@@ -17,6 +17,8 @@ func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
+	Events.subscribe(GameEndedEvent, _on_game_ended)
+
 	_validate_path(SAVE_ROOT)
 
 	_load_current_saves()
@@ -202,3 +204,23 @@ func _validate_path(path: String) -> void:
 	if !DirAccess.dir_exists_absolute(path):
 		
 		DirAccess.make_dir_absolute(path)
+
+
+
+
+
+func _on_game_ended(_event: Event) -> void:
+
+	var invalid_saves = []
+
+	for save_data in current_saves:
+
+		if save_data.last_dict["player"].is_empty():
+
+			invalid_saves.append(save_data)
+
+	for save_data in invalid_saves:
+
+		current_saves.erase(save_data)
+
+	save_list_updated.emit()

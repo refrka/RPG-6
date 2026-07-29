@@ -112,6 +112,21 @@ func get_location_scene(location_id: StringName = "") -> Location:
 
 
 
+func get_loaded_locations() -> Array[Location]:
+
+	var world_scene = get_world_scene()
+
+	return world_scene.loaded_locations
+
+
+
+
+func get_active_location() -> Location:
+
+	return get_world_scene().get_active_location()
+
+
+
 
 func get_world_scene() -> WorldScene:
 

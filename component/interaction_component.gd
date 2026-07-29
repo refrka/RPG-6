@@ -51,7 +51,7 @@ func _try_interaction(_target_entity: EntityNode) -> void:
 
 	target_interactable_component = interactable_component
 
-	_start_interaction()
+	_start_interaction.call_deferred()
 
 
 

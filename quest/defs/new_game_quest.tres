@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://5dqsbln5otb0" path="res://quest/quest_entity.gd" id="3_2crd8"]
 [ext_resource type="Script" uid="uid://8dctrkr4tont" path="res://command/command.gd" id="3_aatn7"]
 [ext_resource type="Script" uid="uid://cdp33gtgt4jpi" path="res://quest/quest_objective.gd" id="3_bx7u3"]
+[ext_resource type="Script" uid="uid://bxm2y181ljcls" path="res://command/set_quest_state_command.gd" id="3_dujw3"]
 [ext_resource type="Script" uid="uid://cd0f2ychmbq0q" path="res://dialogue/quest_dialogue_node.gd" id="4_5n4ib"]
 [ext_resource type="Script" uid="uid://ck2xh3er21qsw" path="res://command/command_set.gd" id="4_e0tf5"]
 [ext_resource type="Script" uid="uid://bu6pjc3dajq25" path="res://command/set_quest_stage_command.gd" id="4_qasdj"]
@@ -16,9 +17,50 @@
 [ext_resource type="Script" uid="uid://b1h4ca01qe0lw" path="res://command/move_to_position_command.gd" id="8_ncwlv"]
 [ext_resource type="Script" uid="uid://dhqjsemk7pnt1" path="res://command/exit_location_command.gd" id="9_ncwlv"]
 [ext_resource type="Script" uid="uid://nmihopaj7e7c" path="res://condition/condition.gd" id="11_y3wyl"]
-[ext_resource type="Script" uid="uid://dvgickpwtv0kq" path="res://condition/is_quest_stage_condition.gd" id="12_bgrhr"]
 [ext_resource type="Script" uid="uid://dorjapef0fhm1" path="res://condition/condition_set.gd" id="12_ou5qu"]
-[ext_resource type="Script" uid="uid://ctahtxnusppr3" path="res://quest/objectives/greet_character_objective.gd" id="16_bgrhr"]
+[ext_resource type="Script" uid="uid://8fs4d75525vy" path="res://quest/objectives/start_dialogue_objective.gd" id="19_ncwlv"]
+[ext_resource type="Script" uid="uid://c0jrlvmwmiq7a" path="res://quest/objectives/discover_location_objective.gd" id="19_pdd1h"]
+
+[sub_resource type="Resource" id="Resource_dujw3"]
+script = ExtResource("2_5n4ib")
+lines = Array[String](["Well done!"])
+metadata/_custom_type_script = "uid://cx53ispevo7qo"
+
+[sub_resource type="Resource" id="Resource_ni1fo"]
+script = ExtResource("3_dujw3")
+quest_id = &"new_game_quest"
+state = 4
+
+[sub_resource type="Resource" id="Resource_cvkrr"]
+script = ExtResource("4_e0tf5")
+commands = Array[ExtResource("3_aatn7")]([SubResource("Resource_ni1fo")])
+metadata/_custom_type_script = "uid://ck2xh3er21qsw"
+
+[sub_resource type="Resource" id="Resource_8hgc3"]
+script = ExtResource("5_qasdj")
+command_set = SubResource("Resource_cvkrr")
+metadata/_custom_type_script = "uid://o3ja5up848kc"
+
+[sub_resource type="Resource" id="Resource_7xlh3"]
+script = ExtResource("2_2crd8")
+lines = Array[String](["You made it!"])
+metadata/_custom_type_script = "uid://dxhoiocbj8lkc"
+
+[sub_resource type="Resource" id="Resource_em0rm"]
+script = ExtResource("3_2crd8")
+unique_id = &"ap"
+metadata/_custom_type_script = "uid://5dqsbln5otb0"
+
+[sub_resource type="Resource" id="Resource_bxlyn"]
+script = ExtResource("4_5n4ib")
+quest_id = &"new_game_quest"
+type = 2
+quest_entity = SubResource("Resource_em0rm")
+option_text = "I sure did! No problem."
+dialogue_text = SubResource("Resource_dujw3")
+forced_greeting = SubResource("Resource_7xlh3")
+enter_conditional = SubResource("Resource_8hgc3")
+metadata/_custom_type_script = "uid://cd0f2ychmbq0q"
 
 [sub_resource type="Resource" id="Resource_2crd8"]
 script = ExtResource("2_5n4ib")
@@ -73,18 +115,13 @@ script = ExtResource("3_2crd8")
 unique_id = &"ap"
 metadata/_custom_type_script = "uid://5dqsbln5otb0"
 
-[sub_resource type="Resource" id="Resource_mhqhx"]
-script = ExtResource("12_bgrhr")
-quest_id = &"new_game_quest"
-stage_index = -1
-
 [sub_resource type="Resource" id="Resource_bgrhr"]
 script = ExtResource("12_ou5qu")
-conditions = Array[ExtResource("11_y3wyl")]([SubResource("Resource_mhqhx")])
 metadata/_custom_type_script = "uid://dorjapef0fhm1"
 
 [sub_resource type="Resource" id="Resource_bx7u3"]
 script = ExtResource("4_5n4ib")
+quest_id = &"new_game_quest"
 quest_entity = SubResource("Resource_b4gh8")
 option_text = "Can you teach me how to play the game?"
 dialogue_text = SubResource("Resource_2crd8")
@@ -93,28 +130,41 @@ show_condition_set = SubResource("Resource_bgrhr")
 enter_conditional = SubResource("Resource_m7y18")
 exit_conditional = SubResource("Resource_n63o1")
 
-[sub_resource type="Resource" id="Resource_27mt8"]
-script = ExtResource("3_2crd8")
-unique_id = &"mim"
-metadata/_custom_type_script = "uid://5dqsbln5otb0"
-
-[sub_resource type="Resource" id="Resource_dujw3"]
-script = ExtResource("16_bgrhr")
-target_quest_entity = SubResource("Resource_27mt8")
-title = "Greet Mim"
-description = "Go meet Mim!"
-metadata/_custom_type_script = "uid://ctahtxnusppr3"
+[sub_resource type="Resource" id="Resource_f8ujo"]
+script = ExtResource("19_pdd1h")
+location_id = &"forest_area_2"
+title = "Find Ap further ahead"
+description = "Find the location where Ap is waiting for you."
+metadata/_custom_type_script = "uid://c0jrlvmwmiq7a"
 
 [sub_resource type="Resource" id="Resource_ncwlv"]
 script = ExtResource("2_bx7u3")
-objectives = Array[ExtResource("3_bx7u3")]([SubResource("Resource_dujw3")])
+objectives = Array[ExtResource("3_bx7u3")]([SubResource("Resource_f8ujo")])
+metadata/_custom_type_script = "uid://btjgttvqng6jt"
+
+[sub_resource type="Resource" id="Resource_8tlgu"]
+script = ExtResource("3_2crd8")
+unique_id = &"ap"
+metadata/_custom_type_script = "uid://5dqsbln5otb0"
+
+[sub_resource type="Resource" id="Resource_pdd1h"]
+script = ExtResource("19_ncwlv")
+target_quest_entity = SubResource("Resource_8tlgu")
+title = "Talk to Ap"
+description = "Talk to Ap!"
+metadata/_custom_type_script = "uid://8fs4d75525vy"
+
+[sub_resource type="Resource" id="Resource_dycyv"]
+script = ExtResource("2_bx7u3")
+objectives = Array[ExtResource("3_bx7u3")]([SubResource("Resource_pdd1h")])
 metadata/_custom_type_script = "uid://btjgttvqng6jt"
 
 [resource]
 script = ExtResource("1_4w6ow")
 quest_id = &"new_game_quest"
-stages = Array[ExtResource("2_bx7u3")]([SubResource("Resource_ncwlv")])
+stages = Array[ExtResource("2_bx7u3")]([SubResource("Resource_ncwlv"), SubResource("Resource_dycyv")])
 title = "Starting a new game"
 description = "Learn about the game!"
 source_dialogue_node = SubResource("Resource_bx7u3")
+recipient_dialogue_node = SubResource("Resource_bxlyn")
 metadata/_custom_type_script = "uid://1r4mo0y16wii"

@@ -10,8 +10,7 @@ signal objective_complete(objective: QuestObjective)
 
 @export_multiline var description: String
 
-
-
+@export var dialogue_nodes: Array[DialogueNode]
 
 
 

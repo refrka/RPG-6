@@ -110,5 +110,7 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [node name="GameCamera" type="Camera2D" parent="." unique_id=569789934 groups=["game_camera"]]
-position = Vector2(640, 360)
+anchor_mode = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 script = ExtResource("11_krhou")

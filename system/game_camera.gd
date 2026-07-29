@@ -12,6 +12,8 @@ var camera_limit_bottom_right: Marker2D
 
 func _ready() -> void:
 
+	Events.subscribe(GameStartedEvent, _on_game_started)
+
 	Events.subscribe(PlayerEnteredLocationEvent, _on_player_entered_location)
 
 	Events.subscribe(GameEndingEvent, _on_game_ending)
@@ -39,22 +41,20 @@ func set_camera_limits() -> void:
 
 func follow_player() -> void:
 
-	anchor_mode = ANCHOR_MODE_DRAG_CENTER
-
 	following_player = true
+
+	anchor_mode = ANCHOR_MODE_DRAG_CENTER
 
 	var player = Game.get_player()
 
-	reparent(player)
+	position = Vector2.ZERO + player.global_position
 
-	global_position = player.global_position
+	reparent(player)
 
 
 
 
 func unfollow_player() -> void:
-
-	anchor_mode = ANCHOR_MODE_FIXED_TOP_LEFT
 
 	following_player = false
 
@@ -62,7 +62,9 @@ func unfollow_player() -> void:
 
 	reparent(game_root)
 
-	global_position = camera_limit_top_left.global_position
+	position = Vector2.ZERO
+
+	anchor_mode = ANCHOR_MODE_FIXED_TOP_LEFT
 
 
 
@@ -74,9 +76,9 @@ func reset_on_location(location: Location) -> void:
 
 	camera_limit_bottom_right = location.camera_limit_bottom_right
 
-	anchor_mode = ANCHOR_MODE_FIXED_TOP_LEFT
+	position = Vector2.ZERO
 
-	global_position = camera_limit_top_left.global_position
+	set_camera_limits()
 
 
 
@@ -86,23 +88,31 @@ func _on_player_entered_location(event: Event) -> void:
 
 	var location = event.data["location"]
 
-	camera_limit_top_left = location.camera_limit_top_left
-	
-	camera_limit_bottom_right = location.camera_limit_bottom_right
+	reset_on_location(location)
 
 	if location.camera_follow_player:
 
 		if !following_player:
 
-			follow_player()
-
-			set_camera_limits()
+			CameraFollowPlayerCommand.run()
 
 	else:
 
 		if following_player:
 
-			unfollow_player()
+			CameraUnfollowPlayerCommand.run()
+
+
+
+
+
+func _on_game_started(_event: Event) -> void:
+
+	var active_location = Scenes.get_world_scene().get_active_location()
+
+	if active_location.camera_follow_player:
+
+		CameraFollowPlayerCommand.run()
 
 	
 
@@ -112,4 +122,5 @@ func _on_game_ending(_event: Event) -> void:
 
 	if following_player:
 
-		unfollow_player()
+		CameraUnfollowPlayerCommand.run()
+

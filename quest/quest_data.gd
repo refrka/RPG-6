@@ -113,7 +113,13 @@ func set_stage(index: int) -> void:
 
 		current_stage = null
 
-		set_state(QuestState.COMPLETE)
+		if quest_def.recipient_dialogue_node == null:
+
+			set_state(QuestState.COMPLETE)
+
+		else:
+
+			set_state(QuestState.READY)
 
 
 

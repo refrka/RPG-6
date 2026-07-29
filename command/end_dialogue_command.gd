@@ -14,7 +14,7 @@ func execute(_data: Dictionary = {}) -> bool:
 
 
 
-static func run(_data: Dictionary) -> bool:
+static func run(_data: Dictionary = {}) -> bool:
 
 	var command = EndDialogueCommand.new()
 

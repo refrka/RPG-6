@@ -44,13 +44,15 @@ func _ready() -> void:
 
 
 
-func start_dialogue(greeting: Greeting, options: Array[DialogueNode] = [], source: EntityNode = null) -> void:
+func start_dialogue(greeting: Greeting, unevaluated_options: Array[DialogueNode] = [], source: EntityNode = null) -> void:
 
 	current_source = source
 
-	UI.show_dialogue_panel(greeting, options, source)
+	Events.fire(DialogueStartingEvent, {"entity_node": current_source})
 
-	Events.fire(DialogueStartedEvent, {"entity_node": current_source})
+	var evaluated_options = _evaluate_dialogue_nodes(unevaluated_options, {"entity_node": current_source})
+
+	UI.show_dialogue_panel(greeting, evaluated_options, source)
 
 	current_source.state_machine.request_state(InteractingState)
 
@@ -64,6 +66,7 @@ func start_dialogue(greeting: Greeting, options: Array[DialogueNode] = [], sourc
 
 		Globals.set_var("greeted_characters", greeted_characters)
 
+	Events.fire(DialogueStartedEvent, {"entity_node": current_source})
 		
 
 
@@ -110,11 +113,9 @@ func show_dialogue_node(dialogue_node: DialogueNode, source: EntityNode = null) 
 
 	current_dialogue_node.enter({"entity_node": source})
 
-	if options.is_empty():
+	var evaluated_options = _evaluate_dialogue_nodes(options, {"entity_node": source})
 
-		options = get_dialogue_nodes(source)
-
-	dialogue_panel.set_dialogue(source, current_dialogue_node.dialogue_text, options)
+	dialogue_panel.set_dialogue(source, current_dialogue_node.dialogue_text, evaluated_options)
 
 
 
@@ -165,32 +166,69 @@ func get_greeting(source: EntityNode, options: Array[DialogueNode]) -> Greeting:
 
 func get_dialogue_nodes(source: EntityNode) -> Array[DialogueNode]:
 
-	var unevaluated_dialogue_nodes: Array[DialogueNode] = []
+	var dialogue_nodes: Array[DialogueNode] = []
 
-	var evaluated_dialogue_nodes: Array[DialogueNode] = []
+	dialogue_nodes.append_array(_get_library_dialogue_nodes(source))
 
-	unevaluated_dialogue_nodes.append_array(_get_library_dialogue_nodes(source))
-
-	unevaluated_dialogue_nodes.append_array(Quests.get_quest_dialogue_nodes(source))
+	dialogue_nodes.append_array(Quests.get_quest_dialogue_nodes(source))
 
 	var barter_component = source.get_component(BarterComponent)
 
 	if barter_component:
 
-		unevaluated_dialogue_nodes.append(default_barter_dialogue_node)
+		dialogue_nodes.append(default_barter_dialogue_node)
 
-	for dialogue_node in unevaluated_dialogue_nodes:
+	return dialogue_nodes
 
-		if !dialogue_node.show_condition_set:
-			
-			evaluated_dialogue_nodes.append(dialogue_node)
 
-		elif dialogue_node.show_condition_set.evaluate({"entity_node": source}):
 
+
+
+
+
+func _evaluate_dialogue_nodes(unevaluate_dialogue_nodes: Array[DialogueNode], data: Dictionary) -> Array[DialogueNode]:
+
+	var evaluated_dialogue_nodes: Array[DialogueNode] = []
+
+	for dialogue_node in unevaluate_dialogue_nodes:
+
+		var valid = true
+
+		if dialogue_node is QuestDialogueNode:
+
+			var quest_def = Quests.get_quest_def(dialogue_node.quest_id)
+
+			var quest_state = Quests.get_quest_state(quest_def)
+
+			match dialogue_node.type:
+
+				QuestDialogueNode.QuestDialogueNodeType.SOURCE:
+
+					if quest_state != QuestData.QuestState.UNKNOWN and quest_state != QuestData.QuestState.AVAILABLE:
+
+						valid = false
+
+				QuestDialogueNode.QuestDialogueNodeType.OBJECTIVE:
+
+					pass
+
+				QuestDialogueNode.QuestDialogueNodeType.RECIPIENT:
+
+					if quest_state != QuestData.QuestState.READY:
+
+						valid = false
+
+		if valid:
+
+			if dialogue_node.show_condition_set:
+
+				if !dialogue_node.show_condition_set.evaluate(data):
+
+					continue
+				
 			evaluated_dialogue_nodes.append(dialogue_node)
 
 	return evaluated_dialogue_nodes
-
 
 
 

@@ -21,9 +21,9 @@ func _complete() -> void:
 
 func _is_complete() -> bool:
 
-	var save_data = Game.get_save_data()
+	var discovered_locations = Globals.get_var("discovered_locations")
 
-	if save_data.discovered_locations.has(location_id):
+	if discovered_locations.has(location_id):
 
 		return true
 

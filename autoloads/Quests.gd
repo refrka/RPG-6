@@ -63,9 +63,9 @@ func get_quest_def(quest_id: StringName) -> QuestDef:
 
 
 
-func get_quest_dialogue_nodes(target_entity: EntityNode) -> Array[QuestDialogueNode]:
+func get_quest_dialogue_nodes(target_entity: EntityNode) -> Array[DialogueNode]:
 
-	var dialogue_nodes: Array[QuestDialogueNode] = []
+	var dialogue_nodes: Array[DialogueNode] = []
 
 	var quest_defs = def_registry.values().duplicate()
 
@@ -80,6 +80,16 @@ func get_quest_dialogue_nodes(target_entity: EntityNode) -> Array[QuestDialogueN
 	for def in recipient_defs:
 
 		dialogue_nodes.append(def.recipient_dialogue_node)
+
+	var save_data = Game.get_save_data()
+
+	for quest_data in save_data.quest_data_registry.values():
+
+		var stage = quest_data.get_stage()
+
+		if stage:
+
+			dialogue_nodes.append_array(stage.get_dialogue_nodes(target_entity))
 
 	return dialogue_nodes
 
@@ -122,6 +132,15 @@ func set_quest_stage(quest_def: QuestDef, stage_index: int) -> QuestData:
 	quest_data.set_stage(stage_index)
 
 	return quest_data
+
+
+
+
+func set_quest_state(quest_def: QuestDef, state: QuestData.QuestState) -> void:
+
+	var quest_data = get_quest_data(quest_def)
+
+	quest_data.set_state(state)
 
 
 
