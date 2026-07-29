@@ -139,8 +139,6 @@ func spawn_entity_node(entity_node: EntityNode, spawn_id: StringName) -> void:
 
 		entity_node.active_location = self
 
-		entity_node.active_spawn_point = spawn_point
-
 
 
 

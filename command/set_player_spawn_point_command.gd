@@ -7,13 +7,21 @@ class_name SetPlayerSpawnPointCommand extends Command
 
 func execute(_data: Dictionary = {}) -> bool:
 
-	if _data.has("spawn_id"):
+	var spawn_point: SpawnPoint = null
 
-		spawn_id = _data["spawn_id"]
+	if _data.has("spawn_point"):
 
-	var location = Scenes.get_world_scene().get_active_location()
+		spawn_point = _data["spawn_point"]
 
-	var spawn_point = location.get_spawn_point(spawn_id)
+	else:
+
+		if _data.has("spawn_id"):
+
+			spawn_id = _data["spawn_id"]
+
+		var location = Scenes.get_world_scene().get_active_location()
+
+		spawn_point = location.get_spawn_point(spawn_id)
 
 	var player = Game.get_player()
 

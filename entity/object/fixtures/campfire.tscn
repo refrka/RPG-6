@@ -2,30 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://jyrgqo755dng" path="res://entity/object/object_node.tscn" id="1_6htho"]
 [ext_resource type="Resource" uid="uid://c5di2hhgtcgj0" path="res://entity/object/fixtures/campfire_def.tres" id="2_6duog"]
-[ext_resource type="Script" uid="uid://dl0uj3rt7fj45" path="res://component/interactable_component.gd" id="3_0onr8"]
 [ext_resource type="Texture2D" uid="uid://d4eb86p5eon4r" path="res://entity/object/fixtures/campfire_sprite.png" id="3_2c7dm"]
-[ext_resource type="Script" uid="uid://o3ja5up848kc" path="res://command/conditional_command_set.gd" id="4_eup2h"]
-[ext_resource type="Script" uid="uid://8dctrkr4tont" path="res://command/command.gd" id="5_po6mh"]
-[ext_resource type="Script" uid="uid://babqnr2jru3im" path="res://command/set_player_spawn_point_command.gd" id="6_2c7dm"]
-[ext_resource type="Script" uid="uid://ck2xh3er21qsw" path="res://command/command_set.gd" id="7_ffgim"]
+[ext_resource type="Script" uid="uid://dm4mwui3kpry" path="res://component/spawn_point_component.gd" id="4_0onr8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ffgim"]
 radius = 5.0
 height = 26.0
-
-[sub_resource type="Resource" id="Resource_po6mh"]
-script = ExtResource("6_2c7dm")
-metadata/_custom_type_script = "uid://babqnr2jru3im"
-
-[sub_resource type="Resource" id="Resource_u643n"]
-script = ExtResource("7_ffgim")
-commands = Array[ExtResource("5_po6mh")]([SubResource("Resource_po6mh")])
-metadata/_custom_type_script = "uid://ck2xh3er21qsw"
-
-[sub_resource type="Resource" id="Resource_aajxx"]
-script = ExtResource("4_eup2h")
-command_set = SubResource("Resource_u643n")
-metadata/_custom_type_script = "uid://o3ja5up848kc"
 
 [node name="Campfire" unique_id=188428736 instance=ExtResource("1_6htho")]
 entity_def = ExtResource("2_6duog")
@@ -39,7 +21,5 @@ position = Vector2(0, -5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ffgim")
 
-[node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1902725791) index="2" unique_id=447657324]
-script = ExtResource("3_0onr8")
-interaction_conditionals = Array[ExtResource("4_eup2h")]([SubResource("Resource_aajxx")])
-metadata/_custom_type_script = "uid://dl0uj3rt7fj45"
+[node name="SpawnPointComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1902725791) index="2" unique_id=397026991]
+script = ExtResource("4_0onr8")

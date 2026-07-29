@@ -205,8 +205,6 @@ func _on_gui_input_received(event: InputEvent) -> void:
 
 
 func _on_count_updated(_item_data: ItemData, _amount: int, _added: bool) -> void:
-	
-	print("count update heard")
 
 	_update_count_label()
 

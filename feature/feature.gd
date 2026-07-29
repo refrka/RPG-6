@@ -21,12 +21,8 @@ func _activate() -> void:
 
 	active = true
 
-	print("on")
-
 
 
 func _deactivate() -> void:
 
 	active = false
-
-	print("off")

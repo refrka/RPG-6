@@ -160,6 +160,8 @@ func load_dictionary(save_dict: Dictionary) -> void:
 
 	vars.assign(save_dict["vars"])
 
+	lists.assign(save_dict["lists"])
+
 
 
 

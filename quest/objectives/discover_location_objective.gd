@@ -21,9 +21,7 @@ func _complete() -> void:
 
 func _is_complete() -> bool:
 
-	var discovered_locations = Globals.get_var("discovered_locations")
-
-	if discovered_locations.has(location_id):
+	if Globals.is_in_list("discovered_locations", location_id):
 
 		return true
 

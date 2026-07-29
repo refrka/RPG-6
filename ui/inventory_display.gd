@@ -107,8 +107,6 @@ func sleep() -> void:
 
 func wake() -> void:
 
-	print("waking")
-
 	_connect_inventory_signals()
 
 	for row in item_row_registry.values():
@@ -358,8 +356,6 @@ func _clear_item_list() -> void:
 
 func _connect_inventory_signals() -> void:
 
-	print("connecting")
-
 	inventory.item_data_added.connect(_on_item_data_added)
 
 	inventory.item_data_removed.connect(_on_item_data_removed)
@@ -378,15 +374,25 @@ func _disconnect_inventory_signals() -> void:
 
 		return
 
-	inventory.item_data_added.disconnect(_on_item_data_added)
+	if inventory.item_data_added.is_connected(_on_item_data_added):
 
-	inventory.item_data_removed.disconnect(_on_item_data_removed)
+		inventory.item_data_added.disconnect(_on_item_data_added)
 
-	inventory.item_equipped.disconnect(_on_item_equipped)
+	if inventory.item_data_removed.is_connected(_on_item_data_removed):
 
-	inventory.item_unequipped.disconnect(_on_item_unequipped)
+		inventory.item_data_removed.disconnect(_on_item_data_removed)
 
-	inventory.gold_count_changed.disconnect(_on_gold_count_changed)
+	if inventory.item_equipped.is_connected(_on_item_equipped):
+
+		inventory.item_equipped.disconnect(_on_item_equipped)
+
+	if inventory.item_unequipped.is_connected(_on_item_unequipped):
+
+		inventory.item_unequipped.disconnect(_on_item_unequipped)
+
+	if inventory.gold_count_changed.is_connected(_on_gold_count_changed):
+
+		inventory.gold_count_changed.disconnect(_on_gold_count_changed)
 
 
 
@@ -472,8 +478,6 @@ func _on_item_unequipped(equipment_data: EquipmentData) -> void:
 
 
 func _on_item_data_added(item_data: ItemData) -> void:
-
-	print("menu heard item added")
 
 	if !active: 
 

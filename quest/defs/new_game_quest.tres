@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://ck2xh3er21qsw" path="res://command/command_set.gd" id="4_e0tf5"]
 [ext_resource type="Script" uid="uid://bu6pjc3dajq25" path="res://command/set_quest_stage_command.gd" id="4_qasdj"]
 [ext_resource type="Script" uid="uid://o3ja5up848kc" path="res://command/conditional_command_set.gd" id="5_qasdj"]
-[ext_resource type="Script" uid="uid://74h3cwa06x8h" path="res://command/end_dialogue_command.gd" id="7_okwv0"]
 [ext_resource type="Script" uid="uid://b1h4ca01qe0lw" path="res://command/move_to_position_command.gd" id="8_ncwlv"]
 [ext_resource type="Script" uid="uid://dhqjsemk7pnt1" path="res://command/exit_location_command.gd" id="9_ncwlv"]
 [ext_resource type="Script" uid="uid://nmihopaj7e7c" path="res://condition/condition.gd" id="11_y3wyl"]
@@ -82,10 +81,6 @@ script = ExtResource("5_qasdj")
 command_set = SubResource("Resource_hnhw1")
 metadata/_custom_type_script = "uid://o3ja5up848kc"
 
-[sub_resource type="Resource" id="Resource_5w67w"]
-script = ExtResource("7_okwv0")
-metadata/_custom_type_script = "uid://74h3cwa06x8h"
-
 [sub_resource type="Resource" id="Resource_bg6ye"]
 script = ExtResource("8_ncwlv")
 target_pos = Vector2(1264, 112)
@@ -97,7 +92,7 @@ metadata/_custom_type_script = "uid://dhqjsemk7pnt1"
 
 [sub_resource type="Resource" id="Resource_3rqhx"]
 script = ExtResource("4_e0tf5")
-commands = Array[ExtResource("3_aatn7")]([SubResource("Resource_5w67w"), SubResource("Resource_bg6ye"), SubResource("Resource_okwv0")])
+commands = Array[ExtResource("3_aatn7")]([SubResource("Resource_bg6ye"), SubResource("Resource_okwv0")])
 metadata/_custom_type_script = "uid://ck2xh3er21qsw"
 
 [sub_resource type="Resource" id="Resource_n63o1"]
