@@ -19,6 +19,11 @@ var current_health: float
 
 
 
+func _ready() -> void:
+
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+
 
 
 func _initialize(_entity: EntityNode) -> void:

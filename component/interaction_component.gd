@@ -13,6 +13,12 @@ var target_interactable_component: InteractableComponent
 
 
 
+func _ready() -> void:
+
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+
+
 
 func _initialize(_entity: EntityNode = null) -> void:
 

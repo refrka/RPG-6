@@ -12,6 +12,12 @@ var looted:= false
 
 
 
+func _ready() -> void:
+
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+
+
 
 
 

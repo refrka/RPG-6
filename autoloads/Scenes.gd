@@ -94,6 +94,8 @@ func get_location(location_id: StringName) -> Location:
 
 func get_location_scene(location_id: StringName = "") -> Location:
 
+	print("getting location scene: ", location_id)
+
 	if location_id == &"":
 
 		return get_world_scene().get_active_location()

@@ -9,6 +9,16 @@ var active_effects: Array[Effect]
 
 
 
+func _initialize(_entity: EntityNode) -> void:
+
+	super(_entity)
+
+	process_mode = Node.PROCESS_MODE_DISABLED
+
+
+
+
+
 func add_effect(effect: Effect) -> void:
 
 	if effect is InstantEffect:
@@ -30,6 +40,8 @@ func _add_effect(effect: Effect) -> void:
 	effect.expired.connect(_on_effect_expired)
 
 	effect._initialize(entity)
+	
+	process_mode = Node.PROCESS_MODE_INHERIT
 
 
 
@@ -38,6 +50,10 @@ func _add_effect(effect: Effect) -> void:
 func _remove_effect(effect: Effect) -> void:
 
 	active_effects.erase(effect)
+
+	if active_effects.is_empty():
+
+		process_mode = Node.PROCESS_MODE_DISABLED
 
 
 
