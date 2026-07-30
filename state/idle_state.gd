@@ -42,5 +42,3 @@ func _on_move_started() -> void:
 	entity.state_machine.request_state(MovingState)
 
 
-
-

@@ -72,6 +72,15 @@ animation = &"idle_right"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_umrb6"]
 animation = &"idle_left"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4vau8"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mj8dy"]
+animation = &"idle_up_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dd4a0"]
+animation = &"idle_up_left"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l5fto"]
 animation = &"idle_right"
 
@@ -93,8 +102,10 @@ animation = &"idle_right"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_85y0v"]
 animation = &"idle_up_right"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hf6j3"]
+animation = &"idle_left"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_6asp7"]
-blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_ij3ha")
 blend_point_0/pos = Vector2(0, 0)
 blend_point_0/name = &"idle_right"
@@ -122,6 +133,18 @@ blend_point_7/name = &"idle_right 4"
 blend_point_8/node = SubResource("AnimationNodeAnimation_85y0v")
 blend_point_8/pos = Vector2(1, -1)
 blend_point_8/name = &"idle_up_right 2"
+blend_point_9/node = SubResource("AnimationNodeAnimation_hf6j3")
+blend_point_9/pos = Vector2(-1, 0.1)
+blend_point_9/name = &"idle_left 3"
+blend_point_10/node = SubResource("AnimationNodeAnimation_4vau8")
+blend_point_10/pos = Vector2(1, 0.1)
+blend_point_10/name = &"idle_right 5"
+blend_point_11/node = SubResource("AnimationNodeAnimation_mj8dy")
+blend_point_11/pos = Vector2(1, -0.1)
+blend_point_11/name = &"idle_up_left 3"
+blend_point_12/node = SubResource("AnimationNodeAnimation_dd4a0")
+blend_point_12/pos = Vector2(-1, -0.1)
+blend_point_12/name = &"idle_up_left 2"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6asp7"]
 nodes/output/position = Vector2(488.88892, 200)

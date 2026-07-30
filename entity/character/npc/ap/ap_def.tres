@@ -30,7 +30,7 @@ metadata/_custom_type_script = "uid://bpekxy4h5arnf"
 
 [resource]
 script = ExtResource("1_yhcot")
-move_speed = 300
+move_speed = 75
 unique_id = &"ap"
 entity_id = &"ap"
 display_name = "Ap"

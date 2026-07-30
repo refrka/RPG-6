@@ -343,6 +343,10 @@ func _exit() -> void:
 
 
 func _spawn_marker(entity_marker: EntityMarker) -> void:
+
+	if !entity_marker.reference_entity:
+
+		return
 	
 	var entity_node = entity_marker.get_entity_node()
 

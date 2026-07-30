@@ -10,6 +10,130 @@
 radius = 4.0
 height = 26.0
 
+[sub_resource type="Animation" id="Animation_lpw1t"]
+resource_name = "move_down_right"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualRoot/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisualRoot/BodySprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qxwvc"]
+resource_name = "move_down_right"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualRoot/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisualRoot/BodySprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fqnju"]
+resource_name = "move_down_right"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualRoot/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisualRoot/BodySprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_jq4fq"]
+resource_name = "move_down_right"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualRoot/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisualRoot/BodySprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lpw1t"]
+_data = {
+&"move_down_left": SubResource("Animation_lpw1t"),
+&"move_down_right": SubResource("Animation_qxwvc"),
+&"move_up_left": SubResource("Animation_fqnju"),
+&"move_up_right": SubResource("Animation_jq4fq")
+}
+
 [node name="Mim" unique_id=639653512 instance=ExtResource("1_ms3ll")]
 collision_mask = 263
 entity_def = ExtResource("2_gnloq")
@@ -17,8 +141,8 @@ entity_def = ExtResource("2_gnloq")
 [node name="BodySprite" parent="VisualRoot" parent_id_path=PackedInt32Array(93121259) index="0" unique_id=1905262643]
 position = Vector2(0, -16)
 texture = ExtResource("2_o88vc")
-hframes = 4
-vframes = 4
+hframes = 6
+vframes = 6
 
 [node name="BodyCollision" parent="." index="1" unique_id=1462622998]
 position = Vector2(0, -4)
@@ -32,3 +156,9 @@ metadata/_custom_type_script = "uid://xgierugyavfg"
 [node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="4" unique_id=840046828]
 script = ExtResource("5_qxwvc")
 metadata/_custom_type_script = "uid://dl0uj3rt7fj45"
+
+[node name="AnimationPlayer" parent="." index="6" unique_id=447569240]
+libraries/mim = SubResource("AnimationLibrary_lpw1t")
+
+[node name="AnimationTree" parent="." index="7" unique_id=953931177]
+parameters/RootState/DefaultState/MovingTree/MovingBlend/blend_position = Vector2(0, 0)

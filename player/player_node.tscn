@@ -131,7 +131,7 @@ tracks/1/keys = {
 "values": [false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_a3l2y"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0vw6r"]
 _data = {
 &"move_down_left": SubResource("Animation_0vw6r"),
 &"move_down_right": SubResource("Animation_rppns"),
@@ -182,4 +182,4 @@ script = ExtResource("8_rppns")
 sensor = NodePath("../../InteractionSensor")
 
 [node name="AnimationPlayer" parent="." index="7" unique_id=447569240]
-libraries/player = SubResource("AnimationLibrary_a3l2y")
+libraries/player = SubResource("AnimationLibrary_0vw6r")

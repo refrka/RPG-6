@@ -3,6 +3,20 @@ class_name MovingState extends State
 
 var moving_blend: AnimationNodeBlendSpace2D
 
+
+## MovingBlend point indexes
+# ============= #
+# 6 - - 2 - - 7
+# -     -     -
+# 9	    -     10
+# 1 - - 0 - - 3
+# 12    -     11
+# -     -     -
+# 5 - - 4 - - 8
+# ============= #
+
+
+
 var blend_node_names:= [
 
 	"move_down_right",	# 0 Center
@@ -22,6 +36,14 @@ var blend_node_names:= [
 	"move_down_right",	# 7 Upper-right
 
 	"move_up_right",	# 8 Bottom-right
+
+	"move_down_left",	# 9 Bottom-right
+
+	"move_down_right",	# 10 Bottom-right
+
+	"move_up_right",	# 11 Bottom-right
+
+	"move_up_left",		# 12 Bottom-right
 
 ]
 
@@ -76,18 +98,6 @@ func _enter() -> void:
 
 
 func _on_move_stopped() -> void:
-	
-	var root_state = animation_component.anim_tree.tree_root.get_node("RootState")
-
-	var default_state = root_state.get_node("DefaultState")
-
-	var moving_state = default_state.get_node("MovingTree")
-
-	moving_blend = moving_state.get_node("MovingBlend")
-
-	var animation_node_animation = moving_blend.get_blend_point_node(0)
-
-	print(animation_node_animation.animation)
 
 	entity.state_machine.request_state(IdleState)
 
