@@ -1,0 +1,26 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://dv445kgvj0a7j"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jqylt"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jqylt"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7p2j8"]
+states/End/position = Vector2(987.7778, 271.1111)
+states/IdleTree/node = SubResource("AnimationNodeBlendTree_jqylt")
+states/IdleTree/position = Vector2(355.1111, 99.90124)
+transitions = ["Start", "IdleTree", SubResource("AnimationNodeStateMachineTransition_jqylt")]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p85vk"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bq1b2"]
+states/DefaultState/node = SubResource("AnimationNodeStateMachine_7p2j8")
+states/DefaultState/position = Vector2(353.99997, 98.66666)
+transitions = ["Start", "DefaultState", SubResource("AnimationNodeStateMachineTransition_p85vk")]
+
+[resource]
+nodes/output/position = Vector2(377.7778, 200)
+nodes/RootState/node = SubResource("AnimationNodeStateMachine_bq1b2")
+nodes/RootState/position = Vector2(88.88889, 155.55556)
+node_connections = [&"output", 0, &"RootState"]

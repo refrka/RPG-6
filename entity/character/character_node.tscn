@@ -8,11 +8,158 @@
 [ext_resource type="Script" uid="uid://1lrvndsneh4q" path="res://state/debug_state.gd" id="5_c4god"]
 [ext_resource type="Script" uid="uid://pkhxci2wpdl2" path="res://component/behavior_component.gd" id="5_nduuk"]
 [ext_resource type="Script" uid="uid://bf3fs8njbpjbb" path="res://component/navigation_component.gd" id="6_5yhso"]
+[ext_resource type="Script" uid="uid://bdavnh0e5cahe" path="res://state/moving_state.gd" id="6_m6mxn"]
 [ext_resource type="Script" uid="uid://d3krim3ji2wmx" path="res://component/effects_component.gd" id="9_jub6e"]
 [ext_resource type="Script" uid="uid://bapxh7cmbif0o" path="res://component/health_component.gd" id="10_nbb1o"]
 [ext_resource type="Script" uid="uid://7nntd7c7ifji" path="res://component/animation_component.gd" id="11_hhc6v"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://qostx72136si" path="res://resources/default_character_animation_tree_root.tres" id="11_x4f7f"]
 [ext_resource type="Script" uid="uid://bdrtqkukxnryi" path="res://component/combat_component.gd" id="12_m6mxn"]
+
+[sub_resource type="Animation" id="Animation_hhc6v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualRoot/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisualRoot/BodySprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_m6mxn"]
+resource_name = "idle_left"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualRoot/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisualRoot/BodySprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_v5a44"]
+resource_name = "idle_right"
+length = 0.033333335
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualRoot/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisualRoot/BodySprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_drewb"]
+resource_name = "idle_up_left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualRoot/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisualRoot/BodySprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_y4ox8"]
+resource_name = "idle_up_right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualRoot/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisualRoot/BodySprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hhc6v"]
+_data = {
+&"RESET": SubResource("Animation_hhc6v"),
+&"idle_left": SubResource("Animation_m6mxn"),
+&"idle_right": SubResource("Animation_v5a44"),
+&"idle_up_left": SubResource("Animation_drewb"),
+&"idle_up_right": SubResource("Animation_y4ox8")
+}
 
 [node name="CharacterNode" type="CharacterBody2D" unique_id=639653512 node_paths=PackedStringArray("body_sprite", "body_collision", "state_machine", "component_root", "nav_agent")]
 y_sort_enabled = true
@@ -61,6 +208,10 @@ metadata/_custom_type_script = "uid://bcgv65yabwl21"
 [node name="DebugState" type="Node" parent="StateMachine" unique_id=250164032]
 script = ExtResource("5_c4god")
 
+[node name="MovingState" type="Node" parent="StateMachine" unique_id=1973668698]
+script = ExtResource("6_m6mxn")
+metadata/_custom_type_script = "uid://bdavnh0e5cahe"
+
 [node name="ComponentRoot" type="Node" parent="." unique_id=298047762]
 
 [node name="BehaviorComponent" type="Node" parent="ComponentRoot" unique_id=1643624838]
@@ -92,8 +243,11 @@ script = ExtResource("12_m6mxn")
 combat_root = NodePath("../../CombatRoot")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=447569240]
+libraries/ = SubResource("AnimationLibrary_hhc6v")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=953931177]
 tree_root = ExtResource("11_x4f7f")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+parameters/RootState/DefaultState/IdleTree/IdleBlend/blend_position = Vector2(0, 0)
+parameters/RootState/DefaultState/MovingTree/MovingBlend/blend_position = Vector2(-0.9956014, -0.011325836)

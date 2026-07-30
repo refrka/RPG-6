@@ -25,9 +25,9 @@ UI="*uid://xqjwrsyo1413"
 Debug="*uid://xa16liimi8ud"
 Entities="*uid://rw0udofs4sce"
 Items="*uid://soqbj8oc3jb3"
-Globals="*uid://db7bx3bqxu1n7"
 Dialogue="*uid://c3x3sqn0ut1cy"
 Quests="*uid://2nwbb6oaex1k"
+Globals="*uid://db7bx3bqxu1n7"
 
 [debug]
 

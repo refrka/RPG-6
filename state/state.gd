@@ -8,7 +8,7 @@ class_name State extends Node
 
 var entity: EntityNode
 
-
+var animation_component: AnimationComponent
 
 
 
@@ -16,6 +16,8 @@ var entity: EntityNode
 func _setup(_entity: EntityNode) -> void:
 
 	entity = _entity
+		
+	animation_component = entity.get_component(AnimationComponent)
 
 
 

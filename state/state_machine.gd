@@ -12,14 +12,18 @@ signal state_changed(new_state: State)
 
 @export var initial_state: State
 
+
+var entity: EntityNode
+
 var current_state: State
 
 
 
 
 
-
 func setup(_entity: EntityNode) -> void:
+
+	entity = _entity
 
 	for state in get_children():
 
@@ -28,7 +32,6 @@ func setup(_entity: EntityNode) -> void:
 	if initial_state:
 
 		_change_state(initial_state)
-
 
 
 

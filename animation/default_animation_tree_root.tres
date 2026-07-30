@@ -1,0 +1,9 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://dpec4wmk0iefw"]
+
+[ext_resource type="AnimationNodeStateMachine" uid="uid://cudys46luhic2" path="res://animation/root_state.tres" id="1_r12fi"]
+
+[resource]
+nodes/output/position = Vector2(422.22223, 200)
+nodes/RootState/node = ExtResource("1_r12fi")
+nodes/RootState/position = Vector2(111.111115, 177.77779)
+node_connections = [&"output", 0, &"RootState"]
