@@ -3,12 +3,14 @@ class_name State extends Node
 
 
 
-
+@export var allow_reenter:= false
 
 
 var entity: EntityNode
 
 var animation_component: AnimationComponent
+
+var root_playback: AnimationNodeStateMachinePlayback
 
 
 
@@ -18,6 +20,8 @@ func _setup(_entity: EntityNode) -> void:
 	entity = _entity
 		
 	animation_component = entity.get_component(AnimationComponent)
+
+	root_playback = animation_component.get_state_playback("root")
 
 
 

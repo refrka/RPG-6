@@ -25,6 +25,10 @@ func _setup(_entity: EntityNode) -> void:
 
 
 func _enter() -> void:
+	
+	if root_playback.get_current_node() != "DefaultState":
+
+		root_playback.travel("DefaultState")
 
 	default_playback.start("IdleTree")
 

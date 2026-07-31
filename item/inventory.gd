@@ -1,6 +1,9 @@
 class_name Inventory extends Resource
 
 
+
+signal inventory_loaded
+
 signal item_data_updated(item_data: ItemData)
 
 signal item_data_added(item_data: ItemData)
@@ -172,10 +175,6 @@ func equip_item_data(equipment_data: EquipmentData) -> void:
 		unequip_item_data(equipped_data)
 
 	equipment_slots[equipment_type] = equipment_data
-
-	var player = Game.get_player()
-
-	var combat_component = player.get_component(CombatComponent)
 
 	item_equipped.emit(equipment_data)
 
@@ -400,3 +399,5 @@ func load_dictionary(save_dict: Dictionary) -> void:
 				equipment_slots[equipment_type] = item_data
 
 	gold_count = int(save_dict["gold_count"])
+
+	inventory_loaded.emit()

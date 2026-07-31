@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cll7htg5b6tc6" path="res://player/player_sprite_sheet.png" id="4_0vw6r"]
 [ext_resource type="Script" uid="uid://d2ryfou7hnwl3" path="res://component/input_component.gd" id="4_k12ae"]
 [ext_resource type="Script" uid="uid://dhhv20t77148x" path="res://system/sensor.gd" id="5_rppns"]
+[ext_resource type="AnimationLibrary" uid="uid://c3jgjhuvj83f1" path="res://animation/libraries/weapons/rusty_iron_sword.res" id="8_a3l2y"]
 [ext_resource type="Script" uid="uid://bj0gwmjascn1r" path="res://component/interaction_component.gd" id="8_rppns"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0vw6r"]
@@ -17,7 +18,7 @@ radius = 39.0
 
 [sub_resource type="Animation" id="Animation_0vw6r"]
 resource_name = "move_down_right"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -46,7 +47,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_rppns"]
 resource_name = "move_down_right"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -75,7 +76,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_a3l2y"]
 resource_name = "move_down_right"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -104,7 +105,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_2co6o"]
 resource_name = "move_down_right"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -150,6 +151,17 @@ texture = ExtResource("4_0vw6r")
 hframes = 8
 vframes = 8
 
+[node name="CombatVisualRoot" parent="VisualRoot" parent_id_path=PackedInt32Array(93121259) index="1" unique_id=133743934]
+y_sort_enabled = true
+position = Vector2(0, -16)
+
+[node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" index="0" unique_id=870454535]
+position = Vector2(15.9964905, 0.3350792)
+rotation = 0.02094395
+scale = Vector2(0.99999994, 0.99999994)
+hframes = 3
+frame = 1
+
 [node name="BodyCollision" parent="." index="1" unique_id=1462622998]
 position = Vector2(0, -6)
 rotation = -1.5707964
@@ -158,9 +170,10 @@ shape = SubResource("CapsuleShape2D_0vw6r")
 [node name="CombatRoot" parent="." index="2" unique_id=1056235965]
 y_sort_enabled = true
 position = Vector2(0, -16)
+rotation = 0.02094395
 
-[node name="CombatSprite" parent="CombatRoot" index="0" unique_id=870454535]
-position = Vector2(0, 16)
+[node name="CombatSpriteRemote" parent="CombatRoot" index="0" unique_id=1284895721]
+position = Vector2(16, 0)
 
 [node name="InteractionSensor" type="Area2D" parent="." index="3" unique_id=537167540]
 position = Vector2(0, -16)
@@ -183,3 +196,4 @@ sensor = NodePath("../../InteractionSensor")
 
 [node name="AnimationPlayer" parent="." index="7" unique_id=447569240]
 libraries/player = SubResource("AnimationLibrary_0vw6r")
+libraries/rusty_iron_sword = ExtResource("8_a3l2y")

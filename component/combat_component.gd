@@ -6,6 +6,8 @@ class_name CombatComponent extends Component
 @export var combat_root: Node2D
 
 
+var attack_animation_node: AnimationNodeAnimation
+
 
 
 var current_attack_config: AttackConfig
@@ -14,6 +16,11 @@ var current_attack_def: AttackDef
 
 var current_attack_index:= -1
 
+var current_attack_dir: Vector2
+
+var current_library_name: String
+
+var current_animation_name: String
 
 
 var attack_held:= false
@@ -28,6 +35,8 @@ func _initialize(_entity: EntityNode) -> void:
 
 	super(_entity)
 
+	entity.inventory.inventory_loaded.connect(_on_inventory_loaded)
+
 	entity.inventory.item_equipped.connect(_on_item_equipped)
 
 	entity.inventory.item_unequipped.connect(_on_item_unequipped)
@@ -40,8 +49,17 @@ func _initialize(_entity: EntityNode) -> void:
 
 		input_component.weapon_attack_pressed.connect(_on_weapon_attack_input_released)
 
+	var animation_component = entity.get_component(AnimationComponent)
 
+	animation_component.anim_tree.animation_finished.connect(_on_animation_finished)
 
+	var root_state = animation_component.anim_tree.tree_root.get_node("RootState")
+
+	var combat_state = root_state.get_node("CombatState")
+
+	var combat_attack_state = combat_state.get_node("CombatAttackState")
+
+	attack_animation_node = combat_attack_state.get_node("AttackAnimation")
 
 
 
@@ -61,6 +79,8 @@ func _enter_combat() -> void:
 
 
 func _exit_combat() -> void:
+
+	print("exiting combat")
 
 	entity.state_machine.request_state(IdleState)
 
@@ -84,8 +104,6 @@ func _can_attack() -> bool:
 
 
 func _try_attack() -> void:
-
-	print("trying attack")
 
 	if !_can_attack():
 
@@ -118,6 +136,8 @@ func _start_attack() -> void:
 
 		return
 
+	_set_attack_dir(_get_attack_direction())
+
 	_execute_attack()
 
 	
@@ -126,16 +146,20 @@ func _start_attack() -> void:
 
 func _execute_attack() -> void:
 
-	print("executing attack")
+	current_animation_name = _get_attack_animation_name()
+
+	attack_animation_node.animation = current_animation_name
+
+	entity.state_machine.request_state(CombatAttackingState)
+
+	
 
 
 
 
 func _finish_attack() -> void:
 
-	print("finishing attack")
-
-	_set_attack_index(-1)
+	_reset_attack_data()
 
 	_enter_combat_ready()
 
@@ -150,22 +174,13 @@ func _finish_attack() -> void:
 
 
 
+func _reset_attack_data() -> void:
 
+	current_attack_index = -1
 
+	current_attack_dir = Vector2.ZERO
 
-func _rotate_to_mouse_position() -> void:
-
-	_set_rotation(Game.get_mouse_position())
-
-
-
-
-
-
-
-
-
-
+	current_animation_name = ""
 
 
 
@@ -178,7 +193,9 @@ func _clear_attack_data() -> void:
 	
 	current_attack_def = null
 
-	current_attack_index = -1
+	current_library_name = ""
+
+	_reset_attack_data()
 
 
 
@@ -188,19 +205,30 @@ func _clear_attack_data() -> void:
 
 
 
+func _set_attack_data(weapon_def: WeaponDef) -> void:
+
+	_set_attack_config(weapon_def.default_attack_config)
+
+	current_library_name = weapon_def.item_id
+
+	var animation_component = entity.get_component(AnimationComponent)
+
+	animation_component.load_weapon_library(weapon_def.item_id)
 
 
 
 
-func _set_rotation(target_pos: Vector2) -> void:
+func _set_attack_dir(target_dir: Vector2) -> void:
 
-	combat_root.rotation = deg_to_rad(Vector2.RIGHT.angle_to(target_pos))
+	combat_root.rotation = Vector2.RIGHT.angle_to(target_dir)
 
 
 
 func _set_attack_config(attack_config: AttackConfig) -> void:
 
 	current_attack_config = attack_config
+
+	_set_attack_def(current_attack_config.default_attack_def)
 
 
 
@@ -217,6 +245,19 @@ func _set_attack_index(index: int) -> void:
 
 
 
+func _get_attack_direction(target_entity: EntityNode = null) -> Vector2:
+
+	if entity is PlayerNode:
+
+		return Game.get_mouse_direction()
+
+	if target_entity:
+
+		return entity.global_position.direction_to(target_entity.global_position)
+
+	return Vector2.ZERO
+
+
 
 
 func _get_attack_entry(index: int) -> AttackEntry:
@@ -226,6 +267,12 @@ func _get_attack_entry(index: int) -> AttackEntry:
 		return null
 
 	return current_attack_def.attack_set[index]
+
+
+
+func _get_attack_animation_name() -> StringName:
+
+	return "%s/default_%s" % [current_library_name, current_attack_index]
 
 
 
@@ -271,6 +318,7 @@ func _on_weapon_attack_input_pressed() -> void:
 
 
 
+
 func _on_weapon_attack_input_released() -> void:
 
 	pass
@@ -283,9 +331,8 @@ func _on_item_equipped(item_data: ItemData) -> void:
 
 	if item_def is WeaponDef:
 
-		_set_attack_config(item_def.default_attack_config)
+		_set_attack_data(item_def)
 
-		_set_attack_def(current_attack_config.default_attack_def)
 
 
 
@@ -296,3 +343,23 @@ func _on_item_unequipped(item_data: ItemData) -> void:
 	if item_def is WeaponDef:
 
 		_clear_attack_data()
+
+
+
+func _on_inventory_loaded() -> void:
+
+	var weapon_data = entity.inventory.get_equipment(EquipmentDef.EquipmentType.WEAPON)
+
+	if weapon_data:
+
+		var item_def = weapon_data.get_item_def() as WeaponDef
+
+		_set_attack_data(item_def)
+
+
+
+func _on_animation_finished(anim_name: StringName) -> void:
+
+	if anim_name == current_animation_name:
+
+		_finish_attack()

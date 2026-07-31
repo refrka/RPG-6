@@ -93,7 +93,7 @@ func get_child_state(index: int) -> State:
 
 func _change_state(new_state: State) -> void:
 
-	if new_state == current_state:
+	if new_state == current_state and current_state.allow_reenter:
 
 		current_state._enter()
 

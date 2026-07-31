@@ -202,6 +202,16 @@ func get_mouse_position() -> Vector2:
 
 
 
+func get_mouse_direction(from_entity: EntityNode = null) -> Vector2:
+
+	if !from_entity:
+
+		from_entity = Game.get_player()
+
+	return from_entity.global_position.direction_to(get_mouse_position())
+
+
+
 func is_active() -> bool:
 
 	return game_state == GameState.ACTIVE

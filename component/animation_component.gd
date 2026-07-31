@@ -43,6 +43,16 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
+func load_weapon_library(item_id: StringName) -> void:
+
+	var library = load("res://animation/libraries/weapons/%s.res" % item_id)
+
+	if !anim_tree.has_animation_library(item_id):
+
+		anim_tree.add_animation_library(item_id, library)
+
+
+
 
 
 

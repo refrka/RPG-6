@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://pkhxci2wpdl2" path="res://component/behavior_component.gd" id="5_nduuk"]
 [ext_resource type="Script" uid="uid://bf3fs8njbpjbb" path="res://component/navigation_component.gd" id="6_5yhso"]
 [ext_resource type="Script" uid="uid://bdavnh0e5cahe" path="res://state/moving_state.gd" id="6_m6mxn"]
+[ext_resource type="Script" uid="uid://b3tss53psf0qn" path="res://state/combat_attacking_state.gd" id="7_y4ox8"]
+[ext_resource type="Script" uid="uid://ywrgu46ceir7" path="res://state/combat_ready_state.gd" id="8_drewb"]
 [ext_resource type="Script" uid="uid://d3krim3ji2wmx" path="res://component/effects_component.gd" id="9_jub6e"]
 [ext_resource type="Script" uid="uid://bapxh7cmbif0o" path="res://component/health_component.gd" id="10_nbb1o"]
 [ext_resource type="Script" uid="uid://7nntd7c7ifji" path="res://component/animation_component.gd" id="11_hhc6v"]
@@ -40,6 +42,60 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VisualRoot/CombatVisualRoot/CombatSprite:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VisualRoot/CombatVisualRoot/CombatSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("VisualRoot/CombatVisualRoot/CombatSprite:hframes")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_1ndw8"]
+resource_name = "end_attack"
+length = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ComponentRoot/CombatComponent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_finish_attack"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_m6mxn"]
@@ -155,6 +211,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hhc6v"]
 _data = {
 &"RESET": SubResource("Animation_hhc6v"),
+&"end_attack": SubResource("Animation_1ndw8"),
 &"idle_left": SubResource("Animation_m6mxn"),
 &"idle_right": SubResource("Animation_v5a44"),
 &"idle_up_left": SubResource("Animation_drewb"),
@@ -177,14 +234,17 @@ y_sort_enabled = true
 
 [node name="BodySprite" type="Sprite2D" parent="VisualRoot" unique_id=1905262643]
 
-[node name="CombatSpriteRemote" type="RemoteTransform2D" parent="VisualRoot" unique_id=1284895721]
-remote_path = NodePath("../../CombatRoot/CombatSprite")
+[node name="CombatVisualRoot" type="Node2D" parent="VisualRoot" unique_id=133743934]
+
+[node name="CombatSprite" type="Sprite2D" parent="VisualRoot/CombatVisualRoot" unique_id=870454535]
+visible = false
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1462622998]
 
 [node name="CombatRoot" type="Node2D" parent="." unique_id=1056235965]
 
-[node name="CombatSprite" type="Sprite2D" parent="CombatRoot" unique_id=870454535]
+[node name="CombatSpriteRemote" type="RemoteTransform2D" parent="CombatRoot" unique_id=1284895721]
+remote_path = NodePath("../../VisualRoot/CombatVisualRoot/CombatSprite")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1161694570]
 path_desired_distance = 8.0
@@ -211,6 +271,14 @@ script = ExtResource("5_c4god")
 [node name="MovingState" type="Node" parent="StateMachine" unique_id=1973668698]
 script = ExtResource("6_m6mxn")
 metadata/_custom_type_script = "uid://bdavnh0e5cahe"
+
+[node name="CombatAttackingState" type="Node" parent="StateMachine" unique_id=619127610]
+script = ExtResource("7_y4ox8")
+metadata/_custom_type_script = "uid://b3tss53psf0qn"
+
+[node name="CombatReadyState" type="Node" parent="StateMachine" unique_id=340393258]
+script = ExtResource("8_drewb")
+metadata/_custom_type_script = "uid://ywrgu46ceir7"
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=298047762]
 
