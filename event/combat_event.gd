@@ -1,0 +1,1 @@
+class_name CombatEvent extends GameEvent

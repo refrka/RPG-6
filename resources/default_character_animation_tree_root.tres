@@ -3,7 +3,7 @@
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_jxnld"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bqunh"]
-animation = &"rusty_iron_sword/default_1"
+animation = &"rusty_iron_sword/default_0"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jxnld"]
 animation = &"idle_left"
@@ -95,7 +95,10 @@ transitions = ["Start", "AttackTree", SubResource("AnimationNodeStateMachineTran
 graph_offset = Vector2(-52, -14)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_r7dde"]
-graph_offset = Vector2(-251.11111, -41.11111)
+graph_offset = Vector2(-452.1897, -110.43661)
+nodes/AnimationNodeBlendTree/node = SubResource("AnimationNodeBlendTree_jxnld")
+nodes/AnimationNodeBlendTree/position = Vector2(-66.66667, 66.66667)
+node_connections = [&"output", 0, &"AnimationNodeBlendTree"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g1aej"]
 animation = &"end_attack"
@@ -121,7 +124,7 @@ states/CombatReadyTree/position = Vector2(315.11108, 87.55554)
 states/End/position = Vector2(917.7778, 163.33334)
 states/Start/position = Vector2(130, 87.65431)
 states/end_attack/node = SubResource("AnimationNodeAnimation_g1aej")
-states/end_attack/position = Vector2(315.358, 180.88889)
+states/end_attack/position = Vector2(315.08365, 180.88719)
 transitions = ["Start", "CombatReadyTree", SubResource("AnimationNodeStateMachineTransition_3sju6"), "end_attack", "CombatReadyTree", SubResource("AnimationNodeStateMachineTransition_lg1dh"), "CombatReadyTree", "CombatAttackState", SubResource("AnimationNodeStateMachineTransition_rmesl"), "CombatAttackState", "end_attack", SubResource("AnimationNodeStateMachineTransition_umrb6")]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ij3ha"]

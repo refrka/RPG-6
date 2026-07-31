@@ -69,6 +69,10 @@ func _initialize(_entity: EntityNode) -> void:
 
 	attack_animation_node = attack_tree.get_node("AttackAnimation")
 
+	var ready_state = entity.state_machine.get_state(CombatReadyState)
+
+	ready_state.ready_timeout.connect(_on_ready_timeout)
+
 
 
 
@@ -110,12 +114,20 @@ func _enter_combat() -> void:
 
 	_enter_combat_ready()
 
+	if entity is PlayerNode:
+
+		Events.fire(PlayerEnteredCombatEvent)
+
 
 
 
 func _exit_combat() -> void:
 
 	entity.state_machine.request_state(IdleState)
+
+	if entity is PlayerNode:
+
+		Events.fire(PlayerExitedCombatEvent)
 
 
 
@@ -433,3 +445,9 @@ func _on_inventory_loaded() -> void:
 
 		_set_attack_data(item_def)
 
+
+
+
+func _on_ready_timeout() -> void:
+
+	_exit_combat()

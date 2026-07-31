@@ -1,6 +1,8 @@
 class_name CombatReadyState extends CombatState
 
 
+signal ready_timeout
+
 
 var timer: SceneTreeTimer
 
@@ -31,5 +33,7 @@ func _exit() -> void:
 
 
 func _on_timeout() -> void:
+
+	ready_timeout.emit()
 
 	entity.state_machine.request_state(IdleState)

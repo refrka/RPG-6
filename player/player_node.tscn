@@ -198,3 +198,4 @@ libraries/rusty_iron_sword = ExtResource("8_a3l2y")
 
 [node name="AnimationTree" parent="." index="8" unique_id=953931177]
 parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 0.0
+parameters/RootState/CombatState/CombatReadyTree/AnimationNodeBlendTree/IdleBlend/blend_position = Vector2(0, 0)
