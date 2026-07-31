@@ -1,48 +1,9 @@
 [gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://qostx72136si"]
 
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_jxnld"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bqunh"]
-animation = &"end_attack"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ayqi1"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_14v7h"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_r7dde"]
-states/AttackAnimation/node = SubResource("AnimationNodeAnimation_bqunh")
-states/AttackAnimation/position = Vector2(369.55554, 99.65432)
-transitions = ["Start", "AttackAnimation", SubResource("AnimationNodeStateMachineTransition_ayqi1"), "AttackAnimation", "End", SubResource("AnimationNodeStateMachineTransition_14v7h")]
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_r7dde"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g1aej"]
-animation = &"end_attack"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3sju6"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lg1dh"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rmesl"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ij3ha"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6asp7"]
-states/CombatAttackState/node = SubResource("AnimationNodeStateMachine_r7dde")
-states/CombatAttackState/position = Vector2(505.11108, 180.76543)
-states/CombatReadyTree/node = SubResource("AnimationNodeBlendTree_r7dde")
-states/CombatReadyTree/position = Vector2(315.11108, 87.55554)
-states/End/position = Vector2(917.7778, 163.33334)
-states/Start/position = Vector2(130, 87.65431)
-states/end_attack/node = SubResource("AnimationNodeAnimation_g1aej")
-states/end_attack/position = Vector2(315.358, 180.88889)
-transitions = ["Start", "CombatReadyTree", SubResource("AnimationNodeStateMachineTransition_3sju6"), "end_attack", "CombatReadyTree", SubResource("AnimationNodeStateMachineTransition_lg1dh"), "CombatReadyTree", "CombatAttackState", SubResource("AnimationNodeStateMachineTransition_rmesl"), "CombatAttackState", "end_attack", SubResource("AnimationNodeStateMachineTransition_ij3ha")]
+animation = &"rusty_iron_sword/default_1"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jxnld"]
 animation = &"idle_left"
@@ -102,11 +63,66 @@ blend_point_8/pos = Vector2(1, 1)
 blend_point_8/name = &"idle_right 4"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jxnld"]
-graph_offset = Vector2(-69.46744, 79.20843)
+graph_offset = Vector2(-172.80077, 42.54176)
 nodes/output/position = Vector2(488.88892, 177.77779)
 nodes/IdleBlend/node = SubResource("AnimationNodeBlendSpace2D_jxnld")
 nodes/IdleBlend/position = Vector2(200, 133.33334)
 node_connections = [&"output", 0, &"IdleBlend"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_713sg"]
+graph_offset = Vector2(-321.2839, -48.599415)
+nodes/output/position = Vector2(555.55554, 155.55556)
+nodes/AttackAnimation/node = SubResource("AnimationNodeAnimation_bqunh")
+nodes/AttackAnimation/position = Vector2(-22.222223, 111.111115)
+nodes/IdleTree/node = SubResource("AnimationNodeBlendTree_jxnld")
+nodes/IdleTree/position = Vector2(66.66667, 333.33334)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_jxnld")
+nodes/Add2/position = Vector2(333.33334, 133.33334)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"AttackAnimation", &"Add2", 1, &"IdleTree"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jxnld"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ij3ha"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_r7dde"]
+states/AttackTree/node = SubResource("AnimationNodeBlendTree_713sg")
+states/AttackTree/position = Vector2(357.3333, 99.76406)
+states/End/position = Vector2(547.77783, 99.8613)
+transitions = ["Start", "AttackTree", SubResource("AnimationNodeStateMachineTransition_jxnld"), "AttackTree", "End", SubResource("AnimationNodeStateMachineTransition_ij3ha")]
+graph_offset = Vector2(-52, -14)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_r7dde"]
+graph_offset = Vector2(-251.11111, -41.11111)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g1aej"]
+animation = &"end_attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3sju6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lg1dh"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rmesl"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_umrb6"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6asp7"]
+states/CombatAttackState/node = SubResource("AnimationNodeStateMachine_r7dde")
+states/CombatAttackState/position = Vector2(505.11108, 180.88736)
+states/CombatReadyTree/node = SubResource("AnimationNodeBlendTree_r7dde")
+states/CombatReadyTree/position = Vector2(315.11108, 87.55554)
+states/End/position = Vector2(917.7778, 163.33334)
+states/Start/position = Vector2(130, 87.65431)
+states/end_attack/node = SubResource("AnimationNodeAnimation_g1aej")
+states/end_attack/position = Vector2(315.358, 180.88889)
+transitions = ["Start", "CombatReadyTree", SubResource("AnimationNodeStateMachineTransition_3sju6"), "end_attack", "CombatReadyTree", SubResource("AnimationNodeStateMachineTransition_lg1dh"), "CombatReadyTree", "CombatAttackState", SubResource("AnimationNodeStateMachineTransition_rmesl"), "CombatAttackState", "end_attack", SubResource("AnimationNodeStateMachineTransition_umrb6")]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ij3ha"]
 animation = &"idle_right"
@@ -203,7 +219,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_713sg"]
 states/IdleTree/node = SubResource("AnimationNodeBlendTree_jxnld")
-states/IdleTree/position = Vector2(348.44443, 100.02469)
+states/IdleTree/position = Vector2(348.9779, 99.99725)
 states/MovingTree/node = SubResource("AnimationNodeBlendTree_6asp7")
 states/MovingTree/position = Vector2(348.92456, 224.2222)
 states/Start/position = Vector2(167.77779, 98.183205)

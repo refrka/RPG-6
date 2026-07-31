@@ -159,8 +159,6 @@ position = Vector2(0, -16)
 position = Vector2(15.9964905, 0.3350792)
 rotation = 0.02094395
 scale = Vector2(0.99999994, 0.99999994)
-hframes = 3
-frame = 1
 
 [node name="BodyCollision" parent="." index="1" unique_id=1462622998]
 position = Vector2(0, -6)
@@ -197,3 +195,6 @@ sensor = NodePath("../../InteractionSensor")
 [node name="AnimationPlayer" parent="." index="7" unique_id=447569240]
 libraries/player = SubResource("AnimationLibrary_0vw6r")
 libraries/rusty_iron_sword = ExtResource("8_a3l2y")
+
+[node name="AnimationTree" parent="." index="8" unique_id=953931177]
+parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 0.0

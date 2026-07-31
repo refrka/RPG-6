@@ -6,6 +6,10 @@ class_name CombatComponent extends Component
 @export var combat_root: Node2D
 
 
+var animation_component: AnimationComponent
+
+var movement_component: MovementComponent
+
 var attack_animation_node: AnimationNodeAnimation
 
 
@@ -14,7 +18,7 @@ var current_attack_config: AttackConfig
 
 var current_attack_def: AttackDef
 
-var current_attack_index:= -1
+var current_attack_index:= 0
 
 var current_attack_dir: Vector2
 
@@ -25,7 +29,9 @@ var current_animation_name: String
 
 var attack_held:= false
 
+var attack_buffered:= false
 
+var buffer_window_open:= false
 
 
 
@@ -41,6 +47,10 @@ func _initialize(_entity: EntityNode) -> void:
 
 	entity.inventory.item_unequipped.connect(_on_item_unequipped)
 
+	movement_component = entity.get_component(MovementComponent)
+
+	animation_component = entity.get_component(AnimationComponent)
+
 	var input_component = entity.get_component(InputComponent)
 
 	if input_component:
@@ -49,22 +59,47 @@ func _initialize(_entity: EntityNode) -> void:
 
 		input_component.weapon_attack_pressed.connect(_on_weapon_attack_input_released)
 
-	var animation_component = entity.get_component(AnimationComponent)
-
-	animation_component.anim_tree.animation_finished.connect(_on_animation_finished)
-
 	var root_state = animation_component.anim_tree.tree_root.get_node("RootState")
 
 	var combat_state = root_state.get_node("CombatState")
 
 	var combat_attack_state = combat_state.get_node("CombatAttackState")
 
-	attack_animation_node = combat_attack_state.get_node("AttackAnimation")
+	var attack_tree = combat_attack_state.get_node("AttackTree")
+
+	attack_animation_node = attack_tree.get_node("AttackAnimation")
 
 
 
 
 
+
+
+func open_buffer_window() -> void:
+
+	buffer_window_open = true
+
+
+func close_buffer_window() -> void:
+
+	buffer_window_open = false
+
+
+
+
+
+
+
+
+func _handle_weapon_attack_input() -> void:
+
+	if !_is_attacking():
+	
+		_try_attack()
+
+	elif buffer_window_open:
+
+		_try_buffer_attack()
 
 
 
@@ -79,8 +114,6 @@ func _enter_combat() -> void:
 
 
 func _exit_combat() -> void:
-
-	print("exiting combat")
 
 	entity.state_machine.request_state(IdleState)
 
@@ -115,8 +148,6 @@ func _try_attack() -> void:
 
 
 func _start_attack() -> void:
-
-	current_attack_index = 0
 
 	if !_is_in_combat():
 
@@ -156,14 +187,33 @@ func _execute_attack() -> void:
 
 
 
-
 func _finish_attack() -> void:
+
+	close_buffer_window()
+
+	if attack_buffered:
+
+		current_attack_index += 1
+
+		attack_buffered = false
+
+		_start_attack()
 
 	_reset_attack_data()
 
 	_enter_combat_ready()
 
 
+
+
+
+func _try_buffer_attack() -> void:
+
+	var next_index = current_attack_index + 1
+
+	if _is_index_valid(next_index):
+
+		attack_buffered = true
 
 
 
@@ -176,7 +226,7 @@ func _finish_attack() -> void:
 
 func _reset_attack_data() -> void:
 
-	current_attack_index = -1
+	current_attack_index = 0
 
 	current_attack_dir = Vector2.ZERO
 
@@ -210,8 +260,6 @@ func _set_attack_data(weapon_def: WeaponDef) -> void:
 	_set_attack_config(weapon_def.default_attack_config)
 
 	current_library_name = weapon_def.item_id
-
-	var animation_component = entity.get_component(AnimationComponent)
 
 	animation_component.load_weapon_library(weapon_def.item_id)
 
@@ -270,9 +318,13 @@ func _get_attack_entry(index: int) -> AttackEntry:
 
 
 
-func _get_attack_animation_name() -> StringName:
+func _get_attack_animation_name(index:= -1) -> StringName:
 
-	return "%s/default_%s" % [current_library_name, current_attack_index]
+	if index == -1:
+
+		index = current_attack_index
+
+	return "%s/default_%s" % [current_library_name, index]
 
 
 
@@ -295,6 +347,31 @@ func _is_in_combat() -> bool:
 
 
 
+func _is_index_valid(index:= -1) -> bool:
+
+	if index == -1:
+
+		index = current_attack_index
+
+	if !current_attack_def:
+
+		return false
+
+	if index > current_attack_def.attack_set.size() - 1:
+
+		return false
+
+	if !animation_component.anim_tree.has_animation(_get_attack_animation_name(index)):
+
+		return false
+
+	return true
+
+
+
+
+
+
 func _has_valid_attack_data() -> bool:
 
 	var valid = true
@@ -314,7 +391,7 @@ func _has_valid_attack_data() -> bool:
 
 func _on_weapon_attack_input_pressed() -> void:
 
-	_try_attack()
+	_handle_weapon_attack_input()
 
 
 
@@ -356,10 +433,3 @@ func _on_inventory_loaded() -> void:
 
 		_set_attack_data(item_def)
 
-
-
-func _on_animation_finished(anim_name: StringName) -> void:
-
-	if anim_name == current_animation_name:
-
-		_finish_attack()

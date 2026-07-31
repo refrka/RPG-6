@@ -90,7 +90,7 @@ tracks/0/path = NodePath("ComponentRoot/CombatComponent")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.033333335),
+"times": PackedFloat32Array(0.0691767),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -317,5 +317,7 @@ libraries/ = SubResource("AnimationLibrary_hhc6v")
 tree_root = ExtResource("11_x4f7f")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 1.0
+parameters/RootState/CombatState/CombatAttackState/AttackTree/IdleTree/IdleBlend/blend_position = Vector2(0, 0)
 parameters/RootState/DefaultState/IdleTree/IdleBlend/blend_position = Vector2(0, 0)
 parameters/RootState/DefaultState/MovingTree/MovingBlend/blend_position = Vector2(-0.9956014, -0.011325836)
