@@ -5,6 +5,8 @@ class_name CombatComponent extends Component
 
 @export var combat_root: Node2D
 
+@export var combat_hitbox: Hitbox
+
 
 var animation_component: AnimationComponent
 
@@ -40,6 +42,8 @@ var buffer_window_open:= false
 func _initialize(_entity: EntityNode) -> void:
 
 	super(_entity)
+
+	combat_hitbox.setup(entity)
 
 	entity.inventory.inventory_loaded.connect(_on_inventory_loaded)
 
@@ -280,6 +284,8 @@ func _set_attack_data(weapon_def: WeaponDef) -> void:
 
 func _set_attack_dir(target_dir: Vector2) -> void:
 
+	current_attack_dir = target_dir
+
 	combat_root.rotation = Vector2.RIGHT.angle_to(target_dir)
 
 
@@ -301,6 +307,8 @@ func _set_attack_def(attack_def: AttackDef) -> void:
 func _set_attack_index(index: int) -> void:
 
 	current_attack_index = index
+
+
 
 
 

@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://u2gj13bgr5dt"]
 
 [ext_resource type="Script" uid="uid://cw1qm7lli54r3" path="res://entity/character/character_node.gd" id="1_ioq1x"]
+[ext_resource type="PackedScene" uid="uid://b45nb4h2fqks6" path="res://system/hurtbox.tscn" id="2_1ndw8"]
 [ext_resource type="Script" uid="uid://bwv5f2vf38x7d" path="res://state/state_machine.gd" id="2_l8yc8"]
+[ext_resource type="PackedScene" uid="uid://c56hyesjgisro" path="res://system/hitbox.tscn" id="3_1ndw8"]
 [ext_resource type="Script" uid="uid://bi8xvbsytvcmc" path="res://state/idle_state.gd" id="3_fekyf"]
 [ext_resource type="Script" uid="uid://bcgv65yabwl21" path="res://state/interacting_state.gd" id="4_c4god"]
 [ext_resource type="Script" uid="uid://vq7ef14ysbcp" path="res://component/movement_component.gd" id="4_ft58q"]
@@ -78,6 +80,30 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [1]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CombatRoot/CombatHitbox/HitboxCollisionShape:shape")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CombatRoot/CombatHitbox/HitboxCollisionShape:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17, -0.5)]
 }
 
 [sub_resource type="Animation" id="Animation_1ndw8"]
@@ -218,13 +244,14 @@ _data = {
 &"idle_up_right": SubResource("Animation_y4ox8")
 }
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=639653512 node_paths=PackedStringArray("body_sprite", "body_collision", "state_machine", "component_root", "nav_agent")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=639653512 node_paths=PackedStringArray("body_sprite", "body_collision", "body_hurtbox", "state_machine", "component_root", "nav_agent")]
 y_sort_enabled = true
 collision_mask = 259
 motion_mode = 1
 script = ExtResource("1_ioq1x")
 body_sprite = NodePath("VisualRoot/BodySprite")
 body_collision = NodePath("BodyCollision")
+body_hurtbox = NodePath("BodyHurtbox")
 state_machine = NodePath("StateMachine")
 component_root = NodePath("ComponentRoot")
 nav_agent = NodePath("NavigationAgent2D")
@@ -241,10 +268,17 @@ visible = false
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1462622998]
 
+[node name="BodyHurtbox" parent="." unique_id=302794627 instance=ExtResource("2_1ndw8")]
+
 [node name="CombatRoot" type="Node2D" parent="." unique_id=1056235965]
 
 [node name="CombatSpriteRemote" type="RemoteTransform2D" parent="CombatRoot" unique_id=1284895721]
 remote_path = NodePath("../../VisualRoot/CombatVisualRoot/CombatSprite")
+
+[node name="CombatHitbox" parent="CombatRoot" unique_id=1542851543 instance=ExtResource("3_1ndw8")]
+
+[node name="HitboxCollisionShape" parent="CombatRoot/CombatHitbox" index="0" unique_id=1071803953]
+position = Vector2(17, -0.5)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1161694570]
 path_desired_distance = 8.0
@@ -306,9 +340,10 @@ anim_player = NodePath("../../AnimationPlayer")
 anim_tree = NodePath("../../AnimationTree")
 metadata/_custom_type_script = "uid://7nntd7c7ifji"
 
-[node name="CombatComponent" type="Node" parent="ComponentRoot" unique_id=1499651281 node_paths=PackedStringArray("combat_root")]
+[node name="CombatComponent" type="Node" parent="ComponentRoot" unique_id=1499651281 node_paths=PackedStringArray("combat_root", "combat_hitbox")]
 script = ExtResource("12_m6mxn")
 combat_root = NodePath("../../CombatRoot")
+combat_hitbox = NodePath("../../CombatRoot/CombatHitbox")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=447569240]
 libraries/ = SubResource("AnimationLibrary_hhc6v")
@@ -317,7 +352,11 @@ libraries/ = SubResource("AnimationLibrary_hhc6v")
 tree_root = ExtResource("11_x4f7f")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
-parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 1.0
 parameters/RootState/CombatState/CombatAttackState/AttackTree/IdleTree/IdleBlend/blend_position = Vector2(0, 0)
+parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 0.0
+parameters/RootState/CombatState/CombatReadyTree/AnimationNodeBlendTree/IdleBlend/blend_position = Vector2(0, 0)
 parameters/RootState/DefaultState/IdleTree/IdleBlend/blend_position = Vector2(0, 0)
 parameters/RootState/DefaultState/MovingTree/MovingBlend/blend_position = Vector2(-0.9956014, -0.011325836)
+
+[editable path="BodyHurtbox"]
+[editable path="CombatRoot/CombatHitbox"]

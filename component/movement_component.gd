@@ -54,6 +54,11 @@ func set_move_dir(dir: Vector2) -> void:
 	move_dir = dir
 
 
+func set_face_dir(dir: Vector2) -> void:
+
+	face_dir = dir
+
+
 
 func set_move_speed_override(override: float) -> void:
 
@@ -93,14 +98,6 @@ func _start_move() -> void:
 
 
 
-func _set_face_dir(dir: Vector2) -> void:
-
-	face_dir = dir
-
-
-
-
-
 func _process(_delta: float) -> void:
 
 	if !active:
@@ -123,7 +120,7 @@ func _process(_delta: float) -> void:
 
 		move_velocity = move_velocity.move_toward(move_dir * move_speed, 1200)
 
-		_set_face_dir(move_dir)
+		set_face_dir(move_dir)
 
 	if can_move:
 

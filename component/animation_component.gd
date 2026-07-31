@@ -38,6 +38,12 @@ func _initialize(_entity: EntityNode) -> void:
 
 	blend_space_registry["moving"] = "parameters/RootState/DefaultState/MovingTree/MovingBlend/blend_position"
 
+	blend_space_registry["attack"] = "parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackBlend/IdleBlend/blend_position"
+
+	blend_space_registry["ready"] = "parameters/RootState/CombatState/CombatReadyTree/ReadyBlend/IdleBlend/blend_position"
+
+	blend_space_registry["end_attack"] = "parameters/RootState/CombatState/EndAttackTree/EndAttackTree/IdleBlend/blend_position"
+
 
 
 

@@ -111,6 +111,8 @@ weapon_attack={
 2d_physics/layer_2="ObjectNode"
 2d_physics/layer_3="PlayerNode"
 2d_physics/layer_9="TileMapImpassable"
+2d_physics/layer_13="Hitbox"
+2d_physics/layer_14="Hurtbox"
 
 [physics]
 

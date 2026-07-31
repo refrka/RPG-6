@@ -18,6 +18,10 @@ func _enter() -> void:
 
 	timer.timeout.connect(_on_timeout)
 
+	animation_component.set_blend_space_vector("ready", movement_component.face_dir)
+
+	animation_component.set_blend_space_vector("idle", movement_component.face_dir)
+
 
 
 

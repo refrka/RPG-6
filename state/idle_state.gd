@@ -30,7 +30,7 @@ func _enter() -> void:
 
 		root_playback.travel("DefaultState")
 
-	default_playback.start("IdleTree")
+	default_playback.travel("IdleTree")
 
 	if movement_component:
 

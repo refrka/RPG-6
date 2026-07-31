@@ -14,6 +14,8 @@ class_name EntityNode extends PhysicsBody2D
 
 @export var body_collision: CollisionShape2D
 
+@export var body_hurtbox: Hurtbox
+
 @export var state_machine: StateMachine
 
 @export var component_root: Node
