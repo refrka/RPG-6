@@ -4,6 +4,12 @@
 [ext_resource type="Resource" uid="uid://cglx1lj01t53t" path="res://entity/character/creature/wolf/wolf_def.tres" id="2_xw4qa"]
 [ext_resource type="Texture2D" uid="uid://b8tcekbpgmqq5" path="res://entity/character/creature/wolf/wolf_sprite.png" id="3_73qeu"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73qeu"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aajxx"]
+size = Vector2(13, 20)
+
 [node name="Wolf" unique_id=639653512 instance=ExtResource("1_vflfw")]
 entity_def = ExtResource("2_xw4qa")
 
@@ -11,3 +17,24 @@ entity_def = ExtResource("2_xw4qa")
 position = Vector2(0, -16)
 texture = ExtResource("3_73qeu")
 hframes = 2
+
+[node name="HurtboxCollisionShape" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="0" unique_id=311204889]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_73qeu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="1" unique_id=524181032]
+position = Vector2(9.5, -15)
+shape = SubResource("RectangleShape2D_aajxx")
+debug_color = Color(0.76862746, 0.6039216, 0, 0.043137256)
+
+[node name="AnimationTree" parent="." index="8" unique_id=953931177]
+parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/IdleBlend/blend_position = Vector2(0, 0)
+parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/MoveBlend/blend_position = Vector2(0, 0)
+parameters/RootState/CombatState/CombatReadyTree/ReadyState/IdleBlend/blend_position = Vector2(0, 0)
+parameters/RootState/CombatState/CombatReadyTree/ReadyState/MoveBlend/blend_position = Vector2(0, 0)
+
+[node name="DebugMask" parent="." index="9" unique_id=2132149786]
+metadata/_edit_lock_ = true
+
+[editable path="BodyHurtbox"]
+[editable path="CombatRoot/CombatHitbox"]

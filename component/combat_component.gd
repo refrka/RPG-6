@@ -299,7 +299,13 @@ func _clear_attack_data() -> void:
 
 
 
-func _set_attack_data(weapon_def: WeaponDef) -> void:
+func _set_attack_data(attack_config: AttackConfig) -> void:
+
+	_set_attack_config(attack_config)
+
+
+
+func _set_weapon_attack_data(weapon_def: WeaponDef) -> void:
 
 	_set_attack_config(weapon_def.default_attack_config)
 
@@ -499,7 +505,13 @@ func _on_inventory_loaded() -> void:
 
 		var item_def = weapon_data.get_item_def() as WeaponDef
 
-		_set_attack_data(item_def)
+		_set_weapon_attack_data(item_def)
+
+	elif entity.get_entity_def().melee_attack_config:
+
+		_set_attack_data(entity.get_entity_def().melee_attack_config)
+
+	
 
 
 

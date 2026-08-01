@@ -1,11 +1,39 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://cglx1lj01t53t"]
 
 [ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="1_dwess"]
+[ext_resource type="Script" uid="uid://cvraks0mg5xwi" path="res://combat/attack_def.gd" id="1_o2odi"]
+[ext_resource type="Script" uid="uid://cgg7g58chm718" path="res://combat/attack_entry.gd" id="2_lod8w"]
+[ext_resource type="Script" uid="uid://7xjlwi1lwti4" path="res://damage/damage_type.gd" id="3_5vrw0"]
+[ext_resource type="Script" uid="uid://dy0xa1iphl44y" path="res://combat/attack_config.gd" id="4_hottj"]
+[ext_resource type="Script" uid="uid://c54s0y8rjtpbo" path="res://damage/damage_types/physical_damage.gd" id="4_lod8w"]
+
+[sub_resource type="Resource" id="Resource_o2odi"]
+script = ExtResource("4_lod8w")
+physical_type = 3
+weight = 1.0
+metadata/_custom_type_script = "uid://c54s0y8rjtpbo"
+
+[sub_resource type="Resource" id="Resource_2co6o"]
+script = ExtResource("2_lod8w")
+damage_types = Array[ExtResource("3_5vrw0")]([SubResource("Resource_o2odi")])
+damage_range = Vector2(2, 3)
+metadata/_custom_type_script = "uid://cgg7g58chm718"
+
+[sub_resource type="Resource" id="Resource_a3l2y"]
+script = ExtResource("1_o2odi")
+attack_set = Array[ExtResource("2_lod8w")]([SubResource("Resource_2co6o")])
+metadata/_custom_type_script = "uid://cvraks0mg5xwi"
+
+[sub_resource type="Resource" id="Resource_rppns"]
+script = ExtResource("4_hottj")
+default_attack_def = SubResource("Resource_a3l2y")
+metadata/_custom_type_script = "uid://dy0xa1iphl44y"
 
 [resource]
 script = ExtResource("1_dwess")
+melee_attack_config = SubResource("Resource_rppns")
 entity_id = &"wolf"
 display_name = "Wolf"
 scene_path = "res://entity/character/creature/wolf/wolf.tscn"
-base_max_health = 6.0
+base_max_health = 15.0
 metadata/_custom_type_script = "uid://d2ougu0lbgskp"
