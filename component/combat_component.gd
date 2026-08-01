@@ -11,6 +11,7 @@ signal entity_hit(entity_node: EntityNode, damage_package: DamagePackage)
 @export var combat_hitbox: Hitbox
 
 
+
 var animation_component: AnimationComponent
 
 var movement_component: MovementComponent
@@ -32,6 +33,8 @@ var current_library_name: String
 var current_animation_name: String
 
 
+
+
 var attack_held:= false
 
 var attack_buffered:= false
@@ -39,6 +42,10 @@ var attack_buffered:= false
 var buffer_window_open:= false
 
 var buffered_attack_dir: Vector2
+
+
+
+
 
 
 
@@ -101,11 +108,6 @@ func close_buffer_window() -> void:
 
 
 
-
-
-
-
-
 func _handle_weapon_attack_input() -> void:
 
 	if !_is_attacking():
@@ -115,6 +117,11 @@ func _handle_weapon_attack_input() -> void:
 	elif buffer_window_open:
 
 		_try_buffer_attack()
+
+
+
+
+
 
 
 
@@ -149,12 +156,6 @@ func _enter_combat_ready() -> void:
 
 
 
-
-
-
-func _can_attack() -> bool:
-
-	return true
 
 
 
@@ -427,6 +428,12 @@ func _is_index_valid(index:= -1) -> bool:
 		return false
 
 	return true
+
+
+func _can_attack() -> bool:
+
+	return true
+
 
 
 

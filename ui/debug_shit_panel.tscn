@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://br1lhgpwbexd0" path="res://ui/debug_shit_panel.gd" id="1_aqy7u"]
 [ext_resource type="Script" uid="uid://dk2cxqko4w3x8" path="res://ui/item_def_list.gd" id="2_duhep"]
 
-[node name="DebugShitPanel" type="MarginContainer" unique_id=2112953381 node_paths=PackedStringArray("item_def_list", "item_count_entry", "add_item_button", "remove_item_button", "location_id_list", "spawn_id_list", "move_button", "move_and_set_spawn_button", "entity_info_panel", "entity_name_label", "no_entity_selected_label", "entity_state_label", "playback_state_label")]
+[node name="DebugShitPanel" type="MarginContainer" unique_id=2112953381 node_paths=PackedStringArray("control_panel", "entity_info_panel", "toggle_control_panel_button", "toggle_entity_info_button", "control_panel_hidden_label", "entity_info_hidden_label", "item_def_list", "item_count_entry", "add_item_button", "remove_item_button", "location_id_list", "spawn_id_list", "move_button", "move_and_set_spawn_button", "entity_name_label", "no_entity_selected_label", "entity_state_label", "playback_state_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,34 +15,60 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 script = ExtResource("1_aqy7u")
-item_def_list = NodePath("VBoxContainer/HBoxContainer/ItemDefList")
-item_count_entry = NodePath("VBoxContainer/HBoxContainer/ItemCountEntry")
-add_item_button = NodePath("VBoxContainer/HBoxContainer2/AddItemButton")
-remove_item_button = NodePath("VBoxContainer/HBoxContainer2/RemoveItemButton")
-location_id_list = NodePath("VBoxContainer/LocationIDList")
-spawn_id_list = NodePath("VBoxContainer/HBoxContainer3/SpawnIDList")
-move_button = NodePath("VBoxContainer/HBoxContainer3/MoveButton")
-move_and_set_spawn_button = NodePath("VBoxContainer/MoveAndSetSpawnButton")
-entity_info_panel = NodePath("EntityInfoPanel")
-entity_name_label = NodePath("EntityInfoPanel/MarginContainer/VBoxContainer/MarginContainer/EntityNameLabel")
-no_entity_selected_label = NodePath("EntityInfoPanel/MarginContainer/VBoxContainer/MarginContainer/NoEntitySelectedLabel")
-entity_state_label = NodePath("EntityInfoPanel/MarginContainer/VBoxContainer/HBoxContainer2/EntityStateLabel")
-playback_state_label = NodePath("EntityInfoPanel/MarginContainer/VBoxContainer/HBoxContainer/PlaybackStateLabel")
+control_panel = NodePath("HBoxContainer/ControlPanel")
+entity_info_panel = NodePath("HBoxContainer2/EntityInfoPanel")
+toggle_control_panel_button = NodePath("HBoxContainer/ToggleControlPanelButton")
+toggle_entity_info_button = NodePath("HBoxContainer2/ToggleEntityInfoButton")
+control_panel_hidden_label = NodePath("HBoxContainer/ControlPanelHiddenLabel")
+entity_info_hidden_label = NodePath("HBoxContainer2/EntityInfoHiddenLabel")
+item_def_list = NodePath("HBoxContainer/ControlPanel/VBoxContainer/HBoxContainer/ItemDefList")
+item_count_entry = NodePath("HBoxContainer/ControlPanel/VBoxContainer/HBoxContainer/ItemCountEntry")
+add_item_button = NodePath("HBoxContainer/ControlPanel/VBoxContainer/HBoxContainer2/AddItemButton")
+remove_item_button = NodePath("HBoxContainer/ControlPanel/VBoxContainer/HBoxContainer2/RemoveItemButton")
+location_id_list = NodePath("HBoxContainer/ControlPanel/VBoxContainer/LocationIDList")
+spawn_id_list = NodePath("HBoxContainer/ControlPanel/VBoxContainer/HBoxContainer3/SpawnIDList")
+move_button = NodePath("HBoxContainer/ControlPanel/VBoxContainer/HBoxContainer3/MoveButton")
+move_and_set_spawn_button = NodePath("HBoxContainer/ControlPanel/VBoxContainer/MoveAndSetSpawnButton")
+entity_name_label = NodePath("HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/EntityNameLabel")
+no_entity_selected_label = NodePath("HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/NoEntitySelectedLabel")
+entity_state_label = NodePath("HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/EntityStateLabel")
+playback_state_label = NodePath("HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PlaybackStateLabel")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1285490285]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=489906796]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="ControlPanel" type="MarginContainer" parent="HBoxContainer" unique_id=1415119562]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ControlPanel" unique_id=1285490285]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=1487498659]
+[node name="Label3" type="Label" parent="HBoxContainer/ControlPanel/VBoxContainer" unique_id=1618723288]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Control Panel"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/ControlPanel/VBoxContainer" unique_id=903008417]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/ControlPanel/VBoxContainer" unique_id=1487498659]
 layout_mode = 2
 text = "Add to/remove from player inventory"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=764884491]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/ControlPanel/VBoxContainer" unique_id=764884491]
 layout_mode = 2
 
-[node name="ItemDefList" type="OptionButton" parent="VBoxContainer/HBoxContainer" unique_id=572008785]
+[node name="ItemDefList" type="OptionButton" parent="HBoxContainer/ControlPanel/VBoxContainer/HBoxContainer" unique_id=572008785]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -50,7 +76,7 @@ search_bar_enabled = true
 script = ExtResource("2_duhep")
 metadata/_custom_type_script = "uid://dk2cxqko4w3x8"
 
-[node name="ItemCountEntry" type="LineEdit" parent="VBoxContainer/HBoxContainer" unique_id=1165992530]
+[node name="ItemCountEntry" type="LineEdit" parent="HBoxContainer/ControlPanel/VBoxContainer/HBoxContainer" unique_id=1165992530]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -58,29 +84,29 @@ theme_override_constants/minimum_character_width = 4
 placeholder_text = "0"
 alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=986540702]
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/ControlPanel/VBoxContainer" unique_id=986540702]
 layout_mode = 2
 
-[node name="AddItemButton" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=250669]
+[node name="AddItemButton" type="Button" parent="HBoxContainer/ControlPanel/VBoxContainer/HBoxContainer2" unique_id=250669]
 custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Add"
 
-[node name="RemoveItemButton" type="Button" parent="VBoxContainer/HBoxContainer2" unique_id=88326241]
+[node name="RemoveItemButton" type="Button" parent="HBoxContainer/ControlPanel/VBoxContainer/HBoxContainer2" unique_id=88326241]
 custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Remove"
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=866895047]
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/ControlPanel/VBoxContainer" unique_id=866895047]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="VBoxContainer" unique_id=795498322]
+[node name="Label2" type="Label" parent="HBoxContainer/ControlPanel/VBoxContainer" unique_id=795498322]
 layout_mode = 2
 text = "Move to location & spawn:"
 
-[node name="LocationIDList" type="OptionButton" parent="VBoxContainer" unique_id=1912020767]
+[node name="LocationIDList" type="OptionButton" parent="HBoxContainer/ControlPanel/VBoxContainer" unique_id=1912020767]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 search_bar_enabled = true
@@ -92,81 +118,122 @@ popup/item_1/id = 1
 popup/item_2/text = "forest_area_2"
 popup/item_2/id = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=974870138]
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/ControlPanel/VBoxContainer" unique_id=974870138]
 layout_mode = 2
 
-[node name="SpawnIDList" type="OptionButton" parent="VBoxContainer/HBoxContainer3" unique_id=1942578609]
+[node name="SpawnIDList" type="OptionButton" parent="HBoxContainer/ControlPanel/VBoxContainer/HBoxContainer3" unique_id=1942578609]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MoveButton" type="Button" parent="VBoxContainer/HBoxContainer3" unique_id=1410890939]
+[node name="MoveButton" type="Button" parent="HBoxContainer/ControlPanel/VBoxContainer/HBoxContainer3" unique_id=1410890939]
 process_mode = 3
 custom_minimum_size = Vector2(60, 35)
 layout_mode = 2
 text = "Move"
 
-[node name="MoveAndSetSpawnButton" type="Button" parent="VBoxContainer" unique_id=2105882023]
+[node name="MoveAndSetSpawnButton" type="Button" parent="HBoxContainer/ControlPanel/VBoxContainer" unique_id=2105882023]
 custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 text = "Move and set spawn"
 
-[node name="EntityInfoPanel" type="PanelContainer" parent="." unique_id=1755746827]
+[node name="ToggleControlPanelButton" type="Button" parent="HBoxContainer" unique_id=23667551]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 0
+text = "<"
+
+[node name="ControlPanelHiddenLabel" type="Label" parent="HBoxContainer" unique_id=673493962]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Control Panel"
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=1397524848]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="EntityInfoHiddenLabel" type="Label" parent="HBoxContainer2" unique_id=843079661]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Entity Info"
+vertical_alignment = 1
+
+[node name="ToggleEntityInfoButton" type="Button" parent="HBoxContainer2" unique_id=887278714]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_vertical = 0
+text = ">"
+
+[node name="EntityInfoPanel" type="MarginContainer" parent="HBoxContainer2" unique_id=837513151]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer2/EntityInfoPanel" unique_id=1755746827]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="EntityInfoPanel" unique_id=645478696]
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer2/EntityInfoPanel/PanelContainer" unique_id=645478696]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EntityInfoPanel/MarginContainer" unique_id=317111468]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer" unique_id=317111468]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=83107497]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="EntityInfoPanel/MarginContainer/VBoxContainer" unique_id=83107497]
-layout_mode = 2
-
-[node name="EntityNameLabel" type="Label" parent="EntityInfoPanel/MarginContainer/VBoxContainer/MarginContainer" unique_id=620306650]
+[node name="EntityNameLabel" type="Label" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=620306650]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Entity name"
 horizontal_alignment = 1
 
-[node name="NoEntitySelectedLabel" type="Label" parent="EntityInfoPanel/MarginContainer/VBoxContainer/MarginContainer" unique_id=64172357]
+[node name="NoEntitySelectedLabel" type="Label" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=64172357]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.35220182, 0.3522018, 0.3522018, 1)
 theme_override_font_sizes/font_size = 24
 text = "No entity selected"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="EntityInfoPanel/MarginContainer/VBoxContainer" unique_id=193239179]
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=193239179]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="EntityInfoPanel/MarginContainer/VBoxContainer" unique_id=285257945]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer" unique_id=620140600]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=285257945]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="EntityInfoPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1469060446]
+[node name="Label" type="Label" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1469060446]
 layout_mode = 2
 text = "Entity state:"
 
-[node name="EntityStateLabel" type="Label" parent="EntityInfoPanel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=315344513]
+[node name="EntityStateLabel" type="Label" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=315344513]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "State name"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="EntityInfoPanel/MarginContainer/VBoxContainer" unique_id=2042468936]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=2042468936]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="EntityInfoPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1214889921]
+[node name="Label" type="Label" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1214889921]
 layout_mode = 2
 text = "Animation state:"
 
-[node name="PlaybackStateLabel" type="Label" parent="EntityInfoPanel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1462710517]
+[node name="PlaybackStateLabel" type="Label" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1462710517]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "State name"

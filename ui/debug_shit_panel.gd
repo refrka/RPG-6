@@ -3,6 +3,22 @@ class_name DebugShitPanel extends Overlay
 
 
 
+@export var control_panel: MarginContainer
+
+@export var entity_info_panel: MarginContainer
+
+@export var toggle_control_panel_button: Button
+
+@export var toggle_entity_info_button: Button
+
+@export var control_panel_hidden_label: Label
+
+@export var entity_info_hidden_label: Label
+
+
+
+
+
 @export var item_def_list: ItemDefList
 
 @export var item_count_entry: LineEdit
@@ -21,9 +37,6 @@ class_name DebugShitPanel extends Overlay
 
 
 
-
-
-@export var entity_info_panel: PanelContainer
 
 @export var entity_name_label: Label
 
@@ -50,9 +63,29 @@ func _ready() -> void:
 
 	Debug.debug_mask_deselected.connect(_on_debug_mask_deselected)
 
+
+	_toggle_control_panel(true)
+
+	_toggle_entity_info_panel(false)
+
+
+	toggle_control_panel_button.pressed.connect(_on_toggle_control_panel_pressed)
+
+	toggle_control_panel_button.mouse_entered.connect(_on_mouse_hovered_control_panel_toggle.bind(true))
+
+	toggle_control_panel_button.mouse_exited.connect(_on_mouse_hovered_control_panel_toggle.bind(false))
+
+	toggle_entity_info_button.pressed.connect(_on_toggle_entity_info_pressed)
+
+	toggle_entity_info_button.mouse_entered.connect(_on_mouse_hovered_entity_info_toggle.bind(true))
+
+	toggle_entity_info_button.mouse_exited.connect(_on_mouse_hovered_entity_info_toggle.bind(false))
+
+
 	add_item_button.pressed.connect(_on_add_pressed)
 
 	remove_item_button.pressed.connect(_on_remove_pressed)
+
 
 	location_id_list.item_selected.connect(_on_location_id_selected)
 
@@ -60,13 +93,16 @@ func _ready() -> void:
 
 	location_id_list.item_selected.emit(0)
 
+
 	location_id_list.get_popup().add_theme_constant_override("v_separation", 16)
 
 	spawn_id_list.get_popup().add_theme_constant_override("v_separation", 16)
 
+
 	move_button.pressed.connect(_on_move_pressed)
 
 	move_and_set_spawn_button.pressed.connect(_on_move_and_set_spawn_pressed)
+
 
 	entity_name_label.hide()
 
@@ -78,8 +114,41 @@ func _ready() -> void:
 
 
 
+func _toggle_control_panel(state: bool) -> void:
+
+	control_panel_hidden_label.hide()
+
+	if state == false:
+
+		control_panel.hide()
+
+		toggle_control_panel_button.text = ">"
+
+	else:
+
+		control_panel.show()
+
+		toggle_control_panel_button.text = "<"
 
 
+
+
+
+func _toggle_entity_info_panel(state: bool) -> void:
+
+	entity_info_hidden_label.hide()
+
+	if state == false:
+
+		entity_info_panel.hide()
+
+		toggle_entity_info_button.text = "<"
+
+	else:
+
+		entity_info_panel.show()
+
+		toggle_entity_info_button.text = ">"
 
 
 
@@ -105,12 +174,14 @@ func _show_entity_info(entity_node: EntityNode) -> void:
 
 	_connect_entity_signals()
 
+	_toggle_entity_info_panel(true)
+
 
 
 
 func _clear_entity_info() -> void:
 
-	pass
+	_toggle_control_panel(false)
 
 
 
@@ -150,7 +221,43 @@ func _disconnect_entity_signals() -> void:
 
 
 
+func _on_toggle_control_panel_pressed() -> void:
 
+	_toggle_control_panel(!control_panel.visible)
+
+
+
+func _on_toggle_entity_info_pressed() -> void:
+
+	_toggle_entity_info_panel(!entity_info_panel.visible)
+
+
+
+func _on_mouse_hovered_control_panel_toggle(state: bool) -> void:
+
+	if !control_panel.visible:
+
+		if state == true:
+
+			control_panel_hidden_label.show()
+
+		else:
+
+			control_panel_hidden_label.hide()
+
+
+
+func _on_mouse_hovered_entity_info_toggle(state: bool) -> void:
+
+	if !entity_info_panel.visible:
+
+		if state == true:
+
+			entity_info_hidden_label.show()
+
+		else:
+
+			entity_info_hidden_label.hide()
 
 
 
@@ -179,8 +286,6 @@ func _on_add_pressed() -> void:
 
 	
 
-
-
 func _on_remove_pressed() -> void:
 
 	var item_id: String = item_def_list.get_item_metadata(item_def_list.selected)
@@ -206,8 +311,6 @@ func _on_remove_pressed() -> void:
 
 
 
-
-
 func _on_location_id_selected(index: int) -> void:
 
 	spawn_id_list.clear()
@@ -223,9 +326,6 @@ func _on_location_id_selected(index: int) -> void:
 		spawn_id_list.add_item(spawn_point.spawn_id)
 
 	location.free()
-
-
-
 
 
 
@@ -263,8 +363,11 @@ func _on_move_pressed() -> void:
 
 
 
-
 func _on_move_and_set_spawn_pressed() -> void:
+
+	if !Game.is_active():
+
+		return
 
 	_on_move_pressed()
 
@@ -275,7 +378,6 @@ func _on_move_and_set_spawn_pressed() -> void:
 	var location = Scenes.get_location_scene(location_id)
 
 	SetPlayerSpawnPointCommand.run({"spawn_id": spawn_id, "location": location})
-
 
 
 
@@ -292,7 +394,6 @@ func _on_debug_mask_deselected() -> void:
 
 
 
-
 func _on_entity_playback_state_changed(playback: AnimationNodeStateMachinePlayback) -> void:
 
 	playback_state_label.text = playback.get_current_node()
@@ -302,3 +403,6 @@ func _on_entity_playback_state_changed(playback: AnimationNodeStateMachinePlayba
 func _on_entity_state_changed() -> void:
 
 	entity_state_label.text = selected_entity.state_machine.get_current_state().name
+
+
+
