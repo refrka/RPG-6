@@ -60,6 +60,10 @@ func restore_health(amount: float) -> void:
 
 func reduce_health(amount: float) -> void:
 
+	if !entity.destructible:
+
+		return
+
 	var new_health = max(0, current_health - amount)
 
 	var reduced_amount = current_health - new_health
@@ -82,7 +86,9 @@ func receive_damage_package(damage_package: DamagePackage) -> bool:
 
 		return false
 
-	reduce_health(damage_package.total_damage)
+	if entity.destructible:
+
+		reduce_health(damage_package.total_damage)
 
 	for damage_set in damage_package.damage_sets:
 
@@ -102,9 +108,7 @@ func _die() -> void:
 
 	health_depleted.emit()
 
-	if entity is PlayerNode:
-
-		pass
+	
 
 
 

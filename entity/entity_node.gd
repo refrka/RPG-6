@@ -5,7 +5,7 @@ signal died
 
 @export var entity_def: EntityDef
 
-
+@export var destructible:= true
 
 
 @export_group("Node References")

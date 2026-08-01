@@ -72,4 +72,13 @@ func _on_player_entered_location(event: Event) -> void:
 
 func _on_health_depleted() -> void:
 
-	print("dead")
+	var popup = UI.show_popup(GamePopup.PopupMode.BOOLEAN, "You are dead", "Would you like to respawn?")
+
+	popup.boolean_completed.connect(_on_respawn_boolean_completed)
+
+
+
+
+func _on_respawn_boolean_completed(response: bool) -> void:
+
+	print("shit")
