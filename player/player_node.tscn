@@ -13,6 +13,9 @@
 radius = 6.0
 height = 20.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rppns"]
+size = Vector2(20, 32)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_bg5s2"]
 radius = 39.0
 
@@ -162,6 +165,10 @@ position = Vector2(16, 0)
 position = Vector2(0, -6)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_0vw6r")
+
+[node name="HurtboxCollisionShape" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="0" unique_id=311204889]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_rppns")
 
 [node name="InteractionSensor" type="Area2D" parent="." index="3" unique_id=537167540]
 position = Vector2(0, -16)

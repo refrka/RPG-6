@@ -8,6 +8,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4kyv"]
 size = Vector2(22, 3)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gp20j"]
+size = Vector2(22, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aajxx"]
+size = Vector2(4, 12)
+
 [node name="Sign" unique_id=188428736 instance=ExtResource("1_1xfyf")]
 entity_def = ExtResource("2_w6vjt")
 
@@ -19,6 +25,18 @@ texture = ExtResource("3_w6vjt")
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_i4kyv")
 
+[node name="HurtboxCollisionShape" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="0" unique_id=311204889]
+position = Vector2(0, -19.5)
+shape = SubResource("RectangleShape2D_gp20j")
+debug_color = Color(0.76862746, 0.6039216, 0, 0.09019608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="1" unique_id=461390807]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_aajxx")
+debug_color = Color(0.76862746, 0.6039216, 0, 0.043137256)
+
 [node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1902725791) index="2" unique_id=1755402182]
 script = ExtResource("4_i4kyv")
 metadata/_custom_type_script = "uid://dl0uj3rt7fj45"
+
+[editable path="BodyHurtbox"]

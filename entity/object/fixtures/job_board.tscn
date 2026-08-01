@@ -6,7 +6,16 @@
 [ext_resource type="Script" uid="uid://dl0uj3rt7fj45" path="res://component/interactable_component.gd" id="4_py2hx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f8ujo"]
-size = Vector2(50, 6)
+size = Vector2(52, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_py2hx"]
+size = Vector2(52, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aajxx"]
+size = Vector2(5, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i56pm"]
+size = Vector2(5, 18)
 
 [node name="JobBoard" unique_id=188428736 instance=ExtResource("1_yn1b2")]
 position = Vector2(0, -24)
@@ -16,9 +25,25 @@ entity_def = ExtResource("2_py2hx")
 texture = ExtResource("2_6y32s")
 
 [node name="BodyCollision" parent="." index="1" unique_id=1548032054]
-position = Vector2(0, 21)
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_f8ujo")
+
+[node name="HurtboxCollisionShape" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="0" unique_id=311204889]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_py2hx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="1" unique_id=301184539]
+position = Vector2(-16.5, 15)
+shape = SubResource("RectangleShape2D_aajxx")
+debug_color = Color(0.76862746, 0.6039216, 0, 0.043137256)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="2" unique_id=602381173]
+position = Vector2(16.5, 15)
+shape = SubResource("RectangleShape2D_i56pm")
+debug_color = Color(0.76862746, 0.6039216, 0, 0.043137256)
 
 [node name="InteractableComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1902725791) index="2" unique_id=689355854]
 script = ExtResource("4_py2hx")
 metadata/_custom_type_script = "uid://dl0uj3rt7fj45"
+
+[editable path="BodyHurtbox"]

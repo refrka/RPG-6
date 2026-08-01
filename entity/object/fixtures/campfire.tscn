@@ -9,6 +9,10 @@
 radius = 5.0
 height = 26.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gp20j"]
+radius = 5.0
+height = 26.0
+
 [node name="Campfire" unique_id=188428736 instance=ExtResource("1_6htho")]
 entity_def = ExtResource("2_6duog")
 
@@ -21,5 +25,12 @@ position = Vector2(0, -5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ffgim")
 
+[node name="HurtboxCollisionShape" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="0" unique_id=311204889]
+position = Vector2(0, -5)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_gp20j")
+
 [node name="SpawnPointComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1902725791) index="2" unique_id=397026991]
 script = ExtResource("4_0onr8")
+
+[editable path="BodyHurtbox"]

@@ -9,3 +9,4 @@ script = ExtResource("1_yu3lw")
 metadata/_custom_type_script = "uid://dhhv20t77148x"
 
 [node name="HurtboxCollisionShape" type="CollisionShape2D" parent="." unique_id=311204889]
+debug_color = Color(0.77, 0.60316664, 0, 0.043137256)

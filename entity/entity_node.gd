@@ -66,6 +66,8 @@ func _initialize() -> bool:
 
 		state_machine.setup(self)
 
+	body_hurtbox.setup(self)
+
 	_deactivate()
 
 	return true

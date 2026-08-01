@@ -8,6 +8,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4o2gx"]
 size = Vector2(24, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hryru"]
+size = Vector2(24, 20)
+
 [node name="SmallChest" unique_id=188428736 instance=ExtResource("1_bottk")]
 entity_def = ExtResource("2_3cadj")
 
@@ -20,5 +23,11 @@ hframes = 2
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_4o2gx")
 
+[node name="HurtboxCollisionShape" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="0" unique_id=311204889]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_hryru")
+
 [node name="LootContainerComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1902725791) index="0" unique_id=1828522043]
 script = ExtResource("2_w45xu")
+
+[editable path="BodyHurtbox"]

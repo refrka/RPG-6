@@ -10,6 +10,9 @@
 radius = 4.0
 height = 26.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxwvc"]
+size = Vector2(22, 27)
+
 [sub_resource type="Animation" id="Animation_lpw1t"]
 resource_name = "move_down_right"
 length = 0.3
@@ -149,6 +152,10 @@ position = Vector2(0, -4)
 rotation = -1.5707964
 shape = SubResource("CapsuleShape2D_fmiem")
 
+[node name="HurtboxCollisionShape" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="0" unique_id=311204889]
+position = Vector2(0, -13.5)
+shape = SubResource("RectangleShape2D_qxwvc")
+
 [node name="BarterComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(298047762) index="3" unique_id=1148118195]
 script = ExtResource("4_ut6t0")
 metadata/_custom_type_script = "uid://xgierugyavfg"
@@ -157,8 +164,15 @@ metadata/_custom_type_script = "uid://xgierugyavfg"
 script = ExtResource("5_qxwvc")
 metadata/_custom_type_script = "uid://dl0uj3rt7fj45"
 
-[node name="AnimationPlayer" parent="." index="6" unique_id=447569240]
+[node name="AnimationPlayer" parent="." index="7" unique_id=447569240]
 libraries/mim = SubResource("AnimationLibrary_lpw1t")
 
-[node name="AnimationTree" parent="." index="7" unique_id=953931177]
+[node name="AnimationTree" parent="." index="8" unique_id=953931177]
+parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackBlend/IdleBlend/blend_position = Vector2(0, 0)
+parameters/RootState/CombatState/CombatReadyTree/ReadyBlend/IdleBlend/blend_position = Vector2(0, 0)
+parameters/RootState/CombatState/EndAttackTree/Add2/add_amount = 0.0
+parameters/RootState/CombatState/EndAttackTree/EndAttackTree/IdleBlend/blend_position = Vector2(0, 0)
 parameters/RootState/DefaultState/MovingTree/MovingBlend/blend_position = Vector2(0, 0)
+
+[editable path="BodyHurtbox"]
+[editable path="CombatRoot/CombatHitbox"]

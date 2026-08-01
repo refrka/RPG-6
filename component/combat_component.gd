@@ -45,6 +45,8 @@ func _initialize(_entity: EntityNode) -> void:
 
 	combat_hitbox.setup(entity)
 
+	combat_hitbox.hit_detected.connect(_on_hit_detected)
+
 	entity.inventory.inventory_loaded.connect(_on_inventory_loaded)
 
 	entity.inventory.item_equipped.connect(_on_item_equipped)
@@ -459,3 +461,10 @@ func _on_inventory_loaded() -> void:
 func _on_ready_timeout() -> void:
 
 	_exit_combat()
+
+
+
+
+func _on_hit_detected(target_entity: EntityNode) -> void:
+
+	print(target_entity)

@@ -7,6 +7,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jd6u5"]
 size = Vector2(16, 3)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbw5j"]
+size = Vector2(16, 4)
+
 [node name="Lever" unique_id=188428736 instance=ExtResource("1_tgjk0")]
 entity_def = ExtResource("2_cbw5j")
 
@@ -18,3 +21,9 @@ hframes = 2
 [node name="BodyCollision" parent="." index="1" unique_id=1548032054]
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_jd6u5")
+
+[node name="HurtboxCollisionShape" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="0" unique_id=311204889]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_cbw5j")
+
+[editable path="BodyHurtbox"]

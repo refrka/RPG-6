@@ -9,3 +9,4 @@ script = ExtResource("1_jwi74")
 metadata/_custom_type_script = "uid://dhhv20t77148x"
 
 [node name="HitboxCollisionShape" type="CollisionShape2D" parent="." unique_id=1071803953]
+debug_color = Color(0.98482925, 0.5344852, 0.4711964, 0.14901961)
