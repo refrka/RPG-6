@@ -170,6 +170,10 @@ func _try_attack() -> void:
 
 func _start_attack() -> void:
 
+	if !_is_index_valid(current_attack_index):
+
+		return
+
 	if !_is_in_combat():
 
 		_enter_combat()
@@ -333,7 +337,11 @@ func _get_attack_direction(target_entity: EntityNode = null) -> Vector2:
 
 
 
-func _get_attack_entry(index: int) -> AttackEntry:
+func _get_attack_entry(index: int = -1) -> AttackEntry:
+
+	if index == -1:
+
+		index = current_attack_index
 
 	if !_has_valid_attack_data():
 

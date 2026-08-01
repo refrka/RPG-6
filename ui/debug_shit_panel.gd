@@ -17,12 +17,38 @@ class_name DebugShitPanel extends Overlay
 
 @export var move_button: Button
 
+@export var move_and_set_spawn_button: Button
+
+
+
+
+
+@export var entity_info_panel: PanelContainer
+
+@export var entity_name_label: Label
+
+@export var no_entity_selected_label: Label
+
+@export var entity_state_label: Label
+
+@export var playback_state_label: Label
+
+
+
+
+
+var selected_entity: EntityNode
+
 
 
 
 func _ready() -> void:
 
 	Debug.debug_shit_panel = self
+
+	Debug.debug_mask_selected.connect(_on_debug_mask_selected)
+
+	Debug.debug_mask_deselected.connect(_on_debug_mask_deselected)
 
 	add_item_button.pressed.connect(_on_add_pressed)
 
@@ -39,6 +65,88 @@ func _ready() -> void:
 	spawn_id_list.get_popup().add_theme_constant_override("v_separation", 16)
 
 	move_button.pressed.connect(_on_move_pressed)
+
+	move_and_set_spawn_button.pressed.connect(_on_move_and_set_spawn_pressed)
+
+	entity_name_label.hide()
+
+	no_entity_selected_label.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _show_entity_info(entity_node: EntityNode) -> void:
+
+	if selected_entity:
+
+		_disconnect_entity_signals()
+
+	selected_entity = entity_node
+
+	no_entity_selected_label.hide()
+
+	entity_name_label.show()
+
+	entity_name_label.text = entity_node.get_display_name()
+
+	_connect_entity_signals()
+
+
+
+
+func _clear_entity_info() -> void:
+
+	pass
+
+
+
+
+
+
+
+
+
+
+func _connect_entity_signals() -> void:
+
+	var animation_component = selected_entity.get_component(AnimationComponent)
+	
+	animation_component.playback_state_changed.connect(_on_entity_playback_state_changed)
+
+	selected_entity.state_machine.state_changed.connect(_on_entity_state_changed)
+
+
+
+func _disconnect_entity_signals() -> void:
+
+	var animation_component = selected_entity.get_component(AnimationComponent)
+	
+	animation_component.playback_state_changed.disconnect(_on_entity_playback_state_changed)
+
+	selected_entity.state_machine.state_changed.disconnect(_on_entity_state_changed)
+
+
+
+
+
+
+
+
+
 
 
 
@@ -152,3 +260,45 @@ func _on_move_pressed() -> void:
 		var location = Scenes.load_location(location_id)
 
 		location.spawn_entity_node(player, spawn_id)
+
+
+
+
+func _on_move_and_set_spawn_pressed() -> void:
+
+	_on_move_pressed()
+
+	var location_id = location_id_list.get_item_text(location_id_list.selected)
+
+	var spawn_id = spawn_id_list.get_item_text(spawn_id_list.selected)
+
+	var location = Scenes.get_location_scene(location_id)
+
+	SetPlayerSpawnPointCommand.run({"spawn_id": spawn_id, "location": location})
+
+
+
+
+
+func _on_debug_mask_selected(debug_mask: DebugMask) -> void:
+
+	_show_entity_info(debug_mask.entity)
+
+
+
+func _on_debug_mask_deselected() -> void:
+
+	pass
+
+
+
+
+func _on_entity_playback_state_changed(playback: AnimationNodeStateMachinePlayback) -> void:
+
+	playback_state_label.text = playback.get_current_node()
+
+
+
+func _on_entity_state_changed() -> void:
+
+	entity_state_label.text = selected_entity.state_machine.get_current_state().name

@@ -267,6 +267,8 @@ func _load_game(save_data: SaveData) -> void:
 
 	player.active_spawn_id = spawn_id
 
+	player.active_location = location
+
 	if first_load:
 
 		Events.fire(PlayerEnteredLocationEvent, {"location": location})

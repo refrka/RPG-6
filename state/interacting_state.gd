@@ -19,6 +19,8 @@ func _setup(_entity: EntityNode) -> void:
 
 func _enter() -> void:
 
+	super()
+
 	movement_component._deactivate()
 
 
@@ -26,5 +28,7 @@ func _enter() -> void:
 
 
 func _exit() -> void:
+
+	super()
 
 	movement_component._activate()

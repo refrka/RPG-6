@@ -205,10 +205,5 @@ parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackBlend/IdleBl
 parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 1.0
 parameters/RootState/CombatState/EndAttackTree/Add2/add_amount = 1.0
 
-[node name="DebugInputMask" parent="." index="10" unique_id=882155949]
-offset_left = -16.0
-offset_top = -34.0
-offset_right = 13.0
-
 [editable path="BodyHurtbox"]
 [editable path="CombatRoot/CombatHitbox"]

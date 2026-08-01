@@ -4,8 +4,6 @@ class_name IdleState extends State
 
 var movement_component: MovementComponent
 
-var default_playback: AnimationNodeStateMachinePlayback
-
 
 
 
@@ -19,22 +17,28 @@ func _setup(_entity: EntityNode) -> void:
 
 		movement_component.move_started.connect(_on_move_started)
 
-	default_playback = animation_component.get_state_playback("default")
-
 
 
 
 func _enter() -> void:
+
+	super()
 	
-	if root_playback.get_current_node() != "DefaultState":
+	if animation_component.get_playback_node("root") != "DefaultState":
 
-		root_playback.travel("DefaultState")
-
-	default_playback.travel("IdleTree")
+		animation_component.travel_playback("root", "DefaultState")
 
 	if movement_component:
 
+		if movement_component.is_moving():
+
+			entity.state_machine.request_state(MovingState)
+
+			return
+
 		animation_component.set_blend_space_vector("idle", movement_component.face_dir)
+
+	animation_component.travel_playback("default", "IdleTree")
 
 	
 
@@ -43,6 +47,11 @@ func _enter() -> void:
 
 func _on_move_started() -> void:
 
+	if !active:
+
+		return
+
 	entity.state_machine.request_state(MovingState)
+
 
 

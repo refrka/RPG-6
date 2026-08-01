@@ -1,7 +1,6 @@
 class_name CombatState extends State
 
 
-var combat_playback: AnimationNodeStateMachinePlayback
 
 
 var movement_component: MovementComponent
@@ -20,13 +19,13 @@ func _setup(_entity: EntityNode) -> void:
 
 	combat_component = entity.get_component(CombatComponent)
 
-	combat_playback = animation_component.get_state_playback("combat")
-
 
 
 
 func _enter() -> void:
 
-	if root_playback.get_current_node() != "CombatState":
+	super()
 
-		root_playback.travel("CombatState")
+	if animation_component.get_playback_node("root") != "CombatState":
+
+		animation_component.travel_playback("root", "CombatState")

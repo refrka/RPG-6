@@ -54,6 +54,7 @@ func set_move_dir(dir: Vector2) -> void:
 	move_dir = dir
 
 
+
 func set_face_dir(dir: Vector2) -> void:
 
 	face_dir = dir
@@ -63,6 +64,10 @@ func set_face_dir(dir: Vector2) -> void:
 func set_move_speed_override(override: float) -> void:
 
 	move_speed_override = override
+
+	if move_speed_override <= 0.0:
+
+		halt()
 
 
 func remove_move_speed_override() -> void:
@@ -77,6 +82,16 @@ func halt() -> void:
 	set_move_dir(Vector2.ZERO)
 
 	entity.velocity = Vector2.ZERO
+
+
+
+
+
+
+
+func is_moving() -> bool:
+
+	return entity.velocity != Vector2.ZERO
 
 
 
@@ -114,7 +129,7 @@ func _process(_delta: float) -> void:
 
 		var move_speed = entity.get_entity_def().move_speed
 
-		if move_speed_override > 0.0:
+		if move_speed_override >= 0.0:
 
 			move_speed = move_speed_override
 
@@ -124,9 +139,11 @@ func _process(_delta: float) -> void:
 
 	if can_move:
 
-		if current_velocity != move_velocity:
+		if current_velocity != move_velocity and move_velocity != Vector2.ZERO:
 
 			animation_component.set_blend_space_vector("moving", move_velocity.normalized())
+
+			animation_component.set_blend_space_vector("idle", move_velocity.normalized())
 
 		entity.velocity = move_velocity
 

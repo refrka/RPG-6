@@ -101,13 +101,7 @@ mouse_filter = 2
 
 [node name="DebugShitPanel" parent="DebugCanvas/DebugRoot/DebugControlRoot" unique_id=2112953381 instance=ExtResource("4_wd1uf")]
 process_mode = 3
-visible = false
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
 
 [node name="GameCamera" type="Camera2D" parent="." unique_id=569789934 groups=["game_camera"]]
 anchor_mode = 0

@@ -39,6 +39,12 @@ var border_color_a: float:
 
 
 
+var entity: EntityNode
+
+var selected:= false
+
+
+
 
 func _ready() -> void:
 
@@ -48,9 +54,42 @@ func _ready() -> void:
 
 	Debug.mouse_deactivated.connect(_on_debug_mouse_deactivated)
 
+	_deactivate()
+
+	entity = get_parent()
 
 
 
+
+
+
+func select() -> void:
+
+	selected = true
+
+	border_color_a = 1.0
+
+
+
+
+func deselect() -> void:
+
+	selected = false
+
+	border_color_a = 0.25
+
+
+
+
+
+
+
+
+func _activate() -> void:
+
+	super()
+
+	panel.show()
 
 
 
@@ -58,6 +97,9 @@ func _ready() -> void:
 func _deactivate() -> void:
 
 	super()
+
+	panel.hide()
+
 
 
 
@@ -69,7 +111,7 @@ func _deactivate() -> void:
 
 func _on_mouse_entered() -> void:
 
-	if !Debug.mouse_active or !active:
+	if !Debug.mouse_active or !active or selected:
 
 		return
 
@@ -83,6 +125,10 @@ func _on_mouse_entered() -> void:
 
 
 func _on_mouse_exited() -> void:
+
+	if selected:
+
+		return
 
 	super()
 
@@ -102,7 +148,17 @@ func _on_gui_input(event: InputEvent) -> void:
 
 	super(event)
 
-	get_viewport().set_input_as_handled()
+	if event is InputEventMouseButton and event.button_index == 1 and event.is_pressed():
+
+		if selected:
+
+			Debug.deselect_debug_mask()
+
+		else:
+
+			Debug.select_debug_mask(self)
+
+		get_viewport().set_input_as_handled()
 
 
 
@@ -116,6 +172,14 @@ func _on_debug_mouse_activated() -> void:
 	if !active:
 
 		_activate()
+
+	if get_global_rect().has_point(Game.get_mouse_position()):
+
+		_on_mouse_entered()
+
+
+
+
 
 
 func _on_debug_mouse_deactivated() -> void:

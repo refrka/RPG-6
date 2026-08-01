@@ -2,6 +2,10 @@ class_name AnimationComponent extends Component
 
 
 
+signal playback_state_changed(playback: AnimationNodeStateMachinePlayback)
+
+
+
 @export var anim_player: AnimationPlayer
 
 @export var anim_tree: AnimationTree
@@ -33,6 +37,11 @@ func _initialize(_entity: EntityNode) -> void:
 
 	playback_registry["combat"] = anim_tree.get("parameters/RootState/CombatState/playback")
 
+	for playback in playback_registry.values():
+
+		if playback:
+
+			playback.state_started.connect(_on_playback_state_started.bind(playback))
 
 	blend_space_registry["idle"] = "parameters/RootState/DefaultState/IdleTree/IdleBlend/blend_position"
 
@@ -40,9 +49,11 @@ func _initialize(_entity: EntityNode) -> void:
 
 	blend_space_registry["attack"] = "parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackBlend/IdleBlend/blend_position"
 
-	blend_space_registry["ready"] = "parameters/RootState/CombatState/CombatReadyTree/ReadyBlend/IdleBlend/blend_position"
+	blend_space_registry["ready_idle"] = "parameters/RootState/CombatState/CombatReadyTree/ReadyIdleBlend/IdleBlend/blend_position"
 
 	blend_space_registry["end_attack"] = "parameters/RootState/CombatState/EndAttackTree/EndAttackTree/IdleBlend/blend_position"
+
+	blend_space_registry["ready_move"] = "parameters/RootState/CombatState/EndAttackTree/EndAttackTree/IdleBlend/blend_position"
 
 
 
@@ -61,12 +72,35 @@ func load_weapon_library(item_id: StringName) -> void:
 
 
 
+func travel_playback(playback_name: StringName, node_name: String) -> void:
+
+	var playback = get_state_playback(playback_name)
+
+	playback.travel(node_name)
+
+
+
+func start_playback(playback_name: StringName, node_name: String) -> void:
+
+	var playback = get_state_playback(playback_name)
+
+	playback.start(node_name)
+
+
+
+func get_playback_node(playback_name: StringName) -> String:
+
+	var playback = get_state_playback(playback_name)
+
+	return playback.get_current_node()
+
+
+
+
 
 func set_blend_space_vector(space_name: String, vector: Vector2) -> void:
 
 	anim_tree.set(blend_space_registry[space_name], vector)
-
-
 
 
 
@@ -77,3 +111,10 @@ func get_state_playback(playback_name: String) -> AnimationNodeStateMachinePlayb
 
 
 
+
+
+
+
+func _on_playback_state_started(_state_name: String, playback: AnimationNodeStateMachinePlayback) -> void:
+
+	playback_state_changed.emit(playback)

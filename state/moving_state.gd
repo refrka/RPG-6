@@ -49,8 +49,6 @@ var blend_node_names:= [
 
 var movement_component: MovementComponent
 
-var default_playback: AnimationNodeStateMachinePlayback
-
 
 
 func _setup(_entity: EntityNode) -> void:
@@ -83,21 +81,25 @@ func _setup(_entity: EntityNode) -> void:
 
 		animation_node_animation.animation = blend_node_name
 
-	default_playback = animation_component.get_state_playback("default")
-
 
 
 
 
 func _enter() -> void:
 
-	default_playback.travel("MovingTree")
+	super()
+
+	animation_component.travel_playback("default", "MovingTree")
 
 
 
 
 
 func _on_move_stopped() -> void:
+
+	if !active:
+
+		return
 
 	entity.state_machine.request_state(IdleState)
 
