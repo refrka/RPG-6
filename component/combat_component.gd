@@ -38,6 +38,8 @@ var attack_buffered:= false
 
 var buffer_window_open:= false
 
+var buffered_attack_dir: Vector2
+
 
 
 
@@ -168,7 +170,7 @@ func _try_attack() -> void:
 
 
 
-func _start_attack() -> void:
+func _start_attack(buffered:= false) -> void:
 
 	if !_is_index_valid(current_attack_index):
 
@@ -192,7 +194,13 @@ func _start_attack() -> void:
 
 		return
 
-	_set_attack_dir(_get_attack_direction())
+	var attack_dir:= _get_attack_direction()
+
+	if buffered:
+
+		attack_dir = buffered_attack_dir
+
+	_set_attack_dir(attack_dir)
 
 	_execute_attack()
 
@@ -208,11 +216,19 @@ func _execute_attack() -> void:
 
 	entity.state_machine.request_state(CombatAttackingState)
 
+	var move_penalty = _get_attack_entry().move_penalty	
+
+	var move_speed = entity.get_entity_def().move_speed
+
+	movement_component.set_move_speed_override(move_speed * (1.0 - move_penalty))
+
 	
 
 
 
 func _finish_attack() -> void:
+
+	movement_component.remove_move_speed_override()
 
 	close_buffer_window()
 
@@ -222,7 +238,7 @@ func _finish_attack() -> void:
 
 		attack_buffered = false
 
-		_start_attack()
+		_start_attack(true)
 
 	_reset_attack_data()
 
@@ -239,6 +255,8 @@ func _try_buffer_attack() -> void:
 	if _is_index_valid(next_index):
 
 		attack_buffered = true
+
+		buffered_attack_dir = _get_attack_direction()
 
 
 

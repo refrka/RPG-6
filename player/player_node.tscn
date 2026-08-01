@@ -201,8 +201,11 @@ libraries/player = SubResource("AnimationLibrary_0vw6r")
 libraries/rusty_iron_sword = ExtResource("8_a3l2y")
 
 [node name="AnimationTree" parent="." index="9" unique_id=953931177]
-parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackBlend/IdleBlend/blend_position = Vector2(-0.5675858, 0.64017546)
 parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 1.0
+parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/IdleBlend/blend_position = Vector2(0, 0)
+parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/MoveBlend/blend_position = Vector2(0, 0)
+parameters/RootState/CombatState/CombatReadyTree/ReadyState/IdleBlend/blend_position = Vector2(0, 0)
+parameters/RootState/CombatState/CombatReadyTree/ReadyState/MoveBlend/blend_position = Vector2(0, 0)
 parameters/RootState/CombatState/EndAttackTree/Add2/add_amount = 1.0
 
 [editable path="BodyHurtbox"]

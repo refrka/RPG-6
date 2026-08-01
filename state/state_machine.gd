@@ -37,7 +37,7 @@ func setup(_entity: EntityNode) -> void:
 
 
 
-func request_state(state_script: Script) -> void:
+func request_state(state_script: Script, reenter:= false) -> void:
 
 	var new_state = get_state(state_script)
 
@@ -46,6 +46,10 @@ func request_state(state_script: Script) -> void:
 		return
 
 	_change_state(new_state)
+
+	if reenter:
+
+		new_state._enter()
 
 
 

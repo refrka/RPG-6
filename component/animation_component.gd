@@ -37,6 +37,10 @@ func _initialize(_entity: EntityNode) -> void:
 
 	playback_registry["combat"] = anim_tree.get("parameters/RootState/CombatState/playback")
 
+	playback_registry["ready"] = anim_tree.get("parameters/RootState/CombatState/CombatReadyTree/ReadyState/playback")
+
+	playback_registry["attack"] = anim_tree.get("parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/playback")
+
 	for playback in playback_registry.values():
 
 		if playback:
@@ -49,11 +53,15 @@ func _initialize(_entity: EntityNode) -> void:
 
 	blend_space_registry["attack"] = "parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackBlend/IdleBlend/blend_position"
 
-	blend_space_registry["ready_idle"] = "parameters/RootState/CombatState/CombatReadyTree/ReadyIdleBlend/IdleBlend/blend_position"
+	blend_space_registry["ready_idle"] = "parameters/RootState/CombatState/CombatReadyTree/ReadyState/IdleBlend/blend_position"
+
+	blend_space_registry["ready_move"] = "parameters/RootState/CombatState/CombatReadyTree/ReadyState/MoveBlend/blend_position"
+
+	blend_space_registry["attack_idle"] = "parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/IdleBlend/blend_position"
+
+	blend_space_registry["attack_move"] = "parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/MoveBlend/blend_position"
 
 	blend_space_registry["end_attack"] = "parameters/RootState/CombatState/EndAttackTree/EndAttackTree/IdleBlend/blend_position"
-
-	blend_space_registry["ready_move"] = "parameters/RootState/CombatState/EndAttackTree/EndAttackTree/IdleBlend/blend_position"
 
 
 

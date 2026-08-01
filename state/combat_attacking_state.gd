@@ -1,5 +1,5 @@
-class_name CombatAttackingState extends CombatState
 
+class_name CombatAttackingState extends CombatState
 
 
 var attack_animation_node: AnimationNodeAnimation
@@ -23,9 +23,19 @@ func _enter() -> void:
 
 	animation_component.travel_playback("combat", "CombatAttackState")
 
-	var move_speed = entity.get_entity_def().move_speed
+	var move_penalty = combat_component._get_attack_entry().move_penalty
 
-	movement_component.set_move_speed_override(move_speed * (1.0 - combat_component._get_attack_entry().move_penalty))
+	if move_penalty < 1.0 and movement_component.is_moving():
+
+		animation_component.travel_playback("attack", "MoveBlend")
+
+	movement_component.move_started.connect(_on_move_started)
+
+	movement_component.move_stopped.connect(_on_move_stopped)
+
+	animation_component.set_blend_space_vector("attack_move", movement_component.face_dir)
+
+	animation_component.set_blend_space_vector("attack_idle", movement_component.face_dir)
 
 
 
@@ -34,5 +44,21 @@ func _exit() -> void:
 
 	super()
 
-	movement_component.remove_move_speed_override()
+	movement_component.move_started.disconnect(_on_move_started)
 
+	movement_component.move_stopped.disconnect(_on_move_stopped)
+
+
+
+
+func _on_move_started() -> void:
+
+	animation_component.travel_playback("attack", "MoveBlend")
+
+	animation_component.set_blend_space_vector("attack_move", movement_component.face_dir)
+
+
+
+func _on_move_stopped() -> void:
+
+	animation_component.travel_playback("attack", "IdleBlend")

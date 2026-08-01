@@ -34,6 +34,10 @@ func _enter() -> void:
 
 	movement_component.move_stopped.connect(_on_move_stopped)
 
+	if movement_component.is_moving():
+
+		animation_component.travel_playback("ready", "MoveBlend")
+
 
 
 
@@ -65,7 +69,7 @@ func _on_timeout() -> void:
 
 func _on_move_started() -> void:
 
-	animation_component.anim_tree.set("parameters/RootState/CombatState/CombatReadyTree/ReadyMoveAdd/add_amount", 1.0)
+	animation_component.travel_playback("ready", "MoveBlend")
 
 	animation_component.set_blend_space_vector("ready_move", movement_component.face_dir)
 
@@ -74,6 +78,6 @@ func _on_move_started() -> void:
 
 func _on_move_stopped() -> void:
 
-	animation_component.anim_tree.set("parameters/RootState/CombatState/CombatReadyTree/ReadyMoveAdd/add_amount", 0.0)
+	animation_component.travel_playback("ready", "IdleBlend")
 
 	animation_component.set_blend_space_vector("ready_idle", movement_component.face_dir)
