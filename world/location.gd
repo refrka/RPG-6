@@ -361,8 +361,6 @@ func _spawn_marker(entity_marker: EntityMarker) -> void:
 
 	entity_node._initialize()
 
-	entity_node._activate()
-
 	entity_marker.spawned_entity_node = entity_node
 
 
@@ -483,6 +481,8 @@ func _activate() -> void:
 		object._activate()
 
 	for character in character_list:
+
+		print("character activate")
 
 		character._activate()
 

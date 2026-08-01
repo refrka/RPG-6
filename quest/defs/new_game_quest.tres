@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://dhqjsemk7pnt1" path="res://command/exit_location_command.gd" id="9_ncwlv"]
 [ext_resource type="Script" uid="uid://nmihopaj7e7c" path="res://condition/condition.gd" id="11_y3wyl"]
 [ext_resource type="Script" uid="uid://dorjapef0fhm1" path="res://condition/condition_set.gd" id="12_ou5qu"]
+[ext_resource type="Script" uid="uid://c1v5rlbblonu" path="res://condition/is_quest_state_condition.gd" id="15_dujw3"]
 [ext_resource type="Script" uid="uid://8fs4d75525vy" path="res://quest/objectives/start_dialogue_objective.gd" id="19_ncwlv"]
 [ext_resource type="Script" uid="uid://c0jrlvmwmiq7a" path="res://quest/objectives/discover_location_objective.gd" id="19_pdd1h"]
 
@@ -50,6 +51,17 @@ script = ExtResource("3_2crd8")
 unique_id = &"ap"
 metadata/_custom_type_script = "uid://5dqsbln5otb0"
 
+[sub_resource type="Resource" id="Resource_pdd1h"]
+script = ExtResource("15_dujw3")
+quest_id = &"new_game_quest"
+quest_state = 3
+metadata/_custom_type_script = "uid://c1v5rlbblonu"
+
+[sub_resource type="Resource" id="Resource_ngmg8"]
+script = ExtResource("12_ou5qu")
+conditions = Array[ExtResource("11_y3wyl")]([SubResource("Resource_pdd1h")])
+metadata/_custom_type_script = "uid://dorjapef0fhm1"
+
 [sub_resource type="Resource" id="Resource_bxlyn"]
 script = ExtResource("4_5n4ib")
 quest_id = &"new_game_quest"
@@ -58,6 +70,7 @@ quest_entity = SubResource("Resource_em0rm")
 option_text = "I sure did! No problem."
 dialogue_text = SubResource("Resource_dujw3")
 forced_greeting = SubResource("Resource_7xlh3")
+show_condition_set = SubResource("Resource_ngmg8")
 enter_conditional = SubResource("Resource_8hgc3")
 metadata/_custom_type_script = "uid://cd0f2ychmbq0q"
 
@@ -110,8 +123,30 @@ script = ExtResource("3_2crd8")
 unique_id = &"ap"
 metadata/_custom_type_script = "uid://5dqsbln5otb0"
 
+[sub_resource type="Resource" id="Resource_ncwlv"]
+script = ExtResource("15_dujw3")
+quest_id = &"new_game_quest"
+quest_state = 2
+invert = true
+metadata/_custom_type_script = "uid://c1v5rlbblonu"
+
+[sub_resource type="Resource" id="Resource_6oida"]
+script = ExtResource("15_dujw3")
+quest_id = &"new_game_quest"
+quest_state = 3
+invert = true
+metadata/_custom_type_script = "uid://c1v5rlbblonu"
+
+[sub_resource type="Resource" id="Resource_ovq7t"]
+script = ExtResource("15_dujw3")
+quest_id = &"new_game_quest"
+quest_state = 4
+invert = true
+metadata/_custom_type_script = "uid://c1v5rlbblonu"
+
 [sub_resource type="Resource" id="Resource_bgrhr"]
 script = ExtResource("12_ou5qu")
+conditions = Array[ExtResource("11_y3wyl")]([SubResource("Resource_ncwlv"), SubResource("Resource_6oida"), SubResource("Resource_ovq7t")])
 metadata/_custom_type_script = "uid://dorjapef0fhm1"
 
 [sub_resource type="Resource" id="Resource_bx7u3"]
@@ -132,7 +167,7 @@ title = "Find Ap further ahead"
 description = "Find the location where Ap is waiting for you."
 metadata/_custom_type_script = "uid://c0jrlvmwmiq7a"
 
-[sub_resource type="Resource" id="Resource_ncwlv"]
+[sub_resource type="Resource" id="Resource_bml13"]
 script = ExtResource("2_bx7u3")
 objectives = Array[ExtResource("3_bx7u3")]([SubResource("Resource_f8ujo")])
 metadata/_custom_type_script = "uid://btjgttvqng6jt"
@@ -142,7 +177,7 @@ script = ExtResource("3_2crd8")
 unique_id = &"ap"
 metadata/_custom_type_script = "uid://5dqsbln5otb0"
 
-[sub_resource type="Resource" id="Resource_pdd1h"]
+[sub_resource type="Resource" id="Resource_fddlt"]
 script = ExtResource("19_ncwlv")
 target_quest_entity = SubResource("Resource_8tlgu")
 title = "Talk to Ap"
@@ -151,13 +186,13 @@ metadata/_custom_type_script = "uid://8fs4d75525vy"
 
 [sub_resource type="Resource" id="Resource_dycyv"]
 script = ExtResource("2_bx7u3")
-objectives = Array[ExtResource("3_bx7u3")]([SubResource("Resource_pdd1h")])
+objectives = Array[ExtResource("3_bx7u3")]([SubResource("Resource_fddlt")])
 metadata/_custom_type_script = "uid://btjgttvqng6jt"
 
 [resource]
 script = ExtResource("1_4w6ow")
 quest_id = &"new_game_quest"
-stages = Array[ExtResource("2_bx7u3")]([SubResource("Resource_ncwlv"), SubResource("Resource_dycyv")])
+stages = Array[ExtResource("2_bx7u3")]([SubResource("Resource_bml13"), SubResource("Resource_dycyv")])
 title = "Starting a new game"
 description = "Learn about the game!"
 source_dialogue_node = SubResource("Resource_bx7u3")

@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://dl0uj3rt7fj45" path="res://component/interactable_component.gd" id="4_3b7s1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gnloq"]
-radius = 5.0
-height = 16.0
+radius = 8.0
+height = 20.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3b7s1"]
 radius = 8.0
@@ -151,8 +151,7 @@ hframes = 6
 vframes = 2
 
 [node name="BodyCollision" parent="." index="1" unique_id=1462622998]
-position = Vector2(-0.5, -5)
-rotation = -1.5707964
+position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_gnloq")
 
 [node name="HurtboxCollisionShape" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="0" unique_id=311204889]
@@ -169,15 +168,14 @@ debug_color = Color(0.76862746, 0.6039216, 0, 0.043137256)
 script = ExtResource("4_3b7s1")
 metadata/_custom_type_script = "uid://dl0uj3rt7fj45"
 
-[node name="AnimationPlayer" parent="." index="7" unique_id=447569240]
+[node name="AnimationPlayer" parent="." index="8" unique_id=447569240]
 libraries/ap = SubResource("AnimationLibrary_ehc3r")
 
-[node name="AnimationTree" parent="." index="8" unique_id=953931177]
-parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackBlend/IdleBlend/blend_position = Vector2(0, 0)
-parameters/RootState/CombatState/CombatReadyTree/ReadyBlend/IdleBlend/blend_position = Vector2(0, 0)
-parameters/RootState/CombatState/EndAttackTree/Add2/add_amount = 0.0
-parameters/RootState/CombatState/EndAttackTree/EndAttackTree/IdleBlend/blend_position = Vector2(0, 0)
+[node name="AnimationTree" parent="." index="9" unique_id=953931177]
 parameters/RootState/DefaultState/MovingTree/MovingBlend/blend_position = Vector2(-0.86871934, 0.65291595)
+
+[node name="DebugMask" parent="." index="10" unique_id=2132149786]
+metadata/_edit_lock_ = true
 
 [editable path="BodyHurtbox"]
 [editable path="CombatRoot/CombatHitbox"]

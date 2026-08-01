@@ -10,6 +10,9 @@ size = Vector2(32, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aajxx"]
 size = Vector2(13, 20)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_mn88y"]
+radius = 218.0367
+
 [node name="Wolf" unique_id=639653512 instance=ExtResource("1_vflfw")]
 entity_def = ExtResource("2_xw4qa")
 
@@ -27,13 +30,10 @@ position = Vector2(9.5, -15)
 shape = SubResource("RectangleShape2D_aajxx")
 debug_color = Color(0.76862746, 0.6039216, 0, 0.043137256)
 
-[node name="AnimationTree" parent="." index="8" unique_id=953931177]
-parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/IdleBlend/blend_position = Vector2(0, 0)
-parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/MoveBlend/blend_position = Vector2(0, 0)
-parameters/RootState/CombatState/CombatReadyTree/ReadyState/IdleBlend/blend_position = Vector2(0, 0)
-parameters/RootState/CombatState/CombatReadyTree/ReadyState/MoveBlend/blend_position = Vector2(0, 0)
+[node name="CollisionShape2D" parent="VisionSensor" parent_id_path=PackedInt32Array(250012211) index="0" unique_id=1639820508]
+shape = SubResource("CircleShape2D_mn88y")
 
-[node name="DebugMask" parent="." index="9" unique_id=2132149786]
+[node name="DebugMask" parent="." index="10" unique_id=2132149786]
 metadata/_edit_lock_ = true
 
 [editable path="BodyHurtbox"]

@@ -3,6 +3,8 @@ class_name EntityNode extends PhysicsBody2D
 signal died
 
 
+@export var unique_id: StringName
+
 @export var entity_def: EntityDef
 
 @export var destructible:= true
@@ -156,7 +158,13 @@ func get_unique_id() -> StringName:
 
 	var def = get_entity_def()
 
-	return def.unique_id
+	if def.unique_id != &"":
+
+		return def.unique_id
+
+	else:
+
+		return unique_id
 
 
 

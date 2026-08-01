@@ -438,6 +438,10 @@ func _is_index_valid(index:= -1) -> bool:
 
 func _can_attack() -> bool:
 
+	if entity.state_machine.get_current_state() is BusyState:
+
+		return false
+
 	return true
 
 

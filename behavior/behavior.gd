@@ -2,21 +2,27 @@ class_name Behavior extends Resource
 
 
 
-enum Priority {
 
-	NONE,
 
-	TASK,
 
-	SURVIVAL,
+enum BehaviorType {
+
+	AMBIENT,
+
+	CONFLICT,
+
+	PRESERVATION,
+
+	SOCIAL,
 
 }
 
 
+@export var behavior_type: BehaviorType
+
+@export_range(1.0, 10.0, 1.0) var priority:= 1.0
 
 @export var condition_set: ConditionSet
-
-@export var priority: Priority
 
 
 

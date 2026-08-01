@@ -136,13 +136,17 @@ func get_greeting(source: EntityNode, options: Array[DialogueNode]) -> Greeting:
 
 	for dialogue_node in options:
 
+		if dialogue_node.show_condition_set and !dialogue_node.show_condition_set.evaluate({"entity_node": source}):
+
+			continue
+
 		if dialogue_node.forced_greeting != null:
 
 			return dialogue_node.forced_greeting
 
 	for greeting in unevaluated_greetings:
 
-		if greeting.show_condition_set and greeting.show_condition_set.evaluate():
+		if greeting.show_condition_set and greeting.show_condition_set.evaluate({"entity_node": source}):
 
 			evaluated_greetings.append(greeting)
 
@@ -152,7 +156,11 @@ func get_greeting(source: EntityNode, options: Array[DialogueNode]) -> Greeting:
 
 	if evaluated_greetings.is_empty():
 
+		print("no greetings")
+
 		return null
+
+	print("greetings: ", evaluated_greetings)
 
 	return evaluated_greetings.front()
 

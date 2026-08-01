@@ -1,11 +1,28 @@
 [gd_resource type="Resource" script_class="CharacterDef" format=3 uid="uid://cglx1lj01t53t"]
 
 [ext_resource type="Script" uid="uid://d2ougu0lbgskp" path="res://entity/character/character_def.gd" id="1_dwess"]
+[ext_resource type="Script" uid="uid://blpal0bvr8gox" path="res://behavior/behavior.gd" id="1_hottj"]
 [ext_resource type="Script" uid="uid://cvraks0mg5xwi" path="res://combat/attack_def.gd" id="1_o2odi"]
 [ext_resource type="Script" uid="uid://cgg7g58chm718" path="res://combat/attack_entry.gd" id="2_lod8w"]
+[ext_resource type="Script" uid="uid://cb1nu8gaq2eae" path="res://behavior/behavior_profile.gd" id="2_qf0ct"]
 [ext_resource type="Script" uid="uid://7xjlwi1lwti4" path="res://damage/damage_type.gd" id="3_5vrw0"]
+[ext_resource type="Script" uid="uid://cfacrmauoaywx" path="res://behavior/behaviors/wolf_wander_behavior.gd" id="3_jowys"]
+[ext_resource type="Script" uid="uid://cyjmrklgcrwji" path="res://behavior/behaviors/wolf_attack_behavior.gd" id="3_k54sq"]
 [ext_resource type="Script" uid="uid://dy0xa1iphl44y" path="res://combat/attack_config.gd" id="4_hottj"]
 [ext_resource type="Script" uid="uid://c54s0y8rjtpbo" path="res://damage/damage_types/physical_damage.gd" id="4_lod8w"]
+
+[sub_resource type="Resource" id="Resource_jowys"]
+script = ExtResource("3_k54sq")
+behavior_type = 1
+priority = 5.0
+
+[sub_resource type="Resource" id="Resource_73qeu"]
+script = ExtResource("3_jowys")
+
+[sub_resource type="Resource" id="Resource_86odk"]
+script = ExtResource("2_qf0ct")
+behaviors = Array[ExtResource("1_hottj")]([SubResource("Resource_jowys"), SubResource("Resource_73qeu")])
+metadata/_custom_type_script = "uid://cb1nu8gaq2eae"
 
 [sub_resource type="Resource" id="Resource_o2odi"]
 script = ExtResource("4_lod8w")
@@ -35,5 +52,6 @@ melee_attack_config = SubResource("Resource_rppns")
 entity_id = &"wolf"
 display_name = "Wolf"
 scene_path = "res://entity/character/creature/wolf/wolf.tscn"
+behavior_profile = SubResource("Resource_86odk")
 base_max_health = 15.0
 metadata/_custom_type_script = "uid://d2ougu0lbgskp"

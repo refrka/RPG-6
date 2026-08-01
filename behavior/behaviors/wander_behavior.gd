@@ -8,6 +8,10 @@ class_name WanderBehavior extends Behavior
 @export var idle_duration_range:= Vector2(2.0, 4.0)
 
 
+
+
+var active:= false
+
 var movement_component: MovementComponent
 
 var navigation_component: NavigationComponent
@@ -28,15 +32,19 @@ func _initialize(_entity: EntityNode) -> void:
 
 	movement_component = entity.get_component(MovementComponent)
 
-	entity.nav_agent.target_reached.connect(_on_target_reached)
-
 
 
 
 
 func _start() -> void:
 
+	print("starting wander")
+
+	active = true
+
 	movement_component.set_move_speed_override(wander_speed)
+
+	entity.nav_agent.target_reached.connect(_on_target_reached)
 
 	_start_wander()
 
@@ -45,7 +53,13 @@ func _start() -> void:
 
 func _end() -> void:
 
+	print("ending wander")
+
+	active = false
+
 	movement_component.remove_move_speed_override()
+
+	entity.nav_agent.target_reached.disconnect(_on_target_reached)
 
 	idle_timer = 0.0
 

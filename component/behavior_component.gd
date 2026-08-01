@@ -32,8 +32,6 @@ func _initialize(_entity: EntityNode) -> void:
 
 		behavior._initialize(entity)
 
-	active_behavior = _choose_behavior({})
-
 
 
 
@@ -58,7 +56,7 @@ func _choose_behavior(data: Dictionary) -> Behavior:
 
 			else:
 
-				if behavior.priortiy < priority_behavior.priority:
+				if behavior.priority < priority_behavior.priority:
 
 					continue
 				
@@ -107,7 +105,10 @@ func _activate() -> void:
 	if active_behavior:
 
 		_start_behavior(active_behavior)
+		
+	else:
 
+		_start_behavior(_choose_behavior({}))
 
 
 
