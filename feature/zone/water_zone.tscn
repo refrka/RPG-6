@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dyvbxyuucn6am"]
+
+[ext_resource type="PackedScene" uid="uid://dq4k34gecktyh" path="res://feature/zone/zone.tscn" id="1_h5ewn"]
+
+[node name="WaterZone" unique_id=59404404 instance=ExtResource("1_h5ewn")]
+
+[node name="Sensor" parent="." index="0" unique_id=538901362]
+collision_layer = 16384
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sensor" index="1" unique_id=1546855360]

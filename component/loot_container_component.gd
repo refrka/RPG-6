@@ -19,6 +19,16 @@ func _ready() -> void:
 
 
 
+func _initialize(_entity: EntityNode) -> void:
+
+	super(_entity)
+
+	if !looted and loot_table:
+
+		entity.destructible = false
+
+
+
 
 
 

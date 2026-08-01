@@ -11,6 +11,8 @@ signal entity_removed(entity_node: EntityNode)
 
 @export_group("Node References")
 
+@export var tile_map: TileMapLayer
+
 @export var character_root: Node2D
 
 @export var object_root: Node2D
@@ -20,6 +22,8 @@ signal entity_removed(entity_node: EntityNode)
 @export var transition_root: Node2D
 
 @export var spawn_point_root: Node2D
+
+@export var feature_root: Node2D
 
 @export var nav_region: NavigationRegion2D
 
@@ -69,8 +73,6 @@ var feature_list: Array[Feature]
 
 func _initialize() -> bool:
 
-	print("_initialize()")
-
 	if initialized:
 
 		return false
@@ -82,8 +84,6 @@ func _initialize() -> bool:
 	initialize_objects()
 
 	spawn_marked_entities()
-
-	print(object_list)
 
 	return true
 
@@ -158,8 +158,6 @@ func initialize_objects() -> void:
 
 	for object_node in object_root.get_children():
 
-		print("here's an object")
-
 		object_node._initialize()
 
 		object_node.authored = true
@@ -189,6 +187,10 @@ func initialize_features() -> void:
 	for transition_zone in transition_root.get_children():
 
 		transition_zone._initialize()
+
+	for feature in feature_root.get_children():
+
+		feature._initialize()
 
 
 
@@ -252,6 +254,7 @@ func get_all_spawn_points() -> Array[SpawnPoint]:
 		spawn_points.append(transition_zone.spawn_point)
 
 	return spawn_points
+
 
 
 
@@ -418,8 +421,6 @@ func _add_entity(entity_node: EntityNode, to_root:= true) -> void:
 
 			root.add_child(entity_node)
 
-	print("connecting died")
-
 	entity_node.died.connect(_on_entity_died.bind(entity_node))
 
 	entity_added.emit(entity_node)
@@ -450,6 +451,8 @@ func _remove_entity(entity_node: EntityNode) -> void:
 
 		character_list.erase(entity_node)
 
+	entity_node.died.disconnect(_on_entity_died)
+
 	entity_removed.emit(entity_node)
 
 
@@ -473,10 +476,6 @@ func _remove_entity(entity_node: EntityNode) -> void:
 
 func _activate() -> void:
 
-	print("_activate()")
-
-	print(object_list)
-
 	active = true
 
 	for transition_zone in transition_root.get_children():
@@ -484,8 +483,6 @@ func _activate() -> void:
 		transition_zone._activate()
 
 	for object in object_list:
-
-		print("activating object: ", object)
 
 		object._activate()
 
@@ -531,7 +528,5 @@ func _deactivate() -> void:
 
 
 func _on_entity_died(entity_node: EntityNode) -> void:
-
-	print("_on_entity_died()")
 
 	_remove_entity.call_deferred(entity_node)

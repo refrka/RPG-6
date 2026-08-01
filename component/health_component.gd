@@ -90,6 +90,10 @@ func receive_damage_package(damage_package: DamagePackage) -> bool:
 
 		reduce_health(damage_package.total_damage)
 
+		var animation_component = entity.get_component(AnimationComponent)
+
+		animation_component.anim_tree.set("parameters/ShakeOneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
 	for damage_set in damage_package.damage_sets:
 
 		pass

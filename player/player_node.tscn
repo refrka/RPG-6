@@ -173,7 +173,7 @@ shape = SubResource("RectangleShape2D_rppns")
 [node name="InteractionSensor" type="Area2D" parent="." index="3" unique_id=537167540]
 position = Vector2(0, -16)
 collision_layer = 0
-collision_mask = 3
+collision_mask = 16387
 script = ExtResource("5_rppns")
 metadata/_custom_type_script = "uid://dhhv20t77148x"
 
@@ -203,9 +203,12 @@ libraries/rusty_iron_sword = ExtResource("8_a3l2y")
 [node name="AnimationTree" parent="." index="9" unique_id=953931177]
 parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackBlend/IdleBlend/blend_position = Vector2(-0.5675858, 0.64017546)
 parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 1.0
-parameters/RootState/CombatState/CombatReadyTree/ReadyBlend/IdleBlend/blend_position = Vector2(0, 0)
 parameters/RootState/CombatState/EndAttackTree/Add2/add_amount = 1.0
-parameters/RootState/CombatState/EndAttackTree/EndAttackTree/IdleBlend/blend_position = Vector2(0, 0)
+
+[node name="DebugInputMask" parent="." index="10" unique_id=882155949]
+offset_left = -16.0
+offset_top = -34.0
+offset_right = 13.0
 
 [editable path="BodyHurtbox"]
 [editable path="CombatRoot/CombatHitbox"]

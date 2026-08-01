@@ -97,3 +97,8 @@ process_mode = 3
 custom_minimum_size = Vector2(60, 35)
 layout_mode = 2
 text = "Move"
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=2105882023]
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Move and set spawn"

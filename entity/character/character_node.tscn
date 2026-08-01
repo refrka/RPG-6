@@ -105,6 +105,30 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(17, -0.5)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("VisualRoot/BodySprite:offset")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("VisualRoot/BodySprite:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_1ndw8"]
 resource_name = "end_attack"
@@ -234,6 +258,34 @@ tracks/1/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_bdrfb"]
+resource_name = "shake"
+length = 0.13333334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VisualRoot/BodySprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.075, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-4, 0), Vector2(4, 0), Vector2(-4, 0), Vector2(4, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisualRoot/BodySprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hhc6v"]
 _data = {
 &"RESET": SubResource("Animation_hhc6v"),
@@ -241,12 +293,13 @@ _data = {
 &"idle_left": SubResource("Animation_m6mxn"),
 &"idle_right": SubResource("Animation_v5a44"),
 &"idle_up_left": SubResource("Animation_drewb"),
-&"idle_up_right": SubResource("Animation_y4ox8")
+&"idle_up_right": SubResource("Animation_y4ox8"),
+&"shake": SubResource("Animation_bdrfb")
 }
 
 [node name="CharacterNode" type="CharacterBody2D" unique_id=639653512 node_paths=PackedStringArray("body_sprite", "body_collision", "body_hurtbox", "state_machine", "component_root", "nav_agent")]
 y_sort_enabled = true
-collision_mask = 259
+collision_mask = 771
 motion_mode = 1
 script = ExtResource("1_ioq1x")
 body_sprite = NodePath("VisualRoot/BodySprite")
@@ -352,11 +405,16 @@ libraries/ = SubResource("AnimationLibrary_hhc6v")
 tree_root = ExtResource("11_x4f7f")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
-parameters/RootState/CombatState/CombatAttackState/AttackTree/IdleTree/IdleBlend/blend_position = Vector2(0, 0)
+parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackBlend/IdleBlend/blend_position = Vector2(0, 0)
 parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 0.0
-parameters/RootState/CombatState/CombatReadyTree/AnimationNodeBlendTree/IdleBlend/blend_position = Vector2(0, 0)
+parameters/RootState/CombatState/CombatReadyTree/ReadyBlend/IdleBlend/blend_position = Vector2(0, 0)
+parameters/RootState/CombatState/EndAttackTree/Add2/add_amount = 0.0
+parameters/RootState/CombatState/EndAttackTree/EndAttackTree/IdleBlend/blend_position = Vector2(0, 0)
 parameters/RootState/DefaultState/IdleTree/IdleBlend/blend_position = Vector2(0, 0)
 parameters/RootState/DefaultState/MovingTree/MovingBlend/blend_position = Vector2(-0.9956014, -0.011325836)
+parameters/ShakeOneShot/active = false
+parameters/ShakeOneShot/internal_active = false
+parameters/ShakeOneShot/request = 0
 
 [editable path="BodyHurtbox"]
 [editable path="CombatRoot/CombatHitbox"]

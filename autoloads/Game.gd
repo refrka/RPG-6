@@ -212,6 +212,7 @@ func get_mouse_direction(from_entity: EntityNode = null) -> Vector2:
 
 
 
+
 func is_active() -> bool:
 
 	return game_state == GameState.ACTIVE

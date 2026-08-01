@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ToolDef" format=3 uid="uid://bummkwa0uak4b"]
+
+[ext_resource type="Script" uid="uid://cvay1ovphbk03" path="res://equipment/tool/tool_def.gd" id="1_0nebh"]
+
+[resource]
+script = ExtResource("1_0nebh")
+equipment_type = 3
+item_id = &"fishing_pole"
+display_name = "Fishing pole"
+description = "A tool for catching fish."
+gold_value = 5
+metadata/_custom_type_script = "uid://cvay1ovphbk03"

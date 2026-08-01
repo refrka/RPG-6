@@ -90,8 +90,6 @@ func accept_hit(damage_package: DamagePackage) -> bool:
 
 	if health_component and health_component.receive_damage_package(damage_package):
 
-		print("hit me")
-
 		return true
 
 	return false

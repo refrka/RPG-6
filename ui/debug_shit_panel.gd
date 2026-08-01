@@ -119,6 +119,8 @@ func _on_location_id_selected(index: int) -> void:
 
 
 
+
+
 func _on_move_pressed() -> void:
 
 	if !Game.is_active():
@@ -138,8 +140,6 @@ func _on_move_pressed() -> void:
 		var spawn_point = active_location.get_spawn_point(spawn_id)
 
 		player.reposition(spawn_point.global_position)
-
-		player.active_spawn_id = spawn_point.spawn_id
 
 	else:
 
