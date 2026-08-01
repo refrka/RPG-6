@@ -66,3 +66,10 @@ func _on_player_entered_location(event: Event) -> void:
 		Events.fire(LocationDiscoveredEvent, event.data)
 
 
+
+
+
+
+func _on_health_depleted() -> void:
+
+	print("dead")

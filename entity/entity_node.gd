@@ -1,6 +1,6 @@
 class_name EntityNode extends PhysicsBody2D
 
-
+signal died
 
 
 @export var entity_def: EntityDef
@@ -70,10 +70,31 @@ func _initialize() -> bool:
 
 	_deactivate()
 
+	var health_component = get_component(HealthComponent)
+
+	if health_component:
+
+		health_component.health_depleted.connect(_on_health_depleted)
+
 	return true
 
 
 
+
+
+
+
+func accept_hit(damage_package: DamagePackage) -> bool:
+
+	var health_component = get_component(HealthComponent)
+
+	if health_component and health_component.receive_damage_package(damage_package):
+
+		print("hit me")
+
+		return true
+
+	return false
 
 
 
@@ -277,3 +298,19 @@ func _load_dictionary(save_dict: Dictionary) -> void:
 
 		component._load_dictionary(dict)
 
+
+
+
+
+
+
+
+
+
+
+
+func _on_health_depleted() -> void:
+
+	died.emit()
+
+	queue_free.call_deferred()

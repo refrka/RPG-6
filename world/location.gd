@@ -69,6 +69,8 @@ var feature_list: Array[Feature]
 
 func _initialize() -> bool:
 
+	print("_initialize()")
+
 	if initialized:
 
 		return false
@@ -80,6 +82,8 @@ func _initialize() -> bool:
 	initialize_objects()
 
 	spawn_marked_entities()
+
+	print(object_list)
 
 	return true
 
@@ -154,11 +158,13 @@ func initialize_objects() -> void:
 
 	for object_node in object_root.get_children():
 
+		print("here's an object")
+
 		object_node._initialize()
 
 		object_node.authored = true
 
-		object_list.append(object_node)
+		_add_entity(object_node, false)
 
 
 
@@ -170,7 +176,7 @@ func initialize_characters() -> void:
 
 		character_node.authored = true
 
-		character_list.append(character_node)
+		_add_entity(character_node, false)
 
 
 
@@ -366,7 +372,7 @@ func _spawn_marker(entity_marker: EntityMarker) -> void:
 
 
 
-func _add_entity(entity_node: EntityNode) -> void:
+func _add_entity(entity_node: EntityNode, to_root:= true) -> void:
 
 	if has_entity_node(entity_node):
 
@@ -388,27 +394,33 @@ func _add_entity(entity_node: EntityNode) -> void:
 
 		list = character_list
 
+	list.append(entity_node)
+
 	await Game.get_tree().process_frame
 
-	var parent = entity_node.get_parent()
+	if to_root:
 
-	if parent != null:
+		var parent = entity_node.get_parent()
 
-		if parent == Game:
+		if parent != null:
 
-			entity_node.reparent(root)
+			if parent == Game:
+
+				entity_node.reparent(root)
+
+			else:
+
+				parent.remove_child(entity_node)
+
+				root.add_child(entity_node)
 
 		else:
 
-			parent.remove_child(entity_node)
-
 			root.add_child(entity_node)
 
-	else:
+	print("connecting died")
 
-		root.add_child(entity_node)
-
-	list.append(entity_node)
+	entity_node.died.connect(_on_entity_died.bind(entity_node))
 
 	entity_added.emit(entity_node)
 
@@ -461,6 +473,10 @@ func _remove_entity(entity_node: EntityNode) -> void:
 
 func _activate() -> void:
 
+	print("_activate()")
+
+	print(object_list)
+
 	active = true
 
 	for transition_zone in transition_root.get_children():
@@ -468,6 +484,8 @@ func _activate() -> void:
 		transition_zone._activate()
 
 	for object in object_list:
+
+		print("activating object: ", object)
 
 		object._activate()
 
@@ -500,3 +518,20 @@ func _deactivate() -> void:
 	for transition_zone in transition_root.get_children():
 
 		transition_zone._deactivate()
+
+
+
+
+
+
+
+
+
+
+
+
+func _on_entity_died(entity_node: EntityNode) -> void:
+
+	print("_on_entity_died()")
+
+	_remove_entity.call_deferred(entity_node)

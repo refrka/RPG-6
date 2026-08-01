@@ -1,1 +1,6 @@
 class_name Hurtbox extends Sensor
+
+
+
+
+

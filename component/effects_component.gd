@@ -19,6 +19,18 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
+func receive_damage_package(damage_package: DamagePackage) -> bool:
+
+	if !active:
+
+		return false
+
+	return true
+
+
+
+
+
 func add_effect(effect: Effect) -> void:
 
 	if effect is InstantEffect:

@@ -2,6 +2,9 @@ class_name CombatComponent extends Component
 
 
 
+signal entity_hit(entity_node: EntityNode, damage_package: DamagePackage)
+
+
 
 @export var combat_root: Node2D
 
@@ -352,6 +355,16 @@ func _get_attack_animation_name(index:= -1) -> StringName:
 
 
 
+func _get_damage_package() -> DamagePackage:
+
+	var attack_entry = _get_attack_entry(current_attack_index)
+
+	var damage_package = DamagePackage.generate_package(entity, attack_entry)
+
+	return damage_package
+
+
+
 
 
 
@@ -467,4 +480,8 @@ func _on_ready_timeout() -> void:
 
 func _on_hit_detected(target_entity: EntityNode) -> void:
 
-	print(target_entity)
+	var damage_package = _get_damage_package()
+
+	if target_entity.accept_hit(damage_package):
+
+		entity_hit.emit(target_entity, damage_package)
