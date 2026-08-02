@@ -111,19 +111,32 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
-func attack(_target_entity: EntityNode) -> void:
+func attack() -> void:
+
+	if !target_entity:
+
+		return
 
 	if !_is_in_combat():
-		
+
 		_enter_combat()
 
 	if !_is_attacking():
 
-		_set_target_entity(_target_entity)
+		_set_target_entity(target_entity)
 
 		_try_attack()
 
 
+
+
+func assign_combat_target(_target_entity: EntityNode) -> void:
+
+	if !_is_in_combat():
+
+		_enter_combat()
+
+	_set_target_entity(_target_entity)
 
 
 
@@ -225,7 +238,7 @@ func _start_attack(buffered:= false) -> void:
 
 		return
 
-	var attack_dir:= _get_attack_direction()
+	var attack_dir = _get_attack_direction()
 
 	if buffered:
 

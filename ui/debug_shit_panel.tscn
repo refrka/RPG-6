@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://br1lhgpwbexd0" path="res://ui/debug_shit_panel.gd" id="1_aqy7u"]
 [ext_resource type="Script" uid="uid://dk2cxqko4w3x8" path="res://ui/item_def_list.gd" id="2_duhep"]
 
-[node name="DebugShitPanel" type="MarginContainer" unique_id=2112953381 node_paths=PackedStringArray("control_panel", "entity_info_panel", "toggle_control_panel_button", "toggle_entity_info_button", "control_panel_hidden_label", "entity_info_hidden_label", "item_def_list", "item_count_entry", "add_item_button", "remove_item_button", "location_id_list", "spawn_id_list", "move_button", "move_and_set_spawn_button", "entity_name_label", "no_entity_selected_label", "entity_state_label", "playback_state_label")]
+[node name="DebugShitPanel" type="MarginContainer" unique_id=2112953381 node_paths=PackedStringArray("control_panel", "entity_info_panel", "toggle_control_panel_button", "toggle_entity_info_button", "control_panel_hidden_label", "entity_info_hidden_label", "item_def_list", "item_count_entry", "add_item_button", "remove_item_button", "location_id_list", "spawn_id_list", "move_button", "move_and_set_spawn_button", "entity_name_label", "no_entity_selected_label", "entity_state_label", "playback_state_label", "root_state_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -33,6 +33,7 @@ entity_name_label = NodePath("HBoxContainer2/EntityInfoPanel/PanelContainer/Marg
 no_entity_selected_label = NodePath("HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/NoEntitySelectedLabel")
 entity_state_label = NodePath("HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/EntityStateLabel")
 playback_state_label = NodePath("HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PlaybackStateLabel")
+root_state_label = NodePath("HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3/RootStateLabel")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=489906796]
 layout_mode = 2
@@ -226,12 +227,24 @@ layout_mode = 2
 size_flags_horizontal = 10
 text = "State name"
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1731119863]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3" unique_id=2111676753]
+layout_mode = 2
+text = "Root state:"
+
+[node name="RootStateLabel" type="Label" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3" unique_id=1543268212]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "State name"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=2042468936]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1214889921]
 layout_mode = 2
-text = "Animation state:"
+text = "Playback state:"
 
 [node name="PlaybackStateLabel" type="Label" parent="HBoxContainer2/EntityInfoPanel/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1462710517]
 layout_mode = 2

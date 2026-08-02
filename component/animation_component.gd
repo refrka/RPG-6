@@ -4,6 +4,8 @@ class_name AnimationComponent extends Component
 
 signal playback_state_changed(playback: AnimationNodeStateMachinePlayback)
 
+signal root_state_changed(playback: AnimationNodeStateMachinePlayback)
+
 
 
 @export var anim_player: AnimationPlayer
@@ -41,11 +43,23 @@ func _initialize(_entity: EntityNode) -> void:
 
 	playback_registry["attack"] = anim_tree.get("parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/playback")
 
-	for playback in playback_registry.values():
+	for playback_name in playback_registry:
 
-		if playback:
+		var playback = playback_registry[playback_name]
+
+		if !playback:
+
+			continue
+
+		if playback_name == "root":
+
+			playback.state_started.connect(_on_root_state_started.bind(playback))
+
+		else:
 
 			playback.state_started.connect(_on_playback_state_started.bind(playback))
+
+
 
 	blend_space_registry["idle"] = "parameters/RootState/DefaultState/IdleTree/IdleBlend/blend_position"
 
@@ -124,15 +138,13 @@ func get_state_playback(playback_name: String) -> AnimationNodeStateMachinePlayb
 
 
 
+func _on_root_state_started(_state_name: String, playback: AnimationNodeStateMachinePlayback) -> void:
 
+	root_state_changed.emit(playback)
 
 
 
 func _on_playback_state_started(_state_name: String, playback: AnimationNodeStateMachinePlayback) -> void:
-
-	if entity is PlayerNode:
-
-		print("started: ", _state_name)
 
 	playback_state_changed.emit(playback)
 
@@ -140,15 +152,7 @@ func _on_playback_state_started(_state_name: String, playback: AnimationNodeStat
 
 func _on_face_dir_updated(dir: Vector2) -> void:
 
-	if entity is PlayerNode:
-
-		print("face dir updated: ", dir)
-
 	for blend_space_name in blend_space_registry:
 
-		if entity is PlayerNode:
-
-			print("updating: ", blend_space_name)
-
-			set_blend_space_vector(blend_space_name, dir)
+		set_blend_space_vector(blend_space_name, dir)
 

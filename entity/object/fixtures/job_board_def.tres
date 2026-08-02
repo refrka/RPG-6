@@ -4,4 +4,6 @@
 
 [resource]
 script = ExtResource("1_dmmmg")
+entity_id = &"job_board"
+display_name = "Job board"
 metadata/_custom_type_script = "uid://br6a7176gci6n"

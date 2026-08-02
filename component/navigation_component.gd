@@ -10,6 +10,8 @@ var movement_component: MovementComponent
 
 
 
+var next_path_position: Vector2
+
 var target_pos: Vector2
 
 var target_entity: EntityNode
@@ -46,9 +48,11 @@ func set_target_pos(new_pos: Vector2) -> void:
 
 	target_pos = new_pos
 
+	movement_component.set_face_dir(entity.global_position.direction_to(target_pos))
+
 	entity.nav_agent.set_target_position(target_pos)
 
-	target_pos_updated.emit()
+
 
 
 
@@ -59,6 +63,8 @@ func set_target_entity(entity_node: EntityNode) -> void:
 	set_target_pos(target_entity.global_position)
 
 	_set_track_timer()
+
+
 
 
 
@@ -136,9 +142,17 @@ func _process(_delta: float) -> void:
 
 		return
 
-	var move_dir = entity.global_position.direction_to(entity.nav_agent.get_next_path_position())
+	var new_next_path_position = entity.nav_agent.get_next_path_position()
 
-	movement_component.set_move_dir(move_dir)
+	if new_next_path_position != next_path_position:
+
+		next_path_position = new_next_path_position
+
+		var move_dir = entity.global_position.direction_to(next_path_position)
+
+		movement_component.set_move_dir(move_dir)
+
+		target_pos_updated.emit()
 
 
 

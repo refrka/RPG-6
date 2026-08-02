@@ -46,6 +46,8 @@ class_name DebugShitPanel extends Overlay
 
 @export var playback_state_label: Label
 
+@export var root_state_label: Label
+
 
 
 
@@ -172,6 +174,18 @@ func _show_entity_info(entity_node: EntityNode) -> void:
 
 	entity_name_label.text = entity_node.get_display_name()
 
+	var animation_component = entity_node.get_component(AnimationComponent)
+
+	var root_playback = animation_component.get_state_playback("root")
+
+	var current_root_state = root_playback.get_current_node()
+
+	root_state_label.text = current_root_state
+
+	var current_playback = animation_component.anim_tree.get("parameters/RootState/%s/playback" % current_root_state)
+
+	playback_state_label.text = current_playback.get_current_node()
+
 	_connect_entity_signals()
 
 	_toggle_entity_info_panel(true)
@@ -197,6 +211,8 @@ func _connect_entity_signals() -> void:
 	var animation_component = selected_entity.get_component(AnimationComponent)
 	
 	animation_component.playback_state_changed.connect(_on_entity_playback_state_changed)
+
+	animation_component.root_state_changed.connect(_on_entity_root_state_changed)
 
 	selected_entity.state_machine.state_changed.connect(_on_entity_state_changed)
 
@@ -397,6 +413,12 @@ func _on_debug_mask_deselected() -> void:
 func _on_entity_playback_state_changed(playback: AnimationNodeStateMachinePlayback) -> void:
 
 	playback_state_label.text = playback.get_current_node()
+
+
+
+func _on_entity_root_state_changed(playback: AnimationNodeStateMachinePlayback) -> void:
+
+	root_state_label.text = playback.get_current_node()
 
 
 
