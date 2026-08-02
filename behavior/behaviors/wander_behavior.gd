@@ -38,8 +38,6 @@ func _initialize(_entity: EntityNode) -> void:
 
 func _start() -> void:
 
-	print("starting wander")
-
 	active = true
 
 	movement_component.set_move_speed_override(wander_speed)
@@ -52,8 +50,6 @@ func _start() -> void:
 
 
 func _end() -> void:
-
-	print("ending wander")
 
 	active = false
 

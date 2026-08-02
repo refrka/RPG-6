@@ -6,6 +6,8 @@ signal move_started
 
 signal move_stopped
 
+signal face_dir_updated(dir: Vector2)
+
 
 
 var move_speed_override:= -1.0
@@ -57,7 +59,13 @@ func set_move_dir(dir: Vector2) -> void:
 
 func set_face_dir(dir: Vector2) -> void:
 
+	if face_dir == dir:
+
+		return
+
 	face_dir = dir
+
+	face_dir_updated.emit(face_dir)
 
 
 
@@ -68,6 +76,7 @@ func set_move_speed_override(override: float) -> void:
 	if move_speed_override <= 0.0:
 
 		halt()
+
 
 
 func remove_move_speed_override() -> void:
@@ -138,10 +147,6 @@ func _process(_delta: float) -> void:
 		set_face_dir(move_dir)
 
 	if can_move:
-
-		animation_component.set_blend_space_vector("moving", move_velocity.normalized())
-
-		animation_component.set_blend_space_vector("idle", move_velocity.normalized())
 
 		entity.velocity = move_velocity
 

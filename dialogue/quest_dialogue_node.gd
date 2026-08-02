@@ -35,8 +35,6 @@ func can_show() -> bool:
 
 			if quest_state != QuestData.QuestState.UNKNOWN and quest_state != QuestData.QuestState.AVAILABLE:
 
-				print("source node not available")
-
 				return false
 
 		QuestDialogueNodeType.RECIPIENT:

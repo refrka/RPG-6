@@ -63,6 +63,11 @@ func _initialize(_entity: EntityNode) -> void:
 
 	blend_space_registry["end_attack"] = "parameters/RootState/CombatState/EndAttackTree/EndAttackTree/IdleBlend/blend_position"
 
+	var movement_component = entity.get_component(MovementComponent)
+
+	if movement_component:
+
+		movement_component.face_dir_updated.connect(_on_face_dir_updated)
 
 
 
@@ -125,4 +130,25 @@ func get_state_playback(playback_name: String) -> AnimationNodeStateMachinePlayb
 
 func _on_playback_state_started(_state_name: String, playback: AnimationNodeStateMachinePlayback) -> void:
 
+	if entity is PlayerNode:
+
+		print("started: ", _state_name)
+
 	playback_state_changed.emit(playback)
+
+
+
+func _on_face_dir_updated(dir: Vector2) -> void:
+
+	if entity is PlayerNode:
+
+		print("face dir updated: ", dir)
+
+	for blend_space_name in blend_space_registry:
+
+		if entity is PlayerNode:
+
+			print("updating: ", blend_space_name)
+
+			set_blend_space_vector(blend_space_name, dir)
+

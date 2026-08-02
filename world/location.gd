@@ -482,8 +482,6 @@ func _activate() -> void:
 
 	for character in character_list:
 
-		print("character activate")
-
 		character._activate()
 
 	nav_region.bake_navigation_polygon()

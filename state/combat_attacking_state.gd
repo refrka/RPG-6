@@ -33,10 +33,6 @@ func _enter() -> void:
 
 	movement_component.move_stopped.connect(_on_move_stopped)
 
-	animation_component.set_blend_space_vector("attack_move", movement_component.face_dir)
-
-	animation_component.set_blend_space_vector("attack_idle", movement_component.face_dir)
-
 
 
 
@@ -54,8 +50,6 @@ func _exit() -> void:
 func _on_move_started() -> void:
 
 	animation_component.travel_playback("attack", "MoveBlend")
-
-	animation_component.set_blend_space_vector("attack_move", movement_component.face_dir)
 
 
 

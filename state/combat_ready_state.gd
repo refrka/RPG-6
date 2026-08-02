@@ -8,7 +8,6 @@ var timer: SceneTreeTimer
 
 
 
-
 func _setup(_entity: EntityNode) -> void:
 
 	super(_entity)
@@ -23,12 +22,6 @@ func _enter() -> void:
 	timer = Game.get_timer(2.5)
 
 	timer.timeout.connect(_on_timeout)
-
-	animation_component.set_blend_space_vector("ready_idle", movement_component.face_dir)
-
-	animation_component.set_blend_space_vector("ready_move", movement_component.face_dir)
-
-	animation_component.set_blend_space_vector("idle", movement_component.face_dir)
 
 	movement_component.move_started.connect(_on_move_started)
 

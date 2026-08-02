@@ -96,8 +96,6 @@ func end() -> void:
 
 	if is_paused():
 
-		print("resuming")
-
 		resume()
 
 	game_state = GameState.MAIN_MENU

@@ -113,6 +113,10 @@ func _initialize(_entity: EntityNode) -> void:
 
 func attack(_target_entity: EntityNode) -> void:
 
+	if !_is_in_combat():
+		
+		_enter_combat()
+
 	if !_is_attacking():
 
 		_set_target_entity(_target_entity)

@@ -39,6 +39,10 @@ func _evaluate(_data:= {}) -> bool:
 
 func _start() -> void:
 
+	if !combat_component._is_in_combat():
+
+		combat_component._enter_combat()
+
 	navigation_component.target_pos_reached.connect(_on_target_pos_reached)
 
 	navigation_component.set_target_entity(target_entity)

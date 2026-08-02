@@ -36,8 +36,6 @@ func _enter() -> void:
 
 			return
 
-		animation_component.set_blend_space_vector("idle", movement_component.face_dir)
-
 	animation_component.travel_playback("default", "IdleTree")
 
 	

@@ -3,6 +3,8 @@ class_name NavigationComponent extends Component
 
 signal target_pos_reached
 
+signal target_pos_updated
+
 
 var movement_component: MovementComponent
 
@@ -45,6 +47,8 @@ func set_target_pos(new_pos: Vector2) -> void:
 	target_pos = new_pos
 
 	entity.nav_agent.set_target_position(target_pos)
+
+	target_pos_updated.emit()
 
 
 
@@ -110,11 +114,13 @@ func _on_target_reached() -> void:
 
 func _on_track_timer_timeout() -> void:
 
-	set_target_pos(target_entity.global_position)
-
 	track_timer = null
 
-	_set_track_timer()
+	if is_instance_valid(target_entity):
+
+		set_target_pos(target_entity.global_position)
+
+		_set_track_timer()
 
 
 
