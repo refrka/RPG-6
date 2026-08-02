@@ -23,7 +23,7 @@ tracks/0/path = NodePath("VisualRoot/BodySprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.04222193, 0.35173044, 0.44118375, 0.6200904),
+"times": PackedFloat32Array(0.010018729, 0.22649577, 0.31594908, 0.49485576),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [6, 7, 8, 0]
@@ -35,10 +35,10 @@ tracks/1/path = NodePath("CombatRoot/CombatHitbox/HitboxCollisionShape:shape")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.33026165),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.20502698, 0.4036134),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [SubResource("RectangleShape2D_k54sq")]
+"values": [SubResource("RectangleShape2D_k54sq"), null]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -47,10 +47,10 @@ tracks/2/path = NodePath("CombatRoot/CombatHitbox/HitboxCollisionShape:position"
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0.17532852),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": []
+"values": [Vector2(15, -9)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8yd50"]
@@ -67,6 +67,10 @@ texture = ExtResource("3_73qeu")
 hframes = 6
 vframes = 3
 
+[node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(133743934) index="0" unique_id=870454535]
+position = Vector2(0, -8)
+rotation = 1.8989183
+
 [node name="HurtboxCollisionShape" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="0" unique_id=311204889]
 position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_73qeu")
@@ -79,8 +83,15 @@ debug_color = Color(0.76862746, 0.6039216, 0, 0.043137256)
 [node name="CollisionShape2D" parent="VisionSensor" parent_id_path=PackedInt32Array(250012211) index="0" unique_id=1639820508]
 shape = SubResource("CircleShape2D_mn88y")
 
+[node name="CombatRoot" parent="." index="4" unique_id=1056235965]
+position = Vector2(0, -8)
+rotation = 1.8989183
+
 [node name="AnimationPlayer" parent="." index="8" unique_id=447569240]
 libraries/wolf = SubResource("AnimationLibrary_8yd50")
+
+[node name="AnimationTree" parent="." index="9" unique_id=953931177]
+parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/IdleBlend/blend_position = Vector2(-0.7715244, 0.46268654)
 
 [node name="DebugMask" parent="." index="10" unique_id=2132149786]
 metadata/_edit_lock_ = true

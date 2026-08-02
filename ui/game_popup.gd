@@ -119,3 +119,4 @@ func _on_continue_pressed() -> void:
 func _on_boolean_selected(state: bool) -> void:
 
 	boolean_completed.emit(self, state)
+

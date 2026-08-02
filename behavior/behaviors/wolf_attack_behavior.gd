@@ -48,4 +48,4 @@ func _start() -> void:
 
 func _on_target_pos_reached() -> void:
 
-	combat_component.attack()
+	combat_component.attack(target_entity)

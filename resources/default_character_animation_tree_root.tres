@@ -162,7 +162,7 @@ states/Start/position = Vector2(192.22223, 65.18517)
 transitions = ["Start", "IdleBlend", SubResource("AnimationNodeStateMachineTransition_dc3ot"), "IdleBlend", "MoveBlend", SubResource("AnimationNodeStateMachineTransition_fyeki"), "MoveBlend", "IdleBlend", SubResource("AnimationNodeStateMachineTransition_85y0v")]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_713sg"]
-graph_offset = Vector2(-326.44547, -28.861729)
+graph_offset = Vector2(-295.33435, 88.91605)
 nodes/output/position = Vector2(555.55554, 155.55556)
 nodes/AttackAnimation/node = SubResource("AnimationNodeAnimation_bqunh")
 nodes/AttackAnimation/position = Vector2(-22.222223, 111.111115)
@@ -181,7 +181,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_r7dde"]
 states/AttackTree/node = SubResource("AnimationNodeBlendTree_713sg")
-states/AttackTree/position = Vector2(357.3333, 99.76406)
+states/AttackTree/position = Vector2(357.3333, 99.8721)
 states/End/position = Vector2(547.77783, 99.8613)
 transitions = ["Start", "AttackTree", SubResource("AnimationNodeStateMachineTransition_jxnld"), "AttackTree", "End", SubResource("AnimationNodeStateMachineTransition_ij3ha")]
 graph_offset = Vector2(-52, -14)
@@ -295,6 +295,7 @@ graph_offset = Vector2(-86, 46)
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ayqi1"]
 
 [resource]
+graph_offset = Vector2(-25.08084, 81.464645)
 nodes/output/position = Vector2(711.11115, 200)
 nodes/RootState/node = SubResource("AnimationNodeStateMachine_jxnld")
 nodes/RootState/position = Vector2(177.77779, 111.111115)

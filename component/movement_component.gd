@@ -139,11 +139,9 @@ func _process(_delta: float) -> void:
 
 	if can_move:
 
-		if current_velocity != move_velocity and move_velocity != Vector2.ZERO:
+		animation_component.set_blend_space_vector("moving", move_velocity.normalized())
 
-			animation_component.set_blend_space_vector("moving", move_velocity.normalized())
-
-			animation_component.set_blend_space_vector("idle", move_velocity.normalized())
+		animation_component.set_blend_space_vector("idle", move_velocity.normalized())
 
 		entity.velocity = move_velocity
 

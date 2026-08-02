@@ -4,6 +4,7 @@ class_name CombatComponent extends Component
 
 signal entity_hit(entity_node: EntityNode, damage_package: DamagePackage)
 
+signal target_changed(new_target: EntityNode)
 
 
 @export var combat_root: Node2D
@@ -12,11 +13,15 @@ signal entity_hit(entity_node: EntityNode, damage_package: DamagePackage)
 
 
 
+
+
 var animation_component: AnimationComponent
 
 var movement_component: MovementComponent
 
 var attack_animation_node: AnimationNodeAnimation
+
+
 
 
 
@@ -31,6 +36,10 @@ var current_attack_dir: Vector2
 var current_library_name: String
 
 var current_animation_name: String
+
+
+
+var target_entity: EntityNode
 
 
 
@@ -102,9 +111,11 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
-func attack() -> void:
+func attack(_target_entity: EntityNode) -> void:
 
 	if !_is_attacking():
+
+		_set_target_entity(_target_entity)
 
 		_try_attack()
 
@@ -283,6 +294,7 @@ func _try_buffer_attack() -> void:
 
 
 
+
 func _reset_attack_data() -> void:
 
 	current_attack_index = 0
@@ -290,9 +302,6 @@ func _reset_attack_data() -> void:
 	current_attack_dir = Vector2.ZERO
 
 	current_animation_name = ""
-
-
-
 
 
 
@@ -310,6 +319,14 @@ func _clear_attack_data() -> void:
 
 
 
+
+
+
+func _set_target_entity(entity_node: EntityNode) -> void:
+
+	target_entity = entity_node
+
+	target_changed.emit(entity_node)
 
 
 
@@ -337,6 +354,8 @@ func _set_attack_dir(target_dir: Vector2) -> void:
 
 	combat_root.rotation = Vector2.RIGHT.angle_to(target_dir)
 
+	
+
 
 
 func _set_attack_config(attack_config: AttackConfig) -> void:
@@ -362,7 +381,9 @@ func _set_attack_index(index: int) -> void:
 
 
 
-func _get_attack_direction(target_entity: EntityNode = null) -> Vector2:
+
+
+func _get_attack_direction() -> Vector2:
 
 	if entity is PlayerNode:
 
@@ -373,7 +394,6 @@ func _get_attack_direction(target_entity: EntityNode = null) -> Vector2:
 		return entity.global_position.direction_to(target_entity.global_position)
 
 	return Vector2.ZERO
-
 
 
 
@@ -398,7 +418,6 @@ func _get_attack_animation_name(index:= -1) -> StringName:
 		index = current_attack_index
 
 	return "%s/default_%s" % [current_library_name, index]
-
 
 
 
@@ -544,10 +563,10 @@ func _on_ready_timeout() -> void:
 
 
 
-func _on_hit_detected(target_entity: EntityNode) -> void:
+func _on_hit_detected(_target_entity: EntityNode) -> void:
 
 	var damage_package = _get_damage_package()
 
-	if target_entity.accept_hit(damage_package):
+	if _target_entity.accept_hit(damage_package):
 
-		entity_hit.emit(target_entity, damage_package)
+		entity_hit.emit(_target_entity, damage_package)

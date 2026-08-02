@@ -40,7 +40,7 @@ metadata/_custom_type_script = "uid://c54s0y8rjtpbo"
 [sub_resource type="Resource" id="Resource_2co6o"]
 script = ExtResource("2_lod8w")
 damage_types = Array[ExtResource("3_5vrw0")]([SubResource("Resource_o2odi")])
-damage_range = Vector2(20, 30)
+damage_range = Vector2(0.5, 0.5)
 metadata/_custom_type_script = "uid://cgg7g58chm718"
 
 [sub_resource type="Resource" id="Resource_a3l2y"]
