@@ -45,15 +45,11 @@ func _interact() -> bool:
 
 	var dialogue_nodes = Dialogue.get_dialogue_nodes(entity)
 
-	var greeting = Dialogue.get_greeting(entity, dialogue_nodes)
-
-	if greeting or !dialogue_nodes.is_empty():
-
-		print("the greet _interact(): ", greeting)
+	if !dialogue_nodes.is_empty():
 
 		Dialogue.dialogue_ended.connect(_on_dialogue_ended, CONNECT_ONE_SHOT)
 
-		Dialogue.start_dialogue(greeting, dialogue_nodes, entity)
+		Dialogue.start_dialogue(dialogue_nodes, entity)
 
 		return true
 

@@ -44,13 +44,15 @@ func _ready() -> void:
 
 
 
-func start_dialogue(greeting: Greeting, unevaluated_options: Array[DialogueNode] = [], source: EntityNode = null) -> void:
+func start_dialogue(unevaluated_options: Array[DialogueNode] = [], source: EntityNode = null) -> void:
 
 	current_source = source
 
 	Events.fire(DialogueStartingEvent, {"entity_node": current_source})
 
 	var evaluated_options = _evaluate_dialogue_nodes(unevaluated_options, {"entity_node": current_source})
+
+	var greeting = get_greeting(source, evaluated_options)
 
 	UI.show_dialogue_panel(greeting, evaluated_options, source)
 
@@ -156,11 +158,7 @@ func get_greeting(source: EntityNode, options: Array[DialogueNode]) -> Greeting:
 
 	if evaluated_greetings.is_empty():
 
-		print("no greetings")
-
 		return null
-
-	print("greetings: ", evaluated_greetings)
 
 	return evaluated_greetings.front()
 
@@ -198,29 +196,35 @@ func _evaluate_dialogue_nodes(unevaluate_dialogue_nodes: Array[DialogueNode], da
 
 		var valid = true
 
-		if dialogue_node is QuestDialogueNode:
+		if !dialogue_node.can_show():
 
-			var quest_def = Quests.get_quest_def(dialogue_node.quest_id)
+			valid = false
 
-			var quest_state = Quests.get_quest_state(quest_def)
+		else:
 
-			match dialogue_node.type:
+			if dialogue_node is QuestDialogueNode:
 
-				QuestDialogueNode.QuestDialogueNodeType.SOURCE:
+				var quest_def = Quests.get_quest_def(dialogue_node.quest_id)
 
-					if quest_state != QuestData.QuestState.UNKNOWN and quest_state != QuestData.QuestState.AVAILABLE:
+				var quest_state = Quests.get_quest_state(quest_def)
 
-						valid = false
+				match dialogue_node.type:
 
-				QuestDialogueNode.QuestDialogueNodeType.OBJECTIVE:
+					QuestDialogueNode.QuestDialogueNodeType.SOURCE:
 
-					pass
+						if quest_state != QuestData.QuestState.UNKNOWN and quest_state != QuestData.QuestState.AVAILABLE:
 
-				QuestDialogueNode.QuestDialogueNodeType.RECIPIENT:
+							valid = false
 
-					if quest_state != QuestData.QuestState.READY:
+					QuestDialogueNode.QuestDialogueNodeType.OBJECTIVE:
 
-						valid = false
+						pass
+
+					QuestDialogueNode.QuestDialogueNodeType.RECIPIENT:
+
+						if quest_state != QuestData.QuestState.READY:
+
+							valid = false
 
 		if valid:
 

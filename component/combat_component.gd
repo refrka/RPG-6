@@ -515,6 +515,8 @@ func _on_inventory_loaded() -> void:
 
 		_set_attack_data(entity.get_entity_def().melee_attack_config)
 
+		current_library_name = entity.get_entity_id()
+
 	
 
 

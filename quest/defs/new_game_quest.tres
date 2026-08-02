@@ -15,9 +15,6 @@
 [ext_resource type="Script" uid="uid://o3ja5up848kc" path="res://command/conditional_command_set.gd" id="5_qasdj"]
 [ext_resource type="Script" uid="uid://b1h4ca01qe0lw" path="res://command/move_to_position_command.gd" id="8_ncwlv"]
 [ext_resource type="Script" uid="uid://dhqjsemk7pnt1" path="res://command/exit_location_command.gd" id="9_ncwlv"]
-[ext_resource type="Script" uid="uid://nmihopaj7e7c" path="res://condition/condition.gd" id="11_y3wyl"]
-[ext_resource type="Script" uid="uid://dorjapef0fhm1" path="res://condition/condition_set.gd" id="12_ou5qu"]
-[ext_resource type="Script" uid="uid://c1v5rlbblonu" path="res://condition/is_quest_state_condition.gd" id="15_dujw3"]
 [ext_resource type="Script" uid="uid://8fs4d75525vy" path="res://quest/objectives/start_dialogue_objective.gd" id="19_ncwlv"]
 [ext_resource type="Script" uid="uid://c0jrlvmwmiq7a" path="res://quest/objectives/discover_location_objective.gd" id="19_pdd1h"]
 
@@ -51,17 +48,6 @@ script = ExtResource("3_2crd8")
 unique_id = &"ap"
 metadata/_custom_type_script = "uid://5dqsbln5otb0"
 
-[sub_resource type="Resource" id="Resource_pdd1h"]
-script = ExtResource("15_dujw3")
-quest_id = &"new_game_quest"
-quest_state = 3
-metadata/_custom_type_script = "uid://c1v5rlbblonu"
-
-[sub_resource type="Resource" id="Resource_ngmg8"]
-script = ExtResource("12_ou5qu")
-conditions = Array[ExtResource("11_y3wyl")]([SubResource("Resource_pdd1h")])
-metadata/_custom_type_script = "uid://dorjapef0fhm1"
-
 [sub_resource type="Resource" id="Resource_bxlyn"]
 script = ExtResource("4_5n4ib")
 quest_id = &"new_game_quest"
@@ -70,7 +56,6 @@ quest_entity = SubResource("Resource_em0rm")
 option_text = "I sure did! No problem."
 dialogue_text = SubResource("Resource_dujw3")
 forced_greeting = SubResource("Resource_7xlh3")
-show_condition_set = SubResource("Resource_ngmg8")
 enter_conditional = SubResource("Resource_8hgc3")
 metadata/_custom_type_script = "uid://cd0f2ychmbq0q"
 
@@ -123,32 +108,6 @@ script = ExtResource("3_2crd8")
 unique_id = &"ap"
 metadata/_custom_type_script = "uid://5dqsbln5otb0"
 
-[sub_resource type="Resource" id="Resource_ncwlv"]
-script = ExtResource("15_dujw3")
-quest_id = &"new_game_quest"
-quest_state = 2
-invert = true
-metadata/_custom_type_script = "uid://c1v5rlbblonu"
-
-[sub_resource type="Resource" id="Resource_6oida"]
-script = ExtResource("15_dujw3")
-quest_id = &"new_game_quest"
-quest_state = 3
-invert = true
-metadata/_custom_type_script = "uid://c1v5rlbblonu"
-
-[sub_resource type="Resource" id="Resource_ovq7t"]
-script = ExtResource("15_dujw3")
-quest_id = &"new_game_quest"
-quest_state = 4
-invert = true
-metadata/_custom_type_script = "uid://c1v5rlbblonu"
-
-[sub_resource type="Resource" id="Resource_bgrhr"]
-script = ExtResource("12_ou5qu")
-conditions = Array[ExtResource("11_y3wyl")]([SubResource("Resource_ncwlv"), SubResource("Resource_6oida"), SubResource("Resource_ovq7t")])
-metadata/_custom_type_script = "uid://dorjapef0fhm1"
-
 [sub_resource type="Resource" id="Resource_bx7u3"]
 script = ExtResource("4_5n4ib")
 quest_id = &"new_game_quest"
@@ -156,7 +115,6 @@ quest_entity = SubResource("Resource_b4gh8")
 option_text = "Can you teach me how to play the game?"
 dialogue_text = SubResource("Resource_2crd8")
 forced_greeting = SubResource("Resource_y3wyl")
-show_condition_set = SubResource("Resource_bgrhr")
 enter_conditional = SubResource("Resource_m7y18")
 exit_conditional = SubResource("Resource_n63o1")
 

@@ -25,6 +25,13 @@ class_name DialogueNode extends Resource
 
 
 
+func can_show() -> bool:
+
+	return true
+
+
+
+
 
 
 func enter(data:= {}) -> void:

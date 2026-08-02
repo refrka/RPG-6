@@ -12,6 +12,11 @@ func _start() -> void:
 
 
 
+func _end() -> void:
+
+	entity.vision_sensor.body_entered.disconnect(_on_body_entered_vision_sensor)
+
+	super()
 
 
 
