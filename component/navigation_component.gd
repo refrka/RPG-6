@@ -10,6 +10,11 @@ var movement_component: MovementComponent
 
 var target_pos: Vector2
 
+var target_entity: EntityNode
+
+var track_timer: SceneTreeTimer
+
+
 
 
 
@@ -43,6 +48,21 @@ func set_target_pos(new_pos: Vector2) -> void:
 
 
 
+func set_target_entity(entity_node: EntityNode) -> void:
+
+	target_entity = entity_node
+
+	set_target_pos(target_entity.global_position)
+
+	_set_track_timer()
+
+
+
+func clear_target_entity() -> void:
+
+	target_entity = null
+
+
 
 
 func halt() -> void:
@@ -56,11 +76,46 @@ func halt() -> void:
 
 
 
+
+
+
+
+func _set_track_timer() -> void:
+
+	track_timer = Game.get_timer(0.5)
+
+	track_timer.timeout.connect(_on_track_timer_timeout)
+
+
+
+
+func _clear_track_timer() -> void:
+
+	if track_timer:
+
+		track_timer.timeout.disconnect(_on_track_timer_timeout)
+
+
+
+
+
 func _on_target_reached() -> void:
 
 	target_pos_reached.emit()
 
 	halt()
+
+
+
+
+func _on_track_timer_timeout() -> void:
+
+	set_target_pos(target_entity.global_position)
+
+	track_timer = null
+
+	_set_track_timer()
+
 
 
 
@@ -78,3 +133,8 @@ func _process(_delta: float) -> void:
 	var move_dir = entity.global_position.direction_to(entity.nav_agent.get_next_path_position())
 
 	movement_component.set_move_dir(move_dir)
+
+
+
+
+

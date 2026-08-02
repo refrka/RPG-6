@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dies1xqtiqnrk" path="res://ui/game_popup.gd" id="1_u2m6l"]
 
 [node name="GamePopup" type="MarginContainer" unique_id=2066384248 node_paths=PackedStringArray("title_label", "title_section", "message_label", "continue_button", "no_button", "yes_button", "boolean_section", "cancel_button", "confirm_button", "confirm_section")]
+process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

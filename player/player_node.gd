@@ -79,6 +79,6 @@ func _on_health_depleted() -> void:
 
 
 
-func _on_respawn_boolean_completed(response: bool) -> void:
+func _on_respawn_boolean_completed(popup: GamePopup, response: bool) -> void:
 
 	print("shit")

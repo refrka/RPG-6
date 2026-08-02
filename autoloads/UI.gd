@@ -154,8 +154,6 @@ func show_popup(mode: GamePopup.PopupMode, message: String, title:= "") -> GameP
 
 	var popup = popup_scene.instantiate() as GamePopup
 
-	popup.set_mode(mode)
-
 	popup.set_text(message, title)
 
 	popup.popup_completed.connect(_on_popup_completed)
@@ -164,7 +162,17 @@ func show_popup(mode: GamePopup.PopupMode, message: String, title:= "") -> GameP
 
 	popup_root.add_child(popup)
 
+	popup.set_mode(mode)
+
 	popup._activate()
+
+	if popup.pause:
+
+		pause_overlays.append(popup)
+	
+		if !Game.is_paused():
+
+			Game.pause()
 
 	return popup
 

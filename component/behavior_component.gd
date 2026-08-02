@@ -38,6 +38,20 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
+
+
+func evaluate_and_choose(data:= {}) -> void:
+
+	var new_behavior = _choose_behavior(data)
+
+	_start_behavior(new_behavior)
+
+
+
+
+
+
+
 func _choose_behavior(data: Dictionary) -> Behavior:
 
 	var priority_behavior:= active_behavior

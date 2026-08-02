@@ -2,9 +2,9 @@ class_name GamePopup extends Overlay
 
 
 
-signal popup_completed
+signal popup_completed(popup: GamePopup)
 
-signal boolean_completed(response: bool)
+signal boolean_completed(popup: GamePopup, response: bool)
 
 
 enum PopupMode {

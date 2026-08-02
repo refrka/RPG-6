@@ -91,7 +91,22 @@ func _initialize(_entity: EntityNode) -> void:
 
 	ready_state.ready_timeout.connect(_on_ready_timeout)
 
+	if entity.get_entity_def().melee_attack_config:
 
+		_set_attack_data(entity.get_entity_def().melee_attack_config)
+
+		current_library_name = entity.get_entity_id()
+
+
+
+
+
+
+func attack() -> void:
+
+	if !_is_attacking():
+
+		_try_attack()
 
 
 
@@ -486,7 +501,7 @@ func _on_item_equipped(item_data: ItemData) -> void:
 
 	if item_def is WeaponDef:
 
-		_set_attack_data(item_def)
+		_set_weapon_attack_data(item_def)
 
 
 

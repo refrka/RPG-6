@@ -40,6 +40,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [SubResource("RectangleShape2D_k54sq")]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CombatRoot/CombatHitbox/HitboxCollisionShape:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8yd50"]
 _data = {
@@ -69,9 +81,6 @@ shape = SubResource("CircleShape2D_mn88y")
 
 [node name="AnimationPlayer" parent="." index="8" unique_id=447569240]
 libraries/wolf = SubResource("AnimationLibrary_8yd50")
-
-[node name="AnimationTree" parent="." index="9" unique_id=953931177]
-active = false
 
 [node name="DebugMask" parent="." index="10" unique_id=2132149786]
 metadata/_edit_lock_ = true

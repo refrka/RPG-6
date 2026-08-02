@@ -28,6 +28,7 @@ enum BehaviorType {
 
 var entity: EntityNode
 
+var behavior_component: BehaviorComponent
 
 
 
@@ -35,6 +36,8 @@ var entity: EntityNode
 func _initialize(_entity: EntityNode) -> void:
 
 	entity = _entity
+
+	behavior_component = entity.get_component(BehaviorComponent)
 
 
 

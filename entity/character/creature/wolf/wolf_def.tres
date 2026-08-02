@@ -10,6 +10,9 @@
 [ext_resource type="Script" uid="uid://cyjmrklgcrwji" path="res://behavior/behaviors/wolf_attack_behavior.gd" id="3_k54sq"]
 [ext_resource type="Script" uid="uid://dy0xa1iphl44y" path="res://combat/attack_config.gd" id="4_hottj"]
 [ext_resource type="Script" uid="uid://c54s0y8rjtpbo" path="res://damage/damage_types/physical_damage.gd" id="4_lod8w"]
+[ext_resource type="Script" uid="uid://c0nluvwuebw73" path="res://equipment/equipment_data.gd" id="5_tn4ug"]
+[ext_resource type="Script" uid="uid://buyl122k0580n" path="res://item/item_data.gd" id="6_mhbhd"]
+[ext_resource type="Script" uid="uid://bilua2f5kf02o" path="res://item/inventory.gd" id="7_omlp5"]
 
 [sub_resource type="Resource" id="Resource_jowys"]
 script = ExtResource("3_k54sq")
@@ -24,6 +27,10 @@ script = ExtResource("2_qf0ct")
 behaviors = Array[ExtResource("1_hottj")]([SubResource("Resource_jowys"), SubResource("Resource_73qeu")])
 metadata/_custom_type_script = "uid://cb1nu8gaq2eae"
 
+[sub_resource type="Resource" id="Resource_k54sq"]
+script = ExtResource("7_omlp5")
+metadata/_custom_type_script = "uid://bilua2f5kf02o"
+
 [sub_resource type="Resource" id="Resource_o2odi"]
 script = ExtResource("4_lod8w")
 physical_type = 3
@@ -33,7 +40,7 @@ metadata/_custom_type_script = "uid://c54s0y8rjtpbo"
 [sub_resource type="Resource" id="Resource_2co6o"]
 script = ExtResource("2_lod8w")
 damage_types = Array[ExtResource("3_5vrw0")]([SubResource("Resource_o2odi")])
-damage_range = Vector2(2, 3)
+damage_range = Vector2(20, 30)
 metadata/_custom_type_script = "uid://cgg7g58chm718"
 
 [sub_resource type="Resource" id="Resource_a3l2y"]
@@ -53,5 +60,6 @@ entity_id = &"wolf"
 display_name = "Wolf"
 scene_path = "res://entity/character/creature/wolf/wolf.tscn"
 behavior_profile = SubResource("Resource_86odk")
+default_inventory = SubResource("Resource_k54sq")
 base_max_health = 15.0
 metadata/_custom_type_script = "uid://d2ougu0lbgskp"

@@ -22,4 +22,4 @@ func _end() -> void:
 
 func _on_body_entered_vision_sensor(body: PhysicsBody2D) -> void:
 
-	print(body)
+	behavior_component.evaluate_and_choose({"target_entity": body})
