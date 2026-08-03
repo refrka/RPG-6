@@ -24,6 +24,13 @@ var default_lists: Dictionary[StringName, Array] = {
 }
 
 
+var default_counts: Dictionary[StringName, int] = {
+
+
+
+}
+
+
 
 var flags: Dictionary[StringName, int]
 
@@ -31,7 +38,7 @@ var vars: Dictionary[StringName, Variant]
 
 var lists: Dictionary[StringName, Array]
 
-
+var counts: Dictionary[StringName, int]
 
 
 
@@ -76,6 +83,18 @@ func add_to_list(list_name: StringName, value: Variant) -> void:
 
 
 
+func add_to_count(count_name: StringName, amount: int) -> void:
+
+	if !counts.has(count_name):
+
+		counts[count_name] = 0
+
+	counts[count_name] += amount
+
+
+
+
+
 func get_flag(flag: StringName) -> bool:
 
 	if flags.has(flag):
@@ -112,6 +131,8 @@ func _reset_globals() -> void:
 
 	lists = default_lists.duplicate()
 
+	counts = default_counts.duplicate()
+
 
 
 
@@ -143,6 +164,8 @@ func get_dictionary() -> Dictionary:
 
 	save_dict["lists"] = lists
 
+	save_dict["counts"] = counts
+
 	return save_dict
 
 
@@ -161,6 +184,8 @@ func load_dictionary(save_dict: Dictionary) -> void:
 	vars.assign(save_dict["vars"])
 
 	lists.assign(save_dict["lists"])
+
+	counts.assign(save_dict["counts"])
 
 
 

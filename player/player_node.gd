@@ -70,7 +70,7 @@ func _on_player_entered_location(event: Event) -> void:
 
 
 
-func _on_health_depleted() -> void:
+func _on_health_depleted(_final_damage_package: DamagePackage) -> void:
 
 	_deactivate.call_deferred()
 

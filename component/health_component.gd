@@ -8,7 +8,7 @@ signal health_restored(amount: float, new_health: float)
 
 signal health_reduced(amount: float, new_health: float)
 
-signal health_depleted
+signal health_depleted(final_damage_package: DamagePackage)
 
 
 
@@ -74,7 +74,7 @@ func reduce_health(amount: float) -> void:
 
 	if current_health == 0.0:
 
-		_die()
+		pass
 
 
 
@@ -98,6 +98,10 @@ func receive_damage_package(damage_package: DamagePackage) -> bool:
 
 		pass
 
+	if !_is_alive():
+
+		_die(damage_package)
+
 	return true
 
 
@@ -108,11 +112,20 @@ func receive_damage_package(damage_package: DamagePackage) -> bool:
 
 
 
-func _die() -> void:
+func _die(final_damage_package: DamagePackage) -> void:
 
-	health_depleted.emit()
+	health_depleted.emit(final_damage_package)
 
 	
+
+
+
+
+
+
+func _is_alive() -> bool:
+
+	return current_health > 0.0
 
 
 

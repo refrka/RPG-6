@@ -315,7 +315,11 @@ func _load_dictionary(save_dict: Dictionary) -> void:
 
 
 
-func _on_health_depleted() -> void:
+func _on_health_depleted(final_damage_package: DamagePackage) -> void:
+
+	if final_damage_package.source is PlayerNode:
+
+		Events.fire(PlayerSlayedEntityEvent, {"entity_node": self, "final_damage_package": final_damage_package})
 
 	died.emit()
 

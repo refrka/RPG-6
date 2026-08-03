@@ -6,6 +6,10 @@ signal entity_hit(entity_node: EntityNode, damage_package: DamagePackage)
 
 signal target_changed(new_target: EntityNode)
 
+signal attack_started
+
+signal attack_finished
+
 
 @export var combat_root: Node2D
 
@@ -246,6 +250,8 @@ func _start_attack(buffered:= false) -> void:
 
 	_set_attack_dir(attack_dir)
 
+	attack_started.emit()
+
 	_execute_attack()
 
 	
@@ -287,6 +293,8 @@ func _finish_attack() -> void:
 	_reset_attack_data()
 
 	_enter_combat_ready()
+
+	attack_finished.emit()
 
 
 
