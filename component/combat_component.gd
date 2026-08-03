@@ -278,6 +278,8 @@ func _execute_attack() -> void:
 
 func _finish_attack() -> void:
 
+	combat_hitbox.clear_hit_list()
+
 	movement_component.remove_move_speed_override()
 
 	close_buffer_window()
@@ -327,6 +329,7 @@ func _reset_attack_data() -> void:
 	current_attack_dir = Vector2.ZERO
 
 	current_animation_name = ""
+
 
 
 

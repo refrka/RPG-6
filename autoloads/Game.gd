@@ -120,6 +120,8 @@ func pause() -> void:
 
 	get_tree().paused = true
 
+	Events.fire(GamePausedEvent)
+
 
 
 
@@ -127,6 +129,7 @@ func resume() -> void:
 
 	get_tree().paused = false
 
+	Events.fire(GameResumedEvent)
 
 
 

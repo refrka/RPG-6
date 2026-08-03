@@ -1,0 +1,1 @@
+class_name GameResumedEvent extends SystemEvent
