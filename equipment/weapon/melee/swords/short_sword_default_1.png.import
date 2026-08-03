@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cwpngup5eg6fx"
-path="res://.godot/imported/short_sword_default_1.png-7bc0ccb5e8ae872aaefce5ce7e476682.ctex"
+path="res://.godot/imported/short_sword_default_1.png-e8455b19d1b42d860e8cf1b239493764.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://equipment/weapon/sprites/short_sword_default_1.png"
-dest_files=["res://.godot/imported/short_sword_default_1.png-7bc0ccb5e8ae872aaefce5ce7e476682.ctex"]
+source_file="res://equipment/weapon/melee/swords/short_sword_default_1.png"
+dest_files=["res://.godot/imported/short_sword_default_1.png-e8455b19d1b42d860e8cf1b239493764.ctex"]
 
 [params]
 
