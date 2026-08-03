@@ -21,9 +21,14 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
+
+
+
 func _evaluate(_data:= {}) -> bool:
 
 	if !_data.has("target_entity"):
+
+		print("no target, returning false")
 
 		return false
 
@@ -41,8 +46,6 @@ func _start() -> void:
 	navigation_component.target_pos_reached.connect(_on_target_pos_reached)
 
 	combat_component.attack_finished.connect(_on_attack_finished)
-
-	combat_component.assign_combat_target(target_entity)
 
 	navigation_component.set_target_entity(target_entity)
 
@@ -66,6 +69,10 @@ func _end() -> void:
 
 
 func _is_target_in_range() -> bool:
+
+	if !target_entity:
+
+		return false
 
 	return entity.global_position.distance_to(target_entity.global_position) <= 64.0
 

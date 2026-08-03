@@ -78,6 +78,8 @@ func _initialize(_entity: EntityNode) -> void:
 
 	entity.inventory.item_unequipped.connect(_on_item_unequipped)
 
+	entity.vision_sensor.body_entered.connect(_on_body_entered_vision_sensor)
+
 	movement_component = entity.get_component(MovementComponent)
 
 	animation_component = entity.get_component(AnimationComponent)
@@ -115,6 +117,12 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
+
+
+
+
+
+
 func attack() -> void:
 
 	if !target_entity:
@@ -130,7 +138,6 @@ func attack() -> void:
 		_set_target_entity(target_entity)
 
 		_try_attack()
-
 
 
 
@@ -155,6 +162,19 @@ func close_buffer_window() -> void:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 func _handle_weapon_attack_input() -> void:
 
 	if !_is_attacking():
@@ -164,6 +184,10 @@ func _handle_weapon_attack_input() -> void:
 	elif buffer_window_open:
 
 		_try_buffer_attack()
+
+
+
+
 
 
 
@@ -207,6 +231,12 @@ func _enter_combat_ready() -> void:
 
 
 
+
+
+
+
+
+
 func _try_attack() -> void:
 
 	if !_can_attack():
@@ -214,6 +244,7 @@ func _try_attack() -> void:
 		return
 
 	_start_attack()
+
 
 
 
@@ -322,29 +353,6 @@ func _try_buffer_attack() -> void:
 
 
 
-func _reset_attack_data() -> void:
-
-	current_attack_index = 0
-
-	current_attack_dir = Vector2.ZERO
-
-	current_animation_name = ""
-
-
-
-
-func _clear_attack_data() -> void:
-
-	current_attack_config = null
-	
-	current_attack_def = null
-
-	current_library_name = ""
-
-	_reset_attack_data()
-
-
-
 
 
 
@@ -355,7 +363,6 @@ func _set_target_entity(entity_node: EntityNode) -> void:
 	target_entity = entity_node
 
 	target_changed.emit(entity_node)
-
 
 
 
@@ -375,13 +382,11 @@ func _set_weapon_attack_data(weapon_def: WeaponDef) -> void:
 
 
 
-
 func _set_attack_dir(target_dir: Vector2) -> void:
 
 	current_attack_dir = target_dir
 
 	combat_root.rotation = Vector2.RIGHT.angle_to(target_dir)
-
 
 
 
@@ -403,9 +408,6 @@ func _set_attack_def(attack_def: AttackDef) -> void:
 func _set_attack_index(index: int) -> void:
 
 	current_attack_index = index
-
-
-
 
 
 
@@ -465,6 +467,13 @@ func _get_damage_package() -> DamagePackage:
 
 
 
+
+
+
+
+
+
+
 func _is_attacking() -> bool:
 
 	return entity.state_machine.get_current_state() is CombatAttackingState
@@ -510,9 +519,6 @@ func _can_attack() -> bool:
 
 
 
-
-
-
 func _has_valid_attack_data() -> bool:
 
 	var valid = true
@@ -522,6 +528,52 @@ func _has_valid_attack_data() -> bool:
 		valid = false
 
 	return valid
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _reset_attack_data() -> void:
+
+	current_attack_index = 0
+
+	current_attack_dir = Vector2.ZERO
+
+	current_animation_name = ""
+
+
+
+func _clear_attack_data() -> void:
+
+	current_attack_config = null
+	
+	current_attack_def = null
+
+	current_library_name = ""
+
+	_reset_attack_data()
+
+
+
+
+
+
+
 
 
 
@@ -599,3 +651,11 @@ func _on_hit_detected(_target_entity: EntityNode) -> void:
 	if _target_entity.accept_hit(damage_package):
 
 		entity_hit.emit(_target_entity, damage_package)
+
+
+
+func _on_body_entered_vision_sensor(body: PhysicsBody2D) -> void:
+
+	if body is CharacterNode and target_entity != body:
+
+		assign_combat_target(body)

@@ -49,8 +49,6 @@ func _initialize(_entity: EntityNode) -> void:
 
 func set_target_pos(new_pos: Vector2) -> void:
 
-	print("setting pos %s for %s" % [new_pos, entity.get_display_name()])
-
 	if target_pos == new_pos:
 
 		return
@@ -94,6 +92,10 @@ func clear_target_entity() -> void:
 
 	target_entity = null
 
+	if track_timer:
+
+		track_timer.stop()
+
 
 
 
@@ -120,7 +122,7 @@ func _set_track_timer() -> void:
 
 		track_timer.timeout.connect(_on_track_timer_timeout)
 
-		track_timer.start(0.25)
+	track_timer.start(0.25)
 
 
 
@@ -188,6 +190,19 @@ func _activate() -> void:
 
 
 	
+
+
+
+
+func _deactivate() -> void:
+
+	if target_entity:
+
+		clear_target_entity()
+
+
+
+
 
 
 

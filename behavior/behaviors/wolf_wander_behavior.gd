@@ -3,23 +3,35 @@ class_name WolfWanderBehavior extends WanderBehavior
 
 
 
+var combat_component: CombatComponent
+
+
+
+
+func _initialize(_entity: EntityNode) -> void:
+
+	super(_entity)
+
+	combat_component = entity.get_component(CombatComponent)
+
+
 
 func _start() -> void:
-
-	entity.vision_sensor.body_entered.connect(_on_body_entered_vision_sensor)
 	
 	super()
+
+	combat_component.target_changed.connect(_on_combat_target_changed)
 
 
 
 func _end() -> void:
 
-	entity.vision_sensor.body_entered.disconnect(_on_body_entered_vision_sensor)
+	combat_component.target_changed.connect(_on_combat_target_changed)
 
 	super()
 
 
 
-func _on_body_entered_vision_sensor(body: PhysicsBody2D) -> void:
+func _on_combat_target_changed(target_entity: EntityNode) -> void:
 
-	behavior_component.evaluate_and_choose({"target_entity": body})
+	behavior_component.evaluate_and_choose({"target_entity": target_entity})
