@@ -429,6 +429,8 @@ parameters/RootState/DefaultState/MovingTree/MovingBlend/blend_position = Vector
 parameters/ShakeOneShot/active = false
 parameters/ShakeOneShot/internal_active = false
 parameters/ShakeOneShot/request = 0
+parameters/FlinchBlend/Add2/add_amount = 1.0
+parameters/FlinchBlend/FlinchBlend/blend_position = Vector2(0, 0)
 
 [node name="DebugMask" parent="." unique_id=2132149786 instance=ExtResource("19_bdrfb")]
 

@@ -38,9 +38,14 @@ func _evaluate(_data:= {}) -> bool:
 
 
 func _start() -> void:
+
 	navigation_component.target_pos_reached.connect(_on_target_pos_reached)
 
 	combat_component.assign_combat_target(target_entity)
+
+	navigation_component.set_target_entity(target_entity)
+
+	navigation_component.set_target_desired_distance(30.0)
 
 
 
@@ -57,3 +62,7 @@ func _end() -> void:
 func _on_target_pos_reached() -> void:
 
 	combat_component.attack()
+
+
+
+

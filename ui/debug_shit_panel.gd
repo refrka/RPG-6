@@ -400,6 +400,12 @@ func _on_move_and_set_spawn_pressed() -> void:
 
 func _on_debug_mask_selected(debug_mask: DebugMask) -> void:
 
+	if !active:
+
+		_activate()
+
+		_toggle_control_panel(false)
+
 	_show_entity_info(debug_mask.entity)
 
 

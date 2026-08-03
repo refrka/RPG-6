@@ -371,7 +371,7 @@ func _set_attack_dir(target_dir: Vector2) -> void:
 
 	combat_root.rotation = Vector2.RIGHT.angle_to(target_dir)
 
-	
+
 
 
 
@@ -485,6 +485,7 @@ func _is_index_valid(index:= -1) -> bool:
 		return false
 
 	return true
+
 
 
 func _can_attack() -> bool:

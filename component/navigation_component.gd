@@ -67,6 +67,19 @@ func set_target_entity(entity_node: EntityNode) -> void:
 
 
 
+func set_target_desired_distance(distance: float) -> void:
+
+	entity.nav_agent.target_desired_distance = distance
+
+
+
+func reset_target_desired_distance() -> void:
+
+	entity.nav_agent.target_desired_distance = 8.0
+
+
+
+
 
 func clear_target_entity() -> void:
 
@@ -79,8 +92,6 @@ func halt() -> void:
 
 	movement_component.halt()
 
-	set_target_pos(entity.global_position)
-
 
 
 
@@ -92,7 +103,7 @@ func halt() -> void:
 
 func _set_track_timer() -> void:
 
-	track_timer = Game.get_timer(0.5)
+	track_timer = Game.get_timer(0.25)
 
 	track_timer.timeout.connect(_on_track_timer_timeout)
 

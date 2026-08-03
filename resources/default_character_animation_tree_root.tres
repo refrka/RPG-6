@@ -1,18 +1,24 @@
 [gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://qostx72136si"]
 
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_713sg"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lg1dh"]
 animation = &"shake"
-
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_jxnld"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bqunh"]
-animation = &"wolf/default_0"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jxnld"]
 animation = &"idle_left"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6asp7"]
 animation = &"idle_up_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ayqi1"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_14v7h"]
+animation = &"idle_up_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3xgw0"]
+animation = &"idle_up_left"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_713sg"]
 animation = &"idle_right"
@@ -34,6 +40,9 @@ animation = &"idle_left"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rmesl"]
 animation = &"idle_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4wye5"]
+animation = &"idle_left"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_jxnld"]
 blend_mode = 1
@@ -64,6 +73,34 @@ blend_point_7/name = &"idle_left 2"
 blend_point_8/node = SubResource("AnimationNodeAnimation_rmesl")
 blend_point_8/pos = Vector2(1, 1)
 blend_point_8/name = &"idle_right 4"
+blend_point_9/node = SubResource("AnimationNodeAnimation_4wye5")
+blend_point_9/pos = Vector2(-1, 0.2)
+blend_point_9/name = &"idle_left 3"
+blend_point_10/node = SubResource("AnimationNodeAnimation_ayqi1")
+blend_point_10/pos = Vector2(1, 0.2)
+blend_point_10/name = &"idle_right 5"
+blend_point_11/node = SubResource("AnimationNodeAnimation_14v7h")
+blend_point_11/pos = Vector2(1, -0.2)
+blend_point_11/name = &"idle_up_right 3"
+blend_point_12/node = SubResource("AnimationNodeAnimation_3xgw0")
+blend_point_12/pos = Vector2(-1, -0.2)
+blend_point_12/name = &"idle_up_left 2"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_djdsn"]
+graph_offset = Vector2(-147.77779, -46.666668)
+nodes/output/position = Vector2(577.7778, 155.55556)
+nodes/FlinchAnimation/node = SubResource("AnimationNodeAnimation_lg1dh")
+nodes/FlinchAnimation/position = Vector2(88.88889, 44.444447)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_713sg")
+nodes/Add2/position = Vector2(355.55557, 133.33334)
+nodes/FlinchBlend/node = SubResource("AnimationNodeBlendSpace2D_jxnld")
+nodes/FlinchBlend/position = Vector2(88.88889, 266.6667)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"FlinchAnimation", &"Add2", 1, &"FlinchBlend"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_jxnld"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bqunh"]
+animation = &"wolf/default_0"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ij3ha"]
 animation = &"idle_right"
@@ -300,6 +337,6 @@ nodes/RootState/node = SubResource("AnimationNodeStateMachine_jxnld")
 nodes/RootState/position = Vector2(177.77779, 111.111115)
 nodes/ShakeOneShot/node = SubResource("AnimationNodeOneShot_ayqi1")
 nodes/ShakeOneShot/position = Vector2(488.88892, 200)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_lg1dh")
-nodes/Animation/position = Vector2(244.44446, 355.55557)
-node_connections = [&"output", 0, &"ShakeOneShot", &"ShakeOneShot", 0, &"RootState", &"ShakeOneShot", 1, &"Animation"]
+nodes/FlinchBlend/node = SubResource("AnimationNodeBlendTree_djdsn")
+nodes/FlinchBlend/position = Vector2(222.22223, 355.55557)
+node_connections = [&"output", 0, &"ShakeOneShot", &"ShakeOneShot", 0, &"RootState", &"ShakeOneShot", 1, &"FlinchBlend"]
