@@ -326,7 +326,6 @@ component_root = NodePath("ComponentRoot")
 nav_agent = NodePath("NavigationAgent2D")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=93121259]
-y_sort_enabled = true
 
 [node name="BodySprite" type="Sprite2D" parent="VisualRoot" unique_id=1905262643]
 

@@ -28,6 +28,8 @@ func get_loot() -> Dictionary[ItemDef, int]:
 
 		for item_def in entry.item_list:
 
+			print("here's a fucking item def duuuurrr")
+
 			var count = entry.item_list[item_def]
 
 			if !loot.has(item_def):

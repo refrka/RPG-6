@@ -17,6 +17,8 @@ signal entity_removed(entity_node: EntityNode)
 
 @export var object_root: Node2D
 
+@export var item_root: Node2D
+
 @export var marker_root: Node2D
 
 @export var transition_root: Node2D
@@ -122,7 +124,6 @@ func spawn_marked_entities() -> void:
 
 
 
-
 func spawn_entity_node(entity_node: EntityNode, spawn_id: StringName) -> void:
 
 	var spawn_point = get_spawn_point(spawn_id)
@@ -138,6 +139,17 @@ func spawn_entity_node(entity_node: EntityNode, spawn_id: StringName) -> void:
 	entity_node._activate()
 
 	entity_node.show()
+
+
+
+
+
+func add_item_node(item_node: DroppedItemNode, target_position: Vector2) -> void:
+
+	item_root.add_child(item_node)
+
+	item_node.global_position = target_position
+
 
 
 
@@ -506,9 +518,15 @@ func _deactivate() -> void:
 
 		character._deactivate()
 
+	for item_node in item_root.get_children():
+
+		item_node.queue_free()
+
 	for transition_zone in transition_root.get_children():
 
 		transition_zone._deactivate()
+
+	
 
 
 

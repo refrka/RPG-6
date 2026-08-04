@@ -9,6 +9,8 @@ signal died
 
 @export var destructible:= true
 
+@export var death_loot_table: LootTable
+
 
 @export_group("Node References")
 
@@ -235,6 +237,38 @@ func is_unique() -> bool:
 
 
 
+func _on_health_depleted(final_damage_package: DamagePackage) -> void:
+
+	if final_damage_package.source is PlayerNode:
+
+		Events.fire(PlayerSlayedEntityEvent, {"entity_node": self, "final_damage_package": final_damage_package})
+
+	if death_loot_table:
+
+		var loot = death_loot_table.get_loot()
+
+		Game.drop_items(loot, global_position)
+
+	died.emit()
+
+	queue_free.call_deferred()
+
+
+
+
+
+
+
+
+
+func _update_node() -> void:
+
+	pass
+
+
+
+
+
 
 
 func _activate() -> void:
@@ -309,18 +343,3 @@ func _load_dictionary(save_dict: Dictionary) -> void:
 
 
 
-
-
-
-
-
-
-func _on_health_depleted(final_damage_package: DamagePackage) -> void:
-
-	if final_damage_package.source is PlayerNode:
-
-		Events.fire(PlayerSlayedEntityEvent, {"entity_node": self, "final_damage_package": final_damage_package})
-
-	died.emit()
-
-	queue_free.call_deferred()

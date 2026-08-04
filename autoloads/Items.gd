@@ -61,6 +61,15 @@ func create_item_data(item_def: ItemDef, amount:= -1) -> ItemData:
 
 
 
+func create_dropped_item_node(item_data: ItemData) -> DroppedItemNode:
+
+	var item_node = load("res://item/dropped_item_node.tscn").instantiate()
+
+	item_node.load_item_data(item_data)
+
+	return item_node
+
+
 
 
 

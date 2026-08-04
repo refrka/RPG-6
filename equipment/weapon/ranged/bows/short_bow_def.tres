@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="RangedWeaponDef" format=3 uid="uid://b83tuuqrbxn4v"]
+
+[ext_resource type="Script" uid="uid://dw1udyd15o0ye" path="res://equipment/weapon/ranged/ranged_weapon_def.gd" id="1_cer15"]
+[ext_resource type="Script" uid="uid://sxurmka77ba" path="res://equipment/projectile/projectile_def.gd" id="1_fdgb3"]
+[ext_resource type="Texture2D" uid="uid://cjn8olmj6ns1g" path="res://equipment/weapon/ranged/bows/short_bow_icon.png" id="2_cj4xl"]
+
+[resource]
+script = ExtResource("1_cer15")
+item_id = &"short_bow"
+display_name = "Short bow"
+description = "A stupid fucking shor t fucking bow that rides the dumb short bus idiiot bow"
+gold_value = 99999
+icon_texture = ExtResource("2_cj4xl")
+icon_y_pos = -12.0
+metadata/_custom_type_script = "uid://decp4b3nq6lcd"

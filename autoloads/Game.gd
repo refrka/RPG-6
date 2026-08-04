@@ -133,6 +133,7 @@ func resume() -> void:
 
 
 
+
 func transition_to(location_id: StringName, spawn_id: StringName) -> void:
 
 	hold_player_node()
@@ -147,6 +148,51 @@ func transition_to(location_id: StringName, spawn_id: StringName) -> void:
 
 	Events.fire(PlayerEnteredLocationEvent, {"location": location})
 
+
+
+
+
+func drop_items(item_list: Dictionary[ItemDef, int], origin_pos: Vector2) -> void:
+
+	var location = Scenes.get_active_location()
+
+	var radius = 16.0
+
+	var initial_drop_position = origin_pos + Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
+
+	var current_drop_position = initial_drop_position
+
+	var previous_drop_position = Vector2.ZERO
+
+	for item_def in item_list:
+
+		var count = item_list[item_def]
+
+		var item_data = Items.create_item_data(item_def, count)
+
+		var item_node = Items.create_dropped_item_node(item_data)
+
+		if current_drop_position == initial_drop_position:
+
+			location.add_item_node(item_node, current_drop_position)
+
+			previous_drop_position = current_drop_position
+			
+			current_drop_position = origin_pos + Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
+
+			continue
+
+		var center_distance = origin_pos.distance_to(current_drop_position)
+
+		var previous_distance = previous_drop_position.distance_to(current_drop_position)
+
+		while center_distance > radius or previous_distance < radius:
+
+			current_drop_position = origin_pos + Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
+		
+		location.add_item_node(item_node, current_drop_position)
+
+		current_drop_position = origin_pos + Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
 
 
 

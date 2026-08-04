@@ -3,11 +3,12 @@
 [ext_resource type="Script" uid="uid://bxgd1muguuhcl" path="res://world/location.gd" id="1_vy4ij"]
 [ext_resource type="TileSet" uid="uid://coacxlv4bip5b" path="res://resources/default_tile_set.tres" id="2_p32gx"]
 
-[node name="Location" type="Node2D" unique_id=1312436202 node_paths=PackedStringArray("tile_map", "character_root", "object_root", "marker_root", "transition_root", "spawn_point_root", "feature_root", "nav_region", "camera_limit_top_left", "camera_limit_bottom_right")]
+[node name="Location" type="Node2D" unique_id=1312436202 node_paths=PackedStringArray("tile_map", "character_root", "object_root", "item_root", "marker_root", "transition_root", "spawn_point_root", "feature_root", "nav_region", "camera_limit_top_left", "camera_limit_bottom_right")]
 script = ExtResource("1_vy4ij")
 tile_map = NodePath("NavigationRegion2D/TileMapLayer")
 character_root = NodePath("YSortRoot/CharacterRoot")
 object_root = NodePath("YSortRoot/ObjectRoot")
+item_root = NodePath("YSortRoot/ItemRoot")
 marker_root = NodePath("MarkerRoot")
 transition_root = NodePath("TransitionZoneRoot")
 spawn_point_root = NodePath("SpawnPointRoot")
@@ -29,6 +30,9 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="ObjectRoot" type="Node2D" parent="YSortRoot" unique_id=1098893851 groups=["root_node"]]
+y_sort_enabled = true
+
+[node name="ItemRoot" type="Node2D" parent="YSortRoot" unique_id=1266477299]
 y_sort_enabled = true
 
 [node name="TransitionZoneRoot" type="Node2D" parent="." unique_id=1640348247]
