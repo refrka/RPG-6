@@ -164,14 +164,12 @@ metadata/_custom_type_script = "uid://xgierugyavfg"
 script = ExtResource("5_qxwvc")
 metadata/_custom_type_script = "uid://dl0uj3rt7fj45"
 
-[node name="AnimationPlayer" parent="." index="7" unique_id=447569240]
+[node name="AnimationPlayer" parent="." index="8" unique_id=447569240]
 libraries/mim = SubResource("AnimationLibrary_lpw1t")
 
-[node name="AnimationTree" parent="." index="8" unique_id=953931177]
-parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackBlend/IdleBlend/blend_position = Vector2(0, 0)
-parameters/RootState/CombatState/CombatReadyTree/ReadyBlend/IdleBlend/blend_position = Vector2(0, 0)
-parameters/RootState/CombatState/EndAttackTree/Add2/add_amount = 0.0
-parameters/RootState/CombatState/EndAttackTree/EndAttackTree/IdleBlend/blend_position = Vector2(0, 0)
+[node name="AnimationTree" parent="." index="9" unique_id=953931177]
+parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 1.0
+parameters/RootState/CombatState/EndAttackTree/Add2/add_amount = 1.0
 parameters/RootState/DefaultState/MovingTree/MovingBlend/blend_position = Vector2(0, 0)
 
 [editable path="BodyHurtbox"]

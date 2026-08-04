@@ -28,8 +28,6 @@ func _evaluate(_data:= {}) -> bool:
 
 	if !_data.has("target_entity"):
 
-		print("no target, returning false")
-
 		return false
 
 	target_entity = _data["target_entity"]

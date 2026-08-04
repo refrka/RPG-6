@@ -100,7 +100,7 @@ node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"FlinchAnimation", &"Add
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_jxnld"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bqunh"]
-animation = &"wolf/default_0"
+animation = &"long_sword/default_0"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ij3ha"]
 animation = &"idle_right"
@@ -364,7 +364,7 @@ graph_offset = Vector2(-86, 46)
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ayqi1"]
 
 [resource]
-graph_offset = Vector2(-53.844505, -12.86889)
+graph_offset = Vector2(-121.82743, -54.255306)
 nodes/output/position = Vector2(711.11115, 200)
 nodes/RootState/node = SubResource("AnimationNodeStateMachine_jxnld")
 nodes/RootState/position = Vector2(177.77779, 111.111115)

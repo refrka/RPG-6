@@ -172,6 +172,8 @@ metadata/_custom_type_script = "uid://dl0uj3rt7fj45"
 libraries/ap = SubResource("AnimationLibrary_ehc3r")
 
 [node name="AnimationTree" parent="." index="9" unique_id=953931177]
+parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 1.0
+parameters/RootState/CombatState/EndAttackTree/Add2/add_amount = 1.0
 parameters/RootState/DefaultState/MovingTree/MovingBlend/blend_position = Vector2(-0.86871934, 0.65291595)
 
 [node name="DebugMask" parent="." index="10" unique_id=2132149786]

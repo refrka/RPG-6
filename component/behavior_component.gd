@@ -60,8 +60,6 @@ func _choose_behavior(data: Dictionary) -> Behavior:
 
 	for behavior in behavior_profile.behaviors:
 
-		print("evaluating behavior: ", behavior)
-
 		if behavior._evaluate(data):
 
 			valid_behaviors.append(behavior)
@@ -131,13 +129,9 @@ func _activate() -> void:
 
 	if active_behavior:
 
-		print("starting previous")
-
 		_start_behavior(active_behavior)
 		
 	else:
-
-		print("starting new")
 
 		_start_behavior(_choose_behavior({}))
 

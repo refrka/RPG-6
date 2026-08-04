@@ -355,9 +355,13 @@ func _spawn_marker(entity_marker: EntityMarker) -> void:
 	
 	var entity_node = entity_marker.get_entity_node()
 
+	print("adding: ", entity_node.get_display_name())
+
 	_add_entity(entity_node)
 
 	entity_node.reposition(entity_marker.global_position)
+
+	print("initing: ", entity_node.get_display_name())
 
 	entity_node._initialize()
 

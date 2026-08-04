@@ -44,8 +44,6 @@ func _initialize(_entity: EntityNode) -> void:
 
 func _evaluate(_data:= {}) -> bool:
 
-	print("returning true")
-
 	return true
 
 

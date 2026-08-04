@@ -21,10 +21,10 @@ var blend_space_registry: Dictionary[StringName, String]
 
 
 func _ready() -> void: 
+
+	print("ready")
 	
 	process_mode = Node.PROCESS_MODE_DISABLED
-
-	anim_tree.tree_root = anim_tree.tree_root.duplicate_deep()
 
 
 
@@ -32,6 +32,8 @@ func _ready() -> void:
 func _initialize(_entity: EntityNode) -> void:
 
 	super(_entity)
+
+	anim_tree.tree_root = anim_tree.tree_root.duplicate_deep()
 
 	playback_registry["root"] = anim_tree.get("parameters/RootState/playback")
 

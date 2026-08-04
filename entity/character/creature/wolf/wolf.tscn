@@ -221,6 +221,7 @@ libraries/wolf = SubResource("AnimationLibrary_8yd50")
 [node name="AnimationTree" parent="." index="9" unique_id=953931177]
 parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/IdleBlend/blend_position = Vector2(0.68981576, -0.6915637)
 parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/MoveBlend/blend_position = Vector2(0.6507169, -0.89575505)
+parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 1.0
 parameters/RootState/CombatState/CombatReadyTree/ReadyState/IdleBlend/blend_position = Vector2(0.7047105, -0.75067174)
 parameters/RootState/CombatState/EndAttackTree/Add2/add_amount = 1.0
 parameters/RootState/CombatState/EndAttackTree/EndAttackTree/IdleBlend/blend_position = Vector2(0.6078943, -0.85276735)

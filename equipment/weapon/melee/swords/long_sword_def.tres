@@ -9,7 +9,7 @@
 [sub_resource type="Resource" id="Resource_wi3e1"]
 script = ExtResource("2_fc7lb")
 damage_range = Vector2(5, 10)
-has_charge = true
+can_aim_charge = true
 metadata/_custom_type_script = "uid://cgg7g58chm718"
 
 [sub_resource type="Resource" id="Resource_jxblh"]

@@ -19,6 +19,7 @@ signal attack_finished
 
 
 
+
 var animation_component: AnimationComponent
 
 var movement_component: MovementComponent
@@ -95,6 +96,8 @@ func _initialize(_entity: EntityNode) -> void:
 
 		input_component.weapon_attack_released.connect(_on_weapon_attack_input_released)
 
+	print("getting tree nodes for ", entity.get_display_name())
+
 	var root_state = animation_component.anim_tree.tree_root.get_node("RootState")
 
 	var combat_state = root_state.get_node("CombatState")
@@ -105,11 +108,15 @@ func _initialize(_entity: EntityNode) -> void:
 
 	attack_animation_node = attack_tree.get_node("AttackAnimation")
 
+	attack_animation_node.animation = ""
+
 	var combat_charge_state = combat_state.get_node("CombatChargeState")
 
 	var charge_tree = combat_charge_state.get_node("ChargeTree")
 
 	charge_animation_node = charge_tree.get_node("ChargeAnimation")
+
+	charge_animation_node.animation = "wolf/default_0"
 
 	var ready_state = entity.state_machine.get_state(CombatReadyState)
 
@@ -120,6 +127,9 @@ func _initialize(_entity: EntityNode) -> void:
 		_set_attack_data(entity.get_entity_def().melee_attack_config)
 
 		current_library_name = entity.get_entity_id()
+
+
+
 
 
 
@@ -222,7 +232,13 @@ func _handle_weapon_attack_input(released:= false) -> void:
 
 		if entity.state_machine.get_current_state() is CombatChargingState:
 
-			_cancel_charge()
+			if charge_held:
+
+				_start_attack()
+			
+			else:
+
+				_cancel_charge()
 
 
 
@@ -343,11 +359,11 @@ func _start_charge() -> void:
 
 	_set_attack_dir(attack_dir)
 
-	entity.state_machine.request_state(CombatChargingState)
-
 	current_animation_name = _get_charge_animation_name()
 
 	charge_animation_node.animation = current_animation_name
+
+	entity.state_machine.request_state(CombatChargingState)
 
 
 
@@ -378,17 +394,33 @@ func _complete_charge() -> void:
 
 func _execute_attack() -> void:
 
-	entity.state_machine.request_state(CombatAttackingState)
-
 	current_animation_name = _get_attack_animation_name()
 
 	attack_animation_node.animation = current_animation_name
+
+	print("[BEFORE]")
+
+	print(attack_animation_node.animation)
+
+	print(animation_component.anim_tree.has_animation(attack_animation_node.animation))
+
+	print("add amount: ", animation_component.anim_tree.get("parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount"))
+
+	entity.state_machine.request_state(CombatAttackingState)
 
 	var move_penalty = _get_attack_entry().move_penalty	
 
 	var move_speed = entity.get_entity_def().move_speed
 
 	movement_component.set_move_speed_override(move_speed * (1.0 - move_penalty))
+
+	print("[AFTER]")
+
+	print(attack_animation_node.animation)
+
+	print(animation_component.anim_tree.has_animation(attack_animation_node.animation))
+
+	print("add amount: ", animation_component.anim_tree.get("parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount"))
 
 	
 

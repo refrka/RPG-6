@@ -2,8 +2,6 @@
 class_name CombatAttackingState extends CombatState
 
 
-var attack_animation_node: AnimationNodeAnimation
-
 
 
 
