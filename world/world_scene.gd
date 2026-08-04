@@ -41,8 +41,6 @@ func load_location(location_id: StringName) -> Location:
 
 	var new_location = Scenes.get_location(location_id)
 
-	new_location._initialize()
-
 	new_location._deactivate()
 
 	loaded_locations.append(new_location)
@@ -104,6 +102,10 @@ func activate_location(location_id: StringName, pause_current:= false) -> Locati
 	var new_location = load_location(location_id)
 
 	add_child(new_location)
+
+	if !new_location.initialized:
+
+		new_location._initialize()
 
 	active_location = new_location
 

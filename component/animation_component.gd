@@ -21,8 +21,6 @@ var blend_space_registry: Dictionary[StringName, String]
 
 
 func _ready() -> void: 
-
-	print("ready")
 	
 	process_mode = Node.PROCESS_MODE_DISABLED
 

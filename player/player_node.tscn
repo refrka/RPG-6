@@ -207,6 +207,7 @@ parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/IdleBl
 parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 1.0
 parameters/RootState/CombatState/CombatChargeState/ChargeTree/Add2/add_amount = 0.0
 parameters/RootState/CombatState/EndAttackTree/Add2/add_amount = 1.0
+parameters/RootState/DefaultState/MovingTree/MovingBlend/blend_position = Vector2(0.78849375, 0.67527676)
 
 [editable path="BodyHurtbox"]
 [editable path="CombatRoot/CombatHitbox"]

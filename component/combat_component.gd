@@ -96,8 +96,6 @@ func _initialize(_entity: EntityNode) -> void:
 
 		input_component.weapon_attack_released.connect(_on_weapon_attack_input_released)
 
-	print("getting tree nodes for ", entity.get_display_name())
-
 	var root_state = animation_component.anim_tree.tree_root.get_node("RootState")
 
 	var combat_state = root_state.get_node("CombatState")
@@ -398,14 +396,6 @@ func _execute_attack() -> void:
 
 	attack_animation_node.animation = current_animation_name
 
-	print("[BEFORE]")
-
-	print(attack_animation_node.animation)
-
-	print(animation_component.anim_tree.has_animation(attack_animation_node.animation))
-
-	print("add amount: ", animation_component.anim_tree.get("parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount"))
-
 	entity.state_machine.request_state(CombatAttackingState)
 
 	var move_penalty = _get_attack_entry().move_penalty	
@@ -413,14 +403,6 @@ func _execute_attack() -> void:
 	var move_speed = entity.get_entity_def().move_speed
 
 	movement_component.set_move_speed_override(move_speed * (1.0 - move_penalty))
-
-	print("[AFTER]")
-
-	print(attack_animation_node.animation)
-
-	print(animation_component.anim_tree.has_animation(attack_animation_node.animation))
-
-	print("add amount: ", animation_component.anim_tree.get("parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount"))
 
 	
 

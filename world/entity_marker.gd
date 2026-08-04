@@ -9,6 +9,8 @@ class_name EntityMarker extends Marker2D
 
 @export var scene_path: String
 
+@export var respawn_on_activate:= false
+
 var spawned_entity_node: EntityNode
 
 
@@ -34,6 +36,7 @@ func get_entity_node() -> EntityNode:
 		return load(scene_path).instantiate()
 
 	return null
+
 
 
 
