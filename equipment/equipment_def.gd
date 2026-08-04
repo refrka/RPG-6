@@ -11,6 +11,8 @@ enum EquipmentType {
 
 	TOOL,
 
+	PROJECTILE,
+
 }
 
 

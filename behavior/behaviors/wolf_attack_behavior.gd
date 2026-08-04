@@ -74,7 +74,7 @@ func _is_target_in_range() -> bool:
 
 		return false
 
-	return entity.global_position.distance_to(target_entity.global_position) <= 64.0
+	return entity.global_position.distance_to(target_entity.global_position) <= 35.0
 
 
 

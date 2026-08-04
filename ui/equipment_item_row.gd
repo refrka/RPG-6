@@ -49,6 +49,8 @@ func _on_equip_pressed() -> void:
 	equip_requested.emit(self)
 
 
+
+
 func _on_unequip_pressed() -> void:
 
 	unequip_requested.emit(self)

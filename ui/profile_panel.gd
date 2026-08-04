@@ -13,6 +13,8 @@ class_name ProfilePanel extends Overlay
 
 @export var equipment_slots: Array[ProfileEquipmentSlot]
 
+@export var load_projectile_button: Button
+
 
 
 

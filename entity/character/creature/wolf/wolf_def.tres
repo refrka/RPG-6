@@ -55,7 +55,7 @@ metadata/_custom_type_script = "uid://dy0xa1iphl44y"
 
 [resource]
 script = ExtResource("1_dwess")
-move_speed = 75
+move_speed = 150
 melee_attack_config = SubResource("Resource_rppns")
 entity_id = &"wolf"
 display_name = "Wolf"

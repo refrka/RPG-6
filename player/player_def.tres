@@ -26,7 +26,7 @@ gold_count = 50
 
 [resource]
 script = ExtResource("1_cujn1")
-move_speed = 500
+move_speed = 150
 unique_id = &"player"
 entity_id = &"player"
 display_name = "Player"

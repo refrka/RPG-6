@@ -26,7 +26,7 @@ func _start() -> void:
 
 func _end() -> void:
 
-	combat_component.target_changed.connect(_on_combat_target_changed)
+	combat_component.target_changed.disconnect(_on_combat_target_changed)
 
 	super()
 

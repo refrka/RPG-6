@@ -33,6 +33,8 @@ func receive_damage_package(damage_package: DamagePackage) -> bool:
 
 func add_effect(effect: Effect) -> void:
 
+	effect = effect.duplicate()
+
 	if effect is InstantEffect:
 
 		effect._apply(entity)

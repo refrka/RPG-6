@@ -13,3 +13,6 @@ class_name ItemDef extends Resource
 @export_multiline var description: String
 
 @export var gold_value:= 1
+
+
+@export var icon_texture: Texture2D

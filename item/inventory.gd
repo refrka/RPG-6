@@ -181,6 +181,31 @@ func equip_item_data(equipment_data: EquipmentData) -> void:
 
 
 
+func equip_projectile_data(ranged_weapon_data: EquipmentData, projectile_data: ItemData) -> void:
+
+	if ranged_weapon_data.projectile_data:
+
+		ranged_weapon_data.unequip_projectile_data()
+
+	if !has_item_data(projectile_data):
+
+		_add_item_data(projectile_data)
+
+	ranged_weapon_data.equip_projectile_data(projectile_data)
+
+
+
+
+func unequip_projectile_data(ranged_weapon_data: EquipmentData) -> void:
+
+	ranged_weapon_data.unequip_projectile_data()
+
+
+
+
+
+
+
 func unequip_item_data(equipment_data: EquipmentData) -> void:
 
 	var equipment_type = equipment_data.get_equipment_type()
@@ -276,6 +301,11 @@ func is_empty() -> bool:
 
 	return item_list.is_empty()
 
+
+
+func has_item_data(item_data: ItemData) -> bool:
+
+	return item_list.has(item_data)
 
 
 

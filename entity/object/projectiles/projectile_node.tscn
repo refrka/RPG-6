@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://btlu6tmfmfmgi"]
+
+[ext_resource type="PackedScene" uid="uid://b45nb4h2fqks6" path="res://system/hurtbox.tscn" id="1_2sc2o"]
+[ext_resource type="Script" uid="uid://bwv5f2vf38x7d" path="res://state/state_machine.gd" id="2_ojolo"]
+[ext_resource type="Script" uid="uid://bi8xvbsytvcmc" path="res://state/idle_state.gd" id="3_v0tis"]
+[ext_resource type="Script" uid="uid://bapxh7cmbif0o" path="res://component/health_component.gd" id="4_8yhj1"]
+[ext_resource type="Script" uid="uid://7nntd7c7ifji" path="res://component/animation_component.gd" id="5_lgjjj"]
+
+[node name="ProjectileNode" type="StaticBody2D" unique_id=464317563]
+
+[node name="VisualRoot" type="Node2D" parent="." unique_id=377820276]
+y_sort_enabled = true
+
+[node name="BodySprite" type="Sprite2D" parent="VisualRoot" unique_id=250216188]
+
+[node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=2140345495]
+
+[node name="BodyHurtbox" parent="." unique_id=302794627 instance=ExtResource("1_2sc2o")]
+
+[node name="StateMachine" type="Node" parent="." unique_id=324279800 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_ojolo")
+initial_state = NodePath("IdleState")
+metadata/_custom_type_script = "uid://bwv5f2vf38x7d"
+
+[node name="IdleState" type="Node" parent="StateMachine" unique_id=1834347307]
+script = ExtResource("3_v0tis")
+
+[node name="ComponentRoot" type="Node" parent="." unique_id=555641880]
+
+[node name="HealthComponent" type="Node" parent="ComponentRoot" unique_id=1044323484]
+script = ExtResource("4_8yhj1")
+
+[node name="AnimationComponent" type="Node" parent="ComponentRoot" unique_id=779899086 node_paths=PackedStringArray("anim_player", "anim_tree")]
+script = ExtResource("5_lgjjj")
+anim_player = NodePath("")
+anim_tree = NodePath("")
+metadata/_custom_type_script = "uid://7nntd7c7ifji"
+
+[editable path="BodyHurtbox"]

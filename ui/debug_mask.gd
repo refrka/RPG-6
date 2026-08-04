@@ -1,7 +1,6 @@
 class_name DebugMask extends InputMask
 
 
-
 @export var panel: PanelContainer
 
 

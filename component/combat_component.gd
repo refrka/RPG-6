@@ -141,6 +141,12 @@ func attack() -> void:
 
 
 
+func fire_projectile() -> void:
+
+	pass
+
+
+
 func assign_combat_target(_target_entity: EntityNode) -> void:
 
 	if !_is_in_combat():
@@ -148,6 +154,10 @@ func assign_combat_target(_target_entity: EntityNode) -> void:
 		_enter_combat()
 
 	_set_target_entity(_target_entity)
+
+
+
+
 
 
 
@@ -241,6 +251,8 @@ func _try_attack() -> void:
 
 	if !_can_attack():
 
+		print("cant")
+
 		return
 
 	_start_attack()
@@ -253,6 +265,8 @@ func _start_attack(buffered:= false) -> void:
 
 	if !_is_index_valid(current_attack_index):
 
+		print("invalid index")
+
 		return
 
 	if !_is_in_combat():
@@ -260,6 +274,8 @@ func _start_attack(buffered:= false) -> void:
 		_enter_combat()
 
 	if !_has_valid_attack_data():
+
+		print("invalid attack data")
 
 		_finish_attack()
 
@@ -323,6 +339,8 @@ func _finish_attack() -> void:
 
 		_start_attack(true)
 
+		return
+
 	_reset_attack_data()
 
 	_enter_combat_ready()
@@ -342,7 +360,6 @@ func _try_buffer_attack() -> void:
 		attack_buffered = true
 
 		buffered_attack_dir = _get_attack_direction()
-
 
 
 
@@ -656,6 +673,25 @@ func _on_hit_detected(_target_entity: EntityNode) -> void:
 
 func _on_body_entered_vision_sensor(body: PhysicsBody2D) -> void:
 
-	if body is CharacterNode and target_entity != body:
+	if body is CharacterNode and entity != body and target_entity != body:
 
 		assign_combat_target(body)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func _deactivate() -> void:
+
+	super()
+
+	target_entity = null

@@ -4,6 +4,9 @@
 [ext_resource type="Resource" uid="uid://cglx1lj01t53t" path="res://entity/character/creature/wolf/wolf_def.tres" id="2_xw4qa"]
 [ext_resource type="Texture2D" uid="uid://b8tcekbpgmqq5" path="res://entity/character/creature/wolf/wolf_sprite.png" id="3_73qeu"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxnld"]
+size = Vector2(32, 12)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_73qeu"]
 size = Vector2(32, 16)
 
@@ -16,6 +19,7 @@ radius = 218.0367
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k54sq"]
 
 [sub_resource type="Animation" id="Animation_73qeu"]
+length = 0.39914125
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,7 +27,7 @@ tracks/0/path = NodePath("VisualRoot/BodySprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.010018729, 0.22649577, 0.31594908, 0.49485576),
+"times": PackedFloat32Array(0, 0.22649598, 0.3159492, 10.242567),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [6, 7, 8, 0]
@@ -35,7 +39,7 @@ tracks/1/path = NodePath("CombatRoot/CombatHitbox/HitboxCollisionShape:shape")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.20502698, 0.4036134),
+"times": PackedFloat32Array(0.20502698, 0.3473535),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [SubResource("RectangleShape2D_k54sq"), null]
@@ -55,7 +59,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_8yd50"]
 resource_name = "move_down_left"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -84,7 +88,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_osb13"]
 resource_name = "move_down_left"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -113,7 +117,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_klt8q"]
 resource_name = "move_down_left"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -142,7 +146,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_dlml2"]
 resource_name = "move_down_left"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -189,7 +193,11 @@ vframes = 3
 
 [node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" parent_id_path=PackedInt32Array(133743934) index="0" unique_id=870454535]
 position = Vector2(0, -8)
-rotation = 1.8989183
+rotation = -1.1588986
+
+[node name="BodyCollision" parent="." index="1" unique_id=1462622998]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_jxnld")
 
 [node name="HurtboxCollisionShape" parent="BodyHurtbox" parent_id_path=PackedInt32Array(302794627) index="0" unique_id=311204889]
 position = Vector2(0, -8)
@@ -205,14 +213,17 @@ shape = SubResource("CircleShape2D_mn88y")
 
 [node name="CombatRoot" parent="." index="4" unique_id=1056235965]
 position = Vector2(0, -8)
-rotation = 1.8989183
+rotation = -1.1588986
 
 [node name="AnimationPlayer" parent="." index="8" unique_id=447569240]
 libraries/wolf = SubResource("AnimationLibrary_8yd50")
 
 [node name="AnimationTree" parent="." index="9" unique_id=953931177]
-parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/IdleBlend/blend_position = Vector2(-0.7715244, 0.46268654)
+parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/IdleBlend/blend_position = Vector2(0.68981576, -0.6915637)
+parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/MoveBlend/blend_position = Vector2(0.6507169, -0.89575505)
+parameters/RootState/CombatState/CombatReadyTree/ReadyState/IdleBlend/blend_position = Vector2(0.7047105, -0.75067174)
 parameters/RootState/CombatState/EndAttackTree/Add2/add_amount = 1.0
+parameters/RootState/CombatState/EndAttackTree/EndAttackTree/IdleBlend/blend_position = Vector2(0.6078943, -0.85276735)
 parameters/RootState/DefaultState/MovingTree/MovingBlend/blend_position = Vector2(0, 0)
 
 [node name="DebugMask" parent="." index="10" unique_id=2132149786]

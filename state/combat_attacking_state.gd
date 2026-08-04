@@ -29,6 +29,8 @@ func _enter() -> void:
 
 	movement_component.move_stopped.connect(_on_move_stopped)
 
+	movement_component.can_turn = false
+
 
 
 
@@ -39,6 +41,8 @@ func _exit() -> void:
 	movement_component.move_started.disconnect(_on_move_started)
 
 	movement_component.move_stopped.disconnect(_on_move_stopped)
+
+	movement_component.can_turn = true
 
 
 

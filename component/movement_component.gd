@@ -21,6 +21,8 @@ var current_velocity: Vector2
 
 var can_move:= true
 
+var can_turn:= true
+
 
 var animation_component: AnimationComponent
 
@@ -59,7 +61,7 @@ func set_move_dir(dir: Vector2) -> void:
 
 func set_face_dir(dir: Vector2) -> void:
 
-	if face_dir == dir:
+	if face_dir == dir or !can_turn:
 
 		return
 
