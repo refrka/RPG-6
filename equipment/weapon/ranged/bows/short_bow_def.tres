@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="RangedWeaponDef" format=3 uid="uid://b83tuuqrbxn4v"]
-
-[ext_resource type="Script" uid="uid://dw1udyd15o0ye" path="res://equipment/weapon/ranged/ranged_weapon_def.gd" id="1_cer15"]
-
-[resource]
-script = ExtResource("1_cer15")
-item_id = &"short_bow"
-display_name = "Short bow"
-metadata/_custom_type_script = "uid://decp4b3nq6lcd"

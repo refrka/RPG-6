@@ -88,3 +88,4 @@ func _load_item_defs() -> void:
 			elif path.ends_with("/"):
 
 				sub_dirs.append(path)
+

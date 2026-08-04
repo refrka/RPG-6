@@ -25,6 +25,8 @@ var movement_component: MovementComponent
 
 var attack_animation_node: AnimationNodeAnimation
 
+var charge_animation_node: AnimationNodeAnimation
+
 
 
 
@@ -50,12 +52,13 @@ var target_entity: EntityNode
 
 var attack_held:= false
 
+var charge_held:= false
+
 var attack_buffered:= false
 
 var buffer_window_open:= false
 
 var buffered_attack_dir: Vector2
-
 
 
 
@@ -90,7 +93,7 @@ func _initialize(_entity: EntityNode) -> void:
 
 		input_component.weapon_attack_pressed.connect(_on_weapon_attack_input_pressed)
 
-		input_component.weapon_attack_pressed.connect(_on_weapon_attack_input_released)
+		input_component.weapon_attack_released.connect(_on_weapon_attack_input_released)
 
 	var root_state = animation_component.anim_tree.tree_root.get_node("RootState")
 
@@ -101,6 +104,12 @@ func _initialize(_entity: EntityNode) -> void:
 	var attack_tree = combat_attack_state.get_node("AttackTree")
 
 	attack_animation_node = attack_tree.get_node("AttackAnimation")
+
+	var combat_charge_state = combat_state.get_node("CombatChargeState")
+
+	var charge_tree = combat_charge_state.get_node("ChargeTree")
+
+	charge_animation_node = charge_tree.get_node("ChargeAnimation")
 
 	var ready_state = entity.state_machine.get_state(CombatReadyState)
 
@@ -141,9 +150,11 @@ func attack() -> void:
 
 
 
+
 func fire_projectile() -> void:
 
 	pass
+
 
 
 
@@ -157,7 +168,13 @@ func assign_combat_target(_target_entity: EntityNode) -> void:
 
 
 
+func set_attack_dir(dir:= Vector2.ZERO) -> void:
 
+	if dir == Vector2.ZERO:
+
+		dir = _get_attack_direction()
+
+	_set_attack_dir(dir)
 
 
 
@@ -185,16 +202,27 @@ func close_buffer_window() -> void:
 
 
 
-func _handle_weapon_attack_input() -> void:
+func _handle_weapon_attack_input(released:= false) -> void:
 
-	if !_is_attacking():
-	
-		_try_attack()
+	if !released:
 
-	elif buffer_window_open:
+		attack_held = true
 
-		_try_buffer_attack()
+		if !_is_attacking():
+		
+			_try_attack()
 
+		elif buffer_window_open:
+
+			_try_buffer_attack()
+
+	else:
+
+		attack_held = false
+
+		if entity.state_machine.get_current_state() is CombatChargingState:
+
+			_cancel_charge()
 
 
 
@@ -251,31 +279,13 @@ func _try_attack() -> void:
 
 	if !_can_attack():
 
-		print("cant")
-
 		return
-
-	_start_attack()
-
-
-
-
-
-func _start_attack(buffered:= false) -> void:
 
 	if !_is_index_valid(current_attack_index):
 
-		print("invalid index")
-
 		return
 
-	if !_is_in_combat():
-
-		_enter_combat()
-
 	if !_has_valid_attack_data():
-
-		print("invalid attack data")
 
 		_finish_attack()
 
@@ -289,6 +299,24 @@ func _start_attack(buffered:= false) -> void:
 
 		return
 
+	if attack_entry.has_charge:
+
+		_start_charge()
+
+	else:
+
+		_start_attack()
+
+
+
+
+
+func _start_attack(buffered:= false) -> void:
+
+	if !_is_in_combat():
+
+		_enter_combat()
+
 	var attack_dir = _get_attack_direction()
 
 	if buffered:
@@ -301,17 +329,60 @@ func _start_attack(buffered:= false) -> void:
 
 	_execute_attack()
 
+
+
+
+
+func _start_charge() -> void:
+
+	if !_is_in_combat():
+
+		_enter_combat()
+
+	var attack_dir = _get_attack_direction()
+
+	_set_attack_dir(attack_dir)
+
+	entity.state_machine.request_state(CombatChargingState)
+
+	current_animation_name = _get_charge_animation_name()
+
+	charge_animation_node.animation = current_animation_name
+
+
+
+
+
+func _cancel_charge() -> void:
+
+	entity.state_machine.request_state(CombatReadyState)
+
+
+
+
+func _complete_charge() -> void:
+
+	var attack_entry = _get_attack_entry()
+	
+	if !attack_entry.can_hold_charge:
+
+		_start_attack()
+
+	else:
+
+		charge_held = true
+
 	
 
 
 
 func _execute_attack() -> void:
 
+	entity.state_machine.request_state(CombatAttackingState)
+
 	current_animation_name = _get_attack_animation_name()
 
 	attack_animation_node.animation = current_animation_name
-
-	entity.state_machine.request_state(CombatAttackingState)
 
 	var move_penalty = _get_attack_entry().move_penalty	
 
@@ -468,6 +539,16 @@ func _get_attack_animation_name(index:= -1) -> StringName:
 
 
 
+func _get_charge_animation_name(index:= -1) -> StringName:
+
+	if index == -1:
+
+		index = current_attack_index
+
+	return "%s/charge_%s" % [current_library_name, index]
+
+
+
 
 func _get_damage_package() -> DamagePackage:
 
@@ -608,7 +689,7 @@ func _on_weapon_attack_input_pressed() -> void:
 
 func _on_weapon_attack_input_released() -> void:
 
-	pass
+	_handle_weapon_attack_input(true)
 
 
 

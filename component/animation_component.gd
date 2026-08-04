@@ -77,6 +77,8 @@ func _initialize(_entity: EntityNode) -> void:
 
 	blend_space_registry["end_attack"] = "parameters/RootState/CombatState/EndAttackTree/EndAttackTree/IdleBlend/blend_position"
 
+	blend_space_registry["charge"] = "parameters/RootState/CombatState/CombatChargeState/ChargeTree/ChargeBlend/playback"
+
 	blend_space_registry["flinch"] = "parameters/FlinchBlend/FlinchBlend/blend_position"
 
 	var movement_component = entity.get_component(MovementComponent)

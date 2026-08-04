@@ -223,6 +223,29 @@ states/End/position = Vector2(547.77783, 99.8613)
 transitions = ["Start", "AttackTree", SubResource("AnimationNodeStateMachineTransition_jxnld"), "AttackTree", "End", SubResource("AnimationNodeStateMachineTransition_ij3ha")]
 graph_offset = Vector2(-52, -14)
 
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_r7dde"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t7pgy"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_1becr"]
+graph_offset = Vector2(-226.66667, 27.777779)
+nodes/output/position = Vector2(600, 177.77779)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_r7dde")
+nodes/Add2/position = Vector2(422.22223, 155.55556)
+nodes/ChargeAnimation/node = SubResource("AnimationNodeAnimation_t7pgy")
+nodes/ChargeAnimation/position = Vector2(155.55556, 133.33334)
+nodes/ChargeBlend/node = SubResource("AnimationNodeStateMachine_f6s35")
+nodes/ChargeBlend/position = Vector2(111.111115, 355.55557)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"ChargeAnimation", &"Add2", 1, &"ChargeBlend"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hf6j3"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_djdsn"]
+states/ChargeTree/node = SubResource("AnimationNodeBlendTree_1becr")
+states/ChargeTree/position = Vector2(422.8889, 100.02469)
+transitions = ["Start", "ChargeTree", SubResource("AnimationNodeStateMachineTransition_hf6j3")]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_17d4o"]
 advance_mode = 2
 
@@ -280,16 +303,25 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4vau8"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mj8dy"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dd4a0"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6asp7"]
 states/CombatAttackState/node = SubResource("AnimationNodeStateMachine_r7dde")
 states/CombatAttackState/position = Vector2(505.11108, 180.88736)
+states/CombatChargeState/node = SubResource("AnimationNodeStateMachine_djdsn")
+states/CombatChargeState/position = Vector2(505.0617, -3.00001)
 states/CombatReadyTree/node = SubResource("AnimationNodeBlendTree_r7dde")
 states/CombatReadyTree/position = Vector2(315.0806, 87.78875)
 states/End/position = Vector2(917.7778, 163.33334)
 states/EndAttackTree/node = SubResource("AnimationNodeBlendTree_f6s35")
 states/EndAttackTree/position = Vector2(315.20068, 180.76375)
 states/Start/position = Vector2(130, 87.65431)
-transitions = ["Start", "CombatReadyTree", SubResource("AnimationNodeStateMachineTransition_3sju6"), "CombatReadyTree", "CombatAttackState", SubResource("AnimationNodeStateMachineTransition_rmesl"), "CombatAttackState", "EndAttackTree", SubResource("AnimationNodeStateMachineTransition_umrb6"), "EndAttackTree", "CombatReadyTree", SubResource("AnimationNodeStateMachineTransition_l5fto")]
+transitions = ["Start", "CombatReadyTree", SubResource("AnimationNodeStateMachineTransition_3sju6"), "CombatReadyTree", "CombatAttackState", SubResource("AnimationNodeStateMachineTransition_rmesl"), "CombatAttackState", "EndAttackTree", SubResource("AnimationNodeStateMachineTransition_umrb6"), "EndAttackTree", "CombatReadyTree", SubResource("AnimationNodeStateMachineTransition_l5fto"), "CombatReadyTree", "CombatChargeState", SubResource("AnimationNodeStateMachineTransition_4vau8"), "CombatChargeState", "CombatReadyTree", SubResource("AnimationNodeStateMachineTransition_mj8dy"), "CombatChargeState", "CombatAttackState", SubResource("AnimationNodeStateMachineTransition_dd4a0")]
+graph_offset = Vector2(76, -105)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_6asp7"]
 nodes/output/position = Vector2(488.88892, 200)
@@ -332,7 +364,7 @@ graph_offset = Vector2(-86, 46)
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ayqi1"]
 
 [resource]
-graph_offset = Vector2(-63.434383, -32.14142)
+graph_offset = Vector2(-53.844505, -12.86889)
 nodes/output/position = Vector2(711.11115, 200)
 nodes/RootState/node = SubResource("AnimationNodeStateMachine_jxnld")
 nodes/RootState/position = Vector2(177.77779, 111.111115)

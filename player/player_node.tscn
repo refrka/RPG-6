@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cll7htg5b6tc6" path="res://player/player_sprite_sheet.png" id="4_0vw6r"]
 [ext_resource type="Script" uid="uid://d2ryfou7hnwl3" path="res://component/input_component.gd" id="4_k12ae"]
 [ext_resource type="Script" uid="uid://dhhv20t77148x" path="res://system/sensor.gd" id="5_rppns"]
+[ext_resource type="AnimationLibrary" uid="uid://dan2olcnstvo6" path="res://animation/libraries/weapons/long_sword.res" id="8_2co6o"]
 [ext_resource type="AnimationLibrary" uid="uid://c3jgjhuvj83f1" path="res://animation/libraries/weapons/rusty_iron_sword.res" id="8_a3l2y"]
 [ext_resource type="Script" uid="uid://bj0gwmjascn1r" path="res://component/interaction_component.gd" id="8_rppns"]
 
@@ -197,11 +198,13 @@ script = ExtResource("8_rppns")
 sensor = NodePath("../../InteractionSensor")
 
 [node name="AnimationPlayer" parent="." index="9" unique_id=447569240]
+libraries/long_sword = ExtResource("8_2co6o")
 libraries/player = SubResource("AnimationLibrary_0vw6r")
 libraries/rusty_iron_sword = ExtResource("8_a3l2y")
 
 [node name="AnimationTree" parent="." index="10" unique_id=953931177]
 parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/IdleBlend/blend_position = Vector2(0.60417056, 0.4661746)
+parameters/RootState/CombatState/CombatChargeState/ChargeTree/Add2/add_amount = 0.0
 parameters/RootState/CombatState/EndAttackTree/Add2/add_amount = 1.0
 
 [editable path="BodyHurtbox"]

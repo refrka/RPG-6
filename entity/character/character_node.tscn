@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://7nntd7c7ifji" path="res://component/animation_component.gd" id="11_hhc6v"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://qostx72136si" path="res://resources/default_character_animation_tree_root.tres" id="11_x4f7f"]
 [ext_resource type="Script" uid="uid://bdrtqkukxnryi" path="res://component/combat_component.gd" id="12_m6mxn"]
+[ext_resource type="Script" uid="uid://jsuyufswjavj" path="res://state/combat_charging_state.gd" id="12_xu7ic"]
 [ext_resource type="PackedScene" uid="uid://c45qfpcgn0v3f" path="res://ui/debug_mask.tscn" id="19_bdrfb"]
 
 [sub_resource type="Animation" id="Animation_hhc6v"]
@@ -379,6 +380,9 @@ metadata/_custom_type_script = "uid://b3tss53psf0qn"
 script = ExtResource("8_drewb")
 metadata/_custom_type_script = "uid://ywrgu46ceir7"
 
+[node name="CombatChargingState" type="Node" parent="StateMachine" unique_id=1760420124]
+script = ExtResource("12_xu7ic")
+
 [node name="ComponentRoot" type="Node" parent="." unique_id=298047762]
 
 [node name="BehaviorComponent" type="Node" parent="ComponentRoot" unique_id=1643624838]
@@ -417,9 +421,12 @@ libraries/ = SubResource("AnimationLibrary_hhc6v")
 tree_root = ExtResource("11_x4f7f")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
-parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 1.0
 parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/IdleBlend/blend_position = Vector2(0, 0)
 parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/MoveBlend/blend_position = Vector2(0, 0)
+parameters/RootState/CombatState/CombatAttackState/AttackTree/Add2/add_amount = 0.0
+parameters/RootState/CombatState/CombatChargeState/ChargeTree/Add2/add_amount = 1.0
+parameters/RootState/CombatState/CombatChargeState/ChargeTree/ChargeBlend/IdleBlend/blend_position = Vector2(0, 0)
+parameters/RootState/CombatState/CombatChargeState/ChargeTree/ChargeBlend/MoveBlend/blend_position = Vector2(0, 0)
 parameters/RootState/CombatState/CombatReadyTree/ReadyState/IdleBlend/blend_position = Vector2(0, 0)
 parameters/RootState/CombatState/CombatReadyTree/ReadyState/MoveBlend/blend_position = Vector2(0, 0)
 parameters/RootState/CombatState/EndAttackTree/Add2/add_amount = 0.0

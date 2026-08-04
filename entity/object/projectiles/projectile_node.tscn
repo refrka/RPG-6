@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://btlu6tmfmfmgi"]
 
 [ext_resource type="PackedScene" uid="uid://b45nb4h2fqks6" path="res://system/hurtbox.tscn" id="1_2sc2o"]
+[ext_resource type="Script" uid="uid://bbag4h2rnrry8" path="res://entity/object/projectiles/projectile_node.gd" id="1_ojolo"]
 [ext_resource type="Script" uid="uid://bwv5f2vf38x7d" path="res://state/state_machine.gd" id="2_ojolo"]
 [ext_resource type="Script" uid="uid://bi8xvbsytvcmc" path="res://state/idle_state.gd" id="3_v0tis"]
 [ext_resource type="Script" uid="uid://bapxh7cmbif0o" path="res://component/health_component.gd" id="4_8yhj1"]
 [ext_resource type="Script" uid="uid://7nntd7c7ifji" path="res://component/animation_component.gd" id="5_lgjjj"]
 
-[node name="ProjectileNode" type="StaticBody2D" unique_id=464317563]
+[node name="ProjectileNode" type="CharacterBody2D" unique_id=1330267497]
+script = ExtResource("1_ojolo")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=377820276]
 y_sort_enabled = true
