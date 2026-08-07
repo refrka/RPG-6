@@ -118,4 +118,4 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 is_barter_inventory = true
-is_player_side = false
+is_player_inventory = false

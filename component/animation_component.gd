@@ -135,6 +135,14 @@ func set_blend_space_vector(space_name: String, vector: Vector2) -> void:
 
 
 
+func set_all_blend_space_vectors(vector: Vector2) -> void:
+
+	for blend_space_path in blend_space_registry.values():
+
+		anim_tree.set(blend_space_path, vector)
+
+
+
 func get_state_playback(playback_name: String) -> AnimationNodeStateMachinePlayback:
 
 	return playback_registry[playback_name]

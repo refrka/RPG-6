@@ -26,6 +26,10 @@ enum BehaviorType {
 
 
 
+var active:= false
+
+var paused:= false
+
 var entity: EntityNode
 
 var behavior_component: BehaviorComponent
@@ -60,6 +64,17 @@ func _start() -> void:
 	
 	pass
 
+
+
+func _pause() -> void:
+
+	paused = true
+
+
+
+func _resume() -> void:
+
+	paused = false
 
 
 

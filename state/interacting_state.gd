@@ -21,7 +21,9 @@ func _enter() -> void:
 
 	super()
 
-	movement_component._deactivate()
+	animation_component.travel_playback("default", "IdleTree")
+
+	movement_component.can_move = false
 
 
 
@@ -31,4 +33,4 @@ func _exit() -> void:
 
 	super()
 
-	movement_component._activate()
+	movement_component.can_move = true

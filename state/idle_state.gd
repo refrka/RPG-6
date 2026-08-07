@@ -4,6 +4,7 @@ class_name IdleState extends State
 
 var movement_component: MovementComponent
 
+var navigation_component: NavigationComponent
 
 
 
@@ -17,6 +18,12 @@ func _setup(_entity: EntityNode) -> void:
 
 		movement_component.move_started.connect(_on_move_started)
 
+	navigation_component = entity.get_component(NavigationComponent)
+
+
+
+
+
 
 
 
@@ -28,9 +35,11 @@ func _enter() -> void:
 
 		animation_component.travel_playback("root", "DefaultState")
 
-	if movement_component:
+	if navigation_component:
 
-		if movement_component.is_moving():
+		if navigation_component.has_destination():
+
+			print("mim has a destination")
 
 			entity.state_machine.request_state(MovingState)
 

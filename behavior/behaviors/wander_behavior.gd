@@ -10,8 +10,6 @@ class_name WanderBehavior extends Behavior
 
 
 
-var active:= false
-
 var movement_component: MovementComponent
 
 var navigation_component: NavigationComponent
@@ -118,7 +116,7 @@ func _on_target_reached() -> void:
 
 func _tick(delta: float) -> void:
 
-	if idle_timer > 0.0:
+	if idle_timer > 0.0 and !paused:
 
 		idle_timer -= delta
 

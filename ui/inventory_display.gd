@@ -17,7 +17,7 @@ signal item_data_seen(item_data: ItemData)
 
 @export var is_barter_inventory:= false
 
-@export var is_player_side:= true
+@export var is_player_inventory:= true
 
 
 @export var item_list: VBoxContainer
@@ -68,6 +68,8 @@ func load_inventory(_inventory: Inventory) -> void:
 	_connect_inventory_signals()
 
 	_load_item_list()
+
+	_update_gold_count_label()
 
 
 
@@ -184,7 +186,7 @@ func _add_item_row(item_data: ItemData) -> InventoryItemRow:
 
 		row.sell_requested.connect(_on_sell_requested)
 
-		row.set_barter_side(is_player_side)
+		row.set_barter_side(is_player_inventory)
 
 	else:
 

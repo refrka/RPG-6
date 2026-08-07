@@ -107,8 +107,6 @@ func is_moving() -> bool:
 
 
 
-
-
 func _stop_move() -> void:
 
 	move_stopped.emit()

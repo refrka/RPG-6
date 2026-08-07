@@ -36,6 +36,8 @@ func _initialize(_entity: EntityNode) -> void:
 
 	entity.nav_agent.target_reached.connect(_on_target_reached)
 
+	entity.nav_agent.target_position = entity.global_position
+
 	Events.subscribe(GameEndingEvent, _on_game_ending)
 
 	Events.subscribe(GamePausedEvent, _on_game_pause_state_changed.bind(true))
@@ -110,6 +112,21 @@ func halt() -> void:
 
 
 
+func has_destination() -> bool:
+
+	if !active:
+
+		return false
+
+	print("has_destination() check: ", entity.nav_agent.target_position)
+
+	return entity.nav_agent.target_position != entity.global_position
+
+
+
+
+
+
 
 
 func _set_track_timer() -> void:
@@ -131,6 +148,10 @@ func _set_track_timer() -> void:
 
 
 func _on_target_reached() -> void:
+
+	entity.nav_agent.target_position = entity.global_position
+
+	print("setting target position to self's pos: ", entity.global_position)
 
 	target_pos_reached.emit()
 

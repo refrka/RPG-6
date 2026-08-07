@@ -58,6 +58,12 @@ func start_dialogue(unevaluated_options: Array[DialogueNode] = [], source: Entit
 
 	current_source.state_machine.request_state(InteractingState)
 
+	var player_direction = source.global_position.direction_to(Game.get_player().global_position)
+
+	var animation_component = current_source.get_component(AnimationComponent)
+
+	animation_component.set_blend_space_vector("idle", player_direction)
+
 	if source.is_unique():
 
 		if !Globals.is_in_list("greeted_characters", source.get_unique_id()):

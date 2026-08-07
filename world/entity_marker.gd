@@ -2,6 +2,7 @@ class_name EntityMarker extends Marker2D
 
 
 
+@export var disabled:= false
 
 @export var reference_entity: ReferenceEntity
 

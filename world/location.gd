@@ -115,6 +115,10 @@ func spawn_marked_entities() -> void:
 
 	for entity_marker in marker_root.get_children():
 
+		if entity_marker.disabled:
+
+			continue
+
 		if entity_marker.spawn_condition_set and !entity_marker.spawn_condition_set.evaluate({"location": self}):
 
 			continue
@@ -323,7 +327,7 @@ func resume() -> void:
 
 	for entity_marker in marker_root.get_children():
 
-		var valid = true
+		var valid = !entity_marker.disabled
 
 		if entity_marker.spawn_condition_set:
 

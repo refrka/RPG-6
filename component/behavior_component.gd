@@ -36,6 +36,20 @@ func _initialize(_entity: EntityNode) -> void:
 
 
 
+func pause() -> void:
+
+	if active_behavior:
+
+		active_behavior._pause()
+
+
+
+func resume() -> void:
+
+	if active_behavior:
+
+		active_behavior._resume()
+
 
 
 
