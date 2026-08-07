@@ -7,6 +7,8 @@ signal use_requested(row: InventoryItemRow)
 
 signal discard_requested(row: InventoryItemRow)
 
+signal row_seen(row: InventoryItemRow)
+
 
 
 @export var item_name_label: Label
@@ -42,6 +44,7 @@ var selected:= false
 
 var hovered:= false
 
+var seen:= true
 
 
 
@@ -66,9 +69,9 @@ func load_item_data(_item_data: ItemData) -> void:
 
 	item_data = _item_data
 
-	item_name_label.text = item_data.get_display_name()
-
 	description_label.text = item_data.get_description()
+
+	_update_name_label()
 
 	_update_count_label()
 
@@ -111,15 +114,44 @@ func deselect() -> void:
 
 func sleep() -> void:
 
-	item_data.count_updated.disconnect(_on_count_updated)
+	# item_data.count_updated.disconnect(_on_count_updated)
+
+	pass
 
 
 
 func wake() -> void:
 
-	item_data.count_updated.connect(_on_count_updated)
+	# item_data.count_updated.connect(_on_count_updated)
+
+	pass
 
 
+
+
+func set_seen_state(state: bool) -> void:
+
+	seen = state
+
+	_update_name_label()
+
+	if state == true:
+
+		row_seen.emit(self)
+
+
+
+
+
+func _update_name_label() -> void:
+
+	var display_name = item_data.get_display_name()
+
+	if !seen:
+
+		display_name += " (new) "
+
+	item_name_label.text = display_name
 
 
 
@@ -180,6 +212,10 @@ func _on_hover_state_changed(state: bool) -> void:
 		return
 
 	if state == true:
+
+		if !seen:
+
+			set_seen_state(true)
 
 		_show_buttons()
 		

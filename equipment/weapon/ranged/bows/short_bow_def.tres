@@ -2,10 +2,29 @@
 
 [ext_resource type="Script" uid="uid://dw1udyd15o0ye" path="res://equipment/weapon/ranged/ranged_weapon_def.gd" id="1_cer15"]
 [ext_resource type="Script" uid="uid://sxurmka77ba" path="res://equipment/projectile/projectile_def.gd" id="1_fdgb3"]
+[ext_resource type="Script" uid="uid://cvraks0mg5xwi" path="res://combat/attack_def.gd" id="2_bbin8"]
 [ext_resource type="Texture2D" uid="uid://cjn8olmj6ns1g" path="res://equipment/weapon/ranged/bows/short_bow_icon.png" id="2_cj4xl"]
+[ext_resource type="Script" uid="uid://cgg7g58chm718" path="res://combat/attack_entry.gd" id="3_ogvbe"]
+[ext_resource type="Script" uid="uid://7xjlwi1lwti4" path="res://damage/damage_type.gd" id="4_7pcn7"]
+[ext_resource type="Script" uid="uid://dy0xa1iphl44y" path="res://combat/attack_config.gd" id="5_1lr03"]
+
+[sub_resource type="Resource" id="Resource_ccket"]
+script = ExtResource("3_ogvbe")
+metadata/_custom_type_script = "uid://cgg7g58chm718"
+
+[sub_resource type="Resource" id="Resource_73eqf"]
+script = ExtResource("2_bbin8")
+attack_set = Array[ExtResource("3_ogvbe")]([SubResource("Resource_ccket")])
+metadata/_custom_type_script = "uid://cvraks0mg5xwi"
+
+[sub_resource type="Resource" id="Resource_ndsfp"]
+script = ExtResource("5_1lr03")
+default_attack_def = SubResource("Resource_73eqf")
+metadata/_custom_type_script = "uid://dy0xa1iphl44y"
 
 [resource]
 script = ExtResource("1_cer15")
+default_attack_config = SubResource("Resource_ndsfp")
 item_id = &"short_bow"
 display_name = "Short bow"
 description = "A stupid fucking shor t fucking bow that rides the dumb short bus idiiot bow"

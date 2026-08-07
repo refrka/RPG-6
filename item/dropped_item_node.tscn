@@ -1,17 +1,40 @@
 [gd_scene format=3 uid="uid://csi45bydwk41n"]
 
 [ext_resource type="Script" uid="uid://cbyhpt2m4p2q7" path="res://item/dropped_item_node.gd" id="1_1k8s8"]
+[ext_resource type="Texture2D" uid="uid://cnashhph0u4fr" path="res://item/item_shadow_sprite.png" id="2_gvr7y"]
+[ext_resource type="Script" uid="uid://dhhv20t77148x" path="res://system/sensor.gd" id="2_nm4op"]
 
-[node name="DroppedItemNode" type="StaticBody2D" unique_id=245656248 node_paths=PackedStringArray("body_sprite", "body_collision")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hyfwq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nm4op"]
+
+[node name="DroppedItemNode" type="StaticBody2D" unique_id=245656248 node_paths=PackedStringArray("body_sprite", "body_collision", "pick_up_sensor")]
 y_sort_enabled = true
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("1_1k8s8")
 body_sprite = NodePath("VisualRoot/BodySprite")
 body_collision = NodePath("BodyCollision")
+pick_up_sensor = NodePath("PickUpSensor")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=620604474]
 
 [node name="BodySprite" type="Sprite2D" parent="VisualRoot" unique_id=773435692]
 
+[node name="ShadowSprite" type="Sprite2D" parent="VisualRoot" unique_id=1016799085]
+modulate = Color(1, 1, 1, 0.29411766)
+texture = ExtResource("2_gvr7y")
+
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=427845642]
+shape = SubResource("CircleShape2D_hyfwq")
+
+[node name="PickUpSensor" type="Area2D" parent="." unique_id=1799020607]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("2_nm4op")
+metadata/_custom_type_script = "uid://dhhv20t77148x"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpSensor" unique_id=1268482391]
+shape = SubResource("CircleShape2D_nm4op")
 
 [node name="ComponentRoot" type="Node" parent="." unique_id=2025229340]

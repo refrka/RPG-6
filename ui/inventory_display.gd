@@ -5,6 +5,7 @@ signal buy_requested
 
 signal sell_requested
 
+signal item_data_seen(item_data: ItemData)
 
 
 @onready var inventory_item_row_scene:= preload("res://ui/inventory_item_row.tscn")
@@ -64,6 +65,10 @@ func load_inventory(_inventory: Inventory) -> void:
 
 	inventory = _inventory
 
+	_connect_inventory_signals()
+
+	_load_item_list()
+
 
 
 
@@ -92,12 +97,7 @@ func refresh() -> void:
 
 
 
-
-
-
 func sleep() -> void:
-
-	_disconnect_inventory_signals()
 
 	for row in item_row_registry.values():
 
@@ -107,13 +107,9 @@ func sleep() -> void:
 
 func wake() -> void:
 
-	_connect_inventory_signals()
-
 	for row in item_row_registry.values():
 
 		row.wake()
-
-	refresh()
 
 
 
@@ -216,9 +212,17 @@ func _add_item_row(item_data: ItemData) -> InventoryItemRow:
 
 	row.row_selected.connect(_on_row_selected)
 
+	row.row_seen.connect(_on_row_seen)
+
 	item_row_registry[item_data] = row
 
 	item_list.add_child(row)
+
+	if inventory is PlayerInventory:
+
+		if inventory.new_item_list.has(item_data):
+
+			row.set_seen_state(false)
 
 	return row
 
@@ -366,6 +370,12 @@ func _connect_inventory_signals() -> void:
 
 	inventory.gold_count_changed.connect(_on_gold_count_changed)
 
+	if inventory is PlayerInventory:
+
+		inventory.new_item_list_updated.connect(_on_player_new_item_list_updated)
+
+
+
 
 
 func _disconnect_inventory_signals() -> void:
@@ -394,6 +404,10 @@ func _disconnect_inventory_signals() -> void:
 
 		inventory.gold_count_changed.disconnect(_on_gold_count_changed)
 
+	if inventory is PlayerInventory:
+
+		inventory.new_item_list_updated.disconnect(_on_player_new_item_list_updated)
+
 
 
 
@@ -409,6 +423,12 @@ func _disconnect_inventory_signals() -> void:
 func _on_row_selected(row: InventoryItemRow) -> void:
 
 	_select_row(row)
+
+
+
+func _on_row_seen(row: InventoryItemRow) -> void:
+
+	item_data_seen.emit(row.item_data)
 
 
 
@@ -447,7 +467,7 @@ func _on_filter_text_changed(text: String) -> void:
 
 
 
-func _on_item_equipped(equipment_data: EquipmentData) -> void:
+func _on_item_equipped(equipment_data: ItemData) -> void:
 
 	if !active:
 
@@ -461,7 +481,8 @@ func _on_item_equipped(equipment_data: EquipmentData) -> void:
 
 
 
-func _on_item_unequipped(equipment_data: EquipmentData) -> void:
+
+func _on_item_unequipped(equipment_data: ItemData) -> void:
 
 	if !active:
 
@@ -478,10 +499,6 @@ func _on_item_unequipped(equipment_data: EquipmentData) -> void:
 
 
 func _on_item_data_added(item_data: ItemData) -> void:
-
-	if !active: 
-
-		return
 
 	_add_item_row(item_data)
 
@@ -543,3 +560,23 @@ func _on_gold_count_changed(_amount: int, _new_count: int, _added: bool) -> void
 		return
 
 	_update_gold_count_label()
+
+
+
+func _on_player_new_item_list_updated(item_data: ItemData) -> void:
+
+	var row: InventoryItemRow = null
+
+	var item_def = item_data.get_item_def()
+
+	var current_item_data = inventory.get_item_data_with_def(item_def)
+
+	if current_item_data == null:
+
+		row = _add_item_row(item_data)
+
+	else:
+
+		row = item_row_registry[current_item_data]
+
+	row.set_seen_state(false)

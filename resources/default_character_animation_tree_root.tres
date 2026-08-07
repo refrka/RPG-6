@@ -359,12 +359,11 @@ states/DefaultState/position = Vector2(317.30588, 163.20816)
 states/End/position = Vector2(746.6666, 289.80518)
 states/Start/position = Vector2(91.11111, 163.24913)
 transitions = ["Start", "DefaultState", SubResource("AnimationNodeStateMachineTransition_r7dde"), "DefaultState", "CombatState", SubResource("AnimationNodeStateMachineTransition_f6s35"), "CombatState", "DefaultState", SubResource("AnimationNodeStateMachineTransition_djdsn")]
-graph_offset = Vector2(-86, 46)
+graph_offset = Vector2(-203, -72)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_ayqi1"]
 
 [resource]
-graph_offset = Vector2(-121.82743, -54.255306)
 nodes/output/position = Vector2(711.11115, 200)
 nodes/RootState/node = SubResource("AnimationNodeStateMachine_jxnld")
 nodes/RootState/position = Vector2(177.77779, 111.111115)

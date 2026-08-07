@@ -65,6 +65,8 @@ func clear() -> void:
 func add_data(new_item_data: ItemData) -> bool:
 
 	var item_def = new_item_data.get_item_def()
+
+	print("add data")
 	
 	var item_data = get_item_data_with_def(item_def)
 

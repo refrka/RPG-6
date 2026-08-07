@@ -156,7 +156,7 @@ func drop_items(item_list: Dictionary[ItemDef, int], origin_pos: Vector2) -> voi
 
 	var location = Scenes.get_active_location()
 
-	var radius = 16.0
+	var radius = 32.0
 
 	var initial_drop_position = origin_pos + Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
 
@@ -188,7 +188,13 @@ func drop_items(item_list: Dictionary[ItemDef, int], origin_pos: Vector2) -> voi
 
 		while center_distance > radius or previous_distance < radius:
 
+			previous_drop_position = current_drop_position
+
 			current_drop_position = origin_pos + Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
+
+			center_distance = origin_pos.distance_to(current_drop_position)
+
+			previous_distance = previous_drop_position.distance_to(current_drop_position)
 		
 		location.add_item_node(item_node, current_drop_position)
 

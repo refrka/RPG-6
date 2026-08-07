@@ -19,6 +19,7 @@ class_name ProfilePanel extends Overlay
 
 
 
+
 func _ready() -> void:
 
 	Events.subscribe(GameStartedEvent, _on_game_started)

@@ -143,20 +143,31 @@ func spawn_entity_node(entity_node: EntityNode, spawn_id: StringName) -> void:
 
 
 
-
-func add_item_node(item_node: DroppedItemNode, target_position: Vector2) -> void:
-
-	item_root.add_child(item_node)
-
-	item_node.global_position = target_position
-
-
-
-
-
 func remove_entity_node(entity_node: EntityNode) -> void:
 
 	_remove_entity(entity_node)
+
+
+
+
+
+func add_item_node(item_node: DroppedItemNode, target_position: Vector2) -> void:
+
+	item_root.add_child.call_deferred(item_node)
+
+	item_node.global_position = target_position
+
+	item_node.picked_up.connect(_on_item_picked_up.bind(item_node))
+
+
+
+
+func remove_item_node(item_node: DroppedItemNode) -> void:
+
+	_remove_item(item_node)
+
+
+
 
 
 
@@ -464,6 +475,12 @@ func _remove_entity(entity_node: EntityNode) -> void:
 
 
 
+func _remove_item(item_node: DroppedItemNode) -> void:
+
+	item_root.remove_child.call_deferred(item_node)
+
+
+
 
 
 
@@ -542,3 +559,10 @@ func _deactivate() -> void:
 func _on_entity_died(entity_node: EntityNode) -> void:
 
 	_remove_entity.call_deferred(entity_node)
+
+
+
+
+func _on_item_picked_up(item_node: DroppedItemNode) -> void:
+
+	_remove_item(item_node)

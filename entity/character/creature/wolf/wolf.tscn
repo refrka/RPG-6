@@ -7,23 +7,22 @@
 [ext_resource type="Script" uid="uid://dbw06dfsqcft0" path="res://item/item_def.gd" id="4_r3b01"]
 [ext_resource type="Resource" uid="uid://b83tuuqrbxn4v" path="res://equipment/weapon/ranged/bows/short_bow_def.tres" id="5_06stv"]
 [ext_resource type="Script" uid="uid://djdgtjx6g6o5n" path="res://item/loot_set.gd" id="6_73eqf"]
+[ext_resource type="Resource" uid="uid://c45cjn8f8wgi8" path="res://equipment/weapon/melee/swords/rusty_iron_sword_def.tres" id="6_ndsfp"]
+[ext_resource type="Resource" uid="uid://b8mgfim7ywh8s" path="res://item/material/flint_shard_def.tres" id="7_73eqf"]
 [ext_resource type="Script" uid="uid://ryqb8exiuir6" path="res://item/loot_table.gd" id="7_ccket"]
 
-[sub_resource type="Resource" id="Resource_7abqf"]
-script = ExtResource("6_73eqf")
-item_list = Dictionary[ExtResource("4_r3b01"), int]({
-ExtResource("5_06stv"): 1
-})
-metadata/_custom_type_script = "uid://djdgtjx6g6o5n"
-
-[sub_resource type="Resource" id="Resource_cj4xl"]
+[sub_resource type="Resource" id="Resource_06stv"]
 script = ExtResource("3_06stv")
-loot_sets = Array[ExtResource("6_73eqf")]([SubResource("Resource_7abqf")])
+item_list = Dictionary[ExtResource("4_r3b01"), int]({
+ExtResource("5_06stv"): 1,
+ExtResource("6_ndsfp"): 1,
+ExtResource("7_73eqf"): 2
+})
 metadata/_custom_type_script = "uid://crkpvnuarvpb8"
 
-[sub_resource type="Resource" id="Resource_1k8s8"]
+[sub_resource type="Resource" id="Resource_r3b01"]
 script = ExtResource("7_ccket")
-entries = Array[ExtResource("3_06stv")]([SubResource("Resource_cj4xl")])
+entries = Array[ExtResource("3_06stv")]([SubResource("Resource_06stv")])
 metadata/_custom_type_script = "uid://ryqb8exiuir6"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxnld"]
@@ -206,7 +205,7 @@ _data = {
 
 [node name="Wolf" unique_id=639653512 instance=ExtResource("1_vflfw")]
 entity_def = ExtResource("2_xw4qa")
-death_loot_table = SubResource("Resource_1k8s8")
+death_loot_table = SubResource("Resource_r3b01")
 
 [node name="BodySprite" parent="VisualRoot" parent_id_path=PackedInt32Array(93121259) index="0" unique_id=1905262643]
 position = Vector2(0, -16)

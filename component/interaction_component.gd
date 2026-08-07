@@ -26,6 +26,8 @@ func _initialize(_entity: EntityNode = null) -> void:
 
 	sensor.setup(entity)
 
+	sensor.body_entered.connect(_on_body_entered_sensor)
+
 	var input_component = entity.get_component(InputComponent)
 
 	if !input_component:
@@ -108,6 +110,17 @@ func _complete_interaction() -> void:
 
 
 
+
+func _pick_up(item_node: DroppedItemNode) -> void:
+
+	var player = Game.get_player()
+
+	player.inventory.add_data(item_node.item_data)
+
+	item_node.pick_up()
+
+
+
 	
 
 func _on_interact_pressed() -> void:
@@ -149,3 +162,14 @@ func _on_interact_released() -> void:
 func _on_interaction_ended() -> void:
 
 	_complete_interaction()
+
+
+
+
+func _on_body_entered_sensor(body: PhysicsBody2D) -> void:
+
+	if body is DroppedItemNode:
+
+		# _pick_up(body)
+
+		pass
