@@ -39,8 +39,6 @@ func _enter() -> void:
 
 		if navigation_component.has_destination():
 
-			print("mim has a destination")
-
 			entity.state_machine.request_state(MovingState)
 
 			return

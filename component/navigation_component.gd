@@ -118,8 +118,6 @@ func has_destination() -> bool:
 
 		return false
 
-	print("has_destination() check: ", entity.nav_agent.target_position)
-
 	return entity.nav_agent.target_position != entity.global_position
 
 
@@ -150,8 +148,6 @@ func _set_track_timer() -> void:
 func _on_target_reached() -> void:
 
 	entity.nav_agent.target_position = entity.global_position
-
-	print("setting target position to self's pos: ", entity.global_position)
 
 	target_pos_reached.emit()
 

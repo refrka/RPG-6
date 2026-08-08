@@ -65,8 +65,6 @@ func clear() -> void:
 func add_data(new_item_data: ItemData) -> bool:
 
 	var item_def = new_item_data.get_item_def()
-
-	print("add data")
 	
 	var item_data = get_item_data_with_def(item_def)
 
@@ -80,9 +78,19 @@ func add_data(new_item_data: ItemData) -> bool:
 
 	else:
 
-		item_data.merge(new_item_data)
+		if item_data.can_merge(new_item_data):
 
-		return false
+			item_data.merge(new_item_data)
+
+			return false
+
+		else:
+
+			_connect_item_data(new_item_data)
+
+			_add_item_data(new_item_data)
+
+			return true
 
 
 
@@ -120,7 +128,17 @@ func add_items(item_def: ItemDef, amount:= 1) -> void:
 
 	else:
 
-		item_data.add_amount(amount)
+		if item_data.can_stack(amount):
+
+			item_data.add_amount(amount)
+
+		else:
+
+			item_data = Items.create_item_data(item_def)
+
+			_connect_item_data(item_data)
+
+			_add_item_data(item_data)
 	
 
 

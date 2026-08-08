@@ -2,6 +2,10 @@ extends Node
 
 
 
+@onready var projectile_node_scene = preload("res://entity/object/projectiles/projectile_node.tscn")
+
+
+
 var def_registry: Dictionary[StringName, EntityDef]
 
 
@@ -105,6 +109,8 @@ func create_entity_node(entity_def: EntityDef) -> EntityNode:
 		return load(entity_def.scene_path).instantiate()
 
 	return null
+
+
 
 
 

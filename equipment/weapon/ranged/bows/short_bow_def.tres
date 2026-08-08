@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://sxurmka77ba" path="res://equipment/projectile/projectile_def.gd" id="1_fdgb3"]
 [ext_resource type="Script" uid="uid://cvraks0mg5xwi" path="res://combat/attack_def.gd" id="2_bbin8"]
 [ext_resource type="Texture2D" uid="uid://cjn8olmj6ns1g" path="res://equipment/weapon/ranged/bows/short_bow_icon.png" id="2_cj4xl"]
+[ext_resource type="Resource" uid="uid://cgow0cwci1fhv" path="res://equipment/projectile/arrows/wooden_arrow_def.tres" id="2_ogvbe"]
 [ext_resource type="Script" uid="uid://cgg7g58chm718" path="res://combat/attack_entry.gd" id="3_ogvbe"]
 [ext_resource type="Script" uid="uid://7xjlwi1lwti4" path="res://damage/damage_type.gd" id="4_7pcn7"]
 [ext_resource type="Script" uid="uid://dy0xa1iphl44y" path="res://combat/attack_config.gd" id="5_1lr03"]
@@ -24,6 +25,7 @@ metadata/_custom_type_script = "uid://dy0xa1iphl44y"
 
 [resource]
 script = ExtResource("1_cer15")
+allowed_projectiles = Array[ExtResource("1_fdgb3")]([ExtResource("2_ogvbe")])
 default_attack_config = SubResource("Resource_ndsfp")
 item_id = &"short_bow"
 display_name = "Short bow"

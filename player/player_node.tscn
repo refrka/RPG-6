@@ -9,6 +9,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://dan2olcnstvo6" path="res://animation/libraries/weapons/long_sword.res" id="8_2co6o"]
 [ext_resource type="AnimationLibrary" uid="uid://c3jgjhuvj83f1" path="res://animation/libraries/weapons/rusty_iron_sword.res" id="8_a3l2y"]
 [ext_resource type="Script" uid="uid://bj0gwmjascn1r" path="res://component/interaction_component.gd" id="8_rppns"]
+[ext_resource type="AnimationLibrary" uid="uid://dyj3aqovfpj8b" path="res://animation/libraries/weapons/short_bow.res" id="10_2co6o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0vw6r"]
 radius = 6.0
@@ -201,6 +202,7 @@ sensor = NodePath("../../InteractionSensor")
 libraries/long_sword = ExtResource("8_2co6o")
 libraries/player = SubResource("AnimationLibrary_0vw6r")
 libraries/rusty_iron_sword = ExtResource("8_a3l2y")
+libraries/short_bow = ExtResource("10_2co6o")
 
 [node name="AnimationTree" parent="." index="10" unique_id=953931177]
 parameters/RootState/CombatState/CombatAttackState/AttackTree/AttackState/IdleBlend/blend_position = Vector2(0.60417056, 0.4661746)

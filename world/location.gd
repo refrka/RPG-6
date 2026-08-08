@@ -134,7 +134,14 @@ func spawn_entity_node(entity_node: EntityNode, spawn_id: StringName) -> void:
 
 	assert(spawn_point != null, "Invalid spawn id: %s" % spawn_id)
 
-	entity_node.reposition(spawn_point.global_position)
+	add_entity_node(entity_node, spawn_point.global_position)
+
+
+
+
+func add_entity_node(entity_node: EntityNode, target_position: Vector2) -> void:
+
+	entity_node.reposition(target_position)
 
 	_add_entity(entity_node)
 
@@ -143,6 +150,8 @@ func spawn_entity_node(entity_node: EntityNode, spawn_id: StringName) -> void:
 	entity_node._activate()
 
 	entity_node.show()
+
+	
 
 
 
@@ -444,6 +453,8 @@ func _add_entity(entity_node: EntityNode, to_root:= true) -> void:
 
 	entity_node.died.connect(_on_entity_died.bind(entity_node))
 
+	entity_node.removal_requested.connect(_on_entity_removal_requested.bind(entity_node))
+
 	entity_added.emit(entity_node)
 
 
@@ -473,6 +484,8 @@ func _remove_entity(entity_node: EntityNode) -> void:
 		character_list.erase(entity_node)
 
 	entity_node.died.disconnect(_on_entity_died)
+
+	entity_node.removal_requested.disconnect(_on_entity_removal_requested)
 
 	entity_removed.emit(entity_node)
 
@@ -561,6 +574,12 @@ func _deactivate() -> void:
 
 
 func _on_entity_died(entity_node: EntityNode) -> void:
+
+	_remove_entity.call_deferred(entity_node)
+
+
+
+func _on_entity_removal_requested(entity_node: EntityNode) -> void:
 
 	_remove_entity.call_deferred(entity_node)
 

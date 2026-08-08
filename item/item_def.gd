@@ -17,4 +17,4 @@ class_name ItemDef extends Resource
 
 @export var icon_texture: Texture2D
 
-@export var icon_y_pos: float
+@export var icon_y_offset: float

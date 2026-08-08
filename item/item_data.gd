@@ -112,6 +112,23 @@ func is_empty() -> bool:
 
 
 
+func can_stack(amount: int) -> bool:
+
+	return true
+
+
+
+func can_merge(incoming_item_data: ItemData) -> bool:
+
+	if item_def != incoming_item_data.get_item_def():
+
+		return false
+
+	return true
+
+
+
+
 func merge(item_data: ItemData) -> void:
 
 	if item_def != item_data.get_item_def():

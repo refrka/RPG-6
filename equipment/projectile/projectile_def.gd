@@ -13,4 +13,4 @@ enum ProjectileType {
 
 @export var projectile_type: ProjectileType
 
-@export var projectile_texture: Texture2D
+@export var projectile_object_def: ProjectileObjectDef

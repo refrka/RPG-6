@@ -161,8 +161,23 @@ func attack() -> void:
 
 func fire_projectile() -> void:
 
-	pass
+	var player = Game.get_player()
 
+	var weapon_data = player.inventory.get_equipment(EquipmentDef.EquipmentType.WEAPON)
+
+	var projectile_data = weapon_data.projectile_data
+
+	var projectile_def = projectile_data.get_item_def()
+
+	var projectile_node = ProjectileNode.create_node(projectile_def)
+
+	var active_location = Scenes.get_active_location()
+
+	active_location.add_entity_node(projectile_node, entity.global_position)
+
+	var projectile_component = projectile_node.get_component(ProjectileComponent)
+
+	projectile_component.set_trajectory.call_deferred(current_attack_dir)
 
 
 

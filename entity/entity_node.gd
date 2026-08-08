@@ -1,5 +1,10 @@
 class_name EntityNode extends PhysicsBody2D
 
+
+@warning_ignore("unused_signal")
+
+signal removal_requested
+
 signal died
 
 
@@ -70,7 +75,9 @@ func _initialize() -> bool:
 
 		state_machine.setup(self)
 
-	body_hurtbox.setup(self)
+	if body_hurtbox:
+
+		body_hurtbox.setup(self)
 
 	_deactivate()
 
@@ -263,7 +270,7 @@ func _on_health_depleted(final_damage_package: DamagePackage) -> void:
 
 func _update_node() -> void:
 
-	pass
+	body_sprite.texture = entity_def.body_texture
 
 
 

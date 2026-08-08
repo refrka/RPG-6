@@ -8,7 +8,7 @@ signal projectile_unequipped
 
 
 
-var projectile_data: ItemData
+@export var projectile_data: ItemData
 
 
 
@@ -40,6 +40,30 @@ func unequip_projectile_data() -> ItemData:
 
 	return _projectile_data
 
+
+
+
+func can_stack(amount: int) -> bool:
+
+	if projectile_data:
+
+		return false
+
+	return true
+
+
+
+func can_merge(incoming_item_data: ItemData) -> bool:
+
+	if !super(incoming_item_data) or not incoming_item_data is EquipmentData:
+
+		return false
+
+	if projectile_data or incoming_item_data.projectile_data:
+
+		return false
+
+	return true
 
 
 
