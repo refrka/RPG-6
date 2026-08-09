@@ -39,110 +39,110 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("VisualRoot/BodySprite:flip_h")
+tracks/1/path = NodePath("VisualRoot/CombatVisualRoot/CombatSprite:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [null]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("VisualRoot/CombatVisualRoot/CombatSprite:texture")
+tracks/2/path = NodePath("VisualRoot/CombatVisualRoot/CombatSprite:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [null]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("VisualRoot/CombatVisualRoot/CombatSprite:visible")
+tracks/3/path = NodePath("VisualRoot/CombatVisualRoot/CombatSprite:hframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [1]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("VisualRoot/CombatVisualRoot/CombatSprite:hframes")
+tracks/4/path = NodePath("CombatRoot/CombatHitbox/HitboxCollisionShape:shape")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [null]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("CombatRoot/CombatHitbox/HitboxCollisionShape:shape")
+tracks/5/path = NodePath("CombatRoot/CombatHitbox/HitboxCollisionShape:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [null]
+"update": 0,
+"values": [Vector2(17, -0.5)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("CombatRoot/CombatHitbox/HitboxCollisionShape:position")
+tracks/6/path = NodePath("VisualRoot/BodySprite:offset")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(17, -0.5)]
+"values": [Vector2(0, 0)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("VisualRoot/BodySprite:offset")
+tracks/7/path = NodePath("VisualRoot/BodySprite:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("VisualRoot/BodySprite:modulate")
+tracks/8/path = NodePath("VisualRoot/CombatVisualRoot/CombatSprite:frame")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [0]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("VisualRoot/CombatVisualRoot/CombatSprite:frame")
+tracks/9/path = NodePath("VisualRoot:scale:x")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_1ndw8"]
@@ -181,14 +181,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("VisualRoot/BodySprite:flip_h")
+tracks/1/path = NodePath("VisualRoot:scale:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [-1.0]
 }
 
 [sub_resource type="Animation" id="Animation_v5a44"]
@@ -209,14 +209,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("VisualRoot/BodySprite:flip_h")
+tracks/1/path = NodePath("VisualRoot:scale:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_drewb"]
@@ -236,14 +236,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("VisualRoot/BodySprite:flip_h")
+tracks/1/path = NodePath("VisualRoot:scale:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [-1.0]
 }
 
 [sub_resource type="Animation" id="Animation_y4ox8"]
@@ -263,14 +263,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("VisualRoot/BodySprite:flip_h")
+tracks/1/path = NodePath("VisualRoot:scale:x")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [1.0]
 }
 
 [sub_resource type="Animation" id="Animation_bdrfb"]
@@ -312,15 +312,17 @@ _data = {
 &"shake": SubResource("Animation_bdrfb")
 }
 
-[node name="CharacterNode" type="CharacterBody2D" unique_id=639653512 node_paths=PackedStringArray("vision_sensor", "body_sprite", "body_collision", "body_hurtbox", "state_machine", "component_root", "nav_agent")]
+[node name="CharacterNode" type="CharacterBody2D" unique_id=639653512 node_paths=PackedStringArray("vision_sensor", "visual_root", "body_sprite", "body_collision", "body_hurtbox", "combat_hitbox", "state_machine", "component_root", "nav_agent")]
 y_sort_enabled = true
 collision_mask = 771
 motion_mode = 1
 script = ExtResource("1_ioq1x")
 vision_sensor = NodePath("VisionSensor")
+visual_root = NodePath("VisualRoot")
 body_sprite = NodePath("VisualRoot/BodySprite")
 body_collision = NodePath("BodyCollision")
 body_hurtbox = NodePath("BodyHurtbox")
+combat_hitbox = NodePath("CombatRoot/CombatHitbox")
 state_machine = NodePath("StateMachine")
 component_root = NodePath("ComponentRoot")
 nav_agent = NodePath("NavigationAgent2D")
@@ -333,6 +335,8 @@ nav_agent = NodePath("NavigationAgent2D")
 
 [node name="CombatSprite" type="Sprite2D" parent="VisualRoot/CombatVisualRoot" unique_id=870454535]
 visible = false
+rotation = 3.1415927
+scale = Vector2(1, -1)
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1462622998]
 

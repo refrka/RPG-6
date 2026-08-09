@@ -159,6 +159,7 @@ func attack() -> void:
 
 
 
+
 func fire_projectile() -> void:
 
 	var player = Game.get_player()
@@ -171,6 +172,8 @@ func fire_projectile() -> void:
 
 	var projectile_node = ProjectileNode.create_node(projectile_def)
 
+	projectile_node.projectile_owner = entity
+
 	var active_location = Scenes.get_active_location()
 
 	active_location.add_entity_node(projectile_node, entity.global_position)
@@ -178,6 +181,13 @@ func fire_projectile() -> void:
 	var projectile_component = projectile_node.get_component(ProjectileComponent)
 
 	projectile_component.set_trajectory.call_deferred(current_attack_dir)
+
+	projectile_node.rotation = current_attack_dir.angle()
+
+	projectile_node.global_position = combat_root.global_position
+
+
+
 
 
 
@@ -188,6 +198,8 @@ func assign_combat_target(_target_entity: EntityNode) -> void:
 		_enter_combat()
 
 	_set_target_entity(_target_entity)
+
+
 
 
 
@@ -534,7 +546,7 @@ func _get_attack_direction() -> Vector2:
 
 	if entity is PlayerNode:
 
-		return Game.get_mouse_direction()
+		return combat_root.global_position.direction_to(Game.get_mouse_position())
 
 	if target_entity:
 

@@ -32,5 +32,5 @@ display_name = "Short bow"
 description = "A stupid fucking shor t fucking bow that rides the dumb short bus idiiot bow"
 gold_value = 99999
 icon_texture = ExtResource("2_cj4xl")
-icon_y_pos = -12.0
+body_y_offset = -12.0
 metadata/_custom_type_script = "uid://decp4b3nq6lcd"

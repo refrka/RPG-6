@@ -23,6 +23,10 @@ class_name EntityDef extends Resource
 
 @export var base_max_health:= 1.0
 
-@export var body_texture: Texture2D
+@export var body_texture: Texture2D 
 
 @export var body_y_offset: float
+
+@export var body_collision_shape: Shape2D
+
+@export var body_collision_position: Vector2

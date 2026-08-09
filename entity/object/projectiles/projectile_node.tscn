@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://br6a7176gci6n" path="res://entity/object/object_def.gd" id="2_v0tis"]
 [ext_resource type="Script" uid="uid://bi8xvbsytvcmc" path="res://state/idle_state.gd" id="3_v0tis"]
 [ext_resource type="Script" uid="uid://bapxh7cmbif0o" path="res://component/health_component.gd" id="4_8yhj1"]
+[ext_resource type="PackedScene" uid="uid://c56hyesjgisro" path="res://system/hitbox.tscn" id="4_lgjjj"]
 [ext_resource type="Script" uid="uid://b6tp1x66mfqqm" path="res://component/projectile_component.gd" id="7_v0tis"]
 [ext_resource type="Script" uid="uid://vq7ef14ysbcp" path="res://component/movement_component.gd" id="8_8yhj1"]
 
@@ -13,22 +14,27 @@
 script = ExtResource("2_v0tis")
 metadata/_custom_type_script = "uid://br6a7176gci6n"
 
-[node name="ProjectileNode" type="CharacterBody2D" unique_id=1330267497 node_paths=PackedStringArray("screen_notifier", "body_sprite", "body_collision", "component_root")]
+[node name="ProjectileNode" type="CharacterBody2D" unique_id=1330267497 node_paths=PackedStringArray("screen_notifier", "visual_root", "body_sprite", "body_collision", "combat_hitbox", "component_root")]
+collision_layer = 16
+collision_mask = 259
 script = ExtResource("1_ojolo")
 screen_notifier = NodePath("VisibleOnScreenNotifier2D")
 entity_def = SubResource("Resource_wi3e1")
+visual_root = NodePath("VisualRoot")
 body_sprite = NodePath("VisualRoot/BodySprite")
 body_collision = NodePath("BodyCollision")
+combat_hitbox = NodePath("CombatHitbox")
 component_root = NodePath("ComponentRoot")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=377820276]
-y_sort_enabled = true
 
 [node name="BodySprite" type="Sprite2D" parent="VisualRoot" unique_id=250216188]
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=2140345495]
 
 [node name="BodyHurtbox" parent="." unique_id=302794627 instance=ExtResource("1_2sc2o")]
+
+[node name="CombatHitbox" parent="." unique_id=1542851543 instance=ExtResource("4_lgjjj")]
 
 [node name="StateMachine" type="Node" parent="." unique_id=324279800 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_ojolo")
@@ -54,3 +60,4 @@ metadata/_custom_type_script = "uid://vq7ef14ysbcp"
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=358093897]
 
 [editable path="BodyHurtbox"]
+[editable path="CombatHitbox"]

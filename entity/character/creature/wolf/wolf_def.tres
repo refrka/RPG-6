@@ -55,12 +55,12 @@ metadata/_custom_type_script = "uid://dy0xa1iphl44y"
 
 [resource]
 script = ExtResource("1_dwess")
-move_speed = 150
 melee_attack_config = SubResource("Resource_rppns")
 entity_id = &"wolf"
 display_name = "Wolf"
 scene_path = "res://entity/character/creature/wolf/wolf.tscn"
 behavior_profile = SubResource("Resource_86odk")
 default_inventory = SubResource("Resource_k54sq")
+move_speed = 150
 base_max_health = 15.0
 metadata/_custom_type_script = "uid://d2ougu0lbgskp"

@@ -299,6 +299,10 @@ func get_all_spawn_points() -> Array[SpawnPoint]:
 
 func has_entity_node(entity_node: EntityNode) -> bool:
 
+	if entity_node is ProjectileNode:
+
+		return get_children().has(entity_node)
+
 	if entity_node is ObjectNode:
 
 		return object_list.has(entity_node)
@@ -415,7 +419,11 @@ func _add_entity(entity_node: EntityNode, to_root:= true) -> void:
 
 	var list = []
 
-	if entity_node is ObjectNode:
+	if entity_node is ProjectileNode:
+
+		root = self
+
+	elif entity_node is ObjectNode:
 
 		root = object_root
 
@@ -467,7 +475,11 @@ func _remove_entity(entity_node: EntityNode) -> void:
 
 		return
 
-	if entity_node is ObjectNode:
+	if entity_node is ProjectileNode:
+
+		remove_child(entity_node)
+
+	elif entity_node is ObjectNode:
 
 		if entity_node.get_parent() == object_root:
 

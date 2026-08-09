@@ -19,11 +19,15 @@ signal died
 
 @export_group("Node References")
 
+@export var visual_root: Node2D
+
 @export var body_sprite: Sprite2D
 
 @export var body_collision: CollisionShape2D
 
 @export var body_hurtbox: Hurtbox
+
+@export var combat_hitbox: Hitbox
 
 @export var state_machine: StateMachine
 
@@ -39,6 +43,11 @@ var active:= false
 var initialized:= false
 
 var authored:= false
+
+
+
+
+var added_visual_nodes: Array[Node2D]
 
 
 
@@ -104,6 +113,27 @@ func accept_hit(damage_package: DamagePackage) -> bool:
 		return true
 
 	return false
+
+
+
+
+
+
+func add_visual_node(visual_node: Node2D) -> void:
+
+	if visual_node.get_parent() != null:
+
+		visual_node.reparent(visual_root)
+
+	else:
+
+		visual_root.add_child(visual_node)
+
+	added_visual_nodes.append(visual_node)
+
+	if visual_node is EntityNode:
+
+		visual_node.removal_requested.connect(_on_added_visual_node_removal_requested.bind(visual_node))
 
 
 
@@ -262,6 +292,14 @@ func _on_health_depleted(final_damage_package: DamagePackage) -> void:
 
 
 
+
+
+
+func _on_added_visual_node_removal_requested(visual_node: EntityNode) -> void:
+
+	added_visual_nodes.erase(visual_node)
+
+	visual_node.queue_free.call_deferred()
 
 
 

@@ -30,11 +30,11 @@ metadata/_custom_type_script = "uid://bpekxy4h5arnf"
 
 [resource]
 script = ExtResource("1_yhcot")
-move_speed = 75
 unique_id = &"ap"
 entity_id = &"ap"
 display_name = "Ap"
 scene_path = "res://entity/character/npc/ap/ap.tscn"
 dialogue_library = SubResource("Resource_m0nle")
+move_speed = 75
 base_max_health = 12.0
 metadata/_custom_type_script = "uid://dhjomb443iolq"

@@ -121,6 +121,7 @@ dodge={
 2d_physics/layer_2="ObjectNode"
 2d_physics/layer_3="PlayerNode"
 2d_physics/layer_4="DroppedItemNode"
+2d_physics/layer_5="ProjectileNode"
 2d_physics/layer_9="TileMapImpassable"
 2d_physics/layer_10="TileMapWater"
 2d_physics/layer_13="Hitbox"

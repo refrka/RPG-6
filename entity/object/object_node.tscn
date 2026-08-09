@@ -9,11 +9,12 @@
 [ext_resource type="Script" uid="uid://7nntd7c7ifji" path="res://component/animation_component.gd" id="6_dfdob"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://dv445kgvj0a7j" path="res://resources/default_object_animation_tree_root.tres" id="6_ljcyf"]
 
-[node name="ObjectNode" type="StaticBody2D" unique_id=188428736 node_paths=PackedStringArray("body_sprite", "body_collision", "body_hurtbox", "state_machine", "component_root")]
+[node name="ObjectNode" type="StaticBody2D" unique_id=188428736 node_paths=PackedStringArray("visual_root", "body_sprite", "body_collision", "body_hurtbox", "state_machine", "component_root")]
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_iy5f5")
+visual_root = NodePath("VisualRoot")
 body_sprite = NodePath("VisualRoot/BodySprite")
 body_collision = NodePath("BodyCollision")
 body_hurtbox = NodePath("BodyHurtbox")
@@ -21,7 +22,6 @@ state_machine = NodePath("StateMachine")
 component_root = NodePath("ComponentRoot")
 
 [node name="VisualRoot" type="Node2D" parent="." unique_id=866277596]
-y_sort_enabled = true
 
 [node name="BodySprite" type="Sprite2D" parent="VisualRoot" unique_id=1622163974]
 

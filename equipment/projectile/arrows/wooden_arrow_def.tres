@@ -4,6 +4,12 @@
 [ext_resource type="Script" uid="uid://sxurmka77ba" path="res://equipment/projectile/projectile_def.gd" id="1_x6ov8"]
 [ext_resource type="Script" uid="uid://881trtujeoxe" path="res://entity/object/projectiles/projectile_object_def.gd" id="2_wi3e1"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wi3e1"]
+size = Vector2(15, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t0heg"]
+size = Vector2(3, 3)
+
 [sub_resource type="Resource" id="Resource_8yhj1"]
 script = ExtResource("2_wi3e1")
 entity_id = &"wooden_arrow_projectile"
@@ -13,8 +19,11 @@ metadata/_custom_type_script = "uid://881trtujeoxe"
 [resource]
 script = ExtResource("1_x6ov8")
 projectile_object_def = SubResource("Resource_8yhj1")
+hitbox_collision_shape = SubResource("RectangleShape2D_t0heg")
+hitbox_position = Vector2(6.5, -0.5)
 item_id = &"wooden_arrow"
 display_name = "Wooden arow"
 description = "A standard arrow  with a wooden shaft."
 icon_texture = ExtResource("1_jxblh")
+body_collision_shape = SubResource("RectangleShape2D_wi3e1")
 metadata/_custom_type_script = "uid://sxurmka77ba"
