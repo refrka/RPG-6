@@ -9,13 +9,10 @@ var target_entity: EntityNode
 
 var target_interactable_component: InteractableComponent
 
+var interaction_timer:= 0.0
 
 
 
-
-func _ready() -> void:
-
-	process_mode = Node.PROCESS_MODE_DISABLED
 
 
 
@@ -45,48 +42,69 @@ func _initialize(_entity: EntityNode = null) -> void:
 
 func _try_interaction(_target_entity: EntityNode) -> void:
 
-	var interactable_component = _target_entity.get_component(InteractableComponent)
+	if _is_interacting() and target_interactable_component._can_end():
 
-	if !interactable_component:
+		_end_interaction()
 
-		return
+	else:
 
-	if !interactable_component._can_interact():
+		var interactable_component = _target_entity.get_component(InteractableComponent)
 
-		if interactable_component is LootContainerComponent and !interactable_component.can_unlock(entity):
-
-			UI.show_popup(GamePopup.PopupMode.CONTINUE, "This container is locked")
+		if !interactable_component:
 
 			return
 
-	target_entity = _target_entity
+		if !interactable_component._can_interact():
 
-	target_interactable_component = interactable_component
+			if interactable_component is LootContainerComponent and !interactable_component.can_unlock(entity):
 
-	_start_interaction.call_deferred()
+				UI.show_popup(GamePopup.PopupMode.CONTINUE, "This container is locked")
+
+				return
+
+		target_entity = _target_entity
+
+		target_interactable_component = interactable_component
+
+		_start_interaction.call_deferred()
 
 
 
 
 func _start_interaction() -> void:
 
+	entity.state_machine.request_state(InteractingState)
+
 	if target_interactable_component._interact():
 
-		target_interactable_component.interaction_ended.connect(_on_interaction_ended, CONNECT_ONE_SHOT)
+		if target_interactable_component.duration > 0.0:
 
-		entity.state_machine.request_state(InteractingState)
+			interaction_timer = target_interactable_component.duration
+
+			target_interactable_component.interaction_ended.connect(_on_interaction_ended, CONNECT_ONE_SHOT)
+
+		else:
+
+			_end_interaction()
+
+	else:
+
+		_execute_interaction()
+
 
 
 
 
 func _execute_interaction() -> void:
 
-	pass
+	target_interactable_component._execute()
 
 
 
 
 func _cancel_interaction() -> void:
+
+	target_interactable_component.interaction_ended.disconnect(_on_interaction_ended)
 
 	_end_interaction()
 
@@ -95,11 +113,11 @@ func _cancel_interaction() -> void:
 
 func _end_interaction() -> void:
 
-	if target_interactable_component._can_end():
+	interaction_timer = 0.0
 
-		entity.state_machine.request_state(IdleState)
+	entity.state_machine.request_state(IdleState)
 
-		target_interactable_component._end()
+	target_interactable_component._end()
 
 
 
@@ -122,6 +140,21 @@ func _pick_up(item_node: DroppedItemNode) -> void:
 	player.inventory.add_data(item_node.item_data)
 
 	item_node.pick_up()
+
+
+
+
+
+func _is_interacting() -> bool:
+
+	return entity.state_machine.get_current_state() is InteractingState
+
+
+
+
+
+
+
 
 
 
@@ -157,8 +190,9 @@ func _on_interact_pressed() -> void:
 
 func _on_interact_released() -> void:
 
-	pass
+	if interaction_timer > 0.0 and _is_interacting():
 
+		_cancel_interaction()
 
 
 
@@ -177,3 +211,20 @@ func _on_body_entered_sensor(body: PhysicsBody2D) -> void:
 		# _pick_up(body)
 
 		pass
+
+
+
+
+
+
+
+
+func _process(delta: float) -> void:
+
+	if interaction_timer > 0.0:
+
+		interaction_timer -= delta
+
+		if interaction_timer <= 0.0:
+
+			_execute_interaction()

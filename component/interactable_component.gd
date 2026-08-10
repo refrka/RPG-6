@@ -36,8 +36,7 @@ func _ready() -> void:
 
 
 
-
-func _interact() -> bool:
+func _execute() -> void:
 
 	for conditional_command_set in interaction_conditionals:
 
@@ -51,9 +50,15 @@ func _interact() -> bool:
 
 		Dialogue.start_dialogue(dialogue_nodes, entity)
 
-		return true
 
-	return false
+
+
+
+## Return true when duration is required
+func _interact() -> bool:
+
+	return duration > 0.0
+
 
 
 

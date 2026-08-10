@@ -20,8 +20,7 @@ func _can_interact() -> bool:
 
 
 
-
-func _interact() -> bool:
+func _execute() -> void:
 
 	_set_harvested_state(true)
 
@@ -29,7 +28,8 @@ func _interact() -> bool:
 
 	Game.drop_items(loot_list, entity.global_position)
 
-	return false
+	interaction_ended.emit()
+
 
 
 
