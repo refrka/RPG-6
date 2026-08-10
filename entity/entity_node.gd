@@ -72,7 +72,7 @@ func _initialize() -> bool:
 
 	if entity_def.default_inventory:
 
-		inventory = entity_def.default_inventory.duplicate()
+		inventory = entity_def.default_inventory.duplicate(true)
 
 		inventory._initialize()
 

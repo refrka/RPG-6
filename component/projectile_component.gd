@@ -16,6 +16,8 @@ var expire_timer: SceneTreeTimer
 
 
 
+
+
 func _initialize(_entity: EntityNode) -> void:
 
 	super(_entity)
@@ -53,7 +55,7 @@ func _on_hit_detected(entity_node: EntityNode) -> void:
 
 	hit_detected.emit(entity_node)
 
-	entity_node.add_visual_node.call_deferred(entity)
+	# entity_node.add_visual_node.call_deferred(entity)
 
 	movement_component.halt()
 

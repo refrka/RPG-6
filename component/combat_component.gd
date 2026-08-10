@@ -174,6 +174,8 @@ func fire_projectile() -> void:
 
 	projectile_node.projectile_owner = entity
 
+	projectile_node.damage_package = _get_damage_package() 
+
 	var active_location = Scenes.get_active_location()
 
 	active_location.add_entity_node(projectile_node, entity.global_position)

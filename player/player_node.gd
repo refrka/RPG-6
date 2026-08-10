@@ -10,7 +10,9 @@ var active_location: Location
 
 func _initialize() -> bool:
 
-	super()
+	if !super():
+
+		return false
 
 	Events.subscribe(PlayerEnteredLocationEvent, _on_player_entered_location)
 

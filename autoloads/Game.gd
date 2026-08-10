@@ -64,6 +64,8 @@ func restart() -> void:
 
 func start(save_id: StringName) -> void:
 
+	print(get_player().get_entity_def().default_inventory.item_list)
+
 	var save_data = Saves.load_save_data(save_id)
 
 	if !save_data:
@@ -89,6 +91,8 @@ func start(save_id: StringName) -> void:
 
 
 func end() -> void:
+
+	print(get_player().get_entity_def().default_inventory.item_list)
 
 	Events.fire(GameEndingEvent)
 
@@ -329,6 +333,10 @@ func _load_game(save_data: SaveData) -> void:
 	player.active_location = location
 
 	if first_load:
+
+		player.inventory = player.entity_def.default_inventory.duplicate()
+
+		player.inventory._initialize()
 
 		Events.fire(PlayerEnteredLocationEvent, {"location": location})
 

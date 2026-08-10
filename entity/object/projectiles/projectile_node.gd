@@ -7,6 +7,8 @@ var projectile_def: EquipmentDef
 
 var projectile_owner: EntityNode
 
+var damage_package: DamagePackage
+
 
 
 
@@ -76,7 +78,9 @@ func _on_screen_exited() -> void:
 
 func _on_projectile_hit_detected(target_entity: EntityNode) -> void:
 
-	pass
+	target_entity.accept_hit(damage_package)
+
+	removal_requested.emit.call_deferred()
 	
 
 
