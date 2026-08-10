@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ObjectDef" format=3 uid="uid://rl87nqy3twlg"]
+
+[ext_resource type="Script" uid="uid://br6a7176gci6n" path="res://entity/object/object_def.gd" id="1_uc4r2"]
+
+[resource]
+script = ExtResource("1_uc4r2")
+entity_id = &"berry_bush"
+display_name = "Berry bush"
+scene_path = "res://entity/object/resources/berry_bush.tscn"
+body_y_offset = -15.0
+metadata/_custom_type_script = "uid://br6a7176gci6n"

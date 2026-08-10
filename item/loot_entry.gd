@@ -19,9 +19,11 @@ func get_loot(roll: float) -> Dictionary[ItemDef, int]:
 
 		if roll <= loot_set.chance:
 
-			for item_def in loot_set.item_list:
+			var _loot = loot_set.get_loot()
 
-				var count = loot_set.item_list[item_def]
+			for item_def in _loot:
+
+				var count = _loot[item_def]
 
 				if !loot.has(item_def):
 

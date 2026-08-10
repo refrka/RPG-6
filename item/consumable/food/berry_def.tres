@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ConsumableDef" format=3 uid="uid://c7aa3pmniyfbm"]
+
+[ext_resource type="Script" uid="uid://dsylpr3v2vcbb" path="res://effect/effect.gd" id="1_w8nm4"]
+[ext_resource type="Texture2D" uid="uid://cjhuv8dla2v60" path="res://item/consumable/food/berry_spritepng.png" id="2_1dmv5"]
+[ext_resource type="Script" uid="uid://5fsmjdm1a5cm" path="res://item/consumable/consumable_def.gd" id="2_257ri"]
+
+[resource]
+script = ExtResource("2_257ri")
+item_id = &"berry"
+display_name = "Berry"
+description = "A small, edible fruit. Grows abundantly in the forest."
+icon_texture = ExtResource("2_1dmv5")
+body_y_offset = -3.0
+metadata/_custom_type_script = "uid://5fsmjdm1a5cm"

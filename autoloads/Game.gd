@@ -168,37 +168,39 @@ func drop_items(item_list: Dictionary[ItemDef, int], origin_pos: Vector2) -> voi
 
 		var count = item_list[item_def]
 
-		var item_data = Items.create_item_data(item_def, count)
+		for i in range(count):
 
-		var item_node = Items.create_dropped_item_node(item_data)
+			var item_data = Items.create_item_data(item_def, 1)
 
-		if current_drop_position == initial_drop_position:
+			var item_node = Items.create_dropped_item_node(item_data)
 
+			if current_drop_position == initial_drop_position:
+
+				location.add_item_node(item_node, current_drop_position)
+
+				previous_drop_position = current_drop_position
+				
+				current_drop_position = origin_pos + Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
+
+				continue
+
+			var center_distance = origin_pos.distance_to(current_drop_position)
+
+			var previous_distance = previous_drop_position.distance_to(current_drop_position)
+
+			while center_distance > radius or previous_distance < radius:
+
+				previous_drop_position = current_drop_position
+
+				current_drop_position = origin_pos + Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
+
+				center_distance = origin_pos.distance_to(current_drop_position)
+
+				previous_distance = previous_drop_position.distance_to(current_drop_position)
+			
 			location.add_item_node(item_node, current_drop_position)
 
-			previous_drop_position = current_drop_position
-			
 			current_drop_position = origin_pos + Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
-
-			continue
-
-		var center_distance = origin_pos.distance_to(current_drop_position)
-
-		var previous_distance = previous_drop_position.distance_to(current_drop_position)
-
-		while center_distance > radius or previous_distance < radius:
-
-			previous_drop_position = current_drop_position
-
-			current_drop_position = origin_pos + Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
-
-			center_distance = origin_pos.distance_to(current_drop_position)
-
-			previous_distance = previous_drop_position.distance_to(current_drop_position)
-		
-		location.add_item_node(item_node, current_drop_position)
-
-		current_drop_position = origin_pos + Vector2(randf_range(-radius, radius), randf_range(-radius, radius))
 
 
 

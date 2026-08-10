@@ -4,9 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://cnashhph0u4fr" path="res://item/item_shadow_sprite.png" id="2_gvr7y"]
 [ext_resource type="Script" uid="uid://dhhv20t77148x" path="res://system/sensor.gd" id="2_nm4op"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hyfwq"]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_nm4op"]
+radius = 15.0
 
 [node name="DroppedItemNode" type="StaticBody2D" unique_id=245656248 node_paths=PackedStringArray("body_sprite", "body_collision", "pick_up_sensor")]
 y_sort_enabled = true
@@ -26,7 +25,6 @@ modulate = Color(1, 1, 1, 0.29411766)
 texture = ExtResource("2_gvr7y")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=427845642]
-shape = SubResource("CircleShape2D_hyfwq")
 
 [node name="PickUpSensor" type="Area2D" parent="." unique_id=1799020607]
 collision_layer = 0

@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://n6wutygqdsp2"]
+
+[ext_resource type="PackedScene" uid="uid://b4k65bgaibflf" path="res://entity/object/resources/resource_node.tscn" id="1_kufd1"]
+[ext_resource type="Resource" uid="uid://rl87nqy3twlg" path="res://entity/object/resources/berry_bush_def.tres" id="2_dqq50"]
+[ext_resource type="Texture2D" uid="uid://5xlw1dmvmgr0" path="res://entity/object/resources/berry_bush_sprite.png" id="3_l87mf"]
+[ext_resource type="Script" uid="uid://bmpwxbkfe36oj" path="res://component/resource_component.gd" id="4_0q3os"]
+[ext_resource type="Script" uid="uid://crkpvnuarvpb8" path="res://item/loot_entry.gd" id="5_p7khv"]
+[ext_resource type="Script" uid="uid://dbw06dfsqcft0" path="res://item/item_def.gd" id="6_qtq2w"]
+[ext_resource type="Script" uid="uid://djdgtjx6g6o5n" path="res://item/loot_set.gd" id="7_ubojj"]
+[ext_resource type="Script" uid="uid://ryqb8exiuir6" path="res://item/loot_table.gd" id="8_0s5vc"]
+[ext_resource type="Resource" uid="uid://c7aa3pmniyfbm" path="res://item/consumable/food/berry_def.tres" id="8_qtq2w"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uc4r2"]
+
+[sub_resource type="Resource" id="Resource_q7fmc"]
+script = ExtResource("7_ubojj")
+chance = 1.0
+item_list = Dictionary[ExtResource("6_qtq2w"), Vector2i]({
+ExtResource("8_qtq2w"): Vector2i(1, 3)
+})
+metadata/_custom_type_script = "uid://djdgtjx6g6o5n"
+
+[sub_resource type="Resource" id="Resource_d5wu7"]
+script = ExtResource("5_p7khv")
+loot_sets = Array[ExtResource("7_ubojj")]([SubResource("Resource_q7fmc")])
+metadata/_custom_type_script = "uid://crkpvnuarvpb8"
+
+[sub_resource type="Resource" id="Resource_gvr7y"]
+script = ExtResource("8_0s5vc")
+entries = Array[ExtResource("5_p7khv")]([SubResource("Resource_d5wu7")])
+metadata/_custom_type_script = "uid://ryqb8exiuir6"
+
+[node name="BerryBush" unique_id=188428736 instance=ExtResource("1_kufd1")]
+entity_def = ExtResource("2_dqq50")
+
+[node name="BodySprite" parent="VisualRoot" parent_id_path=PackedInt32Array(866277596) index="0" unique_id=1622163974]
+position = Vector2(0, -15)
+texture = ExtResource("3_l87mf")
+hframes = 2
+
+[node name="BodyCollision" parent="." index="1" unique_id=1548032054]
+position = Vector2(0, -10)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_uc4r2")
+
+[node name="ResourceComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1902725791) index="3" unique_id=1522648637]
+script = ExtResource("4_0q3os")
+loot_table = SubResource("Resource_gvr7y")
+duration = 5.0
+metadata/_custom_type_script = "uid://bmpwxbkfe36oj"
+
+[editable path="BodyHurtbox"]
