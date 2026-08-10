@@ -50,10 +50,6 @@ func restore_health(amount: float) -> void:
 
 	health_restored.emit(restored_amount, current_health)
 
-	if entity is PlayerNode:
-
-		Events.fire(PlayerRestoredHealthEvent, {}, true)
-
 
 
 

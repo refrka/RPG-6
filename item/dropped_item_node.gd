@@ -54,7 +54,7 @@ func _update_node() -> void:
 
 	body_sprite.texture = item_def.icon_texture
 
-	body_sprite.position.y = item_def.icon_y_pos
+	body_sprite.position.y = item_def.body_y_offset
 
 
 

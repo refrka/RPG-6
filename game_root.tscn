@@ -6,11 +6,54 @@
 [ext_resource type="Script" uid="uid://cs6810sk4vb03" path="res://cutscene/cutscene.gd" id="3_wd1uf"]
 [ext_resource type="PackedScene" uid="uid://del1wjxmxn4ya" path="res://ui/debug_shit_panel.tscn" id="4_wd1uf"]
 [ext_resource type="Script" uid="uid://ih4d6s0nfolt" path="res://ui/notice_root.gd" id="5_8gxew"]
+[ext_resource type="Script" uid="uid://dt346eh62pbuq" path="res://ui/player_hud.gd" id="5_8tlgu"]
 [ext_resource type="PackedScene" uid="uid://c8hh2ld1sj1o5" path="res://ui/profile_panel.tscn" id="6_6t5o2"]
 [ext_resource type="PackedScene" uid="uid://c5nb2o6fata6k" path="res://ui/game_menu.tscn" id="6_8gxew"]
 [ext_resource type="PackedScene" uid="uid://g3o0lv7ydx5o" path="res://ui/dialogue_panel.tscn" id="6_ledqy"]
 [ext_resource type="PackedScene" uid="uid://dttsvx1tlyvxa" path="res://ui/barter_panel.tscn" id="8_aiwur"]
 [ext_resource type="Script" uid="uid://dyrvdi8n4fqeb" path="res://system/game_camera.gd" id="11_krhou"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_soos4"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.13747498, 0.13747498, 0.13747498, 0.23529412)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.690838, 0.69083804, 0.690838, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tlgu"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+draw_center = false
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_krhou"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.84, 0.15791996, 0.10919999, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 6
 
 [node name="GameRoot" type="Node" unique_id=828412104 groups=["game_root"]]
 script = ExtResource("1_pjpa4")
@@ -29,6 +72,47 @@ script = ExtResource("3_wd1uf")
 [node name="MainMenu" parent="MainMenuCanvas" unique_id=809595668 instance=ExtResource("2_bxsma")]
 visible = false
 mouse_filter = 2
+
+[node name="HUDCanvas" type="CanvasLayer" parent="." unique_id=1846792890]
+
+[node name="Control" type="Control" parent="HUDCanvas" unique_id=2002340788]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PlayerHUD" type="MarginContainer" parent="HUDCanvas/Control" unique_id=1550052390 node_paths=PackedStringArray("health_bar")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+script = ExtResource("5_8tlgu")
+health_bar = NodePath("PanelContainer/HealthBar")
+
+[node name="PanelContainer" type="PanelContainer" parent="HUDCanvas/Control/PlayerHUD" unique_id=481441011]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_soos4")
+
+[node name="HealthBar" type="ProgressBar" parent="HUDCanvas/Control/PlayerHUD/PanelContainer" unique_id=1794771307]
+custom_minimum_size = Vector2(250, 35)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_8tlgu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_krhou")
+value = 50.0
+show_percentage = false
 
 [node name="OverlayCanvas" type="CanvasLayer" parent="." unique_id=902617722]
 
@@ -50,6 +134,7 @@ visible = false
 layout_mode = 1
 
 [node name="BarterPanel" parent="OverlayCanvas/OverlayRoot" unique_id=2054198806 instance=ExtResource("8_aiwur")]
+visible = false
 layout_mode = 1
 
 [node name="NoticeRoot" type="Control" parent="OverlayCanvas" unique_id=604764562 groups=["notice_root"]]
@@ -101,6 +186,7 @@ mouse_filter = 2
 
 [node name="DebugShitPanel" parent="DebugCanvas/DebugRoot/DebugControlRoot" unique_id=2112953381 instance=ExtResource("4_wd1uf")]
 process_mode = 3
+visible = false
 layout_mode = 1
 
 [node name="GameCamera" type="Camera2D" parent="." unique_id=569789934 groups=["game_camera"]]
