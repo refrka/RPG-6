@@ -88,3 +88,7 @@ func _on_respawn_boolean_completed(popup: GamePopup, response: bool) -> void:
 	if response == false:
 
 		Game.end()
+
+
+
+

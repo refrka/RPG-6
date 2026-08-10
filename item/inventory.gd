@@ -328,6 +328,11 @@ func has_item_data(item_data: ItemData) -> bool:
 	return item_list.has(item_data)
 
 
+func has_item_def(item_def: ItemDef) -> bool:
+
+	return get_item_data_with_def(item_def) != null
+
+
 
 
 

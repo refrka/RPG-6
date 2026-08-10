@@ -53,7 +53,11 @@ func _try_interaction(_target_entity: EntityNode) -> void:
 
 	if !interactable_component._can_interact():
 
-		return
+		if interactable_component is LootContainerComponent and !interactable_component.can_unlock(entity):
+
+			UI.show_popup(GamePopup.PopupMode.CONTINUE, "This container is locked")
+
+			return
 
 	target_entity = _target_entity
 

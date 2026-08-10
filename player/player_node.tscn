@@ -160,9 +160,6 @@ vframes = 8
 y_sort_enabled = true
 position = Vector2(0, -16)
 
-[node name="CombatSprite" parent="VisualRoot/CombatVisualRoot" index="0" unique_id=870454535]
-position = Vector2(16, 0)
-
 [node name="BodyCollision" parent="." index="1" unique_id=1462622998]
 position = Vector2(0, -6)
 rotation = -1.5707964
@@ -184,7 +181,6 @@ shape = SubResource("CircleShape2D_bg5s2")
 debug_color = Color(0, 0.5950001, 0.7, 0.05882353)
 
 [node name="CombatRoot" parent="." index="5" unique_id=1056235965]
-y_sort_enabled = true
 position = Vector2(0, -16)
 
 [node name="CombatSpriteRemote" parent="CombatRoot" index="0" unique_id=1284895721]

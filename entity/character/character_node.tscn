@@ -335,8 +335,6 @@ nav_agent = NodePath("NavigationAgent2D")
 
 [node name="CombatSprite" type="Sprite2D" parent="VisualRoot/CombatVisualRoot" unique_id=870454535]
 visible = false
-rotation = 3.1415927
-scale = Vector2(1, -1)
 
 [node name="BodyCollision" type="CollisionShape2D" parent="." unique_id=1462622998]
 
@@ -352,8 +350,10 @@ metadata/_custom_type_script = "uid://dhhv20t77148x"
 debug_color = Color(0.52553135, 0.56893283, 1.1551381e-06, 0)
 
 [node name="CombatRoot" type="Node2D" parent="." unique_id=1056235965]
+y_sort_enabled = true
 
 [node name="CombatSpriteRemote" type="RemoteTransform2D" parent="CombatRoot" unique_id=1284895721]
+y_sort_enabled = true
 remote_path = NodePath("../../VisualRoot/CombatVisualRoot/CombatSprite")
 
 [node name="CombatHitbox" parent="CombatRoot" unique_id=1542851543 instance=ExtResource("3_1ndw8")]
@@ -424,10 +424,11 @@ anim_player = NodePath("../../AnimationPlayer")
 anim_tree = NodePath("../../AnimationTree")
 metadata/_custom_type_script = "uid://7nntd7c7ifji"
 
-[node name="CombatComponent" type="Node" parent="ComponentRoot" unique_id=1499651281 node_paths=PackedStringArray("combat_root", "combat_hitbox")]
+[node name="CombatComponent" type="Node" parent="ComponentRoot" unique_id=1499651281 node_paths=PackedStringArray("combat_root", "combat_hitbox", "combat_remote")]
 script = ExtResource("12_m6mxn")
 combat_root = NodePath("../../CombatRoot")
 combat_hitbox = NodePath("../../CombatRoot/CombatHitbox")
+combat_remote = NodePath("../../CombatRoot/CombatSpriteRemote")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=447569240]
 libraries/ = SubResource("AnimationLibrary_hhc6v")

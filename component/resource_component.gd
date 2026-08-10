@@ -1,0 +1,1 @@
+class_name ResourceComponent extends InteractableComponent

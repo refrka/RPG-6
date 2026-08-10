@@ -5,6 +5,10 @@ class_name LootContainerComponent extends InteractableComponent
 
 @export var loot_table: LootTable
 
+@export var locked:= false
+
+@export var key_item_def: ItemDef
+
 
 
 var looted:= false
@@ -15,6 +19,7 @@ var looted:= false
 func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_DISABLED
+
 
 
 
@@ -35,6 +40,12 @@ func _initialize(_entity: EntityNode) -> void:
 func _interact() -> bool:
 
 	looted = true
+
+	if locked:
+
+		locked = false
+
+		UI.show_notice("Container unlocked with %s" % key_item_def.display_name)
 
 	entity.body_sprite.frame = 1
 
@@ -70,18 +81,34 @@ func _interact() -> bool:
 
 func _can_interact() -> bool:
 
-	var has_loot:= false
+	var can_interact:= false
 
 	if loot_table:
 
-		has_loot = true
+		can_interact = true
 
 	if !entity.inventory.is_empty():
 
-		has_loot = true
+		can_interact = true
 
 	if looted:
 
-		has_loot = false
+		can_interact = false
 
-	return has_loot
+	if locked:
+
+		can_interact = false
+
+	return can_interact
+
+
+
+
+
+func can_unlock(actor_entity: EntityNode) -> bool:
+
+	if !key_item_def:
+
+		return false
+
+	return actor_entity.inventory.has_item_def(key_item_def)

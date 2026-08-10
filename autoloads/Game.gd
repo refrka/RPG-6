@@ -64,8 +64,6 @@ func restart() -> void:
 
 func start(save_id: StringName) -> void:
 
-	print(get_player().get_entity_def().default_inventory.item_list)
-
 	var save_data = Saves.load_save_data(save_id)
 
 	if !save_data:
@@ -91,8 +89,6 @@ func start(save_id: StringName) -> void:
 
 
 func end() -> void:
-
-	print(get_player().get_entity_def().default_inventory.item_list)
 
 	Events.fire(GameEndingEvent)
 

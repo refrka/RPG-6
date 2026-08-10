@@ -260,6 +260,18 @@ func close_barter_panel() -> void:
 
 
 
+func close_popup(popup: GamePopup) -> void:
+
+	if popup.pause:
+
+		pause_overlays.erase(popup)
+
+		Game.resume()
+
+	popup.queue_free()
+
+
+
 
 
 
@@ -330,13 +342,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_popup_completed(popup: GamePopup) -> void:
 
-	popup.queue_free()
+	close_popup(popup)
 
 
 
 func _on_popup_boolean_completed(popup: GamePopup, state: bool) -> void:
 
-	popup.queue_free()
+	close_popup(popup)
 
 	popup_boolean_completed.emit(state)
 

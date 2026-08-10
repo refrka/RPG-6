@@ -19,8 +19,6 @@ func _ready() -> void:
 
 
 
-
-
 func load_player() -> void:
 
 	var player = Game.get_player()
