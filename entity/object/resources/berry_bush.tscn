@@ -46,7 +46,7 @@ shape = SubResource("CapsuleShape2D_uc4r2")
 [node name="ResourceComponent" type="Node" parent="ComponentRoot" parent_id_path=PackedInt32Array(1902725791) index="3" unique_id=1522648637]
 script = ExtResource("4_0q3os")
 loot_table = SubResource("Resource_gvr7y")
-duration = 5.0
+duration = 1.0
 metadata/_custom_type_script = "uid://bmpwxbkfe36oj"
 
 [editable path="BodyHurtbox"]

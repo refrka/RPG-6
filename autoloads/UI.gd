@@ -10,6 +10,8 @@ signal popup_boolean_completed(state: bool)
 
 @onready var barter_count_selector_scene:= preload("res://ui/barter_count_selector.tscn")
 
+@onready var interaction_progress_displace_scene:= preload("res://ui/interaction_progress_display.tscn")
+
 
 
 var overlay_registry: Dictionary[Script, Overlay]
@@ -121,6 +123,15 @@ func get_overlay(overlay_script: Script) -> Overlay:
 		overlay = overlay_registry[overlay_script]
 
 	return overlay
+
+
+
+
+func get_interaction_progress_display() -> InteractionProgressDisplay:
+
+	var display = interaction_progress_displace_scene.instantiate()
+
+	return display
 
 
 

@@ -1,0 +1,1 @@
+class_name InteractionProgressDisplay extends ProgressBar

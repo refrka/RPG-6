@@ -15,6 +15,9 @@ signal interaction_ended
 @export var can_barter:= false
 
 
+var progress_display: InteractionProgressDisplay
+
+
 # Interaction examples:
 
 # 1. Push button, light turns on (no duration, no dialogue)
@@ -32,6 +35,24 @@ signal interaction_ended
 func _ready() -> void:
 
 	process_mode = Node.PROCESS_MODE_DISABLED
+
+
+
+
+func update_progress_display(time: float) -> void:
+
+	if !progress_display:
+
+		progress_display = UI.get_interaction_progress_display()
+
+		entity.add_child(progress_display)
+
+		progress_display.max_value = duration
+
+		progress_display.global_position = entity.global_position + Vector2(-15,0)
+
+	progress_display.value = duration - time
+
 
 
 
@@ -64,6 +85,14 @@ func _interact() -> bool:
 
 
 func _end() -> void:
+
+	print("ending")
+
+	if progress_display:
+
+		progress_display.queue_free()
+
+		progress_display = null
 
 	Dialogue.end_dialogue()
 

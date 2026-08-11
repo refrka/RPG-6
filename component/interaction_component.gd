@@ -56,17 +56,31 @@ func _try_interaction(_target_entity: EntityNode) -> void:
 
 		if !interactable_component._can_interact():
 
-			if interactable_component is LootContainerComponent and !interactable_component.can_unlock(entity):
+			if interactable_component is LootContainerComponent: 
+				
+				if !interactable_component.can_unlock(entity):
 
-				UI.show_popup(GamePopup.PopupMode.CONTINUE, "This container is locked")
+					UI.show_popup(GamePopup.PopupMode.CONTINUE, "This container is locked")
 
-				return
+					return
 
-		target_entity = _target_entity
+				else:
 
-		target_interactable_component = interactable_component
+					interactable_component.set_lock_state(false)
 
-		_start_interaction.call_deferred()
+					target_entity = _target_entity
+
+					target_interactable_component = interactable_component
+
+					_start_interaction.call_deferred()
+
+		else:
+
+			target_entity = _target_entity
+
+			target_interactable_component = interactable_component
+
+			_start_interaction.call_deferred()
 
 
 
@@ -75,13 +89,13 @@ func _start_interaction() -> void:
 
 	entity.state_machine.request_state(InteractingState)
 
+	target_interactable_component.interaction_ended.connect(_on_interaction_ended, CONNECT_ONE_SHOT)
+
 	if target_interactable_component._interact():
 
 		if target_interactable_component.duration > 0.0:
 
 			interaction_timer = target_interactable_component.duration
-
-			target_interactable_component.interaction_ended.connect(_on_interaction_ended, CONNECT_ONE_SHOT)
 
 		else:
 
@@ -125,6 +139,10 @@ func _end_interaction() -> void:
 func _complete_interaction() -> void:
 
 	entity.state_machine.request_state(IdleState)
+
+	target_interactable_component._end()
+
+	interaction_timer = 0.0
 
 	target_entity = null
 
@@ -222,6 +240,8 @@ func _on_body_entered_sensor(body: PhysicsBody2D) -> void:
 func _process(delta: float) -> void:
 
 	if interaction_timer > 0.0:
+
+		target_interactable_component.update_progress_display(interaction_timer)
 
 		interaction_timer -= delta
 

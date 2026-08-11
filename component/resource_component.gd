@@ -20,6 +20,9 @@ func _can_interact() -> bool:
 
 
 
+
+
+
 func _execute() -> void:
 
 	_set_harvested_state(true)

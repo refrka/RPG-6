@@ -24,6 +24,14 @@ func _ready() -> void:
 
 
 
+func set_lock_state(state: bool) -> void:
+
+	locked = state
+
+
+
+
+
 func _initialize(_entity: EntityNode) -> void:
 
 	super(_entity)
@@ -46,30 +54,6 @@ func _interact() -> bool:
 		locked = false
 
 		UI.show_notice("Container unlocked with %s" % key_item_def.display_name)
-
-	entity.body_sprite.frame = 1
-
-	var loot = loot_table.get_loot()
-
-	var inventory_items = entity.inventory.item_list
-
-	for item_data in inventory_items:
-
-		if !loot.has(item_data.get_item_def):
-
-			loot[item_data.get_item_def()] = 0
-		
-		loot[item_data.get_item_def()] += item_data.get_count()
-
-		entity.inventory.remove_data(item_data)
-
-	var player = Game.get_player()
-
-	for item_def in loot:
-
-		var count = loot[item_def]
-
-		player.inventory.add_items(item_def, count)
 
 	return super()
 
@@ -95,11 +79,42 @@ func _can_interact() -> bool:
 
 		can_interact = false
 
-	if locked:
-
-		can_interact = false
-
 	return can_interact
+
+
+
+
+
+
+func _execute() -> void:
+
+	entity.body_sprite.frame = 1
+
+	var loot = loot_table.get_loot()
+
+	var inventory_items = entity.inventory.item_list
+
+	for item_data in inventory_items:
+
+		if !loot.has(item_data.get_item_def):
+
+			loot[item_data.get_item_def()] = 0
+		
+		loot[item_data.get_item_def()] += item_data.get_count()
+
+		entity.inventory.remove_data(item_data)
+
+	var player = Game.get_player()
+
+	for item_def in loot:
+
+		var count = loot[item_def]
+
+		player.inventory.add_items(item_def, count)
+
+	interaction_ended.emit()
+
+
 
 
 

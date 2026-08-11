@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cbuot0liw14ko"]
+
+[ext_resource type="Script" uid="uid://bsioscu0jfir7" path="res://ui/interaction_progress_display.gd" id="1_drd2l"]
+
+[node name="InteractionProgressDisplay" type="ProgressBar" unique_id=1864060877]
+custom_minimum_size = Vector2(30, 0)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -655.0
+offset_right = -625.0
+offset_bottom = 4.0
+grow_horizontal = 2
+show_percentage = false
+script = ExtResource("1_drd2l")
